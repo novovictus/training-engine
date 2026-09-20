@@ -1,34 +1,131 @@
-# Training Engine
+# Training Engine Runtime
 
-A static, browser-only practice-test and assessment engine. It is vendor-neutral and certification-neutral: any course, certification, subject, or private assessment can be supplied as a schemaVersion 1 bank without application-code changes.
+The `practice-test/` directory contains the static browser runtime for the vendor-neutral Training Engine.
 
-## Architecture
+## Runtime responsibilities
 
-The engine owns loading, validation, randomized uniform question selection, answer-order randomization, exam and practice modes, progress, exports, and reports. A bank owns its content, title, identity, version, domains, targets, and question composition. The engine does not implement domain weighting; authors express intended distribution by composing the bank accordingly.
+The engine owns:
 
-The bundled default is a small generic fixture. Historical SecAI banks in `test-banks/` remain unchanged compatibility fixtures.
+- schemaVersion 1 validation
+- JavaScript and JSON bank loading
+- runtime bank-source identification
+- randomized uniform question selection
+- displayed-answer randomization
+- exam and practice modes
+- timers
+- flags
+- confidence ratings
+- notes
+- resume and quit-run behavior
+- mastery and attempt history
+- progress export/import
+- completed-run JSON and text export
+
+The bank owns:
+
+- `bankId`
+- `bankVersion`
+- `title`
+- question content
+- domains
+- targets
+- question composition
+
+The engine does not implement domain weighting.
 
 ## SchemaVersion 1
 
-```js
+```javascript
 window.ANY_BANK_NAME = {
   schemaVersion: 1,
-  bankId: 'unique-bank-id',
-  bankVersion: '1.0.0',
-  title: 'Descriptive bank title',
+  bankId: "unique-bank-id",
+  bankVersion: "1.0.0",
+  title: "Human-readable title",
   questions: [{
-    id: 'Q001', number: 1, domain: 'string', target: 'string', stem: 'Question text',
-    options: {A: '...', B: '...', C: '...', D: '...'}, answer: 'A'
+    id: "Q001",
+    number: 1,
+    domain: "domain-string",
+    target: "Target text",
+    stem: "Question text",
+    options: {
+      A: "Option A",
+      B: "Option B",
+      C: "Option C",
+      D: "Option D"
+    },
+    answer: "A"
   }]
 };
 ```
 
-Required bank fields are exactly `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. The engine requires schema version 1, non-empty identifiers/title/questions, unique question IDs, positive integer numbers, string domains/targets, non-empty stems/options, exactly options A-D, and an answer A-D. No additional fields are required.
+The schema remains unchanged from the original implementation.
 
-For JavaScript files, the loader evaluates the file against an isolated window-like object and validates every created property. Exactly one compatible bank is required; its property name is runtime display metadata (for example `TEST_FIXTURE_BANK`) and appears in the primary eyebrow. The property name is not injected into or persisted with the bank schema. JSON banks are validated identically and display a neutral `JSON: <filename>` identifier.
+## JavaScript bank discovery
 
-## State and migration
+JavaScript bank files are evaluated against an isolated window-like object.
 
-New state uses `training-engine-v1:<bankId>:<bankVersion>` and new run-mode preference uses `training-engine-run-mode:<bankId>:<bankVersion>`. Durable identity is always `bankId + bankVersion`, never a JavaScript global name. The engine reads compatible SecAI-era state and run-mode keys, migrates only records whose stored bank ID and version exactly match, and retains legacy keys. Identity-less legacy progress cannot be safely attributed and is rejected.
+The loader inspects properties created by the file and requires exactly one object that satisfies the schemaVersion 1 bank shape.
 
-Source code is MIT. Independently authored content and documentation are CC BY 4.0 unless otherwise noted. Historical vendor-specific banks retain their applicable trademark notices; no affiliation is implied.
+The global property name becomes runtime display metadata.
+
+Examples:
+
+```javascript
+window.SECAI_QUESTION_BANK = { ... };
+window.TEST_FIXTURE_BANK = { ... };
+window.CYSA_QUESTION_BANK = { ... };
+```
+
+No engine change is required for a new global name.
+
+The global property name is not part of durable bank identity and is not added to the bank object.
+
+## JSON banks
+
+JSON banks use the same schema without a JavaScript global assignment.
+
+The engine displays a neutral filename-derived identifier:
+
+```text
+JSON: <filename>
+```
+
+## State
+
+Progress state is isolated by:
+
+```text
+bankId + bankVersion
+```
+
+Canonical progress key:
+
+```text
+training-engine-v1:<bankId>:<bankVersion>
+```
+
+Canonical run-mode key:
+
+```text
+training-engine-run-mode:<bankId>:<bankVersion>
+```
+
+Compatible legacy SecAI-era records may be read and migrated only when embedded bank identity exactly matches the loaded bank.
+
+## Bundled fixture
+
+`questions.js` is a generic fixture used to verify the runtime without coupling the engine to any vendor or certification.
+
+Historical SecAI banks remain available under `../test-banks/` as compatibility fixtures and prior study artifacts.
+
+## Selection behavior
+
+The engine does not implement domain weighting.
+
+When a run starts, it:
+
+1. determines eligible questions
+2. uniformly shuffles the eligible pool
+3. selects the configured number of questions
+
+Bank authors are responsible for representing intended topic/domain distribution through bank composition.
