@@ -4,42 +4,36 @@ Local execution is intended for development, modification, testing, and validati
 
 ## Normal use
 
-Use the deployed GitHub Pages application:
+Use the deployed application:
 
 ```text
-https://ninja-neer.net/training/
+https://ninja-neer.net/training-engine/
 ```
 
-That entry point redirects to:
+The project root redirects to:
 
 ```text
-https://ninja-neer.net/training/practice-test/
+https://ninja-neer.net/training-engine/practice-test/
 ```
 
-The hosted HTTPS application is the supported persistent-use environment and is intended to serve the live online audience.
-
-No download, installation, account, backend, package manager, or local web server is required for normal use.
+The hosted HTTPS application is the supported persistent-use environment. No download, installation, account, backend, package manager, or local web server is required for normal use.
 
 ## Get a local copy
 
-For development or validation, clone the repository:
+For development or validation:
 
 ```powershell
-git clone https://github.com/novovictus/training.git
-cd training
+git clone https://github.com/novovictus/training-engine.git
+cd training-engine
 ```
 
 Alternatively, download the repository ZIP from GitHub and extract it.
-
-After extracting the ZIP, open PowerShell or a terminal in the repository root.
 
 No build process, backend, package manager, or application installation is required.
 
 ## Start the local application
 
-From the repository root, start an ordinary static HTTP server.
-
-For example, using Python:
+From the repository root:
 
 ```powershell
 python -m http.server 8000
@@ -57,28 +51,22 @@ The root `index.html` redirects to:
 http://localhost:8000/practice-test/
 ```
 
-You can also open the application path directly:
-
-```text
-http://localhost:8000/practice-test/
-```
-
-The local HTTP-hosted copy is the supported development and validation environment. It allows local code changes to be tested under an HTTP origin similar to the live GitHub Pages deployment without publishing those changes.
+The localhost copy is the supported development and validation environment.
 
 ## Application files
 
-The application files remain ordinary static files:
+The browser application remains ordinary static files:
 
 - `practice-test/index.html`
 - `practice-test/styles.css`
 - `practice-test/questions.js`
 - `practice-test/app.js`
 
-Bank loading is handled by `practice-test/index.html`; JavaScript files are inspected for exactly one compatible schemaVersion 1 bank global, while JSON files use a neutral filename-derived display identifier.
+Bank loading is handled by `practice-test/index.html`. JavaScript files are inspected for exactly one compatible schemaVersion 1 bank object exposed through any global property name. JSON files use the same bank schema and receive a neutral filename-derived runtime display identifier.
 
 ## Direct file launch
 
-Opening `practice-test/index.html` directly from the repository or an extracted ZIP with a `file://` URL may still run the application, but it is not the supported persistent-use or development path.
+Opening `practice-test/index.html` directly with a `file://` URL may still run the application, but it is not the supported persistent-use or development path.
 
 Direct-file browser behavior can differ from HTTP/HTTPS behavior, particularly for:
 
@@ -87,15 +75,11 @@ Direct-file browser behavior can differ from HTTP/HTTPS behavior, particularly f
 - persistence when files or directories move
 - behavior across browsers and browser profiles
 
-Use localhost when developing or validating local code changes.
-
-Use the GitHub Pages deployment for normal persistent use.
+Use localhost for development and validation. Use the deployed HTTPS application for normal persistent use.
 
 ## Progress and browser origins
 
-Browser local storage belongs to the origin from which the application is opened.
-
-These are separate storage environments:
+Browser local storage belongs to the origin from which the application is opened. These are separate storage environments:
 
 ```text
 file://...
@@ -103,24 +87,18 @@ http://localhost:8000
 https://ninja-neer.net
 ```
 
-Progress does not automatically move between them.
+Progress does not automatically move between origins.
 
-Local storage is automatic working state, not a durable backup.
+Use `Export progress` to create a portable recovery record and `Import progress` to restore it into another browser origin, browser profile, or environment.
 
-Use `Export progress` to create the portable recovery record and `Import progress` to restore it into another browser origin, browser profile, or environment.
+## Current validation baseline
 
-For example, moving from a local development copy to the live hosted application requires exporting progress from the local environment and importing it into the hosted environment if that state needs to be preserved.
+The generalized engine has been smoke-tested by:
 
-## Validated migration
+1. Running the bundled generic fixture through a complete practice run.
+2. Loading an unchanged historical SecAI JavaScript bank.
+3. Confirming dynamic JavaScript-global discovery and display.
+4. Importing historical compatible progress.
+5. Verifying the application operates from the GitHub Pages deployment.
 
-The GitHub Pages migration was validated by:
-
-1. Loading the hosted application over HTTPS.
-2. Loading the terminology bank.
-3. Importing progress created under the prior local environment.
-4. Confirming the imported progress and mastery state.
-5. Closing the hosted application.
-6. Reopening it and confirming that the state remained preserved.
-7. Performing an additional deployment smoke test in Firefox.
-
-This establishes the hosted HTTPS deployment as the current normal-use baseline.
+Further browser validation should be driven by observed defects rather than broad rewrites.
