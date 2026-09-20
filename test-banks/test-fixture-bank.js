@@ -1,8 +1,8 @@
-window.TRAINING_ENGINE_FIXTURE_BANK = {
+window.TEST_FIXTURE_BANK = {
   schemaVersion: 1,
-  bankId: 'training-engine-fixture',
+  bankId: 'test-fixture-bank',
   bankVersion: '1.0.0',
-  title: 'Training Engine Starter Fixture',
+  title: 'Test Fixture Bank',
   questions: [
     {id:'F001',number:1,domain:'general',target:'Interpret a simple instruction',stem:'Which option is explicitly marked as the correct response in this fixture?',options:{A:'Option A',B:'Option B',C:'Option C',D:'Option D'},answer:'B'},
     {id:'F002',number:2,domain:'general',target:'Recognize a sequence',stem:'Which number comes next after 2, 4, 6?',options:{A:'7',B:'8',C:'9',D:'10'},answer:'B'},

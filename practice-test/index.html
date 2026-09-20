@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SecAI+ Practice Test</title>
+  <title>Training Engine</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="shell">
     <header class="topbar">
-      <div><p class="eyebrow">CompTIA SecAI+ CY0-001</p><h1>Practice Test</h1></div>
+      <div><p id="bank-identity" class="eyebrow">Loading question bank</p><h1>Training Engine</h1></div>
       <div id="timer" class="timer" aria-live="polite">60:00</div>
     </header>
     <aside id="file-warning" class="file-warning" hidden>
@@ -110,19 +110,14 @@
   </main>
   <script>
   (()=>{
-    const SELECTED_SOURCE_KEY='secai-plus-selected-bank-source';
-    const CUSTOM_BANK_KEY='secai-plus-custom-bank';
-    const BUNDLED_BANK={id:'secai-plus-cy0-001-v2',version:'2.0.0',title:'Diagnostic v2',questionCount:60,source:'questions.js',kind:'bundled'};
-    function validBankShape(bank){return Boolean(bank&&typeof bank==='object'&&bank.schemaVersion===1&&typeof bank.bankId==='string'&&bank.bankId.trim()&&typeof bank.bankVersion==='string'&&bank.bankVersion.trim()&&typeof bank.title==='string'&&bank.title.trim()&&Array.isArray(bank.questions)&&bank.questions.length);}
-    function readCustomBank(){try{const parsed=JSON.parse(localStorage.getItem(CUSTOM_BANK_KEY));return validBankShape(parsed)?parsed:null;}catch{return null;}}
-    const customBank=readCustomBank();
-    const useCustom=localStorage.getItem(SELECTED_SOURCE_KEY)==='custom'&&customBank;
-    const selected=useCustom?{id:customBank.bankId,version:customBank.bankVersion,title:customBank.title,questionCount:customBank.questions.length,kind:'custom'}:BUNDLED_BANK;
-    function switchToCustom(bank){if(!validBankShape(bank))throw new Error('Selected file does not contain a valid question bank.');localStorage.setItem(CUSTOM_BANK_KEY,JSON.stringify(bank));localStorage.setItem(SELECTED_SOURCE_KEY,'custom');location.reload();}
+    const SELECTED_SOURCE_KEY='training-engine-selected-bank-source',CUSTOM_BANK_KEY='training-engine-custom-bank',LEGACY_SELECTED_SOURCE_KEY='secai-plus-selected-bank-source',LEGACY_CUSTOM_BANK_KEY='secai-plus-custom-bank',BUNDLED_BANK={source:'questions.js',kind:'bundled'},OPTION_KEYS=['A','B','C','D'];
+    function validBankShape(b){if(!b||typeof b!=='object'||Array.isArray(b)||b.schemaVersion!==1||!['bankId','bankVersion','title'].every(k=>typeof b[k]==='string'&&b[k].trim())||!Array.isArray(b.questions)||!b.questions.length)return false;const ids=new Set();return b.questions.every(q=>{if(!q||typeof q!=='object'||Array.isArray(q)||typeof q.id!=='string'||!q.id.trim()||ids.has(q.id)||!Number.isInteger(q.number)||q.number<1||typeof q.domain!=='string'||typeof q.target!=='string'||typeof q.stem!=='string'||!q.stem.trim()||!q.options||typeof q.options!=='object'||Array.isArray(q.options)||Object.keys(q.options).sort().join(',')!==OPTION_KEYS.join(',')||!OPTION_KEYS.every(k=>typeof q.options[k]==='string'&&q.options[k].trim())||!OPTION_KEYS.includes(q.answer))return false;ids.add(q.id);return true;});}
+    function readCustomBank(){for(const key of [CUSTOM_BANK_KEY,LEGACY_CUSTOM_BANK_KEY])try{const p=JSON.parse(localStorage.getItem(key)),stored=validBankShape(p?.bank)?p:validBankShape(p)?{bank:p,sourceName:'Legacy custom bank'}:null;if(stored)return{bank:stored.bank,sourceName:typeof stored.sourceName==='string'&&stored.sourceName.trim()?stored.sourceName.trim():'Custom bank'};}catch{}return null;}
+    const customBank=readCustomBank(),useCustom=(localStorage.getItem(SELECTED_SOURCE_KEY)||localStorage.getItem(LEGACY_SELECTED_SOURCE_KEY))==='custom'&&customBank,selected={kind:useCustom?'custom':'bundled',source:BUNDLED_BANK.source};
+    function switchToCustom(runtime){if(!runtime||!validBankShape(runtime.bank)||typeof runtime.sourceName!=='string'||!runtime.sourceName.trim())throw new Error('Selected file does not contain a supported question bank.');localStorage.setItem(CUSTOM_BANK_KEY,JSON.stringify({bank:runtime.bank,sourceName:runtime.sourceName.trim()}));localStorage.setItem(SELECTED_SOURCE_KEY,'custom');location.reload();}
     function useBundled(){if(selected.kind==='bundled')return false;localStorage.setItem(SELECTED_SOURCE_KEY,'bundled');location.reload();return true;}
-    window.SECAI_BANKS={selected:{...selected},switchToCustom,useBundled,validBankShape};
-    if(useCustom)window.SECAI_QUESTION_BANK=customBank;
-    else document.write(`<script src="${BUNDLED_BANK.source}"><\/script>`);
+    function setActiveBank(runtime){Object.assign(selected,{id:runtime.bank.bankId,version:runtime.bank.bankVersion,title:runtime.bank.title,questionCount:runtime.bank.questions.length,sourceName:runtime.sourceName});}
+    window.TRAINING_ENGINE_BANKS={selected,switchToCustom,useBundled,validBankShape,setActiveBank};if(useCustom)window.TRAINING_ENGINE_RUNTIME_BANK=customBank;else document.write(`<script src="${BUNDLED_BANK.source}"><\/script>`);
   })();
   </script>
   <script src="app.js"></script>
@@ -131,7 +126,7 @@
   </script>
   <script>
   (()=>{
-    const registry=window.SECAI_BANKS;
+    const registry=window.TRAINING_ENGINE_BANKS;
     const originalCustomize=$('customize-btn').onclick;
     const originalSaveCustomize=$('save-customize').onclick;
     const originalRenderResults=renderResults;
@@ -140,7 +135,7 @@
       const note=$('bank-file-note');
       if(!note||!registry)return;
       const selected=registry.selected;
-      note.textContent=`Current bank: ${selected.title} (${selected.id} v${selected.version}, ${selected.questionCount} questions).`;
+      note.textContent=selected.title?`Current bank: ${selected.title} (${selected.id} v${selected.version}, ${selected.questionCount} questions).`:'Current bank: bundled bank.';
       const bundled=$('use-bundled-bank');
       if(bundled)bundled.disabled=selected.kind==='bundled';
     }
@@ -178,21 +173,22 @@
       $('review-list').innerHTML=review.length?`<h2>Review queue</h2>${review.map(item=>{const status=!item.answer?'Not answered':item.correct?'Correct':'Incorrect';const statusClass=item.correct?'correct':item.answer?'incorrect':'';const flagBadge=item.flagged?' <span class="review-flag">Flagged</span>':'';return`<article class="review-item"><h3>Question ${item.number} · ${item.id}${flagBadge}: <span class="${statusClass}">${status}</span></h3><p>${escapeHtml(item.stem)}</p>${reviewAnswerLine(item,fullAnswers)}<p><strong>Target:</strong> ${escapeHtml(item.target)}</p></article>`;}).join('')}`:`<p>${wrongOnly?'No answered questions were incorrect.':'No answered, flagged, or confidence-marked questions to review.'}</p>`;
     }
     function parseBankFile(text,name){
-      if(name.toLowerCase().endsWith('.json'))return JSON.parse(text);
+      if(name.toLowerCase().endsWith('.json'))return{bank:JSON.parse(text),sourceName:`JSON: ${String(name||'bank.json').replace(/[\/\\]/g,'_')}`};
       const isolatedWindow={};
-      const bank=new Function('window',`${text}\nreturn window.SECAI_QUESTION_BANK;`)(isolatedWindow);
-      if(!bank)throw new Error('The JavaScript file did not assign window.SECAI_QUESTION_BANK.');
-      return bank;
-    }
-    async function loadBankFile(event){
+      new Function('window',text)(isolatedWindow);
+      const matches=Object.keys(isolatedWindow).filter(key=>registry.validBankShape(isolatedWindow[key]));
+      if(!matches.length)throw new Error('The JavaScript file did not assign a supported schemaVersion 1 question bank to window.');
+      if(matches.length>1)throw new Error(`The JavaScript file assigned multiple supported question banks (${matches.join(', ')}). Load a file with exactly one.`);
+      return{bank:isolatedWindow[matches[0]],sourceName:matches[0]};
+    }    async function loadBankFile(event){
       const input=event.target;
       const file=input.files?.[0];
       if(!file)return;
       try{
-        const bank=parseBankFile(await file.text(),file.name);
-        if(!registry?.validBankShape(bank))throw new Error('The selected file does not contain a supported question bank.');
-        if(active&&!confirm(`A ${modeLabel(activeRunMode())} run is in progress. Open ${bank.title} and leave this run available when you return to the current bank?`))return;
-        saveState();registry.switchToCustom(bank);
+        const runtimeBank=parseBankFile(await file.text(),file.name);
+        if(!registry?.validBankShape(runtimeBank.bank))throw new Error('The selected file does not contain a supported question bank.');
+        if(active&&!confirm(`A ${modeLabel(activeRunMode())} run is in progress. Open ${runtimeBank.bank.title} and leave this run available when you return to the current bank?`))return;
+        saveState();registry.switchToCustom(runtimeBank);
       }catch(error){alert(`Question bank could not be opened.\n\n${error.message}`);}finally{input.value='';}
     }
     function useBundledBank(){if(!registry||registry.selected.kind==='bundled')return;if(active&&!confirm(`A ${modeLabel(activeRunMode())} run is in progress. Return to the bundled bank and leave this run available when you reopen the current bank file?`))return;saveState();registry.useBundled();}

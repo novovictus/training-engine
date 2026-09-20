@@ -10,7 +10,7 @@
 
 All real banks use the compact row authoring format documented in `../practice-test/README.md`. The row mapper produces the runtime object schema consumed by `app.js`.
 
-Bank loading is currently wired in `../practice-test/index.html`; `app.js` validates and consumes `window.SECAI_QUESTION_BANK`. The shipped bundled source is `../practice-test/questions.js`.
+Bank loading is wired in `../practice-test/index.html`; the engine discovers exactly one compatible schemaVersion 1 object from any JavaScript global name. The shipped bundled source is `../practice-test/questions.js`, a generic fixture.
 
 A valid outside or named `.js` or `.json` bank can be opened at runtime through Customize > Open bank file. The application stores the selected custom bank in browser local storage until `Use bundled bank` is selected. Bank files under this directory are not discovered automatically.
 
@@ -20,7 +20,7 @@ A bank mismatch warning is expected when stored progress belongs to a different 
 
 These files are safe application fixtures, not certification practice content:
 
-- `test-bank-42.js`: 42 questions, Q001-Q042, rotating canonical answers A-D. Validates behavior below the normal 60-question run size.
+- `test-bank-42.js`: 42 questions, Q001-Q042, rotating canonical answers A-D. Validates behavior below the normal 60-question run size.`r`n- `test-fixture-bank.js`: a four-question `window.TEST_FIXTURE_BANK` fixture used to verify global-name discovery.
 - `sample-bank-100.js`: 100 questions, Q001-Q100, rotating canonical answers A-D. Validates 60-question selection from a larger bank.
 
 Both exercise schema validation, randomized question and displayed-answer order, exam mode, immediate-feedback practice mode, answer locking, scoring, flags, confidence, per-question notes, resume, quit-run abandonment, review, mastery, dual-format completed-run export, progress export/import, mismatch detection, and reset behavior.

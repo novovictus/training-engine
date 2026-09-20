@@ -1,9 +1,10 @@
-const STORAGE_KEY_PREFIX='secai-plus-test-engine-v2';
+const STORAGE_KEY_PREFIX='training-engine-v1';
+const LEGACY_STORAGE_KEY_PREFIX='secai-plus-test-engine-v2';
 const SUPPORTED_SCHEMA_VERSION=1;
 const DEFAULT_QUESTION_COUNT=60;
-const LEGACY_PRODUCTION_BANK={bankId:'secai-plus-cy0-001-v1',bankVersion:'1.0.0'};
 const OPTION_KEYS=['A','B','C','D'];
-const RUN_MODE_STORAGE_KEY_PREFIX='secai-plus-run-mode:';
+const RUN_MODE_STORAGE_KEY_PREFIX='training-engine-run-mode:';
+const LEGACY_RUN_MODE_STORAGE_KEY_PREFIX='secai-plus-run-mode:';
 const views=['start-view','exam-view','results-view','progress-view'];
 const $=id=>document.getElementById(id);
 
@@ -20,7 +21,10 @@ let currentResult=null;
 
 function init(){
   try{
-    bankConfig=loadBankDefinition(window.SECAI_QUESTION_BANK);
+    const runtimeBank=discoverRuntimeBank();
+    bankConfig=loadBankDefinition(runtimeBank.bank);
+    $('bank-identity').textContent=runtimeBank.sourceName;
+    window.TRAINING_ENGINE_BANKS?.setActiveBank(runtimeBank);
     bank=bankConfig.questions;
     questionLookup=new Map(bank.map(question=>[question.id,question]));
     bind();
@@ -32,6 +36,15 @@ function init(){
   }catch(error){renderFatalError(error.message);}
 }
 
+function discoverRuntimeBank(){
+  const stored=window.TRAINING_ENGINE_RUNTIME_BANK;
+  if(stored&&isPlainObject(stored)&&typeof stored.sourceName==='string'&&stored.sourceName.trim())return{sourceName:stored.sourceName.trim(),bank:stored.bank};
+  const matches=[];
+  Object.keys(window).forEach(name=>{try{const candidate=window[name];loadBankDefinition(candidate);matches.push({sourceName:name,bank:candidate});}catch{}});
+  if(!matches.length)throw new Error('No supported schemaVersion 1 question bank was found on window.');
+  if(matches.length>1)throw new Error(`Multiple supported schemaVersion 1 question banks were found on window (${matches.map(match=>match.sourceName).join(', ')}).`);
+  return matches[0];
+}
 function loadBankDefinition(raw){
   if(!isPlainObject(raw))throw new Error('Question bank did not load correctly.');
   if(raw.schemaVersion!==SUPPORTED_SCHEMA_VERSION)throw new Error(`Unsupported question-bank schema version: ${raw.schemaVersion}.`);
@@ -71,7 +84,7 @@ function loadStoredState(){
   const fallback=defaultState();
   const canonical=readCompatibleStoredState(progressStorageKey());
   if(canonical)return{state:canonical};
-  const legacyKeys=[`${STORAGE_KEY_PREFIX}:${bankConfig.bankId}`,STORAGE_KEY_PREFIX];
+  const legacyKeys=[`${STORAGE_KEY_PREFIX}:${bankConfig.bankId}`,STORAGE_KEY_PREFIX,`${LEGACY_STORAGE_KEY_PREFIX}:${bankConfig.bankId}:${bankConfig.bankVersion}`,`${LEGACY_STORAGE_KEY_PREFIX}:${bankConfig.bankId}`,LEGACY_STORAGE_KEY_PREFIX];
   for(const key of legacyKeys){
     const migrated=readCompatibleStoredState(key);
     if(migrated){
@@ -97,10 +110,7 @@ function normalizeStateIdentity(raw,allowLegacy){
   const normalized={...raw};
   const hasBankId=typeof normalized.bankId==='string'&&normalized.bankId.trim();
   const hasBankVersion=typeof normalized.bankVersion==='string'&&normalized.bankVersion.trim();
-  if(!hasBankId&&!hasBankVersion&&allowLegacy){
-    normalized.bankId=LEGACY_PRODUCTION_BANK.bankId;
-    normalized.bankVersion=LEGACY_PRODUCTION_BANK.bankVersion;
-  }else if(!hasBankId||!hasBankVersion){
+  if(!hasBankId||!hasBankVersion){
     throw new Error('Progress data is missing bank identity.');
   }else{
     normalized.bankId=normalized.bankId.trim();
@@ -248,9 +258,9 @@ function currentResponse(){return active.responses[currentItem().questionId];}
 function questionById(id){return questionLookup.get(id);}
 function masteryFor(id){return state.mastery[id]||{attempts:0,correct:0,mastered:false};}
 function displayedLetter(item,canonicalKey){const position=item.optionOrder.indexOf(canonicalKey);return position<0?null:String.fromCharCode(65+position);}
-function runModeStorageKey(){return`${RUN_MODE_STORAGE_KEY_PREFIX}${bankConfig.bankId}`;}
+function runModeStorageKey(){return`${RUN_MODE_STORAGE_KEY_PREFIX}${bankConfig.bankId}:${bankConfig.bankVersion}`;}
 function sanitizeRunMode(value){return value==='practice'?'practice':'exam';}
-function storedRunMode(){return sanitizeRunMode(localStorage.getItem(runModeStorageKey()));}
+function storedRunMode(){return sanitizeRunMode(localStorage.getItem(runModeStorageKey())||localStorage.getItem(`${LEGACY_RUN_MODE_STORAGE_KEY_PREFIX}${bankConfig.bankId}`));}
 function selectedRunMode(){return sanitizeRunMode(document.querySelector('input[name="run-mode"]:checked')?.value);}
 function activeRunMode(){return sanitizeRunMode(active?.mode);}
 function isPracticeMode(){return activeRunMode()==='practice';}
@@ -353,7 +363,7 @@ function exportRun(result){
 function exportProgress(){
   if(blocked)return;
   clearError();
-  downloadJson(state,`secai-training-progress-${new Date().toISOString().slice(0,10)}.json`);
+  downloadJson(state,`training-engine-progress-${new Date().toISOString().slice(0,10)}.json`);
 }
 
 async function importProgress(event){

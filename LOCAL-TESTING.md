@@ -74,7 +74,7 @@ The application files remain ordinary static files:
 - `practice-test/questions.js`
 - `practice-test/app.js`
 
-Bank loading is currently handled by `practice-test/index.html`; `practice-test/app.js` validates and consumes the resulting `window.SECAI_QUESTION_BANK` payload.
+Bank loading is handled by `practice-test/index.html`; JavaScript files are inspected for exactly one compatible schemaVersion 1 bank global, while JSON files use a neutral filename-derived display identifier.
 
 ## Direct file launch
 
