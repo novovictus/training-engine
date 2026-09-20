@@ -1,62 +1,60 @@
 # Question banks and fixtures
 
-## Real SecAI+ banks
+The engine accepts any compatible schemaVersion 1 JavaScript or JSON question bank. Files under this directory are not discovered automatically; load them through **Customize > Open bank file**.
 
-- `../practice-test/questions.js` is the shipped default bank payload and currently mirrors the canonical comprehensive bank.
-- `secai-plus-cy0-001-comprehensive-bank-v1.js` is the canonical named comprehensive bank, 168 questions.
-- `secai-plus-cy0-001-terminology-drill-bank-v1.js` is the terminology-focused drill bank, 195 questions.
-- `secai-plus-cy0-001-diagnostic-v2.js` preserves the prior Diagnostic v2 bank, 60 questions.
-- `secai-plus-minimal-independent-bank-v1.js` is the independent validation bank, 60 questions.
+## Historical SecAI+ banks
 
-All real banks use the compact row authoring format documented in `../practice-test/README.md`. The row mapper produces the runtime object schema consumed by `app.js`.
+These banks are preserved unchanged as compatibility and study artifacts from the original SecAI+ project:
 
-Bank loading is wired in `../practice-test/index.html`; the engine discovers exactly one compatible schemaVersion 1 object from any JavaScript global name. The shipped bundled source is `../practice-test/questions.js`, a generic fixture.
+- `secai-plus-cy0-001-comprehensive-bank-v1.js`: 168 questions.
+- `secai-plus-cy0-001-terminology-drill-bank-v1.js`: 195 questions.
+- `secai-plus-cy0-001-diagnostic-v2.js`: 60 questions.
+- `secai-plus-minimal-independent-bank-v1.js`: 60 questions.
 
-A valid outside or named `.js` or `.json` bank can be opened at runtime through Customize > Open bank file. The application stores the selected custom bank in browser local storage until `Use bundled bank` is selected. Bank files under this directory are not discovered automatically.
+They are no longer the bundled default. Their continued ability to load without modification is a backward-compatibility requirement for the generalized engine.
 
-A bank mismatch warning is expected when stored progress belongs to a different bank identity or version.
+## Bundled default
+
+`../practice-test/questions.js` is the shipped generic fixture used to validate the engine without coupling the runtime to a vendor, certification, or exam.
+
+The engine discovers exactly one compatible schemaVersion 1 object from any JavaScript global name. The global property name becomes runtime display metadata, while durable bank identity remains `bankId + bankVersion`.
 
 ## Public deterministic fixtures
 
-These files are safe application fixtures, not certification practice content:
+These files are application fixtures, not certification practice content:
 
-- `test-bank-42.js`: 42 questions, Q001-Q042, rotating canonical answers A-D. Validates behavior below the normal 60-question run size.`r`n- `test-fixture-bank.js`: a four-question `window.TEST_FIXTURE_BANK` fixture used to verify global-name discovery.
-- `sample-bank-100.js`: 100 questions, Q001-Q100, rotating canonical answers A-D. Validates 60-question selection from a larger bank.
+- `test-bank-42.js`: 42 questions, Q001-Q042, rotating canonical answers A-D.
+- `test-fixture-bank.js`: four-question `window.TEST_FIXTURE_BANK` fixture used to verify global-name discovery.
+- `sample-bank-100.js`: 100 questions, Q001-Q100, rotating canonical answers A-D.
 
-Both exercise schema validation, randomized question and displayed-answer order, exam mode, immediate-feedback practice mode, answer locking, scoring, flags, confidence, per-question notes, resume, quit-run abandonment, review, mastery, dual-format completed-run export, progress export/import, mismatch detection, and reset behavior.
+The fixtures exercise schema validation, randomized question selection, displayed-answer randomization, exam mode, practice mode, answer locking, scoring, flags, confidence, notes, resume, quit-run behavior, review, mastery, completed-run export, progress export/import, mismatch detection, and reset behavior.
 
-For practice-mode validation, confirm that submitting an answer locks it, shows immediate correctness feedback, persists through navigation and reload, and records `practice` in the completed run export. Existing saved attempts without mode metadata should continue as exam-mode attempts.
+## Bank loading
 
-For quit-run validation, confirm that abandoning an active run requires confirmation, removes the active attempt and resume state, and preserves completed history, mastery, settings, selected bank, and selected run mode.
+A compatible outside or named `.js` or `.json` bank can be opened at runtime through **Customize > Open bank file**. The selected custom bank is retained in browser local storage until **Use bundled bank** is selected.
+
+For JavaScript banks, the engine executes the file against an isolated window-like object and requires exactly one compatible schemaVersion 1 bank object. The global property name can be arbitrary, for example:
+
+```javascript
+window.SECAI_QUESTION_BANK = { ... };
+window.CYSA_QUESTION_BANK = { ... };
+window.INTERNAL_TRAINING_BANK = { ... };
+```
+
+The object schema remains unchanged.
+
+## Distribution and weighting
+
+The engine does not implement domain weighting. It uniformly shuffles the eligible question pool and selects the configured number of questions.
+
+Bank authors are responsible for expressing intended domain or topic distribution through bank composition.
 
 ## Restricted private content
 
-`private/comptia-sample-20.js` contains supplied third-party assessment content retained only for private reference and validation.
-
-Do not include `test-banks/private/` in any external package, release, shared archive, or published repository export.
+Any restricted or third-party content retained for private validation must remain excluded from public releases and published repository exports.
 
 ## Fixture validation workflow
 
-From the running application, open Customize > Open bank file and select the desired fixture or bank. Use `Use bundled bank` to return to `practice-test/questions.js`.
+From the running application, open **Customize > Open bank file** and select a fixture or bank. Use **Use bundled bank** to return to `practice-test/questions.js`.
 
-For direct compatibility testing of the bundled `questions.js` path itself, a fixture may still be copied over the bundled file temporarily:
-
-```powershell
-Copy-Item .\practice-test\questions.js .\practice-test\questions.active.js -Force
-Copy-Item .\test-banks\test-bank-42.js .\practice-test\questions.js -Force
-```
-
-Install the 100-question fixture on the bundled path:
-
-```powershell
-Copy-Item .\test-banks\sample-bank-100.js .\practice-test\questions.js -Force
-```
-
-Restore the shipped default:
-
-```powershell
-Copy-Item .\practice-test\questions.active.js .\practice-test\questions.js -Force
-Remove-Item .\practice-test\questions.active.js
-```
-
-Reload `practice-test/index.html` after a direct file swap. Before committing, restore `questions.js`, remove temporary files, and inspect `git status`.
+Before committing fixture experiments, restore the bundled fixture, remove temporary files, and inspect `git status`.
