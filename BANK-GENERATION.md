@@ -230,3 +230,43 @@ When asked to create a new independent bank without additional details:
 - Represent intended topic/domain distribution through bank composition.
 - Do not modify engine code.
 - Validate the bank in the running engine before committing.
+
+
+## Item-quality lessons from CySA+ focused-bank experiments
+
+The CySA+ CS0-003 focused-bank experiments exposed an important distinction between **objective coverage** and **assessment quality**. A bank can cover the correct domains, terminology, tools, acronyms, and weighting while still be a poor diagnostic instrument.
+
+### Failed experiments
+
+**Focused v2: failed.** The bank overcorrected toward objective terminology and became a flash-card bank disguised as multiple choice. Too many items tested direct definitions, acronym expansion, or simple recognition. Distractors frequently came from unrelated conceptual categories, allowing the answer to be found through basic reading comprehension or elimination rather than subject-matter knowledge.
+
+**Focused v3: failed.** Scenario framing improved, but the items still leaked their answers through construction. Correct choices were frequently longer, more qualified, and more technically complete than distractors. Distractors often contained giveaway qualifiers such as "only," "always," "never," "all," or similarly absolute wording. Other distractors were technically irrelevant to the scenario, creating category leakage. The result was still solvable through test-taking heuristics instead of analyst reasoning.
+
+Both failed banks should remain recoverable through Git history as development evidence, but should not be treated as usable study banks.
+
+### Required quality standard for future banks
+
+Objective lists define **coverage**, not question form. Terms, acronyms, tools, frameworks, and other objective language should normally be embedded in realistic decisions or artifacts rather than converted directly into definition questions.
+
+Every authored item should survive an adversarial item-writing review before inclusion:
+
+- All answer choices should be comparable in length, specificity, grammatical structure, and level of technical detail. The correct answer must not consistently be the longest or most carefully qualified choice.
+- Avoid giveaway absolutes and artificial disqualifiers such as "only," "always," "never," "all," or "immediately" unless the distinction genuinely depends on that wording and competing choices are equally plausible.
+- Every distractor must be technically plausible for the scenario and represent a realistic misconception, adjacent concept, wrong sequencing decision, incomplete interpretation, or otherwise credible analyst error.
+- Keep distractors within the same conceptual neighborhood. Do not contrast a valid incident-response action with unrelated technologies merely to fill answer slots.
+- Do not repeat distinctive wording from the stem exclusively in the correct answer.
+- Do not make the correct choice uniquely precise while leaving distractors vague.
+- Prefer interpretation, correlation, prioritization, sequencing, scope, and BEST/FIRST/NEXT decisions over pure recall.
+- Use realistic artifacts where useful: log fragments, event sequences, HTTP requests, email headers, process trees, packet summaries, vulnerability findings, scan results, timelines, and competing remediation constraints.
+- When testing tools or similar concepts, require discrimination among credible alternatives. For example, distinguish Pacu, Prowler, and Scout Suite by task rather than asking what Pacu is.
+- Direct acronym-expansion and definition questions should be exceptional, not the normal way to ensure terminology coverage.
+- A knowledgeable test taker should not be able to answer reliably from answer length, grammar, absolutes, or generic exam-taking heuristics.
+- Randomizing displayed answer order does not correct semantic answer leakage. Item quality must stand independently of option order.
+
+### Development strategy
+
+Do not generate another large focused bank merely because the schema and objective mapping are correct. Build a small pilot pool of roughly 25-30 difficult items first. Run it through the engine and inspect both correctness and **how** answers were reached. A high score is not itself evidence of a bad bank, but a high score obtained through wording cues, implausible distractors, or generic reading comprehension is a failure.
+
+A useful miss should expose a real knowledge distinction. During the v3 test, an unfamiliar SSRF scenario produced such a signal; that is the kind of diagnostic value future questions should seek. The goal is not artificial difficulty or obscurity. The goal is to make subject-matter understanding, rather than item-writing artifacts, determine the answer.
+
+Only after the pilot survives this review should it be expanded into a full domain-weighted objective bank.
