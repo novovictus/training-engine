@@ -102,3 +102,7 @@ The generalized engine has been smoke-tested by:
 5. Verifying the application operates from the GitHub Pages deployment.
 
 Further browser validation should be driven by observed defects rather than broad rewrites.
+
+## AI Explanation outbound data
+
+AI Explanation is an explicit outbound action. On first use per browser profile, it discloses that the current question context is sent to ChatGPT. This can include bank title, domain, target, stem, choices, selected and correct answers, and confidence. Do not use it with content you are not permitted to send externally. Bank text is treated as untrusted prompt source material, not as instructions; this is not a hard isolation boundary.

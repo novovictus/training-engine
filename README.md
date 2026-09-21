@@ -93,7 +93,7 @@ Historical vendor-specific banks retain their applicable trademark notices; no a
 
 - Completed-run review shows every presented question, including unanswered items.
 - The review controls can narrow the queue to answered-incorrect items or reveal full answer text.
-- Each reviewed item includes an **AI Explanation** button that opens ChatGPT with a bank-aware, question-specific study prompt. The bank title is taken from the loaded bank metadata; no certification name is hardcoded into the engine.
+- Each reviewed item includes an **AI Explanation** button that opens ChatGPT with a bank-aware, question-specific study prompt. The bank title is taken from the loaded bank metadata; no certification name is hardcoded into the engine. Before first use in a browser profile, the engine discloses that it sends the current question context (bank title, domain/target, stem, choices, selected/correct answers, and confidence) to ChatGPT. Do not use this action with private or proprietary bank content you are not permitted to send externally. Third-party bank text is delimited as untrusted source material in the prompt; this reduces instruction-following risk but is not a hard security boundary.
 - The final-question **Review** action in Exam mode returns the learner to the first unanswered question, then the first flagged question, then question 1 when neither exists.
 - **Customize** displays a deployed build timestamp for quick live-version verification.
 - `app.js` is cache-busted from `practice-test/index.html` so deployed engine changes are less likely to be masked by a stale browser or CDN copy.
