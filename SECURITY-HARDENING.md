@@ -43,13 +43,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-03 - Shared-origin exposure with legacy application
 
 - **Severity:** Medium
-- **Status:** OPEN
+- **Status:** PARTIALLY FIXED
 - **Affected area:** Hosting layout, storage namespace, legacy links
-- **Finding:** The current and legacy training applications may share the same web origin. Browser storage is scoped by origin, not path, so applications under paths such as `/training/` and `/training-engine/` can access the same origin-scoped storage. Review also reported a stale link to the archived application.
+- **Finding:** Browser storage is scoped by origin, not path. If a legacy application and this engine are deployed on the same origin, an XSS in either can access origin-scoped storage belonging to the other. A stale current-engine link to `/training/` was also present in the repository.
 - **Impact:** An XSS or arbitrary-code issue in any same-origin application can potentially access Training Engine data stored on that origin.
-- **Planned remediation:** Verify the deployed legacy application and links. Remove or unpublish obsolete same-origin application content where practical, correct stale links, and evaluate whether the Training Engine should use a dedicated subdomain/origin.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Remediation and residual risk:** The stale current-engine link now points to `/training-engine/`. Current writes use `training-engine-v1` and `training-engine-run-mode`; `secai-plus-test-engine-v2`, `secai-plus-run-mode`, and related selected-bank keys remain read-only compatibility paths for matching historical progress. Removing those reads would require a separate documented migration decision to avoid orphaning user progress. Path changes do not isolate localStorage. True isolation requires a separate origin/subdomain or removal of any legacy deployment.
+- **Verification:** Repository-wide searches confirmed the stale `/training/` link existed only in the active direct-file warning and now points to `/training-engine/`; current README and local-testing URLs already use `/training-engine/`. Searches identified current and legacy storage keys and verified that legacy keys are read for compatibility while new writes use current namespaces. The repository contains no deployment configuration or evidence establishing whether the legacy site remains deployed, so deployment status is unverified. Node syntax checks for modified inline scripts and `git diff --check` passed.
+- **Fix commit:** 67e6935 Reduce legacy shared-origin coupling
 
 ### F-04 - AI Explanation sends question content to an external service
 
