@@ -101,3 +101,7 @@ Historical vendor-specific banks retain their applicable trademark notices; no a
 ## Retired legacy storage
 
 The legacy /training/ deployment has been unpublished and its source repository re-archived. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the only archival route for old progress; the archived repository is historical source, not an active application.
+
+## Content Security Policy
+
+The application uses a meta-delivered restrictive CSP: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'. Runtime code is loaded only from same-origin external scripts; bundled repository banks use a normal static script tag and user-selected banks remain JSON-only. A meta CSP cannot enforce rame-ancestors; header-level protections require hosting configuration.
