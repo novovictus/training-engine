@@ -214,12 +214,34 @@ function openCustomize(){
   if(blocked)return;
   const settings=state.settings;$('question-limit').max=bank.length;$('question-limit').value=clampQuestionCount(settings.questionCount,bank.length);$('time-limit').value=settings.durationMinutes;$('include-mastered').checked=settings.includeMastered;
   document.querySelectorAll('input[name="run-mode"]').forEach(input=>{input.checked=input.value===storedRunMode();});
-  updateCustomizeSummary();['question-limit','time-limit','include-mastered'].forEach(id=>$(id).oninput=updateCustomizeSummary);$('customize-dialog').showModal();
+  updateCustomizeSummary();updateBuildNote();['question-limit','time-limit','include-mastered'].forEach(id=>$(id).oninput=updateCustomizeSummary);$('customize-dialog').showModal();
 }
 
 function updateCustomizeSummary(){
   const include=$('include-mastered').checked;const eligible=bank.filter(question=>include||!masteryFor(question.id).mastered).length;const maxAllowed=Math.max(1,Math.min(eligible||bank.length,bank.length));
   $('question-limit').max=maxAllowed;$('question-limit').value=clampQuestionCount($('question-limit').value,maxAllowed);$('customize-summary').textContent=`${eligible} questions currently eligible.`;
+}
+
+async function updateBuildNote(){
+  const summary=$('customize-summary');
+  if(!summary)return;
+  let note=$('build-note');
+  if(!note){
+    note=document.createElement('small');
+    note.id='build-note';
+    note.className='setting-note';
+    summary.insertAdjacentElement('afterend',note);
+  }
+  note.textContent='Build: checking...';
+  let value=document.lastModified;
+  try{
+    const response=await fetch('app.js',{method:'HEAD',cache:'no-store'});
+    value=response.headers.get('Last-Modified')||value;
+  }catch{}
+  const modified=new Date(value);
+  note.textContent=Number.isNaN(modified.getTime())
+    ?`Build: ${value||'unknown'}`
+    :`Build: ${modified.toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'})}`;
 }
 
 function saveCustomize(event){
