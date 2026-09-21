@@ -12,6 +12,10 @@ The engine owns:
 - randomized uniform question selection
 - displayed-answer randomization
 - exam and practice modes
+- exam review navigation
+- completed-run review including unanswered questions
+- per-question AI Explanation handoff to ChatGPT using loaded-bank metadata
+- deployed build timestamp display in Customize
 - timers
 - flags
 - confidence ratings
@@ -129,3 +133,15 @@ When a run starts, it:
 3. selects the configured number of questions
 
 Bank authors are responsible for representing intended topic/domain distribution through bank composition.
+
+## Review behavior
+
+After a run completes, the review queue contains every presented question, including unanswered items. The **Show only answered incorrectly** control narrows that list when desired, and **Show full correct answers and wrong selections** expands answer detail.
+
+In Exam mode, the final-question **Review** action jumps to the first unanswered question, then the first flagged question, then question 1 when neither exists, while keeping the question navigator available.
+
+Each reviewed question includes an **AI Explanation** button. The generated prompt uses the active bank title, domain, target, stem, options, selected answer, correct answer, and confidence. The engine does not hardcode a vendor or certification name.
+
+## Deployment visibility
+
+The Customize dialog displays a build timestamp derived from the deployed application resources. The `app.js` script reference in `index.html` is cache-busted so browser or CDN caching is less likely to hide a newly deployed runtime change.
