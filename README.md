@@ -16,7 +16,7 @@ A bank owns its content, title, identity, version, domains, targets, and questio
 
 The engine does not implement domain weighting. Authors express intended distribution by composing the bank accordingly.
 
-The bundled default is a small generic fixture. Additional SecAI+ and CySA+ banks under `test-banks/` can be loaded through **Customize > Open bank file**.
+The bundled default is a small generic fixture. Repository-controlled banks under `test-banks/` may use JavaScript as an internal authoring/source format. External banks opened through **Customize > Open JSON bank** must be JSON.
 
 ## SchemaVersion 1
 
@@ -42,7 +42,7 @@ Required bank fields are exactly `schemaVersion`, `bankId`, `bankVersion`, `titl
 
 The engine requires schema version 1, non-empty identifiers/title/questions, unique question IDs, positive integer numbers, string domains/targets, non-empty stems/options, exactly options A-D, and an answer A-D. No additional fields are required.
 
-For JavaScript files, the loader evaluates the file against an isolated window-like object and validates every created property. Exactly one compatible bank is required; its property name is runtime display metadata and appears in the primary eyebrow.
+The bundled application may load repository-controlled JavaScript source files. The browser never executes a user-selected bank file. External/importable banks are JSON-only and must contain the schemaVersion 1 object directly.
 
 For example:
 

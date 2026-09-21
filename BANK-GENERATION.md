@@ -147,7 +147,7 @@ Validation requirements:
 - `options` must contain exactly A, B, C, and D, all non-empty.
 - `answer` must be A, B, C, or D.
 
-The JavaScript global property name is not part of the schema. The engine discovers it dynamically and uses it as runtime display metadata.
+The JavaScript global property name is not part of the schema. It is permitted only for repository-controlled authoring/source files. A portable external bank must be exported as JSON containing the schemaVersion 1 object directly; the browser does not execute user-selected JavaScript files.
 
 Examples:
 
@@ -200,7 +200,7 @@ Complete applicable checks before pushing:
 13. Review distractors for plausibility.
 14. Review each answer key under a zero-trust standard.
 15. Confirm restricted supplied content was not copied into public material.
-16. Confirm the bank loads in the Training Engine without application-code changes.
+16. Export the bank as JSON and confirm that JSON imports in the Training Engine without application-code changes.
 17. Inspect the final diff and repository status.
 
 ## Quality status

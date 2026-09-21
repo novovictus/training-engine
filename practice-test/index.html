@@ -33,7 +33,7 @@
           <fieldset class="bank-file-setting">
             <legend>Question bank</legend>
             <div class="actions compact">
-              <label class="button-label">Open bank file<input id="bank-file-input" type="file" accept=".js,.json,application/javascript,application/json,text/javascript" hidden></label>
+              <label class="button-label">Open JSON bank<input id="bank-file-input" type="file" accept=".json,application/json" hidden></label>
               <button id="use-bundled-bank" type="button">Use bundled bank</button>
             </div>
             <small id="bank-file-note" class="setting-note"></small>
@@ -200,20 +200,16 @@
       $('review-list').querySelectorAll('.ai-explanation-btn').forEach(button=>button.onclick=()=>{const item=result.items.find(candidate=>candidate.id===button.dataset.questionId);if(item)openAiExplanation(item);});
     }
     function parseBankFile(text,name){
-      if(name.toLowerCase().endsWith('.json'))return{bank:JSON.parse(text),sourceName:`JSON: ${String(name||'bank.json').replace(/[\/\\]/g,'_')}`};
-      const isolatedWindow={};
-      new Function('window',text)(isolatedWindow);
-      const matches=Object.keys(isolatedWindow).filter(key=>registry.validBankShape(isolatedWindow[key]));
-      if(!matches.length)throw new Error('The JavaScript file did not assign a supported schemaVersion 1 question bank to window.');
-      if(matches.length>1)throw new Error(`The JavaScript file assigned multiple supported question banks (${matches.join(', ')}). Load a file with exactly one.`);
-      return{bank:isolatedWindow[matches[0]],sourceName:matches[0]};
+      if(!name.toLowerCase().endsWith('.json'))throw new Error('Custom banks must be JSON files (.json). JavaScript bank files cannot be opened.');
+      try{return{bank:JSON.parse(text),sourceName:`JSON: ${String(name||'bank.json').replace(/[\/\\]/g,'_')}`};}
+      catch{throw new Error('Custom banks must contain valid JSON.');}
     }    async function loadBankFile(event){
       const input=event.target;
       const file=input.files?.[0];
       if(!file)return;
       try{
         const runtimeBank=parseBankFile(await file.text(),file.name);
-        if(!registry?.validBankShape(runtimeBank.bank))throw new Error('The selected file does not contain a supported question bank.');
+        if(!registry?.validBankShape(runtimeBank.bank))throw new Error('The selected file must be a JSON question bank that satisfies schemaVersion 1.');
         if(active&&!confirm(`A ${modeLabel(activeRunMode())} run is in progress. Open ${runtimeBank.bank.title} and leave this run available when you return to the current bank?`))return;
         saveState();registry.switchToCustom(runtimeBank);
       }catch(error){alert(`Question bank could not be opened.\n\n${error.message}`);}finally{input.value='';}

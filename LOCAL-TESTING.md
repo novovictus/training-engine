@@ -62,7 +62,7 @@ The browser application remains ordinary static files:
 - `practice-test/questions.js`
 - `practice-test/app.js`
 
-Bank loading is handled by `practice-test/index.html`. JavaScript files are inspected for exactly one compatible schemaVersion 1 bank object exposed through any global property name. JSON files use the same bank schema and receive a neutral filename-derived runtime display identifier.
+Bank loading is handled by `practice-test/index.html`. Repository-controlled bundled banks may use JavaScript source files. User-selected custom banks are JSON-only, use the same schemaVersion 1 object directly, and receive a neutral filename-derived runtime display identifier.
 
 ## Direct file launch
 
@@ -96,7 +96,7 @@ Use `Export progress` to create a portable recovery record and `Import progress`
 The generalized engine has been smoke-tested by:
 
 1. Running the bundled generic fixture through a complete practice run.
-2. Loading an unchanged historical SecAI JavaScript bank.
+2. Loading an unchanged historical SecAI JavaScript bank only through the repository-controlled bundled/source path.
 3. Confirming dynamic JavaScript-global discovery and display.
 4. Importing historical compatible progress.
 5. Verifying the application operates from the GitHub Pages deployment.
