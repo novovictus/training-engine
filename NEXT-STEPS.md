@@ -1,16 +1,12 @@
 # Training Engine Next Steps
 
-State captured: 2026-09-20
+State captured: 2026-09-21
 
 ## Current status
 
 The Training Engine is now a vendor-neutral, certification-neutral static browser application derived from the original SecAI+ training project.
 
-The generalized implementation is on `main` in commit:
-
-```text
-a4046be Generalize engine for vendor-neutral assessment banks
-```
+The generalized implementation is on `main`. Recent work added CySA+ content, completed-run review improvements, per-question AI Explanation handoff, deployment build visibility, and cache-busting for the runtime script.
 
 The application is deployed through GitHub Pages and is accessible at:
 
@@ -44,6 +40,11 @@ Completed behavior includes:
 - mastery, history, notes, confidence, flags, resume, and quit-run behavior
 - progress export/import
 - completed-run JSON and text export
+- completed-run review of every presented question, including unanswered items
+- Exam-mode review navigation from the final question
+- per-question AI Explanation handoff to ChatGPT using loaded-bank metadata
+- deployed build timestamp visibility in Customize
+- cache-busted `app.js` loading for clearer deployment verification
 
 ## Current bank contract
 
@@ -95,21 +96,16 @@ The generalized engine has been smoke-tested by:
 
 Failures found during field use should be fixed narrowly rather than triggering broad refactors.
 
-## Next content milestone
+## Current content milestone
 
-The next likely content task is a CySA+ CS0-003 bank.
+CySA+ CS0-003 content is now present under `test-banks/`:
 
-That bank should:
+- `cysa-plus-cs0-003-validation-bank-v1.js`: small validation bank used to exercise the generalized engine.
+- `cysa-plus-cs0-003-focused-bank-v4.js`: current focused scenario bank built to the documented item-quality standard.
 
-- use schemaVersion 1 unchanged
-- load without application-code changes
-- define its own JavaScript global name
-- define a unique bank ID and version
-- map questions to CySA+ domains/targets
-- represent intended exam-domain distribution through bank composition
-- remain separate from the bundled generic fixture
+Earlier focused-bank experiments were intentionally rejected for weak diagnostic quality and remain recoverable through Git history rather than as active files.
 
-If creating the CySA+ bank exposes an actual engine limitation, treat that as a separate engine defect or feature request rather than embedding CySA-specific logic into the runtime.
+Future bank work should continue to use schemaVersion 1 unchanged and remain separate from the bundled generic fixture. If a bank exposes an actual engine limitation, treat that as a separate engine defect or reusable feature request rather than embedding vendor-specific logic into the runtime.
 
 ## Scope control
 
