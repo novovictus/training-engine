@@ -21,13 +21,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-01 - Executable user-loaded JavaScript banks
 
 - **Severity:** High
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** `practice-test/index.html`, custom bank loader
 - **Finding:** User-selected `.js` bank files are evaluated with `new Function('window', text)(isolatedWindow)`. Shadowing the `window` identifier does not provide a security sandbox. Loaded code can still reach browser globals such as `globalThis`, `document`, `localStorage`, and `fetch` and therefore executes with the page's origin privileges.
 - **Impact:** A malicious, compromised, or incorrectly generated bank can read or modify origin-scoped state, alter the application, and potentially exfiltrate data available to the origin.
-- **Planned remediation:** Stop executing user-loaded bank files. Make external/imported banks data-only, preferably JSON. Preserve the existing validated runtime bank object shape where possible. If an authoring format other than JSON remains useful, convert it to JSON outside the browser before import.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Remediation:** The custom-bank picker and parser now accept only `.json` data files. User-selected `.js` files fail before parsing, and the custom-bank path contains no `new Function`, `eval`, script injection, iframe execution, or equivalent fallback. Repository-controlled bundled JavaScript sources remain separate from the external import boundary.
+- **Verification:** Node syntax checks passed for the application and inline scripts; `git diff --check` passed; static searches confirmed no `new Function` or `eval` remains under `practice-test`; an actual-source Node harness verified valid JSON import, malformed JSON rejection, `.js` rejection, and existing validator rejection of unsupported schema, missing metadata, and duplicate IDs.
+- **Fix commit:** b4d54c8 Harden custom bank import boundary
 
 ### F-02 - Stored XSS through imported progress data
 
