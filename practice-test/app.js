@@ -329,9 +329,12 @@ function move(delta){
     if(index===active.items.length-1){submit(false);return;}
   }
   if(delta>0&&!isPracticeMode()&&index===active.items.length-1){
+    const firstUnanswered=active.items.findIndex(item=>!active.responses[item.questionId].answer);
+    const firstFlagged=active.items.findIndex(item=>active.responses[item.questionId].flagged);
+    index=firstUnanswered>=0?firstUnanswered:firstFlagged>=0?firstFlagged:0;
     $('navigator').hidden=false;
-    renderNavigator();
-    $('navigator').scrollIntoView({behavior:'smooth',block:'nearest'});
+    renderQuestion();
+    window.scrollTo({top:0,behavior:'smooth'});
     return;
   }
   index=Math.max(0,Math.min(active.items.length-1,index+delta));renderQuestion();window.scrollTo({top:0,behavior:'smooth'});
