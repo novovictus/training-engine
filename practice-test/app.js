@@ -125,7 +125,7 @@ function mergeState(data){
   merged.bankId=data.bankId;
   merged.bankVersion=data.bankVersion;
   merged.mastery=isPlainObject(data.mastery)?data.mastery:{};
-  merged.attempts=Array.isArray(data.attempts)?data.attempts.map(sanitizeCompletedAttempt):[];
+  merged.attempts=Array.isArray(data.attempts)?data.attempts.map(sanitizeCompletedAttempt).filter(Boolean):[];
   merged.settings={questionCount:clampQuestionCount(settings.questionCount,bank.length),durationMinutes:Math.max(0,Number(settings.durationMinutes)||0),includeMastered:Boolean(settings.includeMastered)};
   merged.activeAttempt=sanitizeActiveAttempt(data.activeAttempt);
   return merged;
@@ -144,14 +144,34 @@ function sanitizeActiveAttempt(attempt){
   return{id:typeof attempt.id==='string'&&attempt.id?attempt.id:`attempt-${Number(attempt.startedAt)||Date.now()}`,startedAt:Number(attempt.startedAt)||Date.now(),durationMinutes:Math.max(0,Number(attempt.durationMinutes)||0),expiresAt:attempt.expiresAt===null?null:Number(attempt.expiresAt)||null,currentIndex:Math.max(0,Math.min(Number(attempt.currentIndex)||0,items.length-1)),mode:sanitizeRunMode(attempt.mode),items,responses};
 }
 
-function sanitizeCompletedAttempt(attempt){
-  if(!isPlainObject(attempt))return attempt;
-  const sanitized={...attempt};
-  if(Array.isArray(attempt.items))sanitized.items=attempt.items.map(item=>isPlainObject(item)?{...item,note:sanitizeNote(item.note)}:item);
-  if('runMode' in attempt)sanitized.runMode=sanitizeRunMode(attempt.runMode);
-  return sanitized;
+function nonNegativeInteger(value,fallback=0){const number=Number(value);return Number.isInteger(number)&&number>=0?number:fallback;}
+function nonNegativeFinite(value,fallback=0){const number=Number(value);return Number.isFinite(number)&&number>=0?number:fallback;}
+function safeString(value,fallback=''){return typeof value==='string'?value:fallback;}
+function sanitizeCompletedItem(item){
+  if(!isPlainObject(item)||!safeString(item.id).trim())return null;
+  const options=isPlainObject(item.options)?item.options:{};
+  return{
+    id:safeString(item.id).trim(),number:nonNegativeInteger(item.number),questionNumber:Number.isInteger(Number(item.questionNumber))&&Number(item.questionNumber)>0?Number(item.questionNumber):null,
+    domain:safeString(item.domain),target:safeString(item.target),stem:safeString(item.stem),
+    options:{A:safeString(options.A),B:safeString(options.B),C:safeString(options.C),D:safeString(options.D)},
+    answer:isOptionKey(item.answer)?item.answer:null,correctAnswer:isOptionKey(item.correctAnswer)?item.correctAnswer:null,
+    correct:Boolean(item.correct),optionOrder:isOptionOrder(item.optionOrder)?[...item.optionOrder]:[],
+    displayedAnswer:safeString(item.displayedAnswer,null),displayedCorrectAnswer:safeString(item.displayedCorrectAnswer,null),
+    confidence:isConfidenceValue(item.confidence)?Number(item.confidence):null,flagged:Boolean(item.flagged),newlyMastered:Boolean(item.newlyMastered),note:sanitizeNote(item.note)
+  };
 }
-
+function sanitizeCompletedAttempt(attempt){
+  if(!isPlainObject(attempt)||!Array.isArray(attempt.items))return null;
+  const items=attempt.items.map(sanitizeCompletedItem).filter(Boolean);
+  if(items.length!==attempt.items.length)return null;
+  return{
+    id:safeString(attempt.id)||`attempt-${nonNegativeInteger(attempt.startedAt)}`,
+    startedAt:nonNegativeFinite(attempt.startedAt),finishedAt:nonNegativeFinite(attempt.finishedAt),durationSeconds:nonNegativeInteger(attempt.durationSeconds),
+    configuredQuestionCount:nonNegativeInteger(attempt.configuredQuestionCount),configuredMinutes:nonNegativeFinite(attempt.configuredMinutes),
+    expired:Boolean(attempt.expired),correct:nonNegativeInteger(attempt.correct),total:nonNegativeInteger(attempt.total),percent:nonNegativeFinite(attempt.percent),
+    runMode:sanitizeRunMode(attempt.runMode),items
+  };
+}
 function saveState(){
   if(!state)return;
   state.bankId=bankConfig.bankId;
@@ -373,14 +393,22 @@ function renderResults(result){
   $('review-list').innerHTML=review.length?`<h2>Review queue</h2>${review.map(item=>{const status=!item.answer?'Not answered':item.correct?'Correct':'Incorrect';const statusClass=item.correct?'correct':item.answer?'incorrect':'';const flagBadge=item.flagged?' <span class="review-flag">Flagged</span>':'';return`<article class="review-item"><h3>Question ${item.number} · ${item.id}${flagBadge}: <span class="${statusClass}">${status}</span></h3><p>${escapeHtml(item.stem)}</p><p>Your answer: <strong>${item.displayedAnswer||'Not answered'}</strong> · Correct answer: <strong>${item.displayedCorrectAnswer}</strong> · Confidence: <strong>${item.confidence??'Not set'}</strong></p><p><strong>Target:</strong> ${escapeHtml(item.target)}</p></article>`;}).join('')}`:'<p>No answered, flagged, or confidence-marked questions to review.</p>';
 }
 
+function appendProgressMetric(container,label,value){const metric=document.createElement('div'),strong=document.createElement('strong'),lineBreak=document.createElement('br');metric.className='metric';strong.textContent=label;metric.append(strong,lineBreak,document.createTextNode(String(value)));container.append(metric);}
 function renderProgress(){
   if(blocked)return;
   currentResult=null;
-  clearInterval(ticker);showView('progress-view');const attempts=state.attempts||[],mastered=bank.filter(question=>masteryFor(question.id).mastered).length;
-  const rows=[...attempts].reverse().map(attempt=>`<tr><td>${new Date(attempt.finishedAt).toLocaleDateString()}</td><td>${attempt.total}</td><td>${attempt.percent}%</td><td>${formatDuration(attempt.durationSeconds)}</td><td>${attempt.expired?'Expired':'Submitted'}</td></tr>`).join('');
-  $('progress-content').innerHTML=`<div class="metric-grid"><div class="metric"><strong>Question bank</strong><br>${bank.length}</div><div class="metric"><strong>Mastered</strong><br>${mastered}</div><div class="metric"><strong>Remaining</strong><br>${bank.length-mastered}</div><div class="metric"><strong>Completed runs</strong><br>${attempts.length}</div></div>${attempts.length?`<h3>Attempt history</h3><table class="history-table"><thead><tr><th>Date</th><th>Questions</th><th>Score</th><th>Time</th><th>Result</th></tr></thead><tbody>${rows}</tbody></table>`:'<p>No completed runs yet.</p>'}`;
+  clearInterval(ticker);showView('progress-view');
+  const attempts=Array.isArray(state.attempts)?state.attempts:[],mastered=bank.filter(question=>masteryFor(question.id).mastered).length,content=$('progress-content');
+  content.replaceChildren();
+  const metrics=document.createElement('div');metrics.className='metric-grid';
+  appendProgressMetric(metrics,'Question bank',bank.length);appendProgressMetric(metrics,'Mastered',mastered);appendProgressMetric(metrics,'Remaining',bank.length-mastered);appendProgressMetric(metrics,'Completed runs',attempts.length);content.append(metrics);
+  if(!attempts.length){const empty=document.createElement('p');empty.textContent='No completed runs yet.';content.append(empty);return;}
+  const heading=document.createElement('h3');heading.textContent='Attempt history';content.append(heading);
+  const table=document.createElement('table'),head=document.createElement('thead'),headRow=document.createElement('tr'),body=document.createElement('tbody');table.className='history-table';
+  ['Date','Questions','Score','Time','Result'].forEach(label=>{const cell=document.createElement('th');cell.textContent=label;headRow.append(cell);});head.append(headRow);
+  [...attempts].reverse().forEach(attempt=>{const row=document.createElement('tr'),date=attempt.finishedAt?new Date(attempt.finishedAt).toLocaleDateString():'Unknown';[date,attempt.total,`${attempt.percent}%`,formatDuration(attempt.durationSeconds),attempt.expired?'Expired':'Submitted'].forEach(value=>{const cell=document.createElement('td');cell.textContent=String(value);row.append(cell);});body.append(row);});
+  table.append(head,body);content.append(table);
 }
-
 function exportRun(result){
   if(blocked||!result)return;
   clearError();
