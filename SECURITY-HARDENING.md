@@ -32,13 +32,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-02 - Stored XSS through imported progress data
 
 - **Severity:** Medium
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** `practice-test/app.js`, completed-attempt sanitization and progress rendering
 - **Finding:** Completed-attempt import currently preserves untrusted fields beyond a narrow subset, while progress rendering interpolates values such as attempt totals and percentages into `innerHTML`.
 - **Impact:** A crafted progress file can persist attacker-controlled markup in local storage and execute it when the Progress view is rendered. Invalid or non-object entries can also destabilize rendering.
-- **Planned remediation:** Replace permissive completed-attempt spreading with an explicit allowlist and strict coercion/validation. Render progress values with DOM APIs or `textContent` rather than interpolating imported values into `innerHTML`.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Remediation:** Completed attempts and items are reconstructed from explicit allowlists with numeric coercion/defaults, safe string and option handling, normalized booleans, and sanitized run modes. Invalid attempts or items are dropped. Progress history now uses DOM creation and `textContent` for all attempt values.
+- **Verification:** Node syntax checks passed for `app.js` and inline scripts; `git diff --check` passed; an actual-source Node harness verified preservation of a valid existing-style attempt, normalization of hostile HTML/script payloads in `total` and `percent`, omission of arbitrary fields, and deterministic dropping of null, primitive, and malformed item entries. Static inspection confirms `renderProgress()` inserts imported attempt values only through `textContent`.
+- **Fix commit:** cfe641d Harden imported progress normalization
 
 ### F-03 - Shared-origin exposure with legacy application
 
