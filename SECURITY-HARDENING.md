@@ -65,13 +65,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-05 - No strict Content Security Policy
 
 - **Severity:** Medium
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** `practice-test/index.html`, script loading model
-- **Finding:** The page currently contains inline scripts, `new Function`, and `document.write`, preventing a strong restrictive CSP without unsafe allowances.
+- **Finding:** The page previously contained inline scripts and `document.write` bundled-bank loading, preventing a strong restrictive CSP without unsafe allowances.
 - **Impact:** The application lacks an additional browser-enforced mitigation layer against script injection and unexpected resource loading.
-- **Planned remediation:** Remove executable custom banks, move inline scripts into external same-origin JavaScript files, eliminate `document.write`, then add a restrictive CSP. Candidate policy after refactor: `default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'`.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Remediation:** Runtime logic is externalized into same-origin `bootstrap.js` and `page.js`; the repository-controlled bundled bank loads with a normal static `questions.js` script tag. The page uses a meta-delivered CSP: `default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'`. It contains no `unsafe-inline` or `unsafe-eval`. Meta CSP cannot enforce `frame-ancestors`; header-level protections require hosting configuration.
+- **Verification:** Node syntax checks passed for `bootstrap.js`, `app.js`, `page.js`, and `questions.js`; static searches confirmed no inline executable scripts, `document.write`, `new Function`, or `eval` remains in active practice-test code; the CSP lists only same-origin script/style/connect sources and no unsafe directives; script order preserves bundled bank, bootstrap, engine, then page behavior. `git diff --check` passed.
+- **Fix commit:** 6981ad4 Harden Training Engine with CSP
 
 ### F-06 - Local-storage quota exhaustion can break exam rendering
 
