@@ -193,7 +193,9 @@
     function renderReviewQueue(result){
       const wrongOnly=Boolean($('review-wrong-only')?.checked);
       const fullAnswers=Boolean($('review-full-answers')?.checked);
-      let review=result.items.filter(item=>item.answer||item.flagged||item.confidence!==null);
+      let review=sanitizeRunMode(result.runMode)==='exam'
+        ?[...result.items]
+        :result.items.filter(item=>item.answer||item.flagged||item.confidence!==null);
       if(wrongOnly)review=review.filter(item=>Boolean(item.answer)&&!item.correct);
       review.sort((a,b)=>a.number-b.number);
       $('review-list').innerHTML=review.length?`<h2>Review queue</h2>${review.map(item=>{const status=!item.answer?'Not answered':item.correct?'Correct':'Incorrect';const statusClass=item.correct?'correct':item.answer?'incorrect':'';const flagBadge=item.flagged?' <span class="review-flag">Flagged</span>':'';return`<article class="review-item"><h3>Question ${item.number} · ${item.id}${flagBadge}: <span class="${statusClass}">${status}</span></h3><p>${escapeHtml(item.stem)}</p>${reviewAnswerLine(item,fullAnswers)}<p><strong>Target:</strong> ${escapeHtml(item.target)}</p><button type="button" class="small ai-explanation-btn" data-question-id="${escapeHtml(item.id)}">AI Explanation</button></article>`;}).join('')}`:`<p>${wrongOnly?'No answered questions were incorrect.':'No answered, flagged, or confidence-marked questions to review.'}</p>`;
