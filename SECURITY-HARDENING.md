@@ -43,13 +43,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-03 - Shared-origin exposure with legacy application
 
 - **Severity:** Medium
-- **Status:** PARTIALLY FIXED
+- **Status:** FIXED
 - **Affected area:** Hosting layout, storage namespace, legacy links
 - **Finding:** Browser storage is scoped by origin, not path. If a legacy application and this engine are deployed on the same origin, an XSS in either can access origin-scoped storage belonging to the other. A stale current-engine link to `/training/` was also present in the repository.
 - **Impact:** An XSS or arbitrary-code issue in any same-origin application can potentially access Training Engine data stored on that origin.
-- **Remediation and residual risk:** The stale current-engine link now points to `/training-engine/`. Current writes use `training-engine-v1` and `training-engine-run-mode`; `secai-plus-test-engine-v2`, `secai-plus-run-mode`, and related selected-bank keys remain read-only compatibility paths for matching historical progress. Removing those reads would require a separate documented migration decision to avoid orphaning user progress. Path changes do not isolate localStorage. True isolation requires a separate origin/subdomain or removal of any legacy deployment.
-- **Verification:** Repository-wide searches confirmed the stale `/training/` link existed only in the active direct-file warning and now points to `/training-engine/`; current README and local-testing URLs already use `/training-engine/`. Searches identified current and legacy storage keys and verified that legacy keys are read for compatibility while new writes use current namespaces. The repository contains no deployment configuration or evidence establishing whether the legacy site remains deployed, so deployment status is unverified. Node syntax checks for modified inline scripts and `git diff --check` passed.
-- **Fix commit:** 67e6935 Reduce legacy shared-origin coupling
+- **Remediation:** The stale link points to `/training-engine/`. The legacy `/training/` GitHub Pages deployment has been manually unpublished and the archived `novovictus/training` repository re-archived. Current engine code now uses only Training Engine storage namespaces and no longer reads or migrates `secai-plus-*` progress, run-mode, or custom-bank keys. Legacy browser-local progress is intentionally unsupported; previously exported files are the archival route.
+- **Verification:** Repository-wide searches confirmed no active `/training/` launch link or retired `secai-plus-*` storage identifier remains under `practice-test`. Actual-source storage fixtures verified canonical current progress reload, fresh-state initialization without fallback, current run-mode reload, and no legacy-key reads or writes. Node syntax checks for `app.js` and inline scripts plus `git diff --check` passed. Deployment unpublish and repository archival were manually confirmed by the maintainer.
+- **Fix commit:** 7e55864 Remove retired engine storage compatibility
 
 ### F-04 - AI Explanation sends question content to an external service
 
