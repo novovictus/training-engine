@@ -54,13 +54,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-04 - AI Explanation sends question content to an external service
 
 - **Severity:** Medium
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** AI Explanation feature
 - **Finding:** The AI Explanation action sends the bank title, question stem, answer options, correct answer, selected answer, and related context to `chatgpt.com` through a query URL. Third-party bank text also becomes part of an LLM prompt.
 - **Impact:** Question-bank content leaves the local application when the user invokes the feature. Third-party bank content can also influence the generated AI prompt.
-- **Planned remediation:** Add a clear one-time disclosure before first use stating what data is sent and to which service. Record that bank content is untrusted prompt input. Consider a user setting to disable or hide the feature if needed.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Remediation:** First use per browser/profile now presents a cancellation-capable disclosure before any ChatGPT tab opens. Acceptance stores only `training-engine-ai-explanation-ack-v1`. The prompt clearly delimits bank/question text as untrusted source material and instructs ChatGPT not to treat embedded instructions as instructions.
+- **Verification:** An actual-source Node harness verified first-use disclosure, Cancel preventing `window.open`, acceptance storing the acknowledgement and opening the encoded ChatGPT URL, subsequent acknowledged use skipping confirmation, expected prompt fields, untrusted-material delimiters/instruction, correct and incorrect answer guidance, and exclusion of notes. Node syntax checks for `app.js` and inline scripts plus `git diff --check` passed.
+- **Fix commit:** 2ab18b9 Harden AI explanation data boundary
 
 ### F-05 - No strict Content Security Policy
 
