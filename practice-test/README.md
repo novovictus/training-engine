@@ -145,3 +145,7 @@ Each reviewed question includes an **AI Explanation** button. The generated prom
 ## Deployment visibility
 
 The Customize dialog displays a build timestamp derived from the deployed application resources. The `app.js` script reference in `index.html` is cache-busted so browser or CDN caching is less likely to hide a newly deployed runtime change.
+
+## Retired legacy storage
+
+The legacy /training/ deployment has been unpublished and its source repository re-archived. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the only archival route for old progress; the archived repository is historical source, not an active application.

@@ -32,7 +32,7 @@ Completed behavior includes:
 - JSON bank loading with neutral filename-derived runtime identity
 - generic bundled fixture instead of SecAI-specific default content
 - neutral storage namespaces
-- backward-compatible reads for matching legacy SecAI-era state
+- retired-engine browser-local progress is intentionally not migrated
 - bank/version state isolation
 - uniform randomized question selection
 - randomized displayed answer order
@@ -82,7 +82,7 @@ Run-mode preference uses:
 training-engine-run-mode:<bankId>:<bankVersion>
 ```
 
-Compatible legacy SecAI-era state is read only when embedded bank identity exactly matches the loaded bank. New writes use the generalized namespace.
+The retired legacy deployment is unpublished. Current storage uses only Training Engine namespaces; old browser-local state is not read or migrated.
 
 ## Validation baseline
 

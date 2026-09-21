@@ -1,10 +1,8 @@
 const STORAGE_KEY_PREFIX='training-engine-v1';
-const LEGACY_STORAGE_KEY_PREFIX='secai-plus-test-engine-v2';
 const SUPPORTED_SCHEMA_VERSION=1;
 const DEFAULT_QUESTION_COUNT=60;
 const OPTION_KEYS=['A','B','C','D'];
 const RUN_MODE_STORAGE_KEY_PREFIX='training-engine-run-mode:';
-const LEGACY_RUN_MODE_STORAGE_KEY_PREFIX='secai-plus-run-mode:';
 const views=['start-view','exam-view','results-view','progress-view'];
 const $=id=>document.getElementById(id);
 
@@ -84,14 +82,6 @@ function loadStoredState(){
   const fallback=defaultState();
   const canonical=readCompatibleStoredState(progressStorageKey());
   if(canonical)return{state:canonical};
-  const legacyKeys=[`${STORAGE_KEY_PREFIX}:${bankConfig.bankId}`,STORAGE_KEY_PREFIX,`${LEGACY_STORAGE_KEY_PREFIX}:${bankConfig.bankId}:${bankConfig.bankVersion}`,`${LEGACY_STORAGE_KEY_PREFIX}:${bankConfig.bankId}`,LEGACY_STORAGE_KEY_PREFIX];
-  for(const key of legacyKeys){
-    const migrated=readCompatibleStoredState(key);
-    if(migrated){
-      localStorage.setItem(progressStorageKey(),JSON.stringify(migrated));
-      return{state:migrated};
-    }
-  }
   return{state:fallback};
 }
 

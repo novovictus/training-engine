@@ -97,3 +97,7 @@ Historical vendor-specific banks retain their applicable trademark notices; no a
 - The final-question **Review** action in Exam mode returns the learner to the first unanswered question, then the first flagged question, then question 1 when neither exists.
 - **Customize** displays a deployed build timestamp for quick live-version verification.
 - `app.js` is cache-busted from `practice-test/index.html` so deployed engine changes are less likely to be masked by a stale browser or CDN copy.
+
+## Retired legacy storage
+
+The legacy /training/ deployment has been unpublished and its source repository re-archived. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the only archival route for old progress; the archived repository is historical source, not an active application.
