@@ -30,9 +30,9 @@ Authoritative target material defines scope. Existing banks define prior coverag
 
 ## Bank size
 
-Bank size is assessment-specific. Unless a task defines a target, choose a size that provides useful coverage without unnecessary duplication.
+Bank size is determined by the creator and the intended assessment purpose.
 
-The engine can run any configured subset up to the number of eligible questions in the bank.
+The engine imposes no recommended bank size. It can run any configured subset up to the number of eligible questions in the bank.
 
 ## Independence and duplication
 
@@ -265,8 +265,8 @@ Every authored item should survive an adversarial item-writing review before inc
 
 ### Development strategy
 
-Do not generate another large focused bank merely because the schema and objective mapping are correct. Build a small pilot pool of roughly 25-30 difficult items first. Run it through the engine and inspect both correctness and **how** answers were reached. A high score is not itself evidence of a bad bank, but a high score obtained through wording cues, implausible distractors, or generic reading comprehension is a failure.
+Bank creators should validate not only whether answers are correct, but **how** answers are reached. A high score is not itself evidence of a bad bank, but a high score obtained through wording cues, implausible distractors, or generic reading comprehension is a failure.
 
 A useful miss should expose a real knowledge distinction. During the v3 test, an unfamiliar SSRF scenario produced such a signal; that is the kind of diagnostic value future questions should seek. The goal is not artificial difficulty or obscurity. The goal is to make subject-matter understanding, rather than item-writing artifacts, determine the answer.
 
-Only after the pilot survives this review should it be expanded into a full domain-weighted objective bank.
+Creators may use pilots, staged expansion, full-bank generation, or another workflow appropriate to the assessment. The contract does not prescribe a bank size or development sequence.
