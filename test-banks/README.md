@@ -4,14 +4,20 @@ The engine accepts any compatible schemaVersion 1 JavaScript or JSON question ba
 
 ## Historical SecAI+ banks
 
-These banks are preserved unchanged as compatibility and study artifacts from the original SecAI+ project:
+These banks are preserved as compatibility and study artifacts from the original SecAI+ project:
 
 - `secai-plus-cy0-001-comprehensive-bank-v1.js`: 168 questions.
 - `secai-plus-cy0-001-terminology-drill-bank-v1.js`: 195 questions.
-- `secai-plus-cy0-001-diagnostic-v2.js`: 60 questions.
 - `secai-plus-minimal-independent-bank-v1.js`: 60 questions.
 
 They are no longer the bundled default. Their continued ability to load without modification is a backward-compatibility requirement for the generalized engine.
+
+## CySA+ CS0-003 banks
+
+- `cysa-plus-cs0-003-validation-bank-v1.js`: small validation bank used to exercise the generalized engine against CySA+ content.
+- `cysa-plus-cs0-003-focused-bank-v4.js`: current focused scenario bank. It contains 100 questions with the intended 33/30/20/17 domain composition and incorporates the item-quality lessons documented in `../BANK-GENERATION.md`.
+
+Focused-bank v2 and v3 were rejected as assessment-quality experiments and are intentionally absent from the active directory; Git history preserves them.
 
 ## Bundled default
 
