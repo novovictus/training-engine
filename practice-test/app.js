@@ -306,6 +306,12 @@ function move(delta){
     }
     if(index===active.items.length-1){submit(false);return;}
   }
+  if(delta>0&&!isPracticeMode()&&index===active.items.length-1){
+    $('navigator').hidden=false;
+    renderNavigator();
+    $('navigator').scrollIntoView({behavior:'smooth',block:'nearest'});
+    return;
+  }
   index=Math.max(0,Math.min(active.items.length-1,index+delta));renderQuestion();window.scrollTo({top:0,behavior:'smooth'});
 }
 function toggleFlag(){if(blocked)return;const response=currentResponse();response.flagged=!response.flagged;saveState();renderQuestion();}
