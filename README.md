@@ -10,13 +10,13 @@ https://ninja-neer.net/training-engine/
 
 ## Architecture
 
-The engine owns loading, validation, randomized uniform question selection, answer-order randomization, exam and practice modes, progress, exports, and reports.
+The engine owns loading, validation, randomized uniform question selection, answer-order randomization, exam and practice modes, review navigation, completed-run review, AI-assisted explanations, progress, exports, and reports.
 
 A bank owns its content, title, identity, version, domains, targets, and question composition.
 
 The engine does not implement domain weighting. Authors express intended distribution by composing the bank accordingly.
 
-The bundled default is a small generic fixture. Historical SecAI banks in `test-banks/` remain unchanged compatibility fixtures.
+The bundled default is a small generic fixture. Additional SecAI+ and CySA+ banks under `test-banks/` can be loaded through **Customize > Open bank file**.
 
 ## SchemaVersion 1
 
@@ -88,3 +88,12 @@ Source code is MIT.
 Independently authored content and documentation are CC BY 4.0 unless otherwise noted.
 
 Historical vendor-specific banks retain their applicable trademark notices; no affiliation is implied.
+
+## Runtime notes
+
+- Completed-run review shows every presented question, including unanswered items.
+- The review controls can narrow the queue to answered-incorrect items or reveal full answer text.
+- Each reviewed item includes an **AI Explanation** button that opens ChatGPT with a bank-aware, question-specific study prompt. The bank title is taken from the loaded bank metadata; no certification name is hardcoded into the engine.
+- The final-question **Review** action in Exam mode returns the learner to the first unanswered question, then the first flagged question, then question 1 when neither exists.
+- **Customize** displays a deployed build timestamp for quick live-version verification.
+- `app.js` is cache-busted from `practice-test/index.html` so deployed engine changes are less likely to be masked by a stale browser or CDN copy.
