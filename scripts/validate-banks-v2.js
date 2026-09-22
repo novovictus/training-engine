@@ -8,7 +8,7 @@ const optionKeys=['A','B','C','D'];
 const questionKeys=['answer','domain','id','options','stem','target'];
 const reservedQuestionIds=new Set(['__proto__','constructor','prototype']);
 const expected={
-  'cysa-plus-cs0-003-focused-bank-v4.json':{count:100,digest:'ce7f5b24d3e716817ba4406a6baa78bcd8374ba322a60fdafbed9aed4dae3868'},
+  'cysa-plus-cs0-003-focused-bank-v4.1.json':{count:100,digest:'65cc81c16cff4d7409f729f735f7af704192bbd1ebbbfd705fc0582290d3b754'},
   'test-fixture-bank.json':{count:4,digest:'2aced199b9aa6168938db5e3feb9b63d9041da8be6c8edc01d6ed3f11104264c'},
   'secai-plus-cy0-001-comprehensive-bank-v1.json':{count:168,digest:'ee3ae47f9a19b8ee6de35ce7e4fd9e4355412c75e1f5579dc37b75d9de71688a'},
   'secai-plus-cy0-001-terminology-drill-bank-v1.json':{count:195,digest:'1928c12939259ef5b53fe4612ced24aed76e29d75d84db1acf1c2f8f8fb260f7'},
@@ -89,6 +89,6 @@ for(const [file,manifest] of Object.entries(expected)){
   validate(file,bank);
   if(bank.questions.length!==manifest.count)fail(file,'expected '+manifest.count+' questions');
   const digest=crypto.createHash('sha256').update(JSON.stringify(bank.questions)).digest('hex');
-  if(digest!==manifest.digest)fail(file,'question content digest differs from the pre-migration source');
+  if(digest!==manifest.digest)fail(file,'question content digest differs from the expected bank content');
   console.log(file+': '+bank.questions.length+' questions validated');
 }
