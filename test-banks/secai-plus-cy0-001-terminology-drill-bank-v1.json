@@ -1,0 +1,2543 @@
+{
+  "schemaVersion": 2,
+  "bankId": "secai-plus-cy0-001-terminology-drill-v1",
+  "bankVersion": "1.0.0",
+  "title": "CompTIA SecAI+ CY0-001 AI/ML Terminology Drill Bank v1",
+  "questions": [
+    {
+      "id": "T001",
+      "domain": "1",
+      "target": "Generative AI",
+      "stem": "Which term best matches this definition: \"Produces new content such as text or images rather than only classifying existing input\"?",
+      "options": {
+        "A": "Generative AI",
+        "B": "Statistical learning",
+        "C": "Deep learning",
+        "D": "Natural language processing"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T002",
+      "domain": "1",
+      "target": "Machine learning",
+      "stem": "Which of the following best describes \"Machine learning\"?",
+      "options": {
+        "A": "Train a generator and a discriminator against each other to improve both",
+        "B": "Focuses on extracting meaning and structure from human language text",
+        "C": "Improves task performance from data rather than from explicitly programmed rules",
+        "D": "Produces new content such as text or images rather than only classifying existing input"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T003",
+      "domain": "1",
+      "target": "Statistical learning",
+      "stem": "Which term best matches this definition: \"Uses formal probability and inference to model relationships between variables\"?",
+      "options": {
+        "A": "Large language models",
+        "B": "Deep learning",
+        "C": "Generative AI",
+        "D": "Statistical learning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T004",
+      "domain": "1",
+      "target": "Transformers",
+      "stem": "Which of the following best describes \"Transformers\"?",
+      "options": {
+        "A": "Train a generator and a discriminator against each other to improve both",
+        "B": "Are broad, general-purpose text models with very large parameter counts",
+        "C": "Process an entire sequence at once and use attention to weigh relevance between tokens",
+        "D": "Produces new content such as text or images rather than only classifying existing input"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T005",
+      "domain": "1",
+      "target": "Deep learning",
+      "stem": "Which term best matches this definition: \"Uses many stacked layers of nodes to learn hierarchical features automatically\"?",
+      "options": {
+        "A": "Machine learning",
+        "B": "Deep learning",
+        "C": "Generative AI",
+        "D": "Large language models"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T006",
+      "domain": "1",
+      "target": "Generative adversarial networks",
+      "stem": "Which of the following best describes \"Generative adversarial networks\"?",
+      "options": {
+        "A": "Train a generator and a discriminator against each other to improve both",
+        "B": "Improves task performance from data rather than from explicitly programmed rules",
+        "C": "Uses many stacked layers of nodes to learn hierarchical features automatically",
+        "D": "Process an entire sequence at once and use attention to weigh relevance between tokens"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T007",
+      "domain": "1",
+      "target": "Natural language processing",
+      "stem": "Which term best matches this definition: \"Focuses on extracting meaning and structure from human language text\"?",
+      "options": {
+        "A": "Natural language processing",
+        "B": "Generative AI",
+        "C": "Deep learning",
+        "D": "Statistical learning"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T008",
+      "domain": "1",
+      "target": "Large language models",
+      "stem": "Which of the following best describes \"Large language models\"?",
+      "options": {
+        "A": "Improves task performance from data rather than from explicitly programmed rules",
+        "B": "Uses many stacked layers of nodes to learn hierarchical features automatically",
+        "C": "Are broad, general-purpose text models with very large parameter counts",
+        "D": "Produces new content such as text or images rather than only classifying existing input"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T009",
+      "domain": "1",
+      "target": "Small language models",
+      "stem": "Which term best matches this definition: \"Are compact language models suited to constrained or edge deployment\"?",
+      "options": {
+        "A": "Deep learning",
+        "B": "Small language models",
+        "C": "Transformers",
+        "D": "Generative adversarial networks"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T010",
+      "domain": "1",
+      "target": "Model validation",
+      "stem": "Which term best matches this definition: \"Evaluates a trained model against held-out data it did not train on\"?",
+      "options": {
+        "A": "Unsupervised learning",
+        "B": "Federated learning",
+        "C": "Model validation",
+        "D": "Pruning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T011",
+      "domain": "1",
+      "target": "Supervised learning",
+      "stem": "Which of the following best describes \"Supervised learning\"?",
+      "options": {
+        "A": "Trains an agent using reward and penalty signals from its actions",
+        "B": "Trains on data that has been labeled with the correct output",
+        "C": "Reduces the numeric precision of model weights to save memory and speed inference",
+        "D": "Is one complete pass of the training data through the model"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T012",
+      "domain": "1",
+      "target": "Unsupervised learning",
+      "stem": "Which term best matches this definition: \"Finds structure in data that has no predefined labels\"?",
+      "options": {
+        "A": "Unsupervised learning",
+        "B": "Supervised learning",
+        "C": "Federated learning",
+        "D": "Fine-tuning"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T013",
+      "domain": "1",
+      "target": "Reinforcement learning",
+      "stem": "Which of the following best describes \"Reinforcement learning\"?",
+      "options": {
+        "A": "Evaluates a trained model against held-out data it did not train on",
+        "B": "Reduces the numeric precision of model weights to save memory and speed inference",
+        "C": "Trains a shared model across separate parties without centralizing their raw data",
+        "D": "Trains an agent using reward and penalty signals from its actions"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T014",
+      "domain": "1",
+      "target": "Federated learning",
+      "stem": "Which term best matches this definition: \"Trains a shared model across separate parties without centralizing their raw data\"?",
+      "options": {
+        "A": "Unsupervised learning",
+        "B": "Quantization",
+        "C": "Epoch",
+        "D": "Federated learning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T015",
+      "domain": "1",
+      "target": "Fine-tuning",
+      "stem": "Which of the following best describes \"Fine-tuning\"?",
+      "options": {
+        "A": "Evaluates a trained model against held-out data it did not train on",
+        "B": "Removes redundant weights from a trained network to shrink its size",
+        "C": "Continues training a pretrained model on a smaller, task-specific dataset",
+        "D": "Trains on data that has been labeled with the correct output"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T016",
+      "domain": "1",
+      "target": "Epoch",
+      "stem": "Which term best matches this definition: \"Is one complete pass of the training data through the model\"?",
+      "options": {
+        "A": "Fine-tuning",
+        "B": "Model validation",
+        "C": "Epoch",
+        "D": "Pruning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T017",
+      "domain": "1",
+      "target": "Pruning",
+      "stem": "Which of the following best describes \"Pruning\"?",
+      "options": {
+        "A": "Trains an agent using reward and penalty signals from its actions",
+        "B": "Trains a shared model across separate parties without centralizing their raw data",
+        "C": "Removes redundant weights from a trained network to shrink its size",
+        "D": "Continues training a pretrained model on a smaller, task-specific dataset"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T018",
+      "domain": "1",
+      "target": "Quantization",
+      "stem": "Which term best matches this definition: \"Reduces the numeric precision of model weights to save memory and speed inference\"?",
+      "options": {
+        "A": "Supervised learning",
+        "B": "Quantization",
+        "C": "Fine-tuning",
+        "D": "Federated learning"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T019",
+      "domain": "1",
+      "target": "System prompts",
+      "stem": "Which term best matches this definition: \"Set a model's hidden role, tone, and boundaries before any user input\"?",
+      "options": {
+        "A": "System prompts",
+        "B": "Templates",
+        "C": "One-shot prompting",
+        "D": "Multi-shot prompting"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T020",
+      "domain": "1",
+      "target": "User prompts",
+      "stem": "Which of the following best describes \"User prompts\"?",
+      "options": {
+        "A": "Set a model's hidden role, tone, and boundaries before any user input",
+        "B": "Provides exactly one worked example before asking for a new response",
+        "C": "Are the specific requests a person types into a model at run time",
+        "D": "Asks for a response with no worked examples provided at all"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T021",
+      "domain": "1",
+      "target": "One-shot prompting",
+      "stem": "Which term best matches this definition: \"Provides exactly one worked example before asking for a new response\"?",
+      "options": {
+        "A": "One-shot prompting",
+        "B": "Zero-shot prompting",
+        "C": "Multi-shot prompting",
+        "D": "User prompts"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T022",
+      "domain": "1",
+      "target": "Multi-shot prompting",
+      "stem": "Which of the following best describes \"Multi-shot prompting\"?",
+      "options": {
+        "A": "Provides several worked examples before asking for a new response",
+        "B": "Are reusable prompt structures with placeholder fields filled in per use",
+        "C": "Are the specific requests a person types into a model at run time",
+        "D": "Set a model's hidden role, tone, and boundaries before any user input"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T023",
+      "domain": "1",
+      "target": "Zero-shot prompting",
+      "stem": "Which term best matches this definition: \"Asks for a response with no worked examples provided at all\"?",
+      "options": {
+        "A": "Zero-shot prompting",
+        "B": "System prompts",
+        "C": "User prompts",
+        "D": "Templates"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T024",
+      "domain": "1",
+      "target": "System roles",
+      "stem": "Which of the following best describes \"System roles\"?",
+      "options": {
+        "A": "Provides exactly one worked example before asking for a new response",
+        "B": "Assign a model a persistent identity that shapes every response in a session",
+        "C": "Set a model's hidden role, tone, and boundaries before any user input",
+        "D": "Are reusable prompt structures with placeholder fields filled in per use"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T025",
+      "domain": "1",
+      "target": "Templates",
+      "stem": "Which term best matches this definition: \"Are reusable prompt structures with placeholder fields filled in per use\"?",
+      "options": {
+        "A": "Templates",
+        "B": "One-shot prompting",
+        "C": "System roles",
+        "D": "Zero-shot prompting"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T026",
+      "domain": "1",
+      "target": "Data cleansing",
+      "stem": "Which term best matches this definition: \"Removes duplicates and fixes malformed or inconsistent records before use\"?",
+      "options": {
+        "A": "Data balancing",
+        "B": "Data augmentation",
+        "C": "Data cleansing",
+        "D": "Data provenance"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T027",
+      "domain": "1",
+      "target": "Data verification",
+      "stem": "Which of the following best describes \"Data verification\"?",
+      "options": {
+        "A": "Creates modified copies of existing samples to expand a limited dataset",
+        "B": "Confirms a dataset matches its documented schema and expected ranges",
+        "C": "Documents where a record originated and who originally owned it",
+        "D": "Removes duplicates and fixes malformed or inconsistent records before use"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T028",
+      "domain": "1",
+      "target": "Data lineage",
+      "stem": "Which term best matches this definition: \"Traces a record through every system and transformation it passed through\"?",
+      "options": {
+        "A": "Data provenance",
+        "B": "Data lineage",
+        "C": "Data verification",
+        "D": "Data balancing"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T029",
+      "domain": "1",
+      "target": "Data integrity",
+      "stem": "Which of the following best describes \"Data integrity\"?",
+      "options": {
+        "A": "Adjusts sampling so under-represented classes are proportionally represented",
+        "B": "Removes duplicates and fixes malformed or inconsistent records before use",
+        "C": "Confirms a dataset matches its documented schema and expected ranges",
+        "D": "Confirms stored data has not been altered or corrupted since collection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T030",
+      "domain": "1",
+      "target": "Data provenance",
+      "stem": "Which term best matches this definition: \"Documents where a record originated and who originally owned it\"?",
+      "options": {
+        "A": "Data integrity",
+        "B": "Data verification",
+        "C": "Data cleansing",
+        "D": "Data provenance"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T031",
+      "domain": "1",
+      "target": "Data augmentation",
+      "stem": "Which of the following best describes \"Data augmentation\"?",
+      "options": {
+        "A": "Traces a record through every system and transformation it passed through",
+        "B": "Adjusts sampling so under-represented classes are proportionally represented",
+        "C": "Documents where a record originated and who originally owned it",
+        "D": "Creates modified copies of existing samples to expand a limited dataset"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T032",
+      "domain": "1",
+      "target": "Data balancing",
+      "stem": "Which term best matches this definition: \"Adjusts sampling so under-represented classes are proportionally represented\"?",
+      "options": {
+        "A": "Data augmentation",
+        "B": "Data balancing",
+        "C": "Data integrity",
+        "D": "Data provenance"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T033",
+      "domain": "1",
+      "target": "Structured data",
+      "stem": "Which term best matches this definition: \"Has a clearly defined schema, such as rows and columns in a table\"?",
+      "options": {
+        "A": "Watermarking",
+        "B": "Semi-structured data",
+        "C": "Structured data",
+        "D": "Unstructured data"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T034",
+      "domain": "1",
+      "target": "Semi-structured data",
+      "stem": "Which of the following best describes \"Semi-structured data\"?",
+      "options": {
+        "A": "Has no predefined schema, such as free-form text or images",
+        "B": "Is a database optimized for storing and searching numeric embeddings",
+        "C": "Shares a general format but allows variable, nested fields between records",
+        "D": "Embeds an imperceptible signal so AI-generated content can later be identified"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T035",
+      "domain": "1",
+      "target": "Unstructured data",
+      "stem": "Which term best matches this definition: \"Has no predefined schema, such as free-form text or images\"?",
+      "options": {
+        "A": "Watermarking",
+        "B": "Semi-structured data",
+        "C": "Structured data",
+        "D": "Unstructured data"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T036",
+      "domain": "1",
+      "target": "Watermarking",
+      "stem": "Which of the following best describes \"Watermarking\"?",
+      "options": {
+        "A": "Embeds an imperceptible signal so AI-generated content can later be identified",
+        "B": "Has no predefined schema, such as free-form text or images",
+        "C": "Are fixed-length numeric representations that place similar items close together",
+        "D": "Has a clearly defined schema, such as rows and columns in a table"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T037",
+      "domain": "1",
+      "target": "Vector storage",
+      "stem": "Which term best matches this definition: \"Is a database optimized for storing and searching numeric embeddings\"?",
+      "options": {
+        "A": "Embeddings",
+        "B": "Structured data",
+        "C": "Semi-structured data",
+        "D": "Vector storage"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T038",
+      "domain": "1",
+      "target": "Embeddings",
+      "stem": "Which of the following best describes \"Embeddings\"?",
+      "options": {
+        "A": "Embeds an imperceptible signal so AI-generated content can later be identified",
+        "B": "Are fixed-length numeric representations that place similar items close together",
+        "C": "Shares a general format but allows variable, nested fields between records",
+        "D": "Is a database optimized for storing and searching numeric embeddings"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T039",
+      "domain": "1",
+      "target": "Recall",
+      "stem": "Which term best matches this definition: \"Measures how many actual positives a model successfully found\"?",
+      "options": {
+        "A": "Dimensionality reduction",
+        "B": "Recall",
+        "C": "Overfitting",
+        "D": "Underfitting"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T040",
+      "domain": "1",
+      "target": "Precision",
+      "stem": "Which of the following best describes \"Precision\"?",
+      "options": {
+        "A": "Measures how many of a model's positive predictions were actually correct",
+        "B": "Measures how many actual positives a model successfully found",
+        "C": "Occurs when a model performs well on training data but poorly on new data",
+        "D": "Groups unlabeled inputs by similarity without predefined categories"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T041",
+      "domain": "1",
+      "target": "Overfitting",
+      "stem": "Which term best matches this definition: \"Occurs when a model performs well on training data but poorly on new data\"?",
+      "options": {
+        "A": "Underfitting",
+        "B": "Overfitting",
+        "C": "Precision",
+        "D": "Confusion matrix"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T042",
+      "domain": "1",
+      "target": "Underfitting",
+      "stem": "Which of the following best describes \"Underfitting\"?",
+      "options": {
+        "A": "Compresses many input features into fewer while preserving key structure",
+        "B": "Occurs when a model performs poorly on both training and new data",
+        "C": "Occurs when a model performs well on training data but poorly on new data",
+        "D": "Groups unlabeled inputs by similarity without predefined categories"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T043",
+      "domain": "1",
+      "target": "Confusion matrix",
+      "stem": "Which term best matches this definition: \"Is the artifact that shows true/false positives and true/false negatives together\"?",
+      "options": {
+        "A": "Dimensionality reduction",
+        "B": "Clustering",
+        "C": "Confusion matrix",
+        "D": "Regression"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T044",
+      "domain": "1",
+      "target": "Classification",
+      "stem": "Which of the following best describes \"Classification\"?",
+      "options": {
+        "A": "Assigns each input into one of a set of predefined labeled categories",
+        "B": "Predicts a continuous numeric value rather than a discrete category",
+        "C": "Compresses many input features into fewer while preserving key structure",
+        "D": "Groups unlabeled inputs by similarity without predefined categories"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T045",
+      "domain": "1",
+      "target": "Clustering",
+      "stem": "Which term best matches this definition: \"Groups unlabeled inputs by similarity without predefined categories\"?",
+      "options": {
+        "A": "Dimensionality reduction",
+        "B": "Classification",
+        "C": "Clustering",
+        "D": "Underfitting"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T046",
+      "domain": "1",
+      "target": "Regression",
+      "stem": "Which of the following best describes \"Regression\"?",
+      "options": {
+        "A": "Measures how many of a model's positive predictions were actually correct",
+        "B": "Predicts a continuous numeric value rather than a discrete category",
+        "C": "Occurs when a model performs well on training data but poorly on new data",
+        "D": "Measures how many actual positives a model successfully found"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T047",
+      "domain": "1",
+      "target": "Dimensionality reduction",
+      "stem": "Which term best matches this definition: \"Compresses many input features into fewer while preserving key structure\"?",
+      "options": {
+        "A": "Dimensionality reduction",
+        "B": "Overfitting",
+        "C": "Confusion matrix",
+        "D": "Clustering"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T048",
+      "domain": "1",
+      "target": "Business use case alignment",
+      "stem": "Which term best matches this definition: \"Confirms an AI project directly supports a stated corporate objective\"?",
+      "options": {
+        "A": "Business use case alignment",
+        "B": "Feedback and iteration",
+        "C": "Human oversight",
+        "D": "Data preparation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T049",
+      "domain": "1",
+      "target": "Data collection trustworthiness",
+      "stem": "Which of the following best describes \"Data collection trustworthiness\"?",
+      "options": {
+        "A": "Has subject-matter experts manually check model outputs against known-correct answers",
+        "B": "Confirms data genuinely originates from its claimed source and was not fabricated",
+        "C": "Assesses whether a candidate data source has a track record of reliability",
+        "D": "Lets a governance body review aggregate model behavior and suspend it if needed"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T050",
+      "domain": "1",
+      "target": "Data collection authenticity",
+      "stem": "Which term best matches this definition: \"Confirms data genuinely originates from its claimed source and was not fabricated\"?",
+      "options": {
+        "A": "Model evaluation",
+        "B": "Business use case alignment",
+        "C": "Model development and selection",
+        "D": "Data collection authenticity"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T051",
+      "domain": "1",
+      "target": "Data preparation",
+      "stem": "Which of the following best describes \"Data preparation\"?",
+      "options": {
+        "A": "Moves an approved model from staging into a live production environment",
+        "B": "Requires a human to approve a model's output before any action is taken",
+        "C": "Formats, encodes, and splits a dataset ahead of training",
+        "D": "Measures a trained model's accuracy and related metrics before promotion"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T052",
+      "domain": "1",
+      "target": "Model development and selection",
+      "stem": "Which term best matches this definition: \"Compares candidate architectures and configurations before committing to one\"?",
+      "options": {
+        "A": "Monitoring and maintenance",
+        "B": "Deployment",
+        "C": "Model development and selection",
+        "D": "Human validation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T053",
+      "domain": "1",
+      "target": "Model evaluation",
+      "stem": "Which of the following best describes \"Model evaluation\"?",
+      "options": {
+        "A": "Has subject-matter experts manually check model outputs against known-correct answers",
+        "B": "Measures a trained model's accuracy and related metrics before promotion",
+        "C": "Routes corrections on live outputs back into the training pipeline",
+        "D": "Confirms data genuinely originates from its claimed source and was not fabricated"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T054",
+      "domain": "1",
+      "target": "Deployment",
+      "stem": "Which term best matches this definition: \"Moves an approved model from staging into a live production environment\"?",
+      "options": {
+        "A": "Business use case alignment",
+        "B": "Data collection authenticity",
+        "C": "Human-in-the-loop",
+        "D": "Deployment"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T055",
+      "domain": "1",
+      "target": "Lifecycle validation",
+      "stem": "Which of the following best describes \"Lifecycle validation\"?",
+      "options": {
+        "A": "Confirms a deployed model behaves as expected against real, production-like inputs",
+        "B": "Routes corrections on live outputs back into the training pipeline",
+        "C": "Requires a human to approve a model's output before any action is taken",
+        "D": "Assesses whether a candidate data source has a track record of reliability"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T056",
+      "domain": "1",
+      "target": "Monitoring and maintenance",
+      "stem": "Which term best matches this definition: \"Continuously tracks a live model's performance and schedules retraining\"?",
+      "options": {
+        "A": "Business use case alignment",
+        "B": "Data collection trustworthiness",
+        "C": "Feedback and iteration",
+        "D": "Monitoring and maintenance"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T057",
+      "domain": "1",
+      "target": "Feedback and iteration",
+      "stem": "Which of the following best describes \"Feedback and iteration\"?",
+      "options": {
+        "A": "Confirms an AI project directly supports a stated corporate objective",
+        "B": "Continuously tracks a live model's performance and schedules retraining",
+        "C": "Assesses whether a candidate data source has a track record of reliability",
+        "D": "Routes corrections on live outputs back into the training pipeline"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T058",
+      "domain": "1",
+      "target": "Human-in-the-loop",
+      "stem": "Which term best matches this definition: \"Requires a human to approve a model's output before any action is taken\"?",
+      "options": {
+        "A": "Model evaluation",
+        "B": "Lifecycle validation",
+        "C": "Data collection trustworthiness",
+        "D": "Human-in-the-loop"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T059",
+      "domain": "1",
+      "target": "Human oversight",
+      "stem": "Which of the following best describes \"Human oversight\"?",
+      "options": {
+        "A": "Continuously tracks a live model's performance and schedules retraining",
+        "B": "Lets a governance body review aggregate model behavior and suspend it if needed",
+        "C": "Requires a human to approve a model's output before any action is taken",
+        "D": "Confirms a deployed model behaves as expected against real, production-like inputs"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T060",
+      "domain": "1",
+      "target": "Human validation",
+      "stem": "Which term best matches this definition: \"Has subject-matter experts manually check model outputs against known-correct answers\"?",
+      "options": {
+        "A": "Model development and selection",
+        "B": "Human validation",
+        "C": "Monitoring and maintenance",
+        "D": "Human oversight"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T061",
+      "domain": "2",
+      "target": "OWASP LLM Top 10",
+      "stem": "Which term best matches this definition: \"Ranks the most critical vulnerability categories specific to LLM applications\"?",
+      "options": {
+        "A": "MIT AI Risk Repository",
+        "B": "CVE AI Working Group",
+        "C": "OWASP ML Security Top 10",
+        "D": "OWASP LLM Top 10"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T062",
+      "domain": "2",
+      "target": "OWASP ML Security Top 10",
+      "stem": "Which of the following best describes \"OWASP ML Security Top 10\"?",
+      "options": {
+        "A": "Tracks formally assigned, publicly disclosed vulnerabilities in AI components",
+        "B": "Is a broad academic taxonomy of AI risk spanning far beyond security",
+        "C": "Ranks the most critical vulnerability categories specific to LLM applications",
+        "D": "Ranks classic machine-learning pipeline risks such as poisoning and inversion"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T063",
+      "domain": "2",
+      "target": "MIT AI Risk Repository",
+      "stem": "Which term best matches this definition: \"Is a broad academic taxonomy of AI risk spanning far beyond security\"?",
+      "options": {
+        "A": "MIT AI Risk Repository",
+        "B": "CVE AI Working Group",
+        "C": "OWASP LLM Top 10",
+        "D": "OWASP ML Security Top 10"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T064",
+      "domain": "2",
+      "target": "MITRE ATLAS",
+      "stem": "Which of the following best describes \"MITRE ATLAS\"?",
+      "options": {
+        "A": "Ranks the most critical vulnerability categories specific to LLM applications",
+        "B": "Tracks formally assigned, publicly disclosed vulnerabilities in AI components",
+        "C": "Catalogs real-world adversary tactics and techniques specifically against AI systems",
+        "D": "Is a broad academic taxonomy of AI risk spanning far beyond security"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T065",
+      "domain": "2",
+      "target": "CVE AI Working Group",
+      "stem": "Which term best matches this definition: \"Tracks formally assigned, publicly disclosed vulnerabilities in AI components\"?",
+      "options": {
+        "A": "OWASP ML Security Top 10",
+        "B": "CVE AI Working Group",
+        "C": "MITRE ATLAS",
+        "D": "OWASP LLM Top 10"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T066",
+      "domain": "2",
+      "target": "Model guardrails",
+      "stem": "Which term best matches this definition: \"Block a model from producing certain categories of output regardless of prompt phrasing\"?",
+      "options": {
+        "A": "Data masking",
+        "B": "Input quotas",
+        "C": "Model guardrails",
+        "D": "Model access control"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T067",
+      "domain": "2",
+      "target": "Prompt firewalls",
+      "stem": "Which of the following best describes \"Prompt firewalls\"?",
+      "options": {
+        "A": "Restricts which parties may directly query a model's inference endpoint",
+        "B": "Block a model from producing certain categories of output regardless of prompt phrasing",
+        "C": "Restricts which network sources may reach a model's endpoint",
+        "D": "Inspect incoming prompts for known attack patterns before they reach the model"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T068",
+      "domain": "2",
+      "target": "Rate limits",
+      "stem": "Which term best matches this definition: \"Cap the number of requests a client may send in a given time window\"?",
+      "options": {
+        "A": "Rate limits",
+        "B": "Model access control",
+        "C": "Data access control",
+        "D": "Network and API access control"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T069",
+      "domain": "2",
+      "target": "Token limits",
+      "stem": "Which of the following best describes \"Token limits\"?",
+      "options": {
+        "A": "Restrict the size or quantity of data a user may submit per session",
+        "B": "Cap the number of tokens allowed in a single request or response",
+        "C": "Inspect incoming prompts for known attack patterns before they reach the model",
+        "D": "Irreversibly strips identifiers so individuals cannot be linked back to records"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T070",
+      "domain": "2",
+      "target": "Input quotas",
+      "stem": "Which term best matches this definition: \"Restrict the size or quantity of data a user may submit per session\"?",
+      "options": {
+        "A": "Modality limits",
+        "B": "Data anonymization",
+        "C": "Input quotas",
+        "D": "Model guardrails"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T071",
+      "domain": "2",
+      "target": "Modality limits",
+      "stem": "Which of the following best describes \"Modality limits\"?",
+      "options": {
+        "A": "Protects stored data such as embeddings or logs on disk",
+        "B": "Restrict which input types, such as text only, a system will accept",
+        "C": "Substitutes realistic fake values for real ones while preserving reversibility for authorized use",
+        "D": "Restricts which parties may view the raw training or reference data"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T072",
+      "domain": "2",
+      "target": "Model access control",
+      "stem": "Which term best matches this definition: \"Restricts which parties may directly query a model's inference endpoint\"?",
+      "options": {
+        "A": "Network and API access control",
+        "B": "Model access control",
+        "C": "Data minimization",
+        "D": "Encryption in transit"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T073",
+      "domain": "2",
+      "target": "Data access control",
+      "stem": "Which of the following best describes \"Data access control\"?",
+      "options": {
+        "A": "Block a model from producing certain categories of output regardless of prompt phrasing",
+        "B": "Restricts which parties may view the raw training or reference data",
+        "C": "Restrict the size or quantity of data a user may submit per session",
+        "D": "Inspect incoming prompts for known attack patterns before they reach the model"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T074",
+      "domain": "2",
+      "target": "Agent access control",
+      "stem": "Which term best matches this definition: \"Restricts which systems or actions an autonomous AI agent may invoke\"?",
+      "options": {
+        "A": "Input quotas",
+        "B": "Model guardrails",
+        "C": "Encryption at rest",
+        "D": "Agent access control"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T075",
+      "domain": "2",
+      "target": "Network and API access control",
+      "stem": "Which of the following best describes \"Network and API access control\"?",
+      "options": {
+        "A": "Restricts which network sources may reach a model's endpoint",
+        "B": "Cap the number of tokens allowed in a single request or response",
+        "C": "Substitutes realistic fake values for real ones while preserving reversibility for authorized use",
+        "D": "Protects data moving between a client and a model over the network"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T076",
+      "domain": "2",
+      "target": "Encryption in transit",
+      "stem": "Which term best matches this definition: \"Protects data moving between a client and a model over the network\"?",
+      "options": {
+        "A": "Encryption in transit",
+        "B": "Model guardrails",
+        "C": "Data access control",
+        "D": "Modality limits"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T077",
+      "domain": "2",
+      "target": "Encryption at rest",
+      "stem": "Which of the following best describes \"Encryption at rest\"?",
+      "options": {
+        "A": "Block a model from producing certain categories of output regardless of prompt phrasing",
+        "B": "Restricts which systems or actions an autonomous AI agent may invoke",
+        "C": "Protects data while it is actively being computed on, such as in an enclave",
+        "D": "Protects stored data such as embeddings or logs on disk"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T078",
+      "domain": "2",
+      "target": "Encryption in use",
+      "stem": "Which term best matches this definition: \"Protects data while it is actively being computed on, such as in an enclave\"?",
+      "options": {
+        "A": "Rate limits",
+        "B": "Input quotas",
+        "C": "Model guardrails",
+        "D": "Encryption in use"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T079",
+      "domain": "2",
+      "target": "Data anonymization",
+      "stem": "Which of the following best describes \"Data anonymization\"?",
+      "options": {
+        "A": "Irreversibly strips identifiers so individuals cannot be linked back to records",
+        "B": "Cap the number of tokens allowed in a single request or response",
+        "C": "Restricts which systems or actions an autonomous AI agent may invoke",
+        "D": "Protects data while it is actively being computed on, such as in an enclave"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T080",
+      "domain": "2",
+      "target": "Data masking",
+      "stem": "Which term best matches this definition: \"Substitutes realistic fake values for real ones while preserving reversibility for authorized use\"?",
+      "options": {
+        "A": "Input quotas",
+        "B": "Modality limits",
+        "C": "Encryption in use",
+        "D": "Data masking"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T081",
+      "domain": "2",
+      "target": "Data minimization",
+      "stem": "Which of the following best describes \"Data minimization\"?",
+      "options": {
+        "A": "Limits collection to only the fields actually needed for the task",
+        "B": "Protects stored data such as embeddings or logs on disk",
+        "C": "Block a model from producing certain categories of output regardless of prompt phrasing",
+        "D": "Substitutes realistic fake values for real ones while preserving reversibility for authorized use"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T082",
+      "domain": "2",
+      "target": "Prompt monitoring",
+      "stem": "Which term best matches this definition: \"Logs and reviews both incoming queries and outgoing model responses\"?",
+      "options": {
+        "A": "Rate monitoring",
+        "B": "Log protection",
+        "C": "Prompt monitoring",
+        "D": "Log sanitization"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T083",
+      "domain": "2",
+      "target": "Log sanitization",
+      "stem": "Which of the following best describes \"Log sanitization\"?",
+      "options": {
+        "A": "Is a score attached to an answer indicating the model's certainty",
+        "B": "Tracks spending across prompts, storage, and inference compute",
+        "C": "Tracks request volume over time to detect abnormal spikes",
+        "D": "Strips embedded credentials or personal data from stored interaction logs"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T084",
+      "domain": "2",
+      "target": "Log protection",
+      "stem": "Which term best matches this definition: \"Restricts who can read or modify stored logs and prevents tampering\"?",
+      "options": {
+        "A": "Response confidence level",
+        "B": "Prompt monitoring",
+        "C": "Log protection",
+        "D": "Log sanitization"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T085",
+      "domain": "2",
+      "target": "Response confidence level",
+      "stem": "Which of the following best describes \"Response confidence level\"?",
+      "options": {
+        "A": "Logs and reviews both incoming queries and outgoing model responses",
+        "B": "Tracks spending across prompts, storage, and inference compute",
+        "C": "Is a score attached to an answer indicating the model's certainty",
+        "D": "Strips embedded credentials or personal data from stored interaction logs"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T086",
+      "domain": "2",
+      "target": "Rate monitoring",
+      "stem": "Which term best matches this definition: \"Tracks request volume over time to detect abnormal spikes\"?",
+      "options": {
+        "A": "Prompt monitoring",
+        "B": "Log sanitization",
+        "C": "Rate monitoring",
+        "D": "Response confidence level"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T087",
+      "domain": "2",
+      "target": "AI cost monitoring",
+      "stem": "Which of the following best describes \"AI cost monitoring\"?",
+      "options": {
+        "A": "Tracks request volume over time to detect abnormal spikes",
+        "B": "Tracks spending across prompts, storage, and inference compute",
+        "C": "Restricts who can read or modify stored logs and prevents tampering",
+        "D": "Is a score attached to an answer indicating the model's certainty"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T088",
+      "domain": "2",
+      "target": "Backdoor attacks",
+      "stem": "Which term best matches this definition: \"Embed a hidden trigger that causes malicious behavior only under specific conditions\"?",
+      "options": {
+        "A": "Jailbreaking",
+        "B": "Membership inference",
+        "C": "Backdoor attacks",
+        "D": "Prompt injection"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T089",
+      "domain": "2",
+      "target": "Trojan attacks",
+      "stem": "Which of the following best describes \"Trojan attacks\"?",
+      "options": {
+        "A": "Embed a hidden trigger that causes malicious behavior only under specific conditions",
+        "B": "Abuse a base model's learned weights to compromise a fine-tuned derivative",
+        "C": "Hide malicious functionality inside an otherwise normal-looking model or component",
+        "D": "Reconstructs recognizable training data from a model's outputs"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T090",
+      "domain": "2",
+      "target": "Prompt injection",
+      "stem": "Which term best matches this definition: \"Hides instructions in a user message that override the model's original directives\"?",
+      "options": {
+        "A": "Circumventing guardrails",
+        "B": "Trojan attacks",
+        "C": "Prompt injection",
+        "D": "Model extraction"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T091",
+      "domain": "2",
+      "target": "Indirect prompt injection",
+      "stem": "Which of the following best describes \"Indirect prompt injection\"?",
+      "options": {
+        "A": "Embed a hidden trigger that causes malicious behavior only under specific conditions",
+        "B": "Compromise a model or its dependencies before they reach the victim",
+        "C": "Hides instructions inside retrieved content rather than the user's direct message",
+        "D": "Gradually biases a model's outputs through manipulated ongoing input"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T092",
+      "domain": "2",
+      "target": "Data poisoning",
+      "stem": "Which term best matches this definition: \"Corrupts training data so the resulting model learns a flawed pattern\"?",
+      "options": {
+        "A": "Data poisoning",
+        "B": "Input manipulation",
+        "C": "Model denial of service",
+        "D": "Circumventing guardrails"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T093",
+      "domain": "2",
+      "target": "Model poisoning",
+      "stem": "Which of the following best describes \"Model poisoning\"?",
+      "options": {
+        "A": "Corrupts training data so the resulting model learns a flawed pattern",
+        "B": "Gradually biases a model's outputs through manipulated ongoing input",
+        "C": "Hides instructions in a user message that override the model's original directives",
+        "D": "Corrupts a model's parameters or updates directly rather than its training data"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T094",
+      "domain": "2",
+      "target": "Jailbreaking",
+      "stem": "Which term best matches this definition: \"Manipulates a model into bypassing its own safety restrictions\"?",
+      "options": {
+        "A": "Circumventing guardrails",
+        "B": "Overreliance",
+        "C": "Model extraction",
+        "D": "Jailbreaking"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T095",
+      "domain": "2",
+      "target": "Input manipulation",
+      "stem": "Which of the following best describes \"Input manipulation\"?",
+      "options": {
+        "A": "Compromise a model or its dependencies before they reach the victim",
+        "B": "Gradually biases a model's outputs through manipulated ongoing input",
+        "C": "Crafts input specifically to force an unintended model response",
+        "D": "Grants an AI system more autonomous capability than its task requires"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T096",
+      "domain": "2",
+      "target": "Circumventing guardrails",
+      "stem": "Which term best matches this definition: \"Finds a path around a model's configured safety restrictions\"?",
+      "options": {
+        "A": "Trojan attacks",
+        "B": "Data poisoning",
+        "C": "Circumventing guardrails",
+        "D": "Excessive agency"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T097",
+      "domain": "2",
+      "target": "Model inversion",
+      "stem": "Which of the following best describes \"Model inversion\"?",
+      "options": {
+        "A": "Leaves an AI plug-in's permissions or inputs inadequately restricted",
+        "B": "Reconstructs recognizable training data from a model's outputs",
+        "C": "Overwhelms a model's resources so legitimate requests cannot be served",
+        "D": "Occurs when users trust AI output without appropriate independent verification"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T098",
+      "domain": "2",
+      "target": "Model extraction",
+      "stem": "Which term best matches this definition: \"Recreates a functionally similar model by repeatedly querying the original\"?",
+      "options": {
+        "A": "Trojan attacks",
+        "B": "Model extraction",
+        "C": "Backdoor attacks",
+        "D": "Prompt injection"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T099",
+      "domain": "2",
+      "target": "AI supply chain attacks",
+      "stem": "Which of the following best describes \"AI supply chain attacks\"?",
+      "options": {
+        "A": "Determines whether a specific record was part of a model's training data",
+        "B": "Compromise a model or its dependencies before they reach the victim",
+        "C": "Hides instructions inside retrieved content rather than the user's direct message",
+        "D": "Gradually biases a model's outputs through manipulated ongoing input"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T100",
+      "domain": "2",
+      "target": "Transfer learning attacks",
+      "stem": "Which term best matches this definition: \"Abuse a base model's learned weights to compromise a fine-tuned derivative\"?",
+      "options": {
+        "A": "Overreliance",
+        "B": "Sensitive information disclosure",
+        "C": "Transfer learning attacks",
+        "D": "Input manipulation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T101",
+      "domain": "2",
+      "target": "Model skewing",
+      "stem": "Which of the following best describes \"Model skewing\"?",
+      "options": {
+        "A": "Hides instructions in a user message that override the model's original directives",
+        "B": "Overwhelms a model's resources so legitimate requests cannot be served",
+        "C": "Gradually biases a model's outputs through manipulated ongoing input",
+        "D": "Determines whether a specific record was part of a model's training data"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T102",
+      "domain": "2",
+      "target": "Output integrity attacks",
+      "stem": "Which term best matches this definition: \"Alter or manipulate a model's output after it has been generated\"?",
+      "options": {
+        "A": "Output integrity attacks",
+        "B": "Circumventing guardrails",
+        "C": "Prompt injection",
+        "D": "Insecure output handling"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T103",
+      "domain": "2",
+      "target": "Membership inference",
+      "stem": "Which of the following best describes \"Membership inference\"?",
+      "options": {
+        "A": "Crafts input specifically to force an unintended model response",
+        "B": "Alter or manipulate a model's output after it has been generated",
+        "C": "Occurs when a model's output is trusted and used without validation",
+        "D": "Determines whether a specific record was part of a model's training data"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T104",
+      "domain": "2",
+      "target": "Insecure output handling",
+      "stem": "Which term best matches this definition: \"Occurs when a model's output is trusted and used without validation\"?",
+      "options": {
+        "A": "Model inversion",
+        "B": "Jailbreaking",
+        "C": "Trojan attacks",
+        "D": "Insecure output handling"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T105",
+      "domain": "2",
+      "target": "Model denial of service",
+      "stem": "Which of the following best describes \"Model denial of service\"?",
+      "options": {
+        "A": "Reconstructs recognizable training data from a model's outputs",
+        "B": "Overwhelms a model's resources so legitimate requests cannot be served",
+        "C": "Finds a path around a model's configured safety restrictions",
+        "D": "Recreates a functionally similar model by repeatedly querying the original"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T106",
+      "domain": "2",
+      "target": "Sensitive information disclosure",
+      "stem": "Which term best matches this definition: \"Causes a model to reveal confidential data it was exposed to\"?",
+      "options": {
+        "A": "Trojan attacks",
+        "B": "Sensitive information disclosure",
+        "C": "Membership inference",
+        "D": "Circumventing guardrails"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T107",
+      "domain": "2",
+      "target": "Insecure plug-in design",
+      "stem": "Which of the following best describes \"Insecure plug-in design\"?",
+      "options": {
+        "A": "Leaves an AI plug-in's permissions or inputs inadequately restricted",
+        "B": "Reconstructs recognizable training data from a model's outputs",
+        "C": "Determines whether a specific record was part of a model's training data",
+        "D": "Occurs when a model's output is trusted and used without validation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T108",
+      "domain": "2",
+      "target": "Excessive agency",
+      "stem": "Which term best matches this definition: \"Grants an AI system more autonomous capability than its task requires\"?",
+      "options": {
+        "A": "Indirect prompt injection",
+        "B": "Output integrity attacks",
+        "C": "Model denial of service",
+        "D": "Excessive agency"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T109",
+      "domain": "2",
+      "target": "Overreliance",
+      "stem": "Which of the following best describes \"Overreliance\"?",
+      "options": {
+        "A": "Reconstructs recognizable training data from a model's outputs",
+        "B": "Embed a hidden trigger that causes malicious behavior only under specific conditions",
+        "C": "Occurs when users trust AI output without appropriate independent verification",
+        "D": "Determines whether a specific record was part of a model's training data"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T110",
+      "domain": "3",
+      "target": "IDE plug-ins",
+      "stem": "Which term best matches this definition: \"Add AI assistance directly inside a developer's code editor\"?",
+      "options": {
+        "A": "Code quality and linting",
+        "B": "Model Context Protocol server",
+        "C": "Personal assistants",
+        "D": "IDE plug-ins"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T111",
+      "domain": "3",
+      "target": "Browser plug-ins",
+      "stem": "Which of the following best describes \"Browser plug-ins\"?",
+      "options": {
+        "A": "Autonomously chains discovered issues to attempt further compromise in authorized tests",
+        "B": "Add AI assistance directly inside a web browser while browsing",
+        "C": "Drafts timelines, severity, and next steps for security incident tickets",
+        "D": "Provide conversational AI assistance through a dedicated chat interface"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T112",
+      "domain": "3",
+      "target": "CLI plug-ins",
+      "stem": "Which term best matches this definition: \"Add AI assistance directly inside a command-line terminal\"?",
+      "options": {
+        "A": "Automated penetration testing",
+        "B": "Anomaly detection",
+        "C": "Pattern recognition",
+        "D": "CLI plug-ins"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T113",
+      "domain": "3",
+      "target": "Chatbots",
+      "stem": "Which of the following best describes \"Chatbots\"?",
+      "options": {
+        "A": "Scores transactions in real time for likelihood of being fraudulent",
+        "B": "Ranks discovered weaknesses by likely exploitability and impact",
+        "C": "Provide broader task-automation AI assistance across multiple applications",
+        "D": "Provide conversational AI assistance through a dedicated chat interface"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T114",
+      "domain": "3",
+      "target": "Personal assistants",
+      "stem": "Which term best matches this definition: \"Provide broader task-automation AI assistance across multiple applications\"?",
+      "options": {
+        "A": "IDE plug-ins",
+        "B": "Personal assistants",
+        "C": "Vulnerability analysis (AI-assisted)",
+        "D": "Pattern recognition"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T115",
+      "domain": "3",
+      "target": "Model Context Protocol server",
+      "stem": "Which of the following best describes \"Model Context Protocol server\"?",
+      "options": {
+        "A": "Exposes internal tools and data to an AI assistant through a standard interface",
+        "B": "Add AI assistance directly inside a command-line terminal",
+        "C": "Flags insecure or non-compliant patterns in source code automatically",
+        "D": "Drafts timelines, severity, and next steps for security incident tickets"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T116",
+      "domain": "3",
+      "target": "Signature matching (AI-assisted)",
+      "stem": "Which term best matches this definition: \"Compares a sample's fingerprint against a library of known-malicious patterns\"?",
+      "options": {
+        "A": "Signature matching (AI-assisted)",
+        "B": "IDE plug-ins",
+        "C": "Browser plug-ins",
+        "D": "Model Context Protocol server"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T117",
+      "domain": "3",
+      "target": "Code quality and linting",
+      "stem": "Which of the following best describes \"Code quality and linting\"?",
+      "options": {
+        "A": "Provide conversational AI assistance through a dedicated chat interface",
+        "B": "Drafts timelines, severity, and next steps for security incident tickets",
+        "C": "Flags insecure or non-compliant patterns in source code automatically",
+        "D": "Add AI assistance directly inside a web browser while browsing"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T118",
+      "domain": "3",
+      "target": "Vulnerability analysis (AI-assisted)",
+      "stem": "Which term best matches this definition: \"Ranks discovered weaknesses by likely exploitability and impact\"?",
+      "options": {
+        "A": "Vulnerability analysis (AI-assisted)",
+        "B": "Model Context Protocol server",
+        "C": "Browser plug-ins",
+        "D": "Personal assistants"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T119",
+      "domain": "3",
+      "target": "Automated penetration testing",
+      "stem": "Which of the following best describes \"Automated penetration testing\"?",
+      "options": {
+        "A": "Exposes internal tools and data to an AI assistant through a standard interface",
+        "B": "Autonomously chains discovered issues to attempt further compromise in authorized tests",
+        "C": "Provide broader task-automation AI assistance across multiple applications",
+        "D": "Compares a sample's fingerprint against a library of known-malicious patterns"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T120",
+      "domain": "3",
+      "target": "Anomaly detection",
+      "stem": "Which term best matches this definition: \"Flags behavior that deviates from an established baseline\"?",
+      "options": {
+        "A": "Personal assistants",
+        "B": "Pattern recognition",
+        "C": "IDE plug-ins",
+        "D": "Anomaly detection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T121",
+      "domain": "3",
+      "target": "Pattern recognition",
+      "stem": "Which of the following best describes \"Pattern recognition\"?",
+      "options": {
+        "A": "Ranks discovered weaknesses by likely exploitability and impact",
+        "B": "Identifies a recurring sequence or signature across many separate events",
+        "C": "Compares a sample's fingerprint against a library of known-malicious patterns",
+        "D": "Exposes internal tools and data to an AI assistant through a standard interface"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T122",
+      "domain": "3",
+      "target": "Incident management (AI-assisted)",
+      "stem": "Which term best matches this definition: \"Drafts timelines, severity, and next steps for security incident tickets\"?",
+      "options": {
+        "A": "Anomaly detection",
+        "B": "Fraud detection",
+        "C": "IDE plug-ins",
+        "D": "Incident management (AI-assisted)"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T123",
+      "domain": "3",
+      "target": "Fraud detection",
+      "stem": "Which of the following best describes \"Fraud detection\"?",
+      "options": {
+        "A": "Scores transactions in real time for likelihood of being fraudulent",
+        "B": "Add AI assistance directly inside a developer's code editor",
+        "C": "Add AI assistance directly inside a web browser while browsing",
+        "D": "Identifies a recurring sequence or signature across many separate events"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T124",
+      "domain": "3",
+      "target": "Summarization",
+      "stem": "Which term best matches this definition: \"Condenses lengthy source material into a shorter version\"?",
+      "options": {
+        "A": "Anomaly detection",
+        "B": "Personal assistants",
+        "C": "Summarization",
+        "D": "Code quality and linting"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T125",
+      "domain": "3",
+      "target": "Deepfake impersonation",
+      "stem": "Which term best matches this definition: \"Uses synthetic audio or video to convincingly imitate a real person\"?",
+      "options": {
+        "A": "Deepfake impersonation",
+        "B": "AI-enhanced reconnaissance",
+        "C": "AI-generated payloads",
+        "D": "Automated attack vector discovery"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T126",
+      "domain": "3",
+      "target": "Misinformation",
+      "stem": "Which of the following best describes \"Misinformation\"?",
+      "options": {
+        "A": "Scans a target and proposes untested exploitation paths automatically",
+        "B": "Continuously rewrites malicious code structure to evade static signatures",
+        "C": "Dynamically adjusts a botnet's request patterns to maximize load while evading defenses",
+        "D": "Spreads inaccurate content without clear intent to deceive by the creator"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T127",
+      "domain": "3",
+      "target": "Disinformation",
+      "stem": "Which term best matches this definition: \"Deliberately fabricates and spreads false content to manipulate opinion\"?",
+      "options": {
+        "A": "Disinformation",
+        "B": "Automated attack vector discovery",
+        "C": "Misinformation",
+        "D": "AI-driven honeypot evasion"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T128",
+      "domain": "3",
+      "target": "AI-enhanced reconnaissance",
+      "stem": "Which of the following best describes \"AI-enhanced reconnaissance\"?",
+      "options": {
+        "A": "Drafts highly personalized, context-aware deception at scale",
+        "B": "Spreads inaccurate content without clear intent to deceive by the creator",
+        "C": "Rapidly synthesizes scattered public information into a target profile",
+        "D": "Produces novel obfuscated malicious code intended to evade detection"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T129",
+      "domain": "3",
+      "target": "AI-enhanced social engineering",
+      "stem": "Which term best matches this definition: \"Drafts highly personalized, context-aware deception at scale\"?",
+      "options": {
+        "A": "Disinformation",
+        "B": "AI-enhanced social engineering",
+        "C": "AI-generated payloads",
+        "D": "Automated attack vector discovery"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T130",
+      "domain": "3",
+      "target": "AI-assisted obfuscation",
+      "stem": "Which of the following best describes \"AI-assisted obfuscation\"?",
+      "options": {
+        "A": "Deliberately fabricates and spreads false content to manipulate opinion",
+        "B": "Spreads inaccurate content without clear intent to deceive by the creator",
+        "C": "Continuously rewrites malicious code structure to evade static signatures",
+        "D": "Automatically links records belonging to the same individual across leaked sources"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T131",
+      "domain": "3",
+      "target": "Automated data correlation (attacker use)",
+      "stem": "Which term best matches this definition: \"Automatically links records belonging to the same individual across leaked sources\"?",
+      "options": {
+        "A": "AI-enhanced reconnaissance",
+        "B": "Automated data correlation (attacker use)",
+        "C": "AI-enhanced social engineering",
+        "D": "Deepfake impersonation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T132",
+      "domain": "3",
+      "target": "Automated attack vector discovery",
+      "stem": "Which of the following best describes \"Automated attack vector discovery\"?",
+      "options": {
+        "A": "Automatically links records belonging to the same individual across leaked sources",
+        "B": "Scans a target and proposes untested exploitation paths automatically",
+        "C": "Rapidly synthesizes scattered public information into a target profile",
+        "D": "Analyzes a suspected decoy system's behavior before deciding whether to engage"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T133",
+      "domain": "3",
+      "target": "AI-generated payloads",
+      "stem": "Which term best matches this definition: \"Produces novel obfuscated malicious code intended to evade detection\"?",
+      "options": {
+        "A": "AI-enhanced social engineering",
+        "B": "AI-assisted obfuscation",
+        "C": "AI-generated payloads",
+        "D": "Automated attack vector discovery"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T134",
+      "domain": "3",
+      "target": "AI-driven honeypot evasion",
+      "stem": "Which of the following best describes \"AI-driven honeypot evasion\"?",
+      "options": {
+        "A": "Drafts highly personalized, context-aware deception at scale",
+        "B": "Spreads inaccurate content without clear intent to deceive by the creator",
+        "C": "Rapidly synthesizes scattered public information into a target profile",
+        "D": "Analyzes a suspected decoy system's behavior before deciding whether to engage"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T135",
+      "domain": "3",
+      "target": "AI-amplified DDoS",
+      "stem": "Which term best matches this definition: \"Dynamically adjusts a botnet's request patterns to maximize load while evading defenses\"?",
+      "options": {
+        "A": "Deepfake impersonation",
+        "B": "Automated data correlation (attacker use)",
+        "C": "AI-enhanced social engineering",
+        "D": "AI-amplified DDoS"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T136",
+      "domain": "3",
+      "target": "Low-code or no-code automation",
+      "stem": "Which term best matches this definition: \"Builds automated workflows visually with little or no traditional coding\"?",
+      "options": {
+        "A": "Model testing (CI/CD)",
+        "B": "Low-code or no-code automation",
+        "C": "Document synthesis and summarization",
+        "D": "Regression testing (CI/CD)"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T137",
+      "domain": "3",
+      "target": "Document synthesis and summarization",
+      "stem": "Which of the following best describes \"Document synthesis and summarization\"?",
+      "options": {
+        "A": "Inventories third-party libraries in a build and flags known vulnerabilities",
+        "B": "Re-runs a fixed evaluation suite against a newly retrained model before promotion",
+        "C": "Automatically merges findings from multiple source documents into one summary",
+        "D": "Automatically reverts a release when post-deployment checks fail"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T138",
+      "domain": "3",
+      "target": "Incident response ticket management",
+      "stem": "Which term best matches this definition: \"Automatically creates, updates, and closes tickets as an incident progresses\"?",
+      "options": {
+        "A": "AI-assisted change approvals",
+        "B": "Incident response ticket management",
+        "C": "Software composition analysis",
+        "D": "Document synthesis and summarization"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T139",
+      "domain": "3",
+      "target": "AI-assisted change approvals",
+      "stem": "Which of the following best describes \"AI-assisted change approvals\"?",
+      "options": {
+        "A": "Automatically creates, updates, and closes tickets as an incident progresses",
+        "B": "Builds automated workflows visually with little or no traditional coding",
+        "C": "Recommends approval or rejection of a proposed change against policy",
+        "D": "Automatically merges findings from multiple source documents into one summary"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T140",
+      "domain": "3",
+      "target": "Automated deployment and rollback",
+      "stem": "Which term best matches this definition: \"Automatically reverts a release when post-deployment checks fail\"?",
+      "options": {
+        "A": "Automated deployment and rollback",
+        "B": "Incident response ticket management",
+        "C": "AI agents (task automation)",
+        "D": "Model testing (CI/CD)"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T141",
+      "domain": "3",
+      "target": "AI agents (task automation)",
+      "stem": "Which of the following best describes \"AI agents (task automation)\"?",
+      "options": {
+        "A": "Reruns the existing test suite after a change to confirm nothing broke",
+        "B": "Automatically creates, updates, and closes tickets as an incident progresses",
+        "C": "Automatically merges findings from multiple source documents into one summary",
+        "D": "Autonomously plan and execute multi-step actions to complete a task"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T142",
+      "domain": "3",
+      "target": "Code scanning",
+      "stem": "Which term best matches this definition: \"Automatically analyzes committed source code for known insecure patterns\"?",
+      "options": {
+        "A": "AI-assisted change approvals",
+        "B": "Model testing (CI/CD)",
+        "C": "Low-code or no-code automation",
+        "D": "Code scanning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T143",
+      "domain": "3",
+      "target": "Software composition analysis",
+      "stem": "Which of the following best describes \"Software composition analysis\"?",
+      "options": {
+        "A": "Re-runs a fixed evaluation suite against a newly retrained model before promotion",
+        "B": "Autonomously plan and execute multi-step actions to complete a task",
+        "C": "Recommends approval or rejection of a proposed change against policy",
+        "D": "Inventories third-party libraries in a build and flags known vulnerabilities"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T144",
+      "domain": "3",
+      "target": "Model testing (CI/CD)",
+      "stem": "Which term best matches this definition: \"Re-runs a fixed evaluation suite against a newly retrained model before promotion\"?",
+      "options": {
+        "A": "Low-code or no-code automation",
+        "B": "Model testing (CI/CD)",
+        "C": "Code scanning",
+        "D": "AI agents (task automation)"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T145",
+      "domain": "3",
+      "target": "Regression testing (CI/CD)",
+      "stem": "Which of the following best describes \"Regression testing (CI/CD)\"?",
+      "options": {
+        "A": "Reruns the existing test suite after a change to confirm nothing broke",
+        "B": "Inventories third-party libraries in a build and flags known vulnerabilities",
+        "C": "Autonomously plan and execute multi-step actions to complete a task",
+        "D": "Recommends approval or rejection of a proposed change against policy"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T146",
+      "domain": "4",
+      "target": "Data scientist",
+      "stem": "Which term best matches this definition: \"Explores data and builds candidate models, with less focus on production infrastructure\"?",
+      "options": {
+        "A": "Data scientist",
+        "B": "MLOps engineer",
+        "C": "AI risk analyst",
+        "D": "Platform engineer"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T147",
+      "domain": "4",
+      "target": "AI architect",
+      "stem": "Which of the following best describes \"AI architect\"?",
+      "options": {
+        "A": "Designs how models, data pipelines, and infrastructure fit together system-wide",
+        "B": "Implements technical mechanisms that enforce an organization's AI policies",
+        "C": "Identifies and prioritizes AI risks for leadership decision-making",
+        "D": "Builds and maintains the underlying infrastructure AI systems run on"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T148",
+      "domain": "4",
+      "target": "Machine learning engineer",
+      "stem": "Which term best matches this definition: \"Builds, trains, and optimizes models for production deployment\"?",
+      "options": {
+        "A": "AI security architect",
+        "B": "AI architect",
+        "C": "AI auditor",
+        "D": "Machine learning engineer"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T149",
+      "domain": "4",
+      "target": "Platform engineer",
+      "stem": "Which of the following best describes \"Platform engineer\"?",
+      "options": {
+        "A": "Builds and maintains the pipelines that move and prepare data for AI use",
+        "B": "Builds and maintains pipelines that automate training, testing, and deployment",
+        "C": "Independently reviews AI systems and controls against policy after the fact",
+        "D": "Builds and maintains the underlying infrastructure AI systems run on"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T150",
+      "domain": "4",
+      "target": "MLOps engineer",
+      "stem": "Which term best matches this definition: \"Builds and maintains pipelines that automate training, testing, and deployment\"?",
+      "options": {
+        "A": "AI auditor",
+        "B": "AI architect",
+        "C": "AI security architect",
+        "D": "MLOps engineer"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T151",
+      "domain": "4",
+      "target": "AI security architect",
+      "stem": "Which of the following best describes \"AI security architect\"?",
+      "options": {
+        "A": "Identifies and prioritizes AI risks for leadership decision-making",
+        "B": "Designs security controls, threat models, and guardrail architecture for AI systems",
+        "C": "Explores data and builds candidate models, with less focus on production infrastructure",
+        "D": "Builds and maintains pipelines that automate training, testing, and deployment"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T152",
+      "domain": "4",
+      "target": "AI governance engineer",
+      "stem": "Which term best matches this definition: \"Implements technical mechanisms that enforce an organization's AI policies\"?",
+      "options": {
+        "A": "MLOps engineer",
+        "B": "AI governance engineer",
+        "C": "Data scientist",
+        "D": "Platform engineer"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T153",
+      "domain": "4",
+      "target": "AI risk analyst",
+      "stem": "Which of the following best describes \"AI risk analyst\"?",
+      "options": {
+        "A": "Builds, trains, and optimizes models for production deployment",
+        "B": "Identifies and prioritizes AI risks for leadership decision-making",
+        "C": "Builds and maintains the underlying infrastructure AI systems run on",
+        "D": "Explores data and builds candidate models, with less focus on production infrastructure"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T154",
+      "domain": "4",
+      "target": "AI auditor",
+      "stem": "Which term best matches this definition: \"Independently reviews AI systems and controls against policy after the fact\"?",
+      "options": {
+        "A": "AI architect",
+        "B": "AI auditor",
+        "C": "Data engineer",
+        "D": "AI risk analyst"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T155",
+      "domain": "4",
+      "target": "Data engineer",
+      "stem": "Which of the following best describes \"Data engineer\"?",
+      "options": {
+        "A": "Explores data and builds candidate models, with less focus on production infrastructure",
+        "B": "Identifies and prioritizes AI risks for leadership decision-making",
+        "C": "Builds and maintains the pipelines that move and prepare data for AI use",
+        "D": "Independently reviews AI systems and controls against policy after the fact"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T156",
+      "domain": "4",
+      "target": "Fairness",
+      "stem": "Which term best matches this definition: \"Confirms outcomes do not systematically disadvantage a protected group\"?",
+      "options": {
+        "A": "Fairness",
+        "B": "Accountability",
+        "C": "Explainability",
+        "D": "Differential privacy"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T157",
+      "domain": "4",
+      "target": "Reliability and safety",
+      "stem": "Which of the following best describes \"Reliability and safety\"?",
+      "options": {
+        "A": "Confirms a system performs correctly and safely across expected conditions",
+        "B": "Confirms outcomes do not systematically disadvantage a protected group",
+        "C": "Publishes clear information about a system's intended use and limitations",
+        "D": "Adds calibrated noise so no individual record can be confidently identified"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T158",
+      "domain": "4",
+      "target": "Transparency",
+      "stem": "Which term best matches this definition: \"Publishes clear information about a system's intended use and limitations\"?",
+      "options": {
+        "A": "Awareness training",
+        "B": "Differential privacy",
+        "C": "Explainability",
+        "D": "Transparency"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T159",
+      "domain": "4",
+      "target": "Differential privacy",
+      "stem": "Which of the following best describes \"Differential privacy\"?",
+      "options": {
+        "A": "Reveals which specific input factors drove a given model decision",
+        "B": "Adds calibrated noise so no individual record can be confidently identified",
+        "C": "Assigns a named owner responsible for a system's decisions and outcomes",
+        "D": "Confirms outcomes do not systematically disadvantage a protected group"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T160",
+      "domain": "4",
+      "target": "Explainability",
+      "stem": "Which term best matches this definition: \"Reveals which specific input factors drove a given model decision\"?",
+      "options": {
+        "A": "Explainability",
+        "B": "Consistency",
+        "C": "Transparency",
+        "D": "Differential privacy"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T161",
+      "domain": "4",
+      "target": "Inclusiveness",
+      "stem": "Which of the following best describes \"Inclusiveness\"?",
+      "options": {
+        "A": "Ensures a system performs equitably across diverse user populations",
+        "B": "Assigns a named owner responsible for a system's decisions and outcomes",
+        "C": "Produces the same result for functionally identical inputs",
+        "D": "Adds calibrated noise so no individual record can be confidently identified"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T162",
+      "domain": "4",
+      "target": "Accountability",
+      "stem": "Which term best matches this definition: \"Assigns a named owner responsible for a system's decisions and outcomes\"?",
+      "options": {
+        "A": "Awareness training",
+        "B": "Differential privacy",
+        "C": "Fairness",
+        "D": "Accountability"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T163",
+      "domain": "4",
+      "target": "Consistency",
+      "stem": "Which of the following best describes \"Consistency\"?",
+      "options": {
+        "A": "Publishes clear information about a system's intended use and limitations",
+        "B": "Produces the same result for functionally identical inputs",
+        "C": "Reveals which specific input factors drove a given model decision",
+        "D": "Confirms a system performs correctly and safely across expected conditions"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T164",
+      "domain": "4",
+      "target": "Awareness training",
+      "stem": "Which term best matches this definition: \"Teaches employees to recognize AI-specific risks and approved-use policy\"?",
+      "options": {
+        "A": "Transparency",
+        "B": "Inclusiveness",
+        "C": "Awareness training",
+        "D": "Fairness"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T165",
+      "domain": "4",
+      "target": "Introduction of bias",
+      "stem": "Which term best matches this definition: \"Occurs when a model inherits or amplifies discriminatory historical patterns\"?",
+      "options": {
+        "A": "Shadow AI",
+        "B": "Accidental data leakage",
+        "C": "Introduction of bias",
+        "D": "Autonomous systems risk"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T166",
+      "domain": "4",
+      "target": "Accidental data leakage",
+      "stem": "Which of the following best describes \"Accidental data leakage\"?",
+      "options": {
+        "A": "Occurs when an AI system's public behavior damages organizational trust",
+        "B": "Is the use of an unapproved AI tool without security or IT awareness",
+        "C": "Arises when an AI agent acts independently with no human checkpoint",
+        "D": "Occurs when sensitive data is unintentionally exposed to an external AI service"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T167",
+      "domain": "4",
+      "target": "Reputational loss",
+      "stem": "Which term best matches this definition: \"Occurs when an AI system's public behavior damages organizational trust\"?",
+      "options": {
+        "A": "Introduction of bias",
+        "B": "Accidental data leakage",
+        "C": "Reputational loss",
+        "D": "Autonomous systems risk"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T168",
+      "domain": "4",
+      "target": "Intellectual property risk",
+      "stem": "Which of the following best describes \"Intellectual property risk\"?",
+      "options": {
+        "A": "Arises when an AI agent acts independently with no human checkpoint",
+        "B": "Is the use of an unapproved AI tool without security or IT awareness",
+        "C": "Occurs when AI output infringes on or exposes protected content",
+        "D": "Occurs when sensitive data is unintentionally exposed to an external AI service"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T169",
+      "domain": "4",
+      "target": "Autonomous systems risk",
+      "stem": "Which term best matches this definition: \"Arises when an AI agent acts independently with no human checkpoint\"?",
+      "options": {
+        "A": "Introduction of bias",
+        "B": "Shadow AI",
+        "C": "Autonomous systems risk",
+        "D": "Reputational loss"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T170",
+      "domain": "4",
+      "target": "Shadow AI",
+      "stem": "Which of the following best describes \"Shadow AI\"?",
+      "options": {
+        "A": "Is the use of an unapproved AI tool without security or IT awareness",
+        "B": "Occurs when a model inherits or amplifies discriminatory historical patterns",
+        "C": "Occurs when AI output infringes on or exposes protected content",
+        "D": "Occurs when sensitive data is unintentionally exposed to an external AI service"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T171",
+      "domain": "4",
+      "target": "EU AI Act",
+      "stem": "Which term best matches this definition: \"Is a binding regional regulation that tiers AI systems by risk level\"?",
+      "options": {
+        "A": "EU AI Act",
+        "B": "OECD AI standards",
+        "C": "NIST AI Risk Management Framework",
+        "D": "Sanctioned vs. unsanctioned tool policy"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T172",
+      "domain": "4",
+      "target": "OECD AI standards",
+      "stem": "Which of the following best describes \"OECD AI standards\"?",
+      "options": {
+        "A": "Is a binding regional regulation that tiers AI systems by risk level",
+        "B": "Requires data to remain within servers located in a specific jurisdiction",
+        "C": "Are intergovernmental principles promoting trustworthy, rights-respecting AI",
+        "D": "Defines which AI tools employees are approved to use for work"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T173",
+      "domain": "4",
+      "target": "ISO AI standards",
+      "stem": "Which term best matches this definition: \"Are formal international management-system standards for AI governance\"?",
+      "options": {
+        "A": "OECD AI standards",
+        "B": "Third-party compliance evaluation",
+        "C": "ISO AI standards",
+        "D": "NIST AI Risk Management Framework"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T174",
+      "domain": "4",
+      "target": "NIST AI Risk Management Framework",
+      "stem": "Which of the following best describes \"NIST AI Risk Management Framework\"?",
+      "options": {
+        "A": "Is a voluntary US framework organized around govern, map, measure, and manage",
+        "B": "Are intergovernmental principles promoting trustworthy, rights-respecting AI",
+        "C": "Independently assesses a vendor before its AI product is adopted",
+        "D": "Are formal international management-system standards for AI governance"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T175",
+      "domain": "4",
+      "target": "Sanctioned vs. unsanctioned tool policy",
+      "stem": "Which term best matches this definition: \"Defines which AI tools employees are approved to use for work\"?",
+      "options": {
+        "A": "Sensitive data governance",
+        "B": "ISO AI standards",
+        "C": "Data sovereignty",
+        "D": "Sanctioned vs. unsanctioned tool policy"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T176",
+      "domain": "4",
+      "target": "Private vs. public model policy",
+      "stem": "Which of the following best describes \"Private vs. public model policy\"?",
+      "options": {
+        "A": "Are intergovernmental principles promoting trustworthy, rights-respecting AI",
+        "B": "Is a voluntary US framework organized around govern, map, measure, and manage",
+        "C": "Independently assesses a vendor before its AI product is adopted",
+        "D": "Governs whether sensitive data may reach a third-party hosted model"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T177",
+      "domain": "4",
+      "target": "Sensitive data governance",
+      "stem": "Which term best matches this definition: \"Defines handling and access rules for regulated data used in AI\"?",
+      "options": {
+        "A": "Sensitive data governance",
+        "B": "ISO AI standards",
+        "C": "NIST AI Risk Management Framework",
+        "D": "EU AI Act"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T178",
+      "domain": "4",
+      "target": "Third-party compliance evaluation",
+      "stem": "Which of the following best describes \"Third-party compliance evaluation\"?",
+      "options": {
+        "A": "Is a voluntary US framework organized around govern, map, measure, and manage",
+        "B": "Independently assesses a vendor before its AI product is adopted",
+        "C": "Governs whether sensitive data may reach a third-party hosted model",
+        "D": "Is a binding regional regulation that tiers AI systems by risk level"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T179",
+      "domain": "4",
+      "target": "Data sovereignty",
+      "stem": "Which term best matches this definition: \"Requires data to remain within servers located in a specific jurisdiction\"?",
+      "options": {
+        "A": "OECD AI standards",
+        "B": "Data sovereignty",
+        "C": "NIST AI Risk Management Framework",
+        "D": "EU AI Act"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "T180",
+      "domain": "1",
+      "target": "GAN vs. federated learning",
+      "stem": "Two networks are trained against each other, one generating and one discriminating, rather than many parties training one shared model on separate data. Which does this describe?",
+      "options": {
+        "A": "Reinforcement learning",
+        "B": "Transfer learning",
+        "C": "Generative adversarial network",
+        "D": "Federated learning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T181",
+      "domain": "1",
+      "target": "Federated learning vs. GAN",
+      "stem": "Several separate parties train a single shared model collaboratively while keeping their raw data local, rather than pitting two competing networks against each other. Which does this describe?",
+      "options": {
+        "A": "Deep learning",
+        "B": "Generative adversarial network",
+        "C": "Federated learning",
+        "D": "Statistical learning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T182",
+      "domain": "2",
+      "target": "MIT AI Risk Repository vs. MITRE ATLAS",
+      "stem": "This resource is a broad academic taxonomy of AI risk drawn from literature, not a catalog of real-world adversary tactics against AI systems. Which is it?",
+      "options": {
+        "A": "CVE AI Working Group",
+        "B": "OWASP LLM Top 10",
+        "C": "MIT AI Risk Repository",
+        "D": "MITRE ATLAS"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T183",
+      "domain": "2",
+      "target": "MITRE ATLAS vs. MIT AI Risk Repository",
+      "stem": "This resource catalogs real-world adversary tactics and techniques against AI systems, not a broad academic risk taxonomy. Which is it?",
+      "options": {
+        "A": "MITRE ATLAS",
+        "B": "MIT AI Risk Repository",
+        "C": "NIST AI RMF",
+        "D": "OWASP ML Security Top 10"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T184",
+      "domain": "4",
+      "target": "MLOps engineer vs. AI security architect",
+      "stem": "This role builds and maintains the pipelines that automate model training, testing, and deployment, rather than designing the security controls and guardrail architecture around them. Which role is it?",
+      "options": {
+        "A": "MLOps engineer",
+        "B": "AI security architect",
+        "C": "Platform engineer",
+        "D": "AI governance engineer"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T185",
+      "domain": "4",
+      "target": "AI security architect vs. MLOps engineer",
+      "stem": "This role designs security controls, threat models, and guardrail architecture for AI systems, rather than building the training and deployment pipelines themselves. Which role is it?",
+      "options": {
+        "A": "AI security architect",
+        "B": "AI risk analyst",
+        "C": "Data engineer",
+        "D": "MLOps engineer"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T186",
+      "domain": "3",
+      "target": "Incident response ticket management vs. document synthesis",
+      "stem": "This use case automatically creates, updates, and closes tickets as an incident's status changes, rather than merging findings from several separate documents into one summary. Which is it?",
+      "options": {
+        "A": "Document synthesis and summarization",
+        "B": "Automated deployment/rollback",
+        "C": "Incident response ticket management",
+        "D": "Change management approvals"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T187",
+      "domain": "3",
+      "target": "Document synthesis vs. incident response ticket management",
+      "stem": "This use case merges findings from several separate source documents into a single consolidated summary, rather than tracking an incident's ticket status over time. Which is it?",
+      "options": {
+        "A": "Incident response ticket management",
+        "B": "Code scanning",
+        "C": "Model testing",
+        "D": "Document synthesis and summarization"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T188",
+      "domain": "1",
+      "target": "Recall vs. precision",
+      "stem": "This metric measures how many of the actual positive cases a model successfully found, rather than how many of its positive predictions were correct. Which metric is it?",
+      "options": {
+        "A": "Precision",
+        "B": "Overfitting",
+        "C": "Confusion matrix",
+        "D": "Recall"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T189",
+      "domain": "1",
+      "target": "Precision vs. recall",
+      "stem": "This metric measures how many of a model's positive predictions were actually correct, rather than how many of the actual positives it found. Which metric is it?",
+      "options": {
+        "A": "Recall",
+        "B": "Underfitting",
+        "C": "Precision",
+        "D": "Confusion matrix"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "T190",
+      "domain": "1",
+      "target": "Overfitting vs. underfitting",
+      "stem": "A model performs well on training data but poorly on new, unseen data, rather than performing poorly on both. Which condition is this?",
+      "options": {
+        "A": "Underfitting",
+        "B": "Data balancing failure",
+        "C": "Federated drift",
+        "D": "Overfitting"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T191",
+      "domain": "1",
+      "target": "Underfitting vs. overfitting",
+      "stem": "A model performs poorly on both its training data and new data, rather than performing well on training data alone. Which condition is this?",
+      "options": {
+        "A": "Model pruning",
+        "B": "Quantization loss",
+        "C": "Overfitting",
+        "D": "Underfitting"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T192",
+      "domain": "1",
+      "target": "Classification vs. clustering",
+      "stem": "A model assigns each input into one of a set of predefined labeled categories, rather than discovering new groupings without labels. Which task is this?",
+      "options": {
+        "A": "Dimensionality reduction",
+        "B": "Clustering",
+        "C": "Regression",
+        "D": "Classification"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T193",
+      "domain": "1",
+      "target": "Clustering vs. classification",
+      "stem": "A model groups unlabeled inputs by similarity without any predefined categories, rather than assigning them to labels it was trained on. Which task is this?",
+      "options": {
+        "A": "Clustering",
+        "B": "Classification",
+        "C": "Reinforcement learning",
+        "D": "Regression"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "T194",
+      "domain": "1",
+      "target": "Supervised vs. reinforcement learning",
+      "stem": "A model trains on data that has already been labeled with the correct output, rather than learning from reward and penalty signals over time. Which approach is this?",
+      "options": {
+        "A": "Reinforcement learning",
+        "B": "Unsupervised learning",
+        "C": "Federated learning",
+        "D": "Supervised learning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "T195",
+      "domain": "1",
+      "target": "Reinforcement vs. supervised learning",
+      "stem": "An agent learns by receiving reward and penalty signals for its actions over time, rather than training on data pre-labeled with correct answers. Which approach is this?",
+      "options": {
+        "A": "Statistical learning",
+        "B": "Supervised learning",
+        "C": "Unsupervised learning",
+        "D": "Reinforcement learning"
+      },
+      "answer": "D"
+    }
+  ]
+}

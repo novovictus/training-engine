@@ -1,8 +1,8 @@
-window.TRAINING_ENGINE_FIXTURE_BANK = {
+{
   "schemaVersion": 2,
-  "bankId": "training-engine-fixture",
+  "bankId": "test-fixture-bank",
   "bankVersion": "1.0.0",
-  "title": "Training Engine Starter Fixture",
+  "title": "Test Fixture Bank",
   "questions": [
     {
       "id": "F001",
@@ -57,4 +57,4 @@ window.TRAINING_ENGINE_FIXTURE_BANK = {
       "answer": "B"
     }
   ]
-};
+}

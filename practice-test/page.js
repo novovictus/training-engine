@@ -97,7 +97,7 @@
       if(!file)return;
       try{
         const runtimeBank=parseBankFile(await file.text(),file.name);
-        if(!registry?.validBankShape(runtimeBank.bank))throw new Error('The selected file must be a JSON question bank that satisfies schemaVersion 1.');
+        if(!registry?.validBankShape(runtimeBank.bank))throw new Error('The selected file must be a JSON question bank that satisfies schemaVersion 2.');
         if(active&&!confirm(`A ${modeLabel(activeRunMode())} run is in progress. Open ${runtimeBank.bank.title} and leave this run available when you return to the current bank?`))return;
         saveState();registry.switchToCustom(runtimeBank);
       }catch(error){alert(`Question bank could not be opened.\n\n${error.message}`);}finally{input.value='';}

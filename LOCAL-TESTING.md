@@ -62,7 +62,7 @@ The browser application remains ordinary static files:
 - `practice-test/questions.js`
 - `practice-test/app.js`
 
-Bank loading is handled by `practice-test/index.html`. Repository-controlled bundled banks may use JavaScript source files. User-selected custom banks are JSON-only, use the same schemaVersion 1 object directly, and receive a neutral filename-derived runtime display identifier.
+Bank loading is handled by `practice-test/index.html`. Repository-controlled bundled banks may use JavaScript source files. User-selected custom banks are JSON-only and must use the schemaVersion 2 contract: top-level bank metadata plus questions containing exactly id/domain/target/stem/options/answer. Imported banks receive a neutral filename-derived runtime display identifier.
 
 ## Direct file launch
 
@@ -93,15 +93,7 @@ Use `Export progress` to create a portable recovery record and `Import progress`
 
 ## Current validation baseline
 
-The generalized engine has been smoke-tested by:
-
-1. Running the bundled generic fixture through a complete practice run.
-2. Loading an unchanged historical SecAI JavaScript bank only through the repository-controlled bundled/source path.
-3. Confirming dynamic JavaScript-global discovery and display.
-4. Importing historical compatible progress.
-5. Verifying the application operates from the GitHub Pages deployment.
-
-Further browser validation should be driven by observed defects rather than broad rewrites.
+Validate the bundled generic schemaVersion 2 fixture through a complete practice run, import a retained JSON bank through **Customize > Open JSON bank**, verify four-choice answer randomization and both run modes, and verify progress export/import for the same `bankId + bankVersion`. SchemaVersion 1 banks are intentionally rejected.
 
 ## AI Explanation outbound data
 

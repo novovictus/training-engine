@@ -84,87 +84,50 @@ Good distractors are plausible to a partially prepared candidate but incorrect f
 
 ## Explanations
 
-SchemaVersion 1 contains no explanation or rationale field.
+SchemaVersion 2 contains no explanation or rationale field.
 
 If explanations are needed, keep them structurally separate unless the engine schema is deliberately extended in a future version.
 
 ## Schema contract
 
-Banks intended for the browser engine must use schemaVersion 1:
+Banks intended for the browser engine are strict JSON schemaVersion 2 files:
 
-```javascript
-window.ANY_BANK_NAME = {
-  schemaVersion: 1,
-  bankId: "unique-bank-id",
-  bankVersion: "1.0.0",
-  title: "Human-readable title",
-  questions: [
-    {
-      id: "Q001",
-      number: 1,
-      domain: "domain-string",
-      target: "Target text",
-      stem: "Question text",
-      options: {
-        A: "Option A",
-        B: "Option B",
-        C: "Option C",
-        D: "Option D"
-      },
-      answer: "A"
-    }
-  ]
-};
+```json
+{
+  "schemaVersion": 2,
+  "bankId": "unique-bank-id",
+  "bankVersion": "1.0.0",
+  "title": "Human-readable title",
+  "questions": [{
+    "id": "Q001",
+    "domain": "domain-string",
+    "target": "Target text",
+    "stem": "Question text",
+    "options": {"A": "Option A", "B": "Option B", "C": "Option C", "D": "Option D"},
+    "answer": "A"
+  }]
+}
 ```
 
-Required bank fields are exactly:
-
-- `schemaVersion`
-- `bankId`
-- `bankVersion`
-- `title`
-- `questions`
-
-Required question fields are:
-
-- `id`
-- `number`
-- `domain`
-- `target`
-- `stem`
-- `options`
-- `answer`
+Required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Every question must contain exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`. `question.number` is not part of schemaVersion 2.
 
 Validation requirements:
 
-- `schemaVersion` must be `1`.
-- `bankId`, `bankVersion`, and `title` must be non-empty strings.
-- `questions` must be a non-empty array.
-- Question IDs must be unique.
-- `number` must be a positive integer.
-- `domain` and `target` must be strings.
-- `stem` must be non-empty.
-- `options` must contain exactly A, B, C, and D, all non-empty.
-- `answer` must be A, B, C, or D.
+- `schemaVersion` is exactly `2`.
+- `bankId`, `bankVersion`, and `title` are non-empty strings.
+- `questions` is a non-empty array with unique, non-empty IDs.
+- `domain` and `target` are strings; `stem` is non-empty.
+- `options` contains exactly non-empty A, B, C, and D strings.
+- `answer` is exactly A, B, C, or D, supporting the intentional single-correct-answer model.
 
-The JavaScript global property name is not part of the schema. It is permitted only for repository-controlled authoring/source files. A portable external bank must be exported as JSON containing the schemaVersion 1 object directly; the browser does not execute user-selected JavaScript files.
-
-Examples:
-
-```javascript
-window.SECAI_QUESTION_BANK = { ... };
-window.CYSA_QUESTION_BANK = { ... };
-window.LINUX_NETWORKING_BANK = { ... };
-```
-
-All can use the same schemaVersion 1 structure.
+Portable/importable banks are JSON only. SchemaVersion 1 and JavaScript-global-name discovery are retired; the browser never executes a user-selected bank file. Repository-controlled bundled scripts are an internal loading detail, not a portable-bank format.
 
 ## Naming conventions
 
 Use descriptive filenames and stable bank IDs. A practical pattern is:
 
 ```text
-test-banks/<subject>-<descriptor>-bank-v<major>.js
+test-banks/<subject>-<descriptor>-bank-v<major>.json
 ```
 
 and:
@@ -193,14 +156,14 @@ Complete applicable checks before pushing:
 6. Confirm every stem is non-empty.
 7. Confirm every item has exactly four non-empty options.
 8. Confirm every answer is A, B, C, or D.
-9. Confirm JavaScript syntax and object closure are valid.
+9. Confirm strict JSON parsing succeeds.
 10. Check exact duplicate stems when related banks exist.
 11. Review likely near-duplicates when appropriate.
 12. Review answer distribution and repeated-letter runs.
 13. Review distractors for plausibility.
 14. Review each answer key under a zero-trust standard.
 15. Confirm restricted supplied content was not copied into public material.
-16. Export the bank as JSON and confirm that JSON imports in the Training Engine without application-code changes.
+16. Confirm the JSON bank imports in the Training Engine without application-code changes.
 17. Inspect the final diff and repository status.
 
 ## Quality status
@@ -225,8 +188,8 @@ When asked to create a new independent bank without additional details:
 
 - Read the authoritative target material and relevant existing banks.
 - Create a new file under `test-banks/`.
-- Use schemaVersion 1 unchanged.
-- Choose a unique JavaScript global name.
+- Use the schemaVersion 2 JSON contract.
+- Choose a stable unique bank ID.
 - Represent intended topic/domain distribution through bank composition.
 - Do not modify engine code.
 - Validate the bank in the running engine before committing.

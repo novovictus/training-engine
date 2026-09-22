@@ -1,0 +1,2192 @@
+{
+  "schemaVersion": 2,
+  "bankId": "secai-plus-cy0-001-comprehensive-v1",
+  "bankVersion": "1.0.0",
+  "title": "CompTIA SecAI+ CY0-001 Comprehensive Practice Bank v1",
+  "questions": [
+    {
+      "id": "G001",
+      "domain": "1",
+      "target": "Generative AI",
+      "stem": "A security tool drafts new phishing-lure examples for awareness training that were never seen in any training set. Which category of AI is being used?",
+      "options": {
+        "A": "Federated learning",
+        "B": "Statistical learning",
+        "C": "Rule-based automation",
+        "D": "Generative AI"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G002",
+      "domain": "1",
+      "target": "Machine learning (general)",
+      "stem": "An analyst wants a general term for systems that improve task performance from data rather than from explicitly programmed rules. Which term applies?",
+      "options": {
+        "A": "Data lineage",
+        "B": "Prompt engineering",
+        "C": "Machine learning",
+        "D": "Transformers"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G003",
+      "domain": "1",
+      "target": "Statistical learning",
+      "stem": "A model estimates the relationship between login-attempt frequency and account-takeover likelihood using probability distributions and formal inference. Which approach best describes this?",
+      "options": {
+        "A": "Reinforcement learning",
+        "B": "Federated learning",
+        "C": "Prompt engineering",
+        "D": "Statistical learning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G004",
+      "domain": "1",
+      "target": "Transformers",
+      "stem": "A language model processes an entire input sequence at once and uses attention to weigh the relevance of each token to every other token. Which architecture is this?",
+      "options": {
+        "A": "Generative adversarial networks",
+        "B": "Decision trees",
+        "C": "Transformers",
+        "D": "Federated learning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G005",
+      "domain": "1",
+      "target": "Deep learning",
+      "stem": "A model uses many stacked layers of interconnected nodes to automatically learn hierarchical features from raw network packet captures. Which approach is this?",
+      "options": {
+        "A": "Statistical learning",
+        "B": "Federated learning",
+        "C": "Rule-based expert systems",
+        "D": "Deep learning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G006",
+      "domain": "1",
+      "target": "Generative adversarial networks (GANs)",
+      "stem": "Two neural networks are trained together, one producing synthetic malware samples and the other trying to distinguish them from real samples, each improving from the contest. Which architecture is this?",
+      "options": {
+        "A": "Transformer",
+        "B": "Reinforcement learning agent",
+        "C": "Federated learning system",
+        "D": "Generative adversarial network"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G007",
+      "domain": "1",
+      "target": "Natural language processing (NLP)",
+      "stem": "A system parses analyst-written incident notes to extract entities such as host names and indicators of compromise. Which field of AI does this task belong to?",
+      "options": {
+        "A": "Federated learning",
+        "B": "Computer vision",
+        "C": "Natural language processing",
+        "D": "Dimensionality reduction"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G008",
+      "domain": "1",
+      "target": "Large language models (LLMs)",
+      "stem": "A vendor advertises a model with tens of billions of parameters trained on broad, general text corpora and capable of many language tasks without task-specific retraining. Which category best fits?",
+      "options": {
+        "A": "Small language model",
+        "B": "Statistical regression model",
+        "C": "Large language model",
+        "D": "Generative adversarial network"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G009",
+      "domain": "1",
+      "target": "Small language models (SLMs)",
+      "stem": "A team deploys a compact language model on a resource-constrained edge device to summarize local logs without calling an external API. Which category best fits the deployed model?",
+      "options": {
+        "A": "Small language model",
+        "B": "Generative adversarial network",
+        "C": "Large language model",
+        "D": "Federated averaging server"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G010",
+      "domain": "1",
+      "target": "Model validation",
+      "stem": "Before deployment, a team evaluates a trained model against a held-out dataset it never trained on to estimate real-world performance. Which activity is this?",
+      "options": {
+        "A": "Fine-tuning",
+        "B": "Feature engineering",
+        "C": "Model validation",
+        "D": "Data augmentation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G011",
+      "domain": "1",
+      "target": "Supervised learning",
+      "stem": "A vulnerability-management team has historical findings labeled by exploit category and trains a model to assign that category to newly discovered findings. Which learning approach fits?",
+      "options": {
+        "A": "Unsupervised learning",
+        "B": "Supervised learning",
+        "C": "Federated learning",
+        "D": "Reinforcement learning"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G012",
+      "domain": "1",
+      "target": "Unsupervised learning",
+      "stem": "A fleet manager has unlabeled telemetry from thousands of IoT devices and wants a model to surface natural groupings of similar behavior without predefined categories. Which learning approach fits?",
+      "options": {
+        "A": "Transfer learning",
+        "B": "Unsupervised learning",
+        "C": "Reinforcement learning",
+        "D": "Supervised learning"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G013",
+      "domain": "1",
+      "target": "Reinforcement learning",
+      "stem": "An agent adjusts firewall rule aggressiveness over time, receiving a reward when it blocks attacks and a penalty when it blocks legitimate traffic. Which learning approach is this?",
+      "options": {
+        "A": "Fine-tuning",
+        "B": "Unsupervised learning",
+        "C": "Reinforcement learning",
+        "D": "Statistical learning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G014",
+      "domain": "1",
+      "target": "Federated learning",
+      "stem": "Several hospitals train a shared diagnostic model collaboratively, each keeping patient records on local servers and exchanging only model updates. Which technique is this?",
+      "options": {
+        "A": "Ensemble learning",
+        "B": "Data augmentation",
+        "C": "Transfer learning",
+        "D": "Federated learning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G015",
+      "domain": "1",
+      "target": "Fine-tuning",
+      "stem": "A team takes a general-purpose pretrained model and continues training it on a smaller set of labeled security tickets to specialize it for triage. Which technique is this?",
+      "options": {
+        "A": "Fine-tuning",
+        "B": "Pruning",
+        "C": "Federated learning",
+        "D": "Quantization"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G016",
+      "domain": "1",
+      "target": "Epoch",
+      "stem": "A training log shows the model completed one full pass over the entire training dataset before updating its saved checkpoint. What does this single pass represent?",
+      "options": {
+        "A": "A federated round",
+        "B": "An epoch",
+        "C": "A quantization step",
+        "D": "A pruning cycle"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G017",
+      "domain": "1",
+      "target": "Pruning",
+      "stem": "Engineers remove redundant neural-network weights that contribute little to output accuracy in order to shrink the model. Which technique is this?",
+      "options": {
+        "A": "Quantization",
+        "B": "Federated learning",
+        "C": "Fine-tuning",
+        "D": "Pruning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G018",
+      "domain": "1",
+      "target": "Quantization",
+      "stem": "A team converts a model's 32-bit floating-point weights to 8-bit integers to reduce memory footprint and speed inference on edge hardware. Which technique is this?",
+      "options": {
+        "A": "Pruning",
+        "B": "Federated learning",
+        "C": "Quantization",
+        "D": "Fine-tuning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G019",
+      "domain": "1",
+      "target": "System prompts",
+      "stem": "A developer configures hidden instructions that define an AI assistant's role, tone, and operating boundaries before any user interacts with it. Which element is this?",
+      "options": {
+        "A": "Guardrail bypass",
+        "B": "One-shot example",
+        "C": "User prompt",
+        "D": "System prompt"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G020",
+      "domain": "1",
+      "target": "User prompts",
+      "stem": "An analyst types a specific request into a chatbot asking it to summarize a given incident report. Which element of prompting does this represent?",
+      "options": {
+        "A": "System prompt",
+        "B": "User prompt",
+        "C": "System role",
+        "D": "Template variable"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G021",
+      "domain": "1",
+      "target": "One-shot prompting",
+      "stem": "A developer includes exactly one worked example of a properly formatted CVE description before asking the model to draft a new one. Which technique is this?",
+      "options": {
+        "A": "Zero-shot prompting",
+        "B": "Multi-shot prompting",
+        "C": "Fine-tuning",
+        "D": "One-shot prompting"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G022",
+      "domain": "1",
+      "target": "Multi-shot prompting",
+      "stem": "A developer includes several varied worked examples of properly redacted log entries in a prompt before asking the model to redact a new log file. Which technique is this?",
+      "options": {
+        "A": "Zero-shot prompting",
+        "B": "Federated learning",
+        "C": "Multi-shot prompting",
+        "D": "One-shot prompting"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G023",
+      "domain": "1",
+      "target": "Zero-shot prompting",
+      "stem": "A developer asks a model to classify a ticket's severity without providing any worked examples in the prompt. Which technique is this?",
+      "options": {
+        "A": "One-shot prompting",
+        "B": "Fine-tuning",
+        "C": "Multi-shot prompting",
+        "D": "Zero-shot prompting"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G024",
+      "domain": "1",
+      "target": "System roles",
+      "stem": "A prompt framework assigns the model a persistent identity, such as acting as a senior SOC analyst, that shapes every subsequent response in the session. Which concept is this?",
+      "options": {
+        "A": "One-shot example",
+        "B": "Prompt template",
+        "C": "System role",
+        "D": "User prompt"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G025",
+      "domain": "1",
+      "target": "Templates",
+      "stem": "A team standardizes prompts by defining a reusable structure with placeholder fields that analysts fill in for each new ticket. Which concept is this?",
+      "options": {
+        "A": "Multi-shot example",
+        "B": "Prompt template",
+        "C": "System role",
+        "D": "Fine-tuning script"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G026",
+      "domain": "1",
+      "target": "Data cleansing",
+      "stem": "Before training, a team removes duplicate records, corrects malformed timestamps, and fixes inconsistent field formats in a log dataset. Which activity is this?",
+      "options": {
+        "A": "Data augmentation",
+        "B": "Data provenance tracking",
+        "C": "Data cleansing",
+        "D": "Data balancing"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G027",
+      "domain": "1",
+      "target": "Data verification",
+      "stem": "A team checks that a newly received dataset actually matches its documented schema and expected value ranges before use. Which activity is this?",
+      "options": {
+        "A": "Watermarking",
+        "B": "Data balancing",
+        "C": "Data augmentation",
+        "D": "Data verification"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G028",
+      "domain": "1",
+      "target": "Data lineage",
+      "stem": "An auditor needs to trace a training record back through every transformation and system it passed through since collection. Which concept supports this?",
+      "options": {
+        "A": "Data balancing",
+        "B": "Model pruning",
+        "C": "Data lineage",
+        "D": "Data augmentation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G029",
+      "domain": "1",
+      "target": "Data integrity",
+      "stem": "A security review confirms that stored training data has not been altered, corrupted, or tampered with since it was collected. Which property is being verified?",
+      "options": {
+        "A": "Data minimization",
+        "B": "Data augmentation",
+        "C": "Data integrity",
+        "D": "Data balancing"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G030",
+      "domain": "1",
+      "target": "Data provenance",
+      "stem": "A governance team documents where each training record originated, including the collecting system and the original owner. Which concept does this describe?",
+      "options": {
+        "A": "Data provenance",
+        "B": "Data lineage transformation log",
+        "C": "Data augmentation",
+        "D": "Data balancing"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G031",
+      "domain": "1",
+      "target": "Data augmentation",
+      "stem": "A team creates rotated and noise-added copies of existing malware-image samples to expand a limited training set. Which technique is this?",
+      "options": {
+        "A": "Data cleansing",
+        "B": "Data augmentation",
+        "C": "Watermarking",
+        "D": "Data balancing"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G032",
+      "domain": "1",
+      "target": "Data balancing",
+      "stem": "A phishing dataset contains far more benign emails than malicious ones, so the team adjusts sampling to even out the class proportions before training. Which technique is this?",
+      "options": {
+        "A": "Data balancing",
+        "B": "Data minimization",
+        "C": "Data cleansing",
+        "D": "Data augmentation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G033",
+      "domain": "1",
+      "target": "Structured data",
+      "stem": "A model trains on a relational database table with clearly defined columns such as source IP, timestamp, and severity. Which data type is this?",
+      "options": {
+        "A": "Structured data",
+        "B": "Semi-structured data",
+        "C": "Unstructured data",
+        "D": "Synthetic data"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G034",
+      "domain": "1",
+      "target": "Semi-structured data",
+      "stem": "A model ingests JSON log entries that share a general format but allow variable, nested fields between records. Which data type is this?",
+      "options": {
+        "A": "Semi-structured data",
+        "B": "Federated data",
+        "C": "Structured data",
+        "D": "Unstructured data"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G035",
+      "domain": "1",
+      "target": "Unstructured data",
+      "stem": "A model trains on free-form analyst notes and email bodies with no predefined schema. Which data type is this?",
+      "options": {
+        "A": "Semi-structured data",
+        "B": "Unstructured data",
+        "C": "Structured data",
+        "D": "Tabular data"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G036",
+      "domain": "1",
+      "target": "Watermarking",
+      "stem": "A vendor embeds an imperceptible signal into AI-generated images so the output can later be identified as machine-generated. Which technique is this?",
+      "options": {
+        "A": "Data masking",
+        "B": "Differential privacy",
+        "C": "Tokenization",
+        "D": "Watermarking"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G037",
+      "domain": "1",
+      "target": "Vector storage",
+      "stem": "A RAG pipeline stores numeric representations of document passages in a specialized database optimized for similarity search. Which component is this?",
+      "options": {
+        "A": "Prompt template",
+        "B": "Vector storage",
+        "C": "System prompt",
+        "D": "Model registry"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G038",
+      "domain": "1",
+      "target": "Embeddings",
+      "stem": "A visual-search tool converts each product-image thumbnail into a fixed-length numeric representation so visually similar images sit close together in vector space. What is this representation called?",
+      "options": {
+        "A": "Embeddings",
+        "B": "Decision tables",
+        "C": "Checksums",
+        "D": "Data labels"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G039",
+      "domain": "1",
+      "target": "Business use case alignment",
+      "stem": "Before funding an AI project, leadership confirms the proposed capability directly supports a stated corporate objective rather than being adopted for its own sake. Which lifecycle activity is this?",
+      "options": {
+        "A": "Model evaluation",
+        "B": "Business use case alignment",
+        "C": "Feedback and iteration",
+        "D": "Deployment validation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G040",
+      "domain": "1",
+      "target": "Data collection - trustworthiness",
+      "stem": "A team evaluates whether a candidate data source has a track record of accuracy and reliability before it is approved for training use. Which property is being assessed?",
+      "options": {
+        "A": "Data minimization",
+        "B": "Authenticity",
+        "C": "Data balancing",
+        "D": "Trustworthiness"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G041",
+      "domain": "1",
+      "target": "Data collection - authenticity",
+      "stem": "A team confirms that a submitted training dataset genuinely originates from the claimed sensor and was not fabricated or substituted. Which property is being assessed?",
+      "options": {
+        "A": "Data augmentation",
+        "B": "Authenticity",
+        "C": "Trustworthiness",
+        "D": "Data lineage"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G042",
+      "domain": "1",
+      "target": "Data preparation",
+      "stem": "Before training begins, a team formats, encodes, and splits the dataset into training, validation, and test sets. Which lifecycle phase is this?",
+      "options": {
+        "A": "Deployment",
+        "B": "Model evaluation",
+        "C": "Data preparation",
+        "D": "Monitoring and maintenance"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G043",
+      "domain": "1",
+      "target": "Model development/selection",
+      "stem": "A team compares several candidate architectures and hyperparameter configurations to choose which one to train further for the security use case. Which lifecycle phase is this?",
+      "options": {
+        "A": "Feedback and iteration",
+        "B": "Data preparation",
+        "C": "Deployment",
+        "D": "Model development/selection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G044",
+      "domain": "1",
+      "target": "Model evaluation",
+      "stem": "After training, a team measures the candidate model's accuracy, precision, and recall against a labeled test set before deciding whether to promote it. Which lifecycle phase is this?",
+      "options": {
+        "A": "Human validation",
+        "B": "Model evaluation",
+        "C": "Deployment",
+        "D": "Data preparation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G045",
+      "domain": "1",
+      "target": "Deployment",
+      "stem": "A team moves an approved model from the staging environment into production so it can serve live security alerts. Which lifecycle phase is this?",
+      "options": {
+        "A": "Model evaluation",
+        "B": "Deployment",
+        "C": "Feedback and iteration",
+        "D": "Data preparation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G046",
+      "domain": "1",
+      "target": "Validation (lifecycle stage)",
+      "stem": "Immediately before go-live, a team confirms the deployed model behaves as expected against real production-like inputs in a controlled check. Which lifecycle phase is this?",
+      "options": {
+        "A": "Model development/selection",
+        "B": "Validation",
+        "C": "Monitoring and maintenance",
+        "D": "Data preparation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G047",
+      "domain": "1",
+      "target": "Monitoring and maintenance",
+      "stem": "After release, a team continuously tracks a production model's accuracy and resource usage and schedules periodic retraining. Which lifecycle phase is this?",
+      "options": {
+        "A": "Model development/selection",
+        "B": "Deployment",
+        "C": "Data preparation",
+        "D": "Monitoring and maintenance"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G048",
+      "domain": "1",
+      "target": "Feedback and iteration",
+      "stem": "Analyst corrections on a model's flagged alerts are routed back into the training pipeline to improve the next model version. Which lifecycle phase is this?",
+      "options": {
+        "A": "Monitoring and maintenance",
+        "B": "Deployment",
+        "C": "Feedback and iteration",
+        "D": "Data preparation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G049",
+      "domain": "1",
+      "target": "Human-in-the-loop",
+      "stem": "A triage model auto-drafts a disposition for each alert, but a human analyst must approve it before any action is taken. Which design principle is this?",
+      "options": {
+        "A": "Excessive agency",
+        "B": "Human-in-the-loop",
+        "C": "Human oversight",
+        "D": "Human validation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G050",
+      "domain": "1",
+      "target": "Human oversight",
+      "stem": "A governance board periodically reviews an autonomous detection system's aggregate decisions and can suspend it if patterns look wrong, without reviewing every individual case. Which principle is this?",
+      "options": {
+        "A": "Human oversight",
+        "B": "Human validation",
+        "C": "Shadow AI review",
+        "D": "Human-in-the-loop"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G051",
+      "domain": "1",
+      "target": "Human validation",
+      "stem": "Before a new model version is trusted for production, subject-matter experts manually check a sample of its outputs against known-correct answers. Which principle is this?",
+      "options": {
+        "A": "Feedback and iteration",
+        "B": "Human oversight",
+        "C": "Human validation",
+        "D": "Human-in-the-loop"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G052",
+      "domain": "1",
+      "target": "Recall (second exposure)",
+      "stem": "A SOC wants a malware model tuned so that as few true infections as possible slip past it, even if that means more false alarms for analysts to triage. Which metric is the priority?",
+      "options": {
+        "A": "Recall",
+        "B": "Inference latency",
+        "C": "Model size",
+        "D": "Precision"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G053",
+      "domain": "1",
+      "target": "Precision (second exposure)",
+      "stem": "An EDR vendor's alert queue is overwhelming analysts with benign events flagged as malicious, and leadership wants fewer wasted investigations even if a few true positives are missed. Which metric should improve?",
+      "options": {
+        "A": "Recall",
+        "B": "Data lineage",
+        "C": "Training epoch count",
+        "D": "Precision"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G054",
+      "domain": "1",
+      "target": "Overfitting (second exposure)",
+      "stem": "A phishing classifier scores 99% on the exact emails it trained on but performs poorly against a fresh batch of unseen phishing attempts from the same campaign. What is the most likely cause?",
+      "options": {
+        "A": "Underfitting",
+        "B": "Overfitting",
+        "C": "Federated drift",
+        "D": "Data balancing"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G055",
+      "domain": "1",
+      "target": "Underfitting",
+      "stem": "A model performs poorly on both its training data and new data, failing to capture even the basic patterns present in the training set. What condition is this?",
+      "options": {
+        "A": "Model pruning",
+        "B": "Overfitting",
+        "C": "Data augmentation failure",
+        "D": "Underfitting"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G056",
+      "domain": "1",
+      "target": "Embeddings (second exposure)",
+      "stem": "A malware-similarity tool converts disassembled function bodies into fixed-length numeric vectors so that structurally similar functions cluster together. What is being generated?",
+      "options": {
+        "A": "Signatures",
+        "B": "Access tokens",
+        "C": "Embeddings",
+        "D": "Checksums"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G057",
+      "domain": "1",
+      "target": "Supervised learning (second exposure)",
+      "stem": "An email gateway vendor trains a spam filter on millions of messages that were each hand-labeled by reviewers as spam or legitimate. Which learning approach is this?",
+      "options": {
+        "A": "Unsupervised learning",
+        "B": "Supervised learning",
+        "C": "Reinforcement learning",
+        "D": "Federated learning"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G058",
+      "domain": "1",
+      "target": "Classification vs. clustering",
+      "stem": "A vulnerability-scoring model assigns each unlabeled configuration finding into one of several predefined severity categories using rules learned from labeled examples, rather than discovering new groupings on its own. Which task is this?",
+      "options": {
+        "A": "Classification",
+        "B": "Regression",
+        "C": "Dimensionality reduction",
+        "D": "Clustering"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G059",
+      "domain": "1",
+      "target": "Reinforcement learning (second exposure)",
+      "stem": "An adaptive spam-filtering agent adjusts its blocking thresholds over many rounds, earning a reward signal whenever a user does not manually rescue a message from the spam folder. Which learning approach is this?",
+      "options": {
+        "A": "Reinforcement learning",
+        "B": "Statistical learning",
+        "C": "Unsupervised learning",
+        "D": "Supervised learning"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G060",
+      "domain": "1",
+      "target": "Feature engineering (second exposure)",
+      "stem": "Raw authentication logs only contain a timestamp field, but analysts suspect that the time since a user's last login is what actually predicts account takeover. What should the team do before training?",
+      "options": {
+        "A": "Randomize the timestamp values",
+        "B": "Delete the timestamp field",
+        "C": "Apply additional data augmentation",
+        "D": "Derive a time-since-last-login feature from the timestamp"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G061",
+      "domain": "2",
+      "target": "OWASP LLM Top 10",
+      "stem": "A team wants a community-maintained ranked list of the most critical vulnerability categories specific to large language model applications, such as prompt injection and insecure output handling. Which resource fits?",
+      "options": {
+        "A": "MITRE ATLAS",
+        "B": "NIST AI RMF",
+        "C": "CVE AI Working Group",
+        "D": "OWASP LLM Top 10"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G062",
+      "domain": "2",
+      "target": "OWASP ML Security Top 10",
+      "stem": "A team wants a ranked list focused on classic machine-learning pipeline risks such as data poisoning and model inversion, distinct from generative-model-specific issues. Which resource fits?",
+      "options": {
+        "A": "EU AI Act",
+        "B": "ISO AI standards",
+        "C": "OWASP Machine Learning Security Top 10",
+        "D": "MIT AI Risk Repository"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G063",
+      "domain": "2",
+      "target": "MIT AI Risk Repository",
+      "stem": "A researcher wants a broad, taxonomy-style catalog of AI risks drawn from academic literature, spanning far beyond security into ethical and societal risk categories. Which resource fits?",
+      "options": {
+        "A": "MITRE ATLAS",
+        "B": "CVE AI Working Group",
+        "C": "MIT AI Risk Repository",
+        "D": "OWASP LLM Top 10"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G064",
+      "domain": "2",
+      "target": "MITRE ATLAS",
+      "stem": "A red team wants a knowledge base of real-world adversary tactics and techniques specifically against AI systems, modeled after an existing enterprise attack framework. Which resource fits?",
+      "options": {
+        "A": "MITRE ATLAS",
+        "B": "OWASP LLM Top 10",
+        "C": "OECD AI standards",
+        "D": "NIST AI RMF"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G065",
+      "domain": "2",
+      "target": "CVE AI Working Group",
+      "stem": "An organization wants to track formally assigned, publicly disclosed vulnerability identifiers specific to AI components and tooling. Which resource is most relevant?",
+      "options": {
+        "A": "ISO AI standards",
+        "B": "CVE AI Working Group",
+        "C": "MITRE ATLAS",
+        "D": "MIT AI Risk Repository"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G066",
+      "domain": "2",
+      "target": "Threat-modeling frameworks (general)",
+      "stem": "Before building an AI feature, a security architect wants a structured, repeatable method for identifying and prioritizing potential threats to the system's data flow. Which general activity is this?",
+      "options": {
+        "A": "Reading vendor marketing material",
+        "B": "Running an unscoped penetration test",
+        "C": "Applying a threat-modeling framework",
+        "D": "Waiting for an incident to occur"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G067",
+      "domain": "2",
+      "target": "Model guardrails",
+      "stem": "A team configures rules that block a model from producing outputs containing credentials or self-harm instructions, regardless of how the prompt is phrased. Which control category is this?",
+      "options": {
+        "A": "Rate limiting",
+        "B": "Endpoint access control",
+        "C": "Model guardrails",
+        "D": "Data masking"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G068",
+      "domain": "2",
+      "target": "Prompt firewalls",
+      "stem": "A gateway inspects incoming prompts for known jailbreak patterns and blocks them before they reach the model. Which control is this?",
+      "options": {
+        "A": "Modality limit",
+        "B": "Model guardrail",
+        "C": "Token limit",
+        "D": "Prompt firewall"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G069",
+      "domain": "2",
+      "target": "Rate limits and token limits",
+      "stem": "A public-facing AI service caps the number of requests per minute and the number of tokens per request to control cost and reduce abuse potential. Which controls are these?",
+      "options": {
+        "A": "Rate limits and token limits",
+        "B": "Data classification labels",
+        "C": "Model guardrails and prompt firewalls",
+        "D": "Encryption in transit and at rest"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G070",
+      "domain": "2",
+      "target": "Input quotas (data size/quantity)",
+      "stem": "A document-upload feature for a RAG assistant restricts both the maximum file size and the number of files a user may submit per session. Which control category is this?",
+      "options": {
+        "A": "Modality limits",
+        "B": "Input quotas",
+        "C": "Endpoint access controls",
+        "D": "Guardrail testing"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G071",
+      "domain": "2",
+      "target": "Modality limits",
+      "stem": "An AI assistant is configured to accept only text input and reject submitted images or audio files. Which control is this?",
+      "options": {
+        "A": "Rate limits",
+        "B": "Token limits",
+        "C": "Endpoint access control",
+        "D": "Modality limits"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G072",
+      "domain": "2",
+      "target": "Guardrail testing and validation",
+      "stem": "Before releasing an updated guardrail configuration, a team runs a suite of known adversarial prompts against it to confirm the blocks still trigger correctly. Which activity is this?",
+      "options": {
+        "A": "Data lineage review",
+        "B": "Federated averaging",
+        "C": "Guardrail testing and validation",
+        "D": "Model pruning"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G073",
+      "domain": "2",
+      "target": "Model access control",
+      "stem": "An organization restricts which internal teams may directly query a proprietary fraud-detection model's inference endpoint. Which access category is this?",
+      "options": {
+        "A": "Agent access",
+        "B": "Network/API access",
+        "C": "Model access",
+        "D": "Data access"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G074",
+      "domain": "2",
+      "target": "Data access control",
+      "stem": "A policy restricts which analysts may view the raw training records used to build a security model, separate from who may query the model itself. Which access category is this?",
+      "options": {
+        "A": "Agent access",
+        "B": "Model access",
+        "C": "Network/API access",
+        "D": "Data access"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G075",
+      "domain": "2",
+      "target": "Agent access control",
+      "stem": "A company limits which internal systems an autonomous AI agent may call to reset passwords or open tickets, independent of who can chat with the assistant. Which access category is this?",
+      "options": {
+        "A": "Network/API access",
+        "B": "Model access",
+        "C": "Data access",
+        "D": "Agent access"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G076",
+      "domain": "2",
+      "target": "Network/API access control",
+      "stem": "A gateway restricts which source IP ranges and authenticated service accounts may reach a model's REST endpoint. Which access category is this?",
+      "options": {
+        "A": "Agent access",
+        "B": "Network/API access",
+        "C": "Data access",
+        "D": "Model access"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G077",
+      "domain": "2",
+      "target": "Encryption in transit",
+      "stem": "A team ensures that prompts and responses exchanged between a client application and a hosted model are protected using TLS. Which control is this?",
+      "options": {
+        "A": "Encryption at rest",
+        "B": "Data masking",
+        "C": "Encryption in use",
+        "D": "Encryption in transit"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G078",
+      "domain": "2",
+      "target": "Encryption at rest",
+      "stem": "A vector database encrypts stored embeddings on disk so that a stolen storage volume does not expose usable data. Which control is this?",
+      "options": {
+        "A": "Encryption at rest",
+        "B": "Encryption in use",
+        "C": "Data anonymization",
+        "D": "Encryption in transit"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G079",
+      "domain": "2",
+      "target": "Encryption in use",
+      "stem": "A model performs inference on data that remains encrypted throughout computation using a confidential-computing enclave, so even the operator cannot view plaintext. Which control is this?",
+      "options": {
+        "A": "Encryption in transit",
+        "B": "Encryption in use",
+        "C": "Encryption at rest",
+        "D": "Data redaction"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G080",
+      "domain": "2",
+      "target": "Data anonymization",
+      "stem": "A team irreversibly strips direct identifiers from a training set so that individual patients can no longer be linked to their records. Which control is this?",
+      "options": {
+        "A": "Data classification labeling",
+        "B": "Data anonymization",
+        "C": "Data minimization",
+        "D": "Data masking"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G081",
+      "domain": "2",
+      "target": "Data masking",
+      "stem": "A support-ticket dataset used for testing replaces real customer names and account numbers with realistic but fake substitutes, while preserving the ability to reverse the substitution for authorized staff. Which control is this?",
+      "options": {
+        "A": "Data minimization",
+        "B": "Data anonymization",
+        "C": "Data redaction",
+        "D": "Data masking"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G082",
+      "domain": "2",
+      "target": "Data minimization",
+      "stem": "Before training a churn-prediction model, a team collects only the specific fields needed for the task and excludes unrelated personal data the source system also holds. Which principle is this?",
+      "options": {
+        "A": "Data minimization",
+        "B": "Data redaction",
+        "C": "Data masking",
+        "D": "Data classification"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G083",
+      "domain": "2",
+      "target": "Prompt monitoring",
+      "stem": "A security team logs and reviews both the incoming queries and the outgoing responses of a production chatbot to detect misuse patterns. Which activity is this?",
+      "options": {
+        "A": "Prompt monitoring",
+        "B": "AI cost monitoring",
+        "C": "Log sanitization",
+        "D": "Rate monitoring"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G084",
+      "domain": "2",
+      "target": "Log sanitization",
+      "stem": "Before storing model interaction logs long-term, a team strips embedded credentials and personal data that users accidentally pasted into prompts. Which activity is this?",
+      "options": {
+        "A": "Prompt monitoring",
+        "B": "Data masking at training time",
+        "C": "Log sanitization",
+        "D": "Log protection"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G085",
+      "domain": "2",
+      "target": "Log protection",
+      "stem": "A team restricts who can read or modify stored AI interaction logs and ensures the log store itself cannot be tampered with. Which activity is this?",
+      "options": {
+        "A": "Rate monitoring",
+        "B": "Prompt monitoring",
+        "C": "Log sanitization",
+        "D": "Log protection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G086",
+      "domain": "2",
+      "target": "Response confidence level",
+      "stem": "A model attaches a numeric score to each answer indicating how certain it is, so downstream automation can route low-certainty answers to a human. Which concept is this?",
+      "options": {
+        "A": "Rate monitoring",
+        "B": "Log sanitization",
+        "C": "Response confidence level",
+        "D": "AI cost monitoring"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G087",
+      "domain": "2",
+      "target": "Rate monitoring",
+      "stem": "A dashboard tracks the volume of requests per user over time to detect a sudden spike that could indicate automated abuse. Which activity is this?",
+      "options": {
+        "A": "AI cost monitoring",
+        "B": "Rate monitoring",
+        "C": "Prompt monitoring",
+        "D": "Response confidence tracking"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G088",
+      "domain": "2",
+      "target": "AI cost monitoring",
+      "stem": "Finance asks security to track spending across prompt volume, vector storage growth, and inference compute for a deployed assistant. Which activity is this?",
+      "options": {
+        "A": "Rate monitoring",
+        "B": "Guardrail testing",
+        "C": "Log protection",
+        "D": "AI cost monitoring"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G089",
+      "domain": "2",
+      "target": "Auditing for bias and fairness",
+      "stem": "A quarterly review checks whether a hiring-screening model's recommendations differ systematically across demographic groups with equivalent qualifications. Which auditing focus is this?",
+      "options": {
+        "A": "Rate monitoring",
+        "B": "Auditing for access",
+        "C": "Auditing for bias and fairness",
+        "D": "Auditing for hallucinations"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G090",
+      "domain": "2",
+      "target": "Prompt injection",
+      "stem": "An email forwarded into a support inbox contains hidden text instructing the AI triage assistant to ignore its instructions and forward the ticket externally. Which attack is this?",
+      "options": {
+        "A": "Membership inference",
+        "B": "Prompt injection",
+        "C": "Model theft",
+        "D": "Model inversion"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G091",
+      "domain": "2",
+      "target": "Indirect prompt injection",
+      "stem": "A PDF attachment retrieved by a document-review agent contains hidden instructions directing it to forward the file's contents to an external address. Which attack is this?",
+      "options": {
+        "A": "Model skewing",
+        "B": "Direct prompt injection",
+        "C": "Model extraction",
+        "D": "Indirect prompt injection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G092",
+      "domain": "2",
+      "target": "Data poisoning",
+      "stem": "A contributor to a crowd-sourced spam-reporting dataset deliberately mislabels a batch of malicious messages as legitimate so future filters let that pattern through. Which attack is this?",
+      "options": {
+        "A": "Model denial of service",
+        "B": "Membership inference",
+        "C": "Model inversion",
+        "D": "Data poisoning"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G093",
+      "domain": "2",
+      "target": "Model inversion",
+      "stem": "An attacker queries a model repeatedly and reconstructs a recognizable approximation of a specific training image from its outputs. Which attack is this?",
+      "options": {
+        "A": "Model skewing",
+        "B": "Model extraction",
+        "C": "Model inversion",
+        "D": "Membership inference"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G094",
+      "domain": "2",
+      "target": "Model extraction (theft)",
+      "stem": "An attacker sends thousands of crafted queries to a competitor's recommendation API and uses the paired inputs and outputs to train a local model that mimics its behavior. Which attack is this?",
+      "options": {
+        "A": "Model extraction",
+        "B": "Prompt leaking",
+        "C": "Resource exhaustion",
+        "D": "Data poisoning"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G095",
+      "domain": "2",
+      "target": "Membership inference",
+      "stem": "A researcher determines, with high confidence, whether a specific research subject's genomic data was used to train a published model, based on how confidently the model responds to it. Which attack is this?",
+      "options": {
+        "A": "Membership inference",
+        "B": "Output encoding manipulation",
+        "C": "Jailbreaking",
+        "D": "Model inversion"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G096",
+      "domain": "2",
+      "target": "Excessive agency",
+      "stem": "An AI assistant originally scoped to draft email replies is quietly granted the ability to browse shared drives, send emails on the user's behalf, and modify calendar permissions. Which risk does this represent?",
+      "options": {
+        "A": "Overreliance",
+        "B": "Excessive agency",
+        "C": "Model skewing",
+        "D": "Insecure output handling"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G097",
+      "domain": "3",
+      "target": "IDE plug-ins",
+      "stem": "A developer uses an in-editor extension that suggests secure coding fixes as they type. Which category of tool is this?",
+      "options": {
+        "A": "CLI plug-in",
+        "B": "Model Context Protocol server",
+        "C": "Browser plug-in",
+        "D": "IDE plug-in"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G098",
+      "domain": "3",
+      "target": "Browser plug-ins",
+      "stem": "An analyst installs an extension that highlights suspicious form fields and phishing indicators directly on webpages while browsing. Which category of tool is this?",
+      "options": {
+        "A": "Browser plug-in",
+        "B": "Chatbot",
+        "C": "CLI plug-in",
+        "D": "IDE plug-in"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G099",
+      "domain": "3",
+      "target": "CLI plug-ins",
+      "stem": "An engineer pipes command output into an AI-assisted terminal extension that suggests the next remediation command. Which category of tool is this?",
+      "options": {
+        "A": "Personal assistant",
+        "B": "Browser plug-in",
+        "C": "IDE plug-in",
+        "D": "CLI plug-in"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G100",
+      "domain": "3",
+      "target": "Model Context Protocol (MCP) server",
+      "stem": "A team exposes internal ticketing and log-search capabilities to an AI assistant through a standardized server interface designed for tool invocation. Which component is this?",
+      "options": {
+        "A": "Prompt firewall",
+        "B": "Browser plug-in",
+        "C": "Vector store",
+        "D": "Model Context Protocol server"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G101",
+      "domain": "3",
+      "target": "Signature matching (AI-assisted)",
+      "stem": "A tool uses a model to compare a suspicious binary's behavioral fingerprint against a library of known-malicious patterns. Which use case is this?",
+      "options": {
+        "A": "Translation",
+        "B": "Anomaly detection",
+        "C": "Signature matching",
+        "D": "Fraud detection"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G102",
+      "domain": "3",
+      "target": "Code quality and linting",
+      "stem": "An AI-assisted tool flags insecure function calls and style violations in a pull request before a human reviewer looks at it. Which use case is this?",
+      "options": {
+        "A": "Automated penetration testing",
+        "B": "Code quality and linting",
+        "C": "Incident management",
+        "D": "Threat modeling"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G103",
+      "domain": "3",
+      "target": "Vulnerability analysis (AI-assisted)",
+      "stem": "A model reviews a codebase and ranks discovered weaknesses by likely exploitability and business impact. Which use case is this?",
+      "options": {
+        "A": "Fraud detection",
+        "B": "Vulnerability analysis",
+        "C": "Translation",
+        "D": "Summarization"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G104",
+      "domain": "3",
+      "target": "Automated penetration testing",
+      "stem": "An AI-driven tool autonomously chains discovered misconfigurations to attempt lateral movement in an authorized test environment. Which use case is this?",
+      "options": {
+        "A": "Pattern recognition",
+        "B": "Automated penetration testing",
+        "C": "Incident management",
+        "D": "Anomaly detection"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G105",
+      "domain": "3",
+      "target": "Anomaly detection",
+      "stem": "A model flags a user login occurring at an unusual hour from an unfamiliar location, deviating from that user's established baseline. Which use case is this?",
+      "options": {
+        "A": "Pattern recognition of known signatures",
+        "B": "Translation",
+        "C": "Fraud detection dashboarding",
+        "D": "Anomaly detection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G106",
+      "domain": "3",
+      "target": "Pattern recognition",
+      "stem": "A model identifies a recurring sequence of registry-key changes across many unrelated incidents that indicates a shared toolset. Which use case is this?",
+      "options": {
+        "A": "Fraud detection",
+        "B": "Pattern recognition",
+        "C": "Anomaly detection of a single outlier",
+        "D": "Summarization"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G107",
+      "domain": "3",
+      "target": "Incident management (AI-assisted)",
+      "stem": "An assistant drafts a timeline, suggests severity, and proposes next steps for a newly opened security incident ticket. Which use case is this?",
+      "options": {
+        "A": "Reconnaissance",
+        "B": "Threat modeling",
+        "C": "Incident management",
+        "D": "Code quality and linting"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G108",
+      "domain": "3",
+      "target": "Threat modeling (AI-assisted use case)",
+      "stem": "An assistant reviews a new application's data-flow diagram and suggests likely attack paths an adversary might use. Which use case is this?",
+      "options": {
+        "A": "Fraud detection",
+        "B": "Threat modeling",
+        "C": "Signature matching",
+        "D": "Summarization"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G109",
+      "domain": "3",
+      "target": "Fraud detection",
+      "stem": "A model scores payment transactions in real time and flags those with a high likelihood of being fraudulent. Which use case is this?",
+      "options": {
+        "A": "Code quality and linting",
+        "B": "Anomaly detection of network traffic",
+        "C": "Vulnerability analysis",
+        "D": "Fraud detection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G110",
+      "domain": "3",
+      "target": "Summarization",
+      "stem": "An assistant condenses a lengthy vendor security assessment into a short executive brief. Which use case is this?",
+      "options": {
+        "A": "Translation",
+        "B": "Pattern recognition",
+        "C": "Summarization",
+        "D": "Signature matching"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G111",
+      "domain": "3",
+      "target": "Deepfake impersonation",
+      "stem": "An attacker uses AI-generated audio mimicking a CFO's voice to authorize a fraudulent wire transfer over the phone. Which risk category is this?",
+      "options": {
+        "A": "Automated data correlation",
+        "B": "Reconnaissance",
+        "C": "Deepfake impersonation",
+        "D": "Obfuscation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G112",
+      "domain": "3",
+      "target": "Misinformation via generated content",
+      "stem": "A synthetic video falsely shows a public official making a statement they never made, spreading inaccurate claims without clear intent to deceive attributed to the creator. Which risk category best fits?",
+      "options": {
+        "A": "Misinformation",
+        "B": "Honeypot evasion",
+        "C": "Reconnaissance",
+        "D": "Disinformation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G113",
+      "domain": "3",
+      "target": "Disinformation via generated content",
+      "stem": "An adversary deliberately fabricates and distributes AI-generated news articles designed to manipulate public opinion ahead of an election. Which risk category best fits?",
+      "options": {
+        "A": "Disinformation",
+        "B": "Misinformation",
+        "C": "Automated data correlation",
+        "D": "Obfuscation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G114",
+      "domain": "3",
+      "target": "AI-enhanced reconnaissance",
+      "stem": "An attacker uses a language model to rapidly synthesize public employee names, roles, and technologies from scattered social media and job postings into a target profile. Which risk category is this?",
+      "options": {
+        "A": "Obfuscation",
+        "B": "Honeypot evasion",
+        "C": "DDoS amplification",
+        "D": "Reconnaissance"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G115",
+      "domain": "3",
+      "target": "AI-enhanced social engineering",
+      "stem": "An attacker uses a generative model to draft highly personalized, context-aware phishing emails at scale for each target. Which risk category is this?",
+      "options": {
+        "A": "Automated data correlation",
+        "B": "Payload generation",
+        "C": "Reconnaissance",
+        "D": "Social engineering"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G116",
+      "domain": "3",
+      "target": "AI-assisted obfuscation",
+      "stem": "Malware uses a model to continuously rewrite its own code structure so static signatures no longer match, while preserving its function. Which risk category is this?",
+      "options": {
+        "A": "Reconnaissance",
+        "B": "Honeypot evasion",
+        "C": "Obfuscation",
+        "D": "Automated data correlation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G117",
+      "domain": "3",
+      "target": "Automated data correlation (attacker use)",
+      "stem": "An attacker feeds several unrelated leaked datasets into a model that automatically links records belonging to the same individual across sources. Which risk category is this?",
+      "options": {
+        "A": "Obfuscation",
+        "B": "Automated data correlation",
+        "C": "Reconnaissance",
+        "D": "Disinformation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G118",
+      "domain": "3",
+      "target": "Automated attack vector discovery",
+      "stem": "An AI tool scans a target's exposed services and automatically proposes untested exploitation paths for a red team to pursue. Which risk category is this?",
+      "options": {
+        "A": "Honeypot detection",
+        "B": "Signature matching",
+        "C": "Automated attack vector discovery",
+        "D": "DDoS mitigation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G119",
+      "domain": "3",
+      "target": "AI-generated payloads",
+      "stem": "A generative model is used to produce novel obfuscated shellcode variants intended to evade existing detection rules. Which risk category is this?",
+      "options": {
+        "A": "Data augmentation",
+        "B": "Fraud detection evasion",
+        "C": "Honeypot generation",
+        "D": "AI-generated payloads"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G120",
+      "domain": "3",
+      "target": "AI-assisted malware development",
+      "stem": "An attacker uses a coding assistant to iteratively refine malware logic, testing variants against a local antivirus engine until one evades detection. Which risk category is this?",
+      "options": {
+        "A": "Fraud detection",
+        "B": "Passive reconnaissance alone",
+        "C": "AI-assisted malware development",
+        "D": "Honeypot deployment"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G121",
+      "domain": "3",
+      "target": "AI-driven honeypot evasion",
+      "stem": "An attacker uses a model to analyze response timing and banner details of a suspected decoy system before deciding whether to engage further. Which activity is this?",
+      "options": {
+        "A": "Disinformation",
+        "B": "Honeypot evasion/detection",
+        "C": "Obfuscation of payloads",
+        "D": "Reconnaissance of production assets"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G122",
+      "domain": "3",
+      "target": "AI-amplified DDoS",
+      "stem": "An attacker uses a model to dynamically adjust request patterns across a botnet in real time to maximize load on a target while evading rate-based defenses. Which risk category is this?",
+      "options": {
+        "A": "Distributed denial of service amplification",
+        "B": "Membership inference",
+        "C": "Model inversion",
+        "D": "Reconnaissance"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G123",
+      "domain": "3",
+      "target": "Low-code/no-code security automation",
+      "stem": "An analyst builds an automated alert-triage workflow by dragging and connecting prebuilt blocks in a visual editor, without writing traditional code. Which approach is this?",
+      "options": {
+        "A": "Fine-tuning",
+        "B": "Low-code/no-code automation",
+        "C": "Federated learning",
+        "D": "Model pruning"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G124",
+      "domain": "3",
+      "target": "Document synthesis and summarization (automation)",
+      "stem": "A tool automatically merges findings from five separate vendor security reports into a single consolidated summary document. Which automation use case is this?",
+      "options": {
+        "A": "Incident response ticket management",
+        "B": "Code scanning",
+        "C": "Document synthesis and summarization",
+        "D": "Change management"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G125",
+      "domain": "3",
+      "target": "Incident response ticket management",
+      "stem": "An assistant automatically creates, updates, and closes tickets as an incident progresses through its lifecycle, based on detected status changes. Which use case is this?",
+      "options": {
+        "A": "Regression testing",
+        "B": "Document synthesis",
+        "C": "Incident response ticket management",
+        "D": "Software composition analysis"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G126",
+      "domain": "3",
+      "target": "AI-assisted change approvals",
+      "stem": "A model reviews a proposed configuration change against policy and recommends approval or rejection before a human makes the final decision. Which use case is this?",
+      "options": {
+        "A": "Code scanning",
+        "B": "Unit testing",
+        "C": "AI-assisted change approvals",
+        "D": "Automated deployment/rollback"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G127",
+      "domain": "3",
+      "target": "Automated deployment/rollback",
+      "stem": "A pipeline automatically reverts a production release when post-deployment health checks fail, without waiting for manual intervention. Which use case is this?",
+      "options": {
+        "A": "Software composition analysis",
+        "B": "Automated deployment/rollback",
+        "C": "AI-assisted change approvals",
+        "D": "Regression testing"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G128",
+      "domain": "3",
+      "target": "AI agents (task automation)",
+      "stem": "A system autonomously plans and executes a multi-step sequence of ticket lookups, log queries, and remediation actions to close a routine incident. Which concept is this?",
+      "options": {
+        "A": "Vector store",
+        "B": "System prompt",
+        "C": "AI agent",
+        "D": "Prompt template"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G129",
+      "domain": "3",
+      "target": "Code scanning (CI/CD)",
+      "stem": "A pipeline step automatically analyzes committed source code for known insecure patterns before allowing a merge. Which CI/CD use case is this?",
+      "options": {
+        "A": "Code scanning",
+        "B": "Unit testing",
+        "C": "Software composition analysis",
+        "D": "Regression testing"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G130",
+      "domain": "3",
+      "target": "Software composition analysis",
+      "stem": "A pipeline step inventories third-party libraries in a build and flags any with known published vulnerabilities. Which CI/CD use case is this?",
+      "options": {
+        "A": "Model testing",
+        "B": "Unit testing",
+        "C": "Software composition analysis",
+        "D": "Code scanning of proprietary logic"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G131",
+      "domain": "3",
+      "target": "Model testing (CI/CD)",
+      "stem": "A pipeline step re-runs a fixed evaluation suite against a newly retrained model before it can be promoted to production. Which CI/CD use case is this?",
+      "options": {
+        "A": "Unit testing of application code",
+        "B": "Regression testing of UI flows",
+        "C": "Model testing",
+        "D": "Software composition analysis"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G132",
+      "domain": "3",
+      "target": "Regression testing (CI/CD)",
+      "stem": "A pipeline step reruns the full existing test suite after a code change to confirm no previously working functionality broke. Which CI/CD use case is this?",
+      "options": {
+        "A": "Software composition analysis",
+        "B": "Model testing",
+        "C": "Change management approval",
+        "D": "Regression testing"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G133",
+      "domain": "4",
+      "target": "AI Center of Excellence",
+      "stem": "An organization forms a cross-functional group responsible for setting standards, sharing best practices, and coordinating AI initiatives company-wide. Which structure is this?",
+      "options": {
+        "A": "AI Center of Excellence",
+        "B": "Data sovereignty board",
+        "C": "Shadow AI program",
+        "D": "AI governance engineer role"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G134",
+      "domain": "4",
+      "target": "AI policies and procedures",
+      "stem": "A company documents formal rules for which AI tools employees may use and the approval steps required before deploying a new model. Which governance element is this?",
+      "options": {
+        "A": "AI risk analyst charter",
+        "B": "AI Center of Excellence",
+        "C": "Third-party compliance evaluation",
+        "D": "AI policies and procedures"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G135",
+      "domain": "4",
+      "target": "Data scientist (role)",
+      "stem": "This role focuses on exploring data, building and evaluating candidate models, and generating insights, typically with less emphasis on production infrastructure. Which role is this?",
+      "options": {
+        "A": "Data scientist",
+        "B": "MLOps engineer",
+        "C": "Platform engineer",
+        "D": "AI governance engineer"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G136",
+      "domain": "4",
+      "target": "AI architect (role)",
+      "stem": "This role designs the overall structure of AI systems, including how models, data pipelines, and infrastructure components fit together to meet business requirements. Which role is this?",
+      "options": {
+        "A": "AI auditor",
+        "B": "AI architect",
+        "C": "Data engineer",
+        "D": "AI risk analyst"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G137",
+      "domain": "4",
+      "target": "Machine learning engineer (role)",
+      "stem": "This role focuses on building, training, and optimizing models for production use, translating data science prototypes into deployable systems. Which role is this?",
+      "options": {
+        "A": "AI governance engineer",
+        "B": "Machine learning engineer",
+        "C": "AI risk analyst",
+        "D": "AI auditor"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G138",
+      "domain": "4",
+      "target": "MLOps engineer (role)",
+      "stem": "This role builds and maintains the pipelines that automate model training, testing, deployment, and monitoring at scale. Which role is this?",
+      "options": {
+        "A": "AI risk analyst",
+        "B": "Data engineer",
+        "C": "MLOps engineer",
+        "D": "AI security architect"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G139",
+      "domain": "4",
+      "target": "AI security architect (role)",
+      "stem": "This role designs the security controls, threat models, and guardrail architecture specifically for AI systems. Which role is this?",
+      "options": {
+        "A": "AI governance engineer",
+        "B": "Data scientist",
+        "C": "Platform engineer",
+        "D": "AI security architect"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G140",
+      "domain": "4",
+      "target": "AI governance engineer (role)",
+      "stem": "This role implements the technical mechanisms that enforce an organization's AI policies, such as automated approval gates and audit logging. Which role is this?",
+      "options": {
+        "A": "Data engineer",
+        "B": "AI governance engineer",
+        "C": "AI security architect",
+        "D": "Machine learning engineer"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G141",
+      "domain": "4",
+      "target": "AI risk analyst (role)",
+      "stem": "This role identifies, assesses, and prioritizes risks associated with AI initiatives for leadership decision-making, without necessarily building the systems themselves. Which role is this?",
+      "options": {
+        "A": "AI risk analyst",
+        "B": "AI auditor",
+        "C": "Data scientist",
+        "D": "Platform engineer"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G142",
+      "domain": "4",
+      "target": "AI auditor (role)",
+      "stem": "This role independently reviews AI systems and their governance controls against policy and regulatory requirements after the fact. Which role is this?",
+      "options": {
+        "A": "AI architect",
+        "B": "AI risk analyst",
+        "C": "MLOps engineer",
+        "D": "AI auditor"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G143",
+      "domain": "4",
+      "target": "Fairness (responsible AI)",
+      "stem": "A review confirms that a lending model does not produce systematically worse outcomes for applicants of a particular protected group with equivalent qualifications. Which responsible-AI principle is this?",
+      "options": {
+        "A": "Fairness",
+        "B": "Explainability",
+        "C": "Consistency",
+        "D": "Accountability"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G144",
+      "domain": "4",
+      "target": "Reliability and safety (responsible AI)",
+      "stem": "A team validates that an autonomous vehicle's perception model performs correctly and safely across a wide range of weather and lighting conditions before deployment. Which principle is this?",
+      "options": {
+        "A": "Reliability and safety",
+        "B": "Awareness training",
+        "C": "Inclusiveness",
+        "D": "Transparency"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G145",
+      "domain": "4",
+      "target": "Transparency (responsible AI)",
+      "stem": "An organization publishes a model card describing a system's intended use, training data sources, and known limitations for stakeholders to review. Which principle is this?",
+      "options": {
+        "A": "Fairness",
+        "B": "Accountability",
+        "C": "Transparency",
+        "D": "Explainability"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G146",
+      "domain": "4",
+      "target": "Differential privacy",
+      "stem": "A statistical technique adds calibrated noise to query results so that no single individual's record can be confidently identified from aggregate outputs. Which concept is this?",
+      "options": {
+        "A": "Data masking",
+        "B": "Differential privacy",
+        "C": "Data anonymization",
+        "D": "Data minimization"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G147",
+      "domain": "4",
+      "target": "Explainability (responsible AI)",
+      "stem": "A clinician needs to understand which specific input factors drove a diagnostic model's recommendation for a given patient before acting on it. Which principle is this?",
+      "options": {
+        "A": "Consistency",
+        "B": "Explainability",
+        "C": "Transparency about training data sources",
+        "D": "Fairness"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G148",
+      "domain": "4",
+      "target": "Inclusiveness (responsible AI)",
+      "stem": "A speech-recognition system is tested and tuned across a wide range of accents and speech patterns so it performs equitably for diverse user populations. Which principle is this?",
+      "options": {
+        "A": "Awareness training",
+        "B": "Inclusiveness",
+        "C": "Fairness in outcomes alone",
+        "D": "Reliability and safety"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G149",
+      "domain": "4",
+      "target": "Accountability (responsible AI)",
+      "stem": "An organization designates a specific named owner responsible for a production model's decisions and for responding when something goes wrong. Which principle is this?",
+      "options": {
+        "A": "Accountability",
+        "B": "Consistency",
+        "C": "Transparency",
+        "D": "Inclusiveness"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G150",
+      "domain": "4",
+      "target": "Consistency (responsible AI)",
+      "stem": "A model is expected to produce the same classification for functionally identical inputs regardless of superficial formatting differences. Which principle is this?",
+      "options": {
+        "A": "Consistency",
+        "B": "Explainability",
+        "C": "Fairness",
+        "D": "Reliability and safety"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G151",
+      "domain": "4",
+      "target": "Awareness training (responsible AI)",
+      "stem": "Employees complete mandatory sessions covering how to recognize AI-generated phishing and the organization's approved-use policies for AI tools. Which principle is this?",
+      "options": {
+        "A": "Awareness training",
+        "B": "Inclusiveness",
+        "C": "Accountability",
+        "D": "Explainability"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G152",
+      "domain": "4",
+      "target": "Introduction of bias (risk)",
+      "stem": "A hiring model trained on historical decisions inherits and amplifies past discriminatory patterns present in that historical data. Which risk is this?",
+      "options": {
+        "A": "Autonomous systems risk",
+        "B": "Introduction of bias",
+        "C": "Reputational loss",
+        "D": "Accidental data leakage"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G153",
+      "domain": "4",
+      "target": "Accidental data leakage (risk)",
+      "stem": "An employee pastes confidential source code into a public AI chatbot to get help debugging, and the vendor's model may retain that data. Which risk is this?",
+      "options": {
+        "A": "Accidental data leakage",
+        "B": "Introduction of bias",
+        "C": "Shadow IT",
+        "D": "Reputational loss"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G154",
+      "domain": "4",
+      "target": "Reputational loss (risk)",
+      "stem": "A company's customer-facing chatbot generates an offensive response that goes viral, damaging public trust in the brand. Which risk is this?",
+      "options": {
+        "A": "Accidental data leakage",
+        "B": "Introduction of bias",
+        "C": "IP-related risk",
+        "D": "Reputational loss"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G155",
+      "domain": "4",
+      "target": "Intellectual property risk",
+      "stem": "A generative model trained on scraped content produces output that closely resembles a specific copyrighted work, exposing the company to legal claims. Which risk is this?",
+      "options": {
+        "A": "Autonomous systems risk",
+        "B": "Shadow AI",
+        "C": "Intellectual property risk",
+        "D": "Reputational loss"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G156",
+      "domain": "4",
+      "target": "Autonomous systems risk",
+      "stem": "An AI agent is empowered to independently execute remediation actions across production systems with no human checkpoint, raising concern about unintended cascading changes. Which risk is this?",
+      "options": {
+        "A": "Shadow AI",
+        "B": "Accidental data leakage",
+        "C": "Introduction of bias",
+        "D": "Autonomous systems risk"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G157",
+      "domain": "4",
+      "target": "Shadow AI",
+      "stem": "An employee subscribes to a personal AI writing tool and uses it for work tasks without informing IT or security. Which risk category is this?",
+      "options": {
+        "A": "Sanctioned model usage",
+        "B": "Shadow AI",
+        "C": "Third-party compliance evaluation",
+        "D": "A data sovereignty violation"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G158",
+      "domain": "4",
+      "target": "Shadow IT (general, contrasted with sanctioned use)",
+      "stem": "A department deploys its own unapproved cloud-based AI service to process customer data, bypassing the organization's official procurement and security review process. Which concept best describes this specific unapproved AI adoption?",
+      "options": {
+        "A": "An approved third-party evaluation",
+        "B": "Shadow AI",
+        "C": "A sanctioned pilot program",
+        "D": "A data sovereignty exemption"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "G159",
+      "domain": "4",
+      "target": "EU AI Act",
+      "stem": "A company deploying a biometric identification system in the European Union must classify its risk tier and meet corresponding obligations under a specific regional regulation. Which framework is this?",
+      "options": {
+        "A": "EU AI Act",
+        "B": "OECD AI standards",
+        "C": "NIST AI RMF",
+        "D": "ISO AI standards"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G160",
+      "domain": "4",
+      "target": "OECD AI standards",
+      "stem": "A multinational references a set of intergovernmental principles promoting AI that is innovative, trustworthy, and respects human rights and democratic values. Which framework is this?",
+      "options": {
+        "A": "CVE AI Working Group",
+        "B": "NIST AI RMF",
+        "C": "OECD AI standards",
+        "D": "EU AI Act"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G161",
+      "domain": "4",
+      "target": "ISO AI standards",
+      "stem": "An organization seeks a formal, internationally recognized management-system standard to certify its AI governance processes, similar to how it certifies information security. Which framework is this?",
+      "options": {
+        "A": "EU AI Act",
+        "B": "MITRE ATLAS",
+        "C": "OECD AI standards",
+        "D": "ISO AI standards"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G162",
+      "domain": "4",
+      "target": "NIST AI Risk Management Framework",
+      "stem": "A US-based organization adopts a voluntary framework organized around functions such as govern, map, measure, and manage to structure its AI risk program. Which framework is this?",
+      "options": {
+        "A": "NIST AI Risk Management Framework",
+        "B": "OECD AI standards",
+        "C": "ISO AI standards",
+        "D": "EU AI Act"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G163",
+      "domain": "4",
+      "target": "Corporate AI policy - sanctioned vs. unsanctioned",
+      "stem": "A governance policy maintains an approved list of AI tools employees may use for work and prohibits all others. Which policy concept is this?",
+      "options": {
+        "A": "Private vs. public model policy",
+        "B": "Data sovereignty policy",
+        "C": "Sensitive data governance policy",
+        "D": "Sanctioned vs. unsanctioned tool policy"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "G164",
+      "domain": "4",
+      "target": "Corporate AI policy - private vs. public models",
+      "stem": "A policy requires that any data classified as confidential may only be processed by a model hosted within the company's own environment, never a public third-party API. Which policy concept is this?",
+      "options": {
+        "A": "Third-party compliance evaluation",
+        "B": "Data sovereignty policy",
+        "C": "Private vs. public model policy",
+        "D": "Sanctioned vs. unsanctioned tool policy"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G165",
+      "domain": "4",
+      "target": "Sensitive data governance (corporate policy)",
+      "stem": "A policy defines specific handling, retention, and access rules for health records used anywhere in an AI pipeline. Which policy concept is this?",
+      "options": {
+        "A": "Sensitive data governance",
+        "B": "Sanctioned vs. unsanctioned tool policy",
+        "C": "Private vs. public model policy",
+        "D": "Third-party compliance evaluation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G166",
+      "domain": "4",
+      "target": "Third-party compliance evaluations",
+      "stem": "Before adopting a vendor's AI product, procurement requires an independent assessment confirming the vendor meets the organization's security and regulatory requirements. Which activity is this?",
+      "options": {
+        "A": "Third-party compliance evaluation",
+        "B": "Data sovereignty assessment",
+        "C": "Shadow AI discovery",
+        "D": "AI Center of Excellence review"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "G167",
+      "domain": "4",
+      "target": "Data sovereignty",
+      "stem": "A company must ensure that customer data processed by an AI service physically remains within servers located in the customer's home country due to local law. Which concept is this?",
+      "options": {
+        "A": "Data masking",
+        "B": "Data minimization",
+        "C": "Data sovereignty",
+        "D": "Third-party compliance evaluation"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "G168",
+      "domain": "4",
+      "target": "Compliance impact (general - regulatory change)",
+      "stem": "A new regional AI regulation takes effect, and a company must reassess whether its existing deployed models still meet documentation and risk-tiering obligations. Which activity does this best describe?",
+      "options": {
+        "A": "A federated learning round",
+        "B": "A compliance impact reassessment",
+        "C": "A model pruning cycle",
+        "D": "A guardrail testing cycle"
+      },
+      "answer": "B"
+    }
+  ]
+}

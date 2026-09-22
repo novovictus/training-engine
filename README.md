@@ -1,85 +1,64 @@
 # Training Engine
 
-A static, browser-only practice-test and assessment engine. It is vendor-neutral and certification-neutral: any course, certification, subject, or private assessment can be supplied as a schemaVersion 1 bank without application-code changes.
+A static, browser-only, vendor-neutral practice-test and assessment engine. Any course, certification, subject, or private assessment can be supplied as a JSON schemaVersion 2 bank without application-code changes.
 
 Live application:
 
-```text
-https://ninja-neer.net/training-engine/
-```
+`https://ninja-neer.net/training-engine/`
 
 ## Architecture
 
-The engine owns loading, validation, randomized uniform question selection, answer-order randomization, exam and practice modes, review navigation, completed-run review, AI-assisted explanations, progress, exports, and reports.
+The engine owns loading, schema validation, uniform randomized selection, displayed-answer randomization, exam and practice modes, review, progress, exports, and reports. A bank owns its content, title, identity, version, domains, targets, and question composition.
 
-A bank owns its content, title, identity, version, domains, targets, and question composition.
+The engine does not implement domain weighting. Authors express intended distribution through the composition of the bank.
 
-The engine does not implement domain weighting. Authors express intended distribution by composing the bank accordingly.
+Portable/importable banks are JSON only. The browser never executes a user-selected bank file. The bundled generic fixture remains repository-controlled and is loaded through the static `practice-test/questions.js` script; that internal loading mechanism is distinct from portable-bank import.
 
-The bundled default is a small generic fixture. Repository-controlled banks under `test-banks/` may use JavaScript as an internal authoring/source format. External banks opened through **Customize > Open JSON bank** must be JSON.
+## SchemaVersion 2
 
-## SchemaVersion 1
+A portable bank is strict JSON with these top-level fields:
 
-```js
-window.ANY_BANK_NAME = {
-  schemaVersion: 1,
-  bankId: 'unique-bank-id',
-  bankVersion: '1.0.0',
-  title: 'Descriptive bank title',
-  questions: [{
-    id: 'Q001',
-    number: 1,
-    domain: 'string',
-    target: 'string',
-    stem: 'Question text',
-    options: {A: '...', B: '...', C: '...', D: '...'},
-    answer: 'A'
-  }]
-};
+```json
+{
+  "schemaVersion": 2,
+  "bankId": "unique-bank-id",
+  "bankVersion": "1.0.0",
+  "title": "Descriptive bank title",
+  "questions": [
+    {
+      "id": "Q001",
+      "domain": "domain-string",
+      "target": "Target text",
+      "stem": "Question text",
+      "options": {"A": "Option A", "B": "Option B", "C": "Option C", "D": "Option D"},
+      "answer": "A"
+    }
+  ]
+}
 ```
 
-Required bank fields are exactly `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`.
+`schemaVersion` must be exactly `2`. Required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Each question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`; `question.number` is not part of the contract. IDs are unique and non-empty; domain and target are strings; stems and choices are non-empty. Options are exactly A, B, C, and D, and `answer` is one of those keys. The model intentionally supports one correct answer.
 
-The engine requires schema version 1, non-empty identifiers/title/questions, unique question IDs, positive integer numbers, string domains/targets, non-empty stems/options, exactly options A-D, and an answer A-D. No additional fields are required.
+SchemaVersion 1 is retired. There is no v1 loading or migration path.
 
-The bundled application may load repository-controlled JavaScript source files. The browser never executes a user-selected bank file. External/importable banks are JSON-only and must contain the schemaVersion 1 object directly.
+Imported JSON banks display a neutral `JSON: <filename>` identifier. Durable progress identity is always `bankId + bankVersion`.
 
-For example:
+## State
 
-```javascript
-window.SECAI_QUESTION_BANK = { ... };
-window.CYSA_QUESTION_BANK = { ... };
-window.INTERNAL_TRAINING_BANK = { ... };
-```
-
-The property name is not injected into or persisted with the bank schema.
-
-JSON banks are validated identically and display a neutral `JSON: <filename>` identifier.
-
-## State and migration
-
-New state uses:
+Current state uses:
 
 ```text
 training-engine-v1:<bankId>:<bankVersion>
-```
-
-New run-mode preference uses:
-
-```text
 training-engine-run-mode:<bankId>:<bankVersion>
 ```
 
-Durable identity is always `bankId + bankVersion`, never a JavaScript global name.
-
-The engine reads compatible SecAI-era state and run-mode keys only when stored bank ID and version exactly match. New writes use the generalized namespaces.
+The engine uses only these current Training Engine storage namespaces. Previously exported progress files are the archival route for retired legacy application data.
 
 ## Documentation
 
-- `BANK-GENERATION.md`: generic question-bank authoring and validation contract.
+- `BANK-GENERATION.md`: bank-authoring and validation contract.
 - `LOCAL-TESTING.md`: local development and browser-origin guidance.
-- `NEXT-STEPS.md`: current project status and next milestones.
-- `test-banks/README.md`: fixture and historical-bank inventory.
+- `test-banks/README.md`: retained-bank inventory and fixture workflow.
 
 ## License
 
@@ -93,15 +72,10 @@ Historical vendor-specific banks retain their applicable trademark notices; no a
 
 - Completed-run review shows every presented question, including unanswered items.
 - The review controls can narrow the queue to answered-incorrect items or reveal full answer text.
-- Each reviewed item includes an **AI Explanation** button that opens ChatGPT with a bank-aware, question-specific study prompt. The bank title is taken from the loaded bank metadata; no certification name is hardcoded into the engine. Before first use in a browser profile, the engine discloses that it sends the current question context (bank title, domain/target, stem, choices, selected/correct answers, and confidence) to ChatGPT. Do not use this action with private or proprietary bank content you are not permitted to send externally. Third-party bank text is delimited as untrusted source material in the prompt; this reduces instruction-following risk but is not a hard security boundary.
+- Each reviewed item includes an **AI Explanation** button that opens ChatGPT with a bank-aware, question-specific study prompt. The bank title comes from loaded bank metadata; no certification name is hardcoded. Before first use in a browser profile, the engine discloses that it sends the current question context (bank title, domain/target, stem, choices, selected/correct answers, and confidence) to ChatGPT. Do not use this action with private or proprietary bank content you are not permitted to send externally. Third-party bank text is delimited as untrusted source material in the prompt; this reduces instruction-following risk but is not a hard security boundary.
 - The final-question **Review** action in Exam mode returns the learner to the first unanswered question, then the first flagged question, then question 1 when neither exists.
 - **Customize** displays a deployed build timestamp for quick live-version verification.
-- `app.js` is cache-busted from `practice-test/index.html` so deployed engine changes are less likely to be masked by a stale browser or CDN copy.
-
-## Retired legacy storage
-
-The legacy /training/ deployment has been unpublished and its source repository re-archived. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the only archival route for old progress; the archived repository is historical source, not an active application.
 
 ## Content Security Policy
 
-The application uses a meta-delivered restrictive CSP: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'. Runtime code is loaded only from same-origin external scripts; bundled repository banks use a normal static script tag and user-selected banks remain JSON-only. A meta CSP cannot enforce rame-ancestors; header-level protections require hosting configuration.
+The application uses a meta-delivered restrictive CSP: `default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'`. Runtime code is loaded only from same-origin external scripts; user-selected banks remain JSON-only. A meta CSP cannot enforce `frame-ancestors`; header-level protections require hosting configuration.

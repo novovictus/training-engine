@@ -1,12 +1,52 @@
+(()=>{
+  const SELECTED_SOURCE_KEY='training-engine-selected-bank-source';
+  const CUSTOM_BANK_KEY='training-engine-custom-bank';
+  const BUNDLED_BANK={source:'questions.js',kind:'bundled'};
+  const OPTION_KEYS=['A','B','C','D'];
+  const QUESTION_KEYS=['answer','domain','id','options','stem','target'];
 
-  (()=>{
-    const SELECTED_SOURCE_KEY='training-engine-selected-bank-source',CUSTOM_BANK_KEY='training-engine-custom-bank',BUNDLED_BANK={source:'questions.js',kind:'bundled'},OPTION_KEYS=['A','B','C','D'];
-    function validBankShape(b){if(!b||typeof b!=='object'||Array.isArray(b)||b.schemaVersion!==1||!['bankId','bankVersion','title'].every(k=>typeof b[k]==='string'&&b[k].trim())||!Array.isArray(b.questions)||!b.questions.length)return false;const ids=new Set();return b.questions.every(q=>{if(!q||typeof q!=='object'||Array.isArray(q)||typeof q.id!=='string'||!q.id.trim()||ids.has(q.id)||!Number.isInteger(q.number)||q.number<1||typeof q.domain!=='string'||typeof q.target!=='string'||typeof q.stem!=='string'||!q.stem.trim()||!q.options||typeof q.options!=='object'||Array.isArray(q.options)||Object.keys(q.options).sort().join(',')!==OPTION_KEYS.join(',')||!OPTION_KEYS.every(k=>typeof q.options[k]==='string'&&q.options[k].trim())||!OPTION_KEYS.includes(q.answer))return false;ids.add(q.id);return true;});}
-    function readCustomBank(){for(const key of [CUSTOM_BANK_KEY])try{const p=JSON.parse(localStorage.getItem(key)),stored=validBankShape(p?.bank)?p:validBankShape(p)?{bank:p,sourceName:'Legacy custom bank'}:null;if(stored)return{bank:stored.bank,sourceName:typeof stored.sourceName==='string'&&stored.sourceName.trim()?stored.sourceName.trim():'Custom bank'};}catch{}return null;}
-    const customBank=readCustomBank(),useCustom=localStorage.getItem(SELECTED_SOURCE_KEY)==='custom'&&customBank,selected={kind:useCustom?'custom':'bundled',source:BUNDLED_BANK.source};
-    function switchToCustom(runtime){if(!runtime||!validBankShape(runtime.bank)||typeof runtime.sourceName!=='string'||!runtime.sourceName.trim())throw new Error('Selected file does not contain a supported question bank.');try{localStorage.setItem(CUSTOM_BANK_KEY,JSON.stringify({bank:runtime.bank,sourceName:runtime.sourceName.trim()}));localStorage.setItem(SELECTED_SOURCE_KEY,'custom');}catch{window.TRAINING_ENGINE_NOTIFY_PERSISTENCE_FAILURE?.();return false;}location.reload();return true;}
-    function useBundled(){if(selected.kind==='bundled')return false;try{localStorage.setItem(SELECTED_SOURCE_KEY,'bundled');}catch{window.TRAINING_ENGINE_NOTIFY_PERSISTENCE_FAILURE?.();return false;}location.reload();return true;}
-    function setActiveBank(runtime){Object.assign(selected,{id:runtime.bank.bankId,version:runtime.bank.bankVersion,title:runtime.bank.title,questionCount:runtime.bank.questions.length,sourceName:runtime.sourceName});}
-    window.TRAINING_ENGINE_BANKS={selected,switchToCustom,useBundled,validBankShape,setActiveBank};if(useCustom)window.TRAINING_ENGINE_RUNTIME_BANK=customBank;
-  })();
-  
+  function validBankShape(bank){
+    if(!bank||typeof bank!=='object'||Array.isArray(bank)||bank.schemaVersion!==2||!['bankId','bankVersion','title'].every(key=>typeof bank[key]==='string'&&bank[key].trim())||!Array.isArray(bank.questions)||!bank.questions.length)return false;
+    const ids=new Set();
+    return bank.questions.every(question=>{
+      if(!question||typeof question!=='object'||Array.isArray(question)||Object.keys(question).sort().join(',')!==QUESTION_KEYS.join(',')||typeof question.id!=='string'||!question.id.trim()||ids.has(question.id)||typeof question.domain!=='string'||typeof question.target!=='string'||typeof question.stem!=='string'||!question.stem.trim()||!question.options||typeof question.options!=='object'||Array.isArray(question.options)||Object.keys(question.options).sort().join(',')!==OPTION_KEYS.join(',')||!OPTION_KEYS.every(key=>typeof question.options[key]==='string'&&question.options[key].trim())||!OPTION_KEYS.includes(question.answer))return false;
+      ids.add(question.id);
+      return true;
+    });
+  }
+
+  function readCustomBank(){
+    try{
+      const parsed=JSON.parse(localStorage.getItem(CUSTOM_BANK_KEY));
+      const stored=validBankShape(parsed?.bank)?parsed:validBankShape(parsed)?{bank:parsed,sourceName:'Custom bank'}:null;
+      if(!stored)return null;
+      return{bank:stored.bank,sourceName:typeof stored.sourceName==='string'&&stored.sourceName.trim()?stored.sourceName.trim():'Custom bank'};
+    }catch{return null;}
+  }
+
+  const customBank=readCustomBank();
+  const useCustom=localStorage.getItem(SELECTED_SOURCE_KEY)==='custom'&&customBank;
+  const selected={kind:useCustom?'custom':'bundled',source:BUNDLED_BANK.source};
+
+  function switchToCustom(runtime){
+    if(!runtime||!validBankShape(runtime.bank)||typeof runtime.sourceName!=='string'||!runtime.sourceName.trim())throw new Error('Selected file does not contain a supported schemaVersion 2 question bank.');
+    try{
+      localStorage.setItem(CUSTOM_BANK_KEY,JSON.stringify({bank:runtime.bank,sourceName:runtime.sourceName.trim()}));
+      localStorage.setItem(SELECTED_SOURCE_KEY,'custom');
+    }catch{window.TRAINING_ENGINE_NOTIFY_PERSISTENCE_FAILURE?.();return false;}
+    location.reload();
+    return true;
+  }
+
+  function useBundled(){
+    if(selected.kind==='bundled')return false;
+    try{localStorage.setItem(SELECTED_SOURCE_KEY,'bundled');}
+    catch{window.TRAINING_ENGINE_NOTIFY_PERSISTENCE_FAILURE?.();return false;}
+    location.reload();
+    return true;
+  }
+
+  function setActiveBank(runtime){Object.assign(selected,{id:runtime.bank.bankId,version:runtime.bank.bankVersion,title:runtime.bank.title,questionCount:runtime.bank.questions.length,sourceName:runtime.sourceName});}
+  window.TRAINING_ENGINE_BANKS={selected,switchToCustom,useBundled,validBankShape,setActiveBank};
+  if(useCustom)window.TRAINING_ENGINE_RUNTIME_BANK=customBank;
+})();

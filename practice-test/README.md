@@ -1,151 +1,38 @@
 # Training Engine Runtime
 
-The `practice-test/` directory contains the static browser runtime for the vendor-neutral Training Engine.
+The `practice-test/` directory contains the static browser runtime.
 
 ## Runtime responsibilities
 
-The engine owns:
+The engine validates schemaVersion 2 banks; performs uniform randomized question selection and displayed-answer randomization; supports exam/practice modes, review, timers, flags, confidence ratings, notes, resume/quit, mastery, history, progress import/export, completed-run exports, and AI Explanation handoff.
 
-- schemaVersion 1 validation
-- JavaScript and JSON bank loading
-- runtime bank-source identification
-- randomized uniform question selection
-- displayed-answer randomization
-- exam and practice modes
-- exam review navigation
-- completed-run review including unanswered questions
-- per-question AI Explanation handoff to ChatGPT using loaded-bank metadata
-- deployed build timestamp display in Customize
-- timers
-- flags
-- confidence ratings
-- notes
-- resume and quit-run behavior
-- mastery and attempt history
-- progress export/import
-- completed-run JSON and text export
+The bank owns `bankId`, `bankVersion`, `title`, question content, domains, targets, and composition. The engine does not implement domain weighting; authors set intended distribution through bank composition.
 
-The bank owns:
+## Portable bank contract
 
-- `bankId`
-- `bankVersion`
-- `title`
-- question content
-- domains
-- targets
-- question composition
+User-imported banks are JSON only and must use schemaVersion 2. The required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Each question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`.
 
-The engine does not implement domain weighting.
+`options` must contain exactly non-empty A, B, C, and D values. `answer` must be one of those four keys; the engine intentionally models one correct answer. `question.number` is retired: the engine derives displayed numbering from run position. SchemaVersion 1 is retired and is not loaded or migrated.
 
-## SchemaVersion 1
-
-```javascript
-window.ANY_BANK_NAME = {
-  schemaVersion: 1,
-  bankId: "unique-bank-id",
-  bankVersion: "1.0.0",
-  title: "Human-readable title",
-  questions: [{
-    id: "Q001",
-    number: 1,
-    domain: "domain-string",
-    target: "Target text",
-    stem: "Question text",
-    options: {
-      A: "Option A",
-      B: "Option B",
-      C: "Option C",
-      D: "Option D"
-    },
-    answer: "A"
-  }]
-};
-```
-
-The schema remains unchanged from the original implementation.
-
-## JavaScript bank discovery
-
-JavaScript bank files are evaluated against an isolated window-like object.
-
-The loader inspects properties created by the file and requires exactly one object that satisfies the schemaVersion 1 bank shape.
-
-The global property name becomes runtime display metadata.
-
-Examples:
-
-```javascript
-window.SECAI_QUESTION_BANK = { ... };
-window.TEST_FIXTURE_BANK = { ... };
-window.CYSA_QUESTION_BANK = { ... };
-```
-
-No engine change is required for a new global name.
-
-The global property name is not part of durable bank identity and is not added to the bank object.
-
-## JSON banks
-
-JSON banks use the same schema without a JavaScript global assignment.
-
-The engine displays a neutral filename-derived identifier:
-
-```text
-JSON: <filename>
-```
-
-## State
-
-Progress state is isolated by:
-
-```text
-bankId + bankVersion
-```
-
-Canonical progress key:
-
-```text
-training-engine-v1:<bankId>:<bankVersion>
-```
-
-Canonical run-mode key:
-
-```text
-training-engine-run-mode:<bankId>:<bankVersion>
-```
-
-Compatible legacy SecAI-era records may be read and migrated only when embedded bank identity exactly matches the loaded bank.
+Imported JSON banks display `JSON: <filename>`. Their durable state identity is `bankId + bankVersion`.
 
 ## Bundled fixture
 
-`questions.js` is a generic fixture used to verify the runtime without coupling the engine to any vendor or certification.
+`questions.js` is a repository-controlled generic schemaVersion 2 fixture loaded by a static same-origin script. Its JavaScript assignment is an internal bundled-loading detail, not part of the portable-bank contract. The browser never executes a user-selected bank file.
 
-Historical SecAI banks remain available under `../test-banks/` as compatibility fixtures and prior study artifacts.
+## State
+
+Progress is isolated by `bankId + bankVersion` with canonical keys:
+
+```text
+training-engine-v1:<bankId>:<bankVersion>
+training-engine-run-mode:<bankId>:<bankVersion>
+```
 
 ## Selection behavior
 
-The engine does not implement domain weighting.
+When a run starts, the engine determines eligible questions, uniformly shuffles that pool, and selects the configured count. It contains no weighted-selection or vendor-specific distribution rules.
 
-When a run starts, it:
+## Review and AI Explanation
 
-1. determines eligible questions
-2. uniformly shuffles the eligible pool
-3. selects the configured number of questions
-
-Bank authors are responsible for representing intended topic/domain distribution through bank composition.
-
-## Review behavior
-
-After a run completes, the review queue contains every presented question, including unanswered items. The **Show only answered incorrectly** control narrows that list when desired, and **Show full correct answers and wrong selections** expands answer detail.
-
-In Exam mode, the final-question **Review** action jumps to the first unanswered question, then the first flagged question, then question 1 when neither exists, while keeping the question navigator available.
-
-Each reviewed question includes an **AI Explanation** button. The generated prompt uses the active bank title, domain, target, stem, options, selected answer, correct answer, and confidence. The engine does not hardcode a vendor or certification name.
-
-## Deployment visibility
-
-The Customize dialog displays a build timestamp derived from the deployed application resources. The `app.js` script reference in `index.html` is cache-busted so browser or CDN caching is less likely to hide a newly deployed runtime change.
-
-## Retired legacy storage
-
-The legacy /training/ deployment has been unpublished and its source repository re-archived. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the only archival route for old progress; the archived repository is historical source, not an active application.
+Completed review includes every presented question. The **Show only answered incorrectly** control narrows that queue, and **Show full correct answers and wrong selections** expands answer detail. AI Explanation uses the loaded bank title, current question context, selected/correct answers, and confidence. It discloses the outbound ChatGPT handoff before first use per browser profile.

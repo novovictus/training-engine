@@ -1,5 +1,5 @@
 const STORAGE_KEY_PREFIX='training-engine-v1';
-const SUPPORTED_SCHEMA_VERSION=1;
+const SUPPORTED_SCHEMA_VERSION=2;
 const DEFAULT_QUESTION_COUNT=60;
 const OPTION_KEYS=['A','B','C','D'];
 const RUN_MODE_STORAGE_KEY_PREFIX='training-engine-run-mode:';
@@ -41,8 +41,8 @@ function discoverRuntimeBank(){
   if(stored&&isPlainObject(stored)&&typeof stored.sourceName==='string'&&stored.sourceName.trim())return{sourceName:stored.sourceName.trim(),bank:stored.bank};
   const matches=[];
   Object.keys(window).forEach(name=>{try{const candidate=window[name];loadBankDefinition(candidate);matches.push({sourceName:name,bank:candidate});}catch{}});
-  if(!matches.length)throw new Error('No supported schemaVersion 1 question bank was found on window.');
-  if(matches.length>1)throw new Error(`Multiple supported schemaVersion 1 question banks were found on window (${matches.map(match=>match.sourceName).join(', ')}).`);
+  if(!matches.length)throw new Error('No supported schemaVersion 2 question bank was found on window.');
+  if(matches.length>1)throw new Error(`Multiple supported schemaVersion 2 question banks were found on window (${matches.map(match=>match.sourceName).join(', ')}).`);
   return matches[0];
 }
 function loadBankDefinition(raw){
@@ -62,7 +62,8 @@ function validateQuestion(question,position,seenIds){
   if(typeof question.id!=='string'||!question.id.trim())throw new Error(`Question ${position+1} is missing a non-empty id.`);
   if(seenIds.has(question.id))throw new Error(`Question IDs must be unique. Duplicate: ${question.id}`);
   seenIds.add(question.id);
-  if(!Number.isFinite(question.number)||question.number<1||Math.floor(question.number)!==question.number)throw new Error(`Question ${question.id} must have a positive integer number.`);
+  const questionKeys=Object.keys(question).sort();
+  if(questionKeys.join(',')!==['answer','domain','id','options','stem','target'].join(','))throw new Error(`Question ${question.id} must define exactly id, domain, target, stem, options, and answer.`);
   if(typeof question.stem!=='string'||!question.stem.trim())throw new Error(`Question ${question.id} must have a non-empty stem.`);
   if(typeof question.target!=='string')throw new Error(`Question ${question.id} must have a string target.`);
   if(typeof question.domain!=='string')throw new Error(`Question ${question.id} must have a string domain.`);
@@ -71,7 +72,7 @@ function validateQuestion(question,position,seenIds){
   if(optionKeys.join(',')!==OPTION_KEYS.join(','))throw new Error(`Question ${question.id} must define exactly options A, B, C, and D.`);
   OPTION_KEYS.forEach(key=>{if(typeof question.options[key]!=='string'||!question.options[key].trim())throw new Error(`Question ${question.id} option ${key} must be a non-empty string.`);});
   if(!OPTION_KEYS.includes(question.answer))throw new Error(`Question ${question.id} must have answer A, B, C, or D.`);
-  return{id:question.id,number:question.number,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},answer:question.answer};
+  return{id:question.id,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},answer:question.answer};
 }
 
 function defaultState(){
@@ -394,7 +395,7 @@ function submit(expired){
     const previous=masteryFor(question.id),wasMastered=previous.mastered;
     if(response.answer){state.mastery[question.id]={attempts:previous.attempts+1,correct:previous.correct+(correct?1:0),mastered:wasMastered||(correct&&previous.correct+1>=3),lastAttempt:finishedAt};}
     const current=masteryFor(question.id);
-    return{...response,id:question.id,number:number+1,questionNumber:question.number,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},correct,correctAnswer:question.answer,optionOrder:[...runtime.optionOrder],displayedAnswer:response.answer?displayedLetter(runtime,response.answer):null,displayedCorrectAnswer:displayedLetter(runtime,question.answer),newlyMastered:!wasMastered&&current.mastered,note:sanitizeNote(response.note)};
+    return{...response,id:question.id,number:number+1,questionNumber:number+1,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},correct,correctAnswer:question.answer,optionOrder:[...runtime.optionOrder],displayedAnswer:response.answer?displayedLetter(runtime,response.answer):null,displayedCorrectAnswer:displayedLetter(runtime,question.answer),newlyMastered:!wasMastered&&current.mastered,note:sanitizeNote(response.note)};
   });
   const correct=items.filter(item=>item.correct).length;const result={id:active.id,startedAt:active.startedAt,finishedAt,durationSeconds:Math.round((finishedAt-active.startedAt)/1000),configuredQuestionCount,configuredMinutes:active.durationMinutes,expired,correct,total:items.length,percent:Math.round(correct/items.length*100),runMode,items};
   state.attempts.push(result);active=null;saveState();renderResults(result);
