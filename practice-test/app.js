@@ -650,7 +650,9 @@ function downloadJson(value,filename){
 function downloadText(value,filename){downloadFile(value,filename,'text/plain;charset=utf-8');}
 
 function downloadFile(value,filename,type){
-  const blob=new Blob([value],{type}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=filename;link.click();URL.revokeObjectURL(link.href);
+  const blob=new Blob([value],{type}),link=document.createElement('a'),url=URL.createObjectURL(blob);
+  link.href=url;link.download=filename;link.click();
+  setTimeout(()=>{URL.revokeObjectURL(url);},0);
 }
 
 function toIsoString(value){return new Date(value).toISOString();}
