@@ -60,7 +60,9 @@ The browser application remains ordinary static files:
 - `practice-test/index.html`
 - `practice-test/styles.css`
 - `practice-test/questions.js`
+- `practice-test/bootstrap.js`
 - `practice-test/app.js`
+- `practice-test/page.js`
 
 Bank loading is handled by `practice-test/index.html`. Repository-controlled bundled banks may use JavaScript source files. User-selected custom banks are JSON-only and must use the schemaVersion 2 contract: top-level bank metadata plus questions containing exactly id/domain/target/stem/options/answer. Imported banks receive a neutral filename-derived runtime display identifier.
 
@@ -101,7 +103,7 @@ AI Explanation is an explicit outbound action. On first use per browser profile,
 
 ## Retired legacy storage
 
-The legacy /training/ deployment has been unpublished and its source repository re-archived. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the only archival route for old progress; the archived repository is historical source, not an active application.
+The historical `/training/` URL is published only as a redirect to `/training-engine/`; the retired application itself is no longer served there. Its source remains archived in the separate historical repository. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the archival route for old progress.
 
 ## Content Security Policy
 
