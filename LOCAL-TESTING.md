@@ -36,10 +36,10 @@ No build process, backend, package manager, or application installation is requi
 From the repository root:
 
 ```powershell
-python -m http.server 8000
+python -m http.server 8000 --bind 127.0.0.1
 ```
 
-Then open:
+This loopback-only server is intended for local development and testing only. Then open:
 
 ```text
 http://localhost:8000/
