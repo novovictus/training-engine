@@ -318,7 +318,7 @@ function masteryFor(id){return state.mastery[id]||{attempts:0,correct:0,mastered
 function displayedLetter(item,canonicalKey){const position=item.optionOrder.indexOf(canonicalKey);return position<0?null:String.fromCharCode(65+position);}
 function runModeStorageKey(){return`${RUN_MODE_STORAGE_KEY_PREFIX}${bankConfig.bankId}:${bankConfig.bankVersion}`;}
 function sanitizeRunMode(value){return value==='practice'?'practice':'exam';}
-function storedRunMode(){return sanitizeRunMode(localStorage.getItem(runModeStorageKey())||localStorage.getItem(`${LEGACY_RUN_MODE_STORAGE_KEY_PREFIX}${bankConfig.bankId}`));}
+function storedRunMode(){return sanitizeRunMode(localStorage.getItem(runModeStorageKey()));}
 function selectedRunMode(){return sanitizeRunMode(document.querySelector('input[name="run-mode"]:checked')?.value);}
 function activeRunMode(){return sanitizeRunMode(active?.mode);}
 function isPracticeMode(){return activeRunMode()==='practice';}
