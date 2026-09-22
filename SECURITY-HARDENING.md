@@ -87,13 +87,15 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-07 - Corrupt stored progress can be silently replaced
 
 - **Severity:** Reliability
-- **Status:** OPEN
-- **Affected area:** `practice-test/app.js`, stored-state loading
-- **Finding:** Stored-state parsing and normalization failures currently fall back to defaults. A later successful save can overwrite the original invalid state.
-- **Impact:** Corrupt or partially incompatible progress may appear as a silent reset and can be permanently replaced before the user has an opportunity to recover or inspect it.
-- **Planned remediation:** Preserve the original raw value under a backup/recovery key before falling back. Surface a visible recovery warning. Consider requesting persistent browser storage with `navigator.storage.persist()` where supported.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Status:** FIXED
+- **Affected area:** `practice-test/app.js`, per-bank progress-state loading
+- **Finding:** A raw main progress value that could not be parsed, normalized, or matched to the loaded bank identity previously fell back silently to defaults. A later successful save could overwrite that raw value.
+- **Impact:** Corrupt or structurally unsafe progress could appear as a reset and lose the only local recovery/diagnostic evidence.
+- **Remediation:** Before a safe default state is used, the engine preserves the exact raw progress value under `training-engine-corrupt-progress-v1:<bankId>:<bankVersion>`. It never overwrites an existing backup. The active state can later be saved normally without removing that recovery copy. A one-time non-modal warning reports the safe fallback and whether the raw copy was preserved. Absent keys are not treated as corruption. This applies only to the main progress record: run mode and AI acknowledgement are scalars, and an invalid stored custom-bank record falls back to bundled without automatic replacement.
+- **Normalization boundary:** Root records that parse but fail the required state structure or bank identity checks are preserved as corrupt. Structurally valid root records continue through existing safe reconstruction; for example, malformed nested completed attempts are dropped by F-02 normalization rather than treated as root corruption.
+- **Persistent storage decision:** `navigator.storage.persist()` was intentionally not added. Persistent storage can protect a browser storage bucket from user-agent eviction after permission, but it does not preserve, parse, or repair a malformed raw value; it does not address this F-07 failure mode. F-06 continues to contain quota/write exceptions.
+- **Verification:** `scripts/validate-corrupt-progress-recovery.js` exercises no stored state, valid stored state, malformed JSON, parseable root-structural invalidity, safe nested-attempt normalization, pre-existing backup retention, backup-write failure containment, one-warning behavior, later active-state overwrite without backup deletion, and the existing F-06 guarded-write helper. It passed alongside `scripts/validate-banks-v2.js`, Node syntax checks, and `git diff --check`.
+- **Fix commit:** 031cc8b Preserve corrupt persisted state
 
 ### F-08 - Bank version changes orphan otherwise valid mastery data
 
@@ -195,7 +197,7 @@ Before marking the hardening effort complete:
 - [ ] Reserved question IDs are rejected or safely stored.
 - [ ] AI Explanation shows the outbound-data disclosure before first external handoff.
 - [x] Storage quota failure produces a recoverable warning rather than breaking the run UI.
-- [ ] Corrupt stored progress is preserved before fallback state is written.
+- [x] Corrupt stored progress is preserved before fallback state is written.
 - [ ] Downloads still complete after deferred object-URL cleanup.
 - [ ] Local testing documentation binds the development server to loopback.
 - [ ] Legacy hosted routes and stale links have been verified and documented.
