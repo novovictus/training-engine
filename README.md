@@ -6,7 +6,7 @@ Live: `https://ninja-neer.net/training-engine/`
 
 ## What it does
 
-Training Engine provides randomized question selection and answer order, exam/practice modes, timers, flags, confidence, notes, resume, mastery/history, progress import/export, completed-run exports, review, and optional AI Explanation handoff.
+Training Engine provides randomized question selection and answer order, exam/practice modes, timers, flags, confidence, notes, resume, mastery/history, progress import/export, completed-run exports, review, AI Explanation handoff, and local prompt copying.
 
 Portable banks are strict JSON using schemaVersion 2. The browser never executes a user-selected bank file. The repository-controlled bundled fixture is loaded separately through `practice-test/questions.js`.
 
@@ -44,7 +44,7 @@ training-engine-run-mode:<bankId>:<bankVersion>
 
 This is a client-side study/practice tool, not a proctored or tamper-resistant exam platform. Question banks and answer keys are available to the browser by design. Do not use it where answer secrecy, proctoring, or high-assurance assessment controls are required.
 
-AI Explanation sends the current question context to ChatGPT only when invoked and discloses that handoff on first use per browser profile.
+AI Explanation sends the current question context to ChatGPT only when invoked and discloses that handoff on first use per browser profile. Copy Prompt copies the same generated prompt to the local clipboard without sending it externally.
 
 ## Development
 

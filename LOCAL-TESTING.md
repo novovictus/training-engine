@@ -54,6 +54,7 @@ Check:
 - progress export/import for the same `bankId + bankVersion`
 - schemaVersion 1 rejection
 - AI Explanation first-use disclosure
+- Copy Prompt copies the same review prompt without external handoff
 - CSP behavior
 
 The CSP is meta-delivered and restricts scripts/resources to the intended same-origin model. Meta CSP cannot enforce `frame-ancestors`; that requires an HTTP response header.
