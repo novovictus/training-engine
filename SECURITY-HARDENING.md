@@ -141,13 +141,12 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-12 - Assessment-security limitations are not explicit enough
 
 - **Severity:** Low / Documentation
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** README and user-facing documentation
-- **Finding:** Correct answers are distributed with the bank and exam mode is a client-side study workflow. It is not a proctored or tamper-resistant assessment system.
-- **Impact:** The phrase "assessment engine" can be interpreted more strongly than the implementation warrants.
-- **Planned remediation:** Clarify that the Training Engine is intended for self-study, diagnostics, and practice, not secure/proctored testing or credentialing.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Finding:** The client-side engine distributes question banks and answer keys to the browser and provides exam/practice workflows; it is not a proctored or tamper-resistant assessment system.
+- **Remediation:** The main and runtime READMEs now state that Training Engine is a client-side study and practice tool; answer keys are intentionally available locally for scoring, review, mastery tracking, and offline-friendly operation; and exam/practice modes are workflow/UI modes rather than security boundaries. They also state that the engine must not be used where answer secrecy, proctoring, or high-assurance controls are required. No runtime code or UI warnings were added.
+- **Verification:** Reviewed active user-facing Markdown for claims of secure, proctored, or tamper-resistant assessment and found none. Confirmed both READMEs contain the explicit scope clarification. `git diff --check` passed.
+- **Fix commit:** 3c5a63d Clarify Training Engine assessment scope
 
 ---
 
@@ -177,7 +176,7 @@ Recommended implementation order:
 8. F-10 - closed by loopback-only local-server documentation
 9. F-03 - verify and reduce shared-origin legacy exposure
 10. F-05 - externalize scripts and add CSP after executable-bank removal
-11. F-12 - clarify assessment/security scope in documentation
+11. F-12 - closed by assessment-scope documentation
 12. F-08 - closed through the author-declared bank versioning contract
 
 ---
