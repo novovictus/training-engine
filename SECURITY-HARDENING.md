@@ -76,13 +76,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-06 - Local-storage quota exhaustion can break exam rendering
 
 - **Severity:** Reliability
-- **Status:** OPEN
-- **Affected area:** `practice-test/app.js`, state persistence
-- **Finding:** Completed attempts duplicate substantial question content, and `saveState()` does not handle storage-write failures. Because state is saved during normal question rendering and interaction, a quota error can interrupt application behavior.
-- **Impact:** Users with enough stored history can encounter failed saves or broken exam rendering, potentially jeopardizing active progress.
-- **Planned remediation:** Catch storage exceptions, preserve the active UI state, and present a visible warning instructing the user to export progress or clear history. Evaluate a later storage redesign that stores question IDs and run-specific answer/order state rather than duplicating full bank content in every attempt.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Status:** FIXED
+- **Affected area:** `practice-test/app.js`, `practice-test/bootstrap.js`, state persistence
+- **Finding:** Browser storage writes and removal can throw (including quota exhaustion under unusually large histories or other storage exceptions). Previously, state persistence occurred during normal rendering and interaction without failure handling, allowing an exception to interrupt the run.
+- **Measured footprint:** Representative completed attempts serialize to approximately 1.9 KB (4 questions), 25.9 KB (60 questions), and 43.0 KB (100 questions). Ten 100-question runs serialize to approximately 0.41 MB. About 27 KB of a 100-question run is duplicated historical question snapshot data.
+- **Remediation:** Retained completed-attempt snapshots because the measured near-term footprint does not justify weakening historical review fidelity. Guarded current-engine state, run-mode, custom-bank-selection, bundled-bank-selection, and reset storage operations. Failed writes leave the session in memory, show one non-modal persistence warning, and retry on later saves; identical state is skipped only after a prior successful write. The warning remains visible until a successful state save recovers persistence.
+- **Verification:** A local Node harness simulated `localStorage.setItem()` failures and confirmed no thrown interaction failure, one visible warning across repeated failures, in-memory state retention, later successful save/recovery, successful serialized-state reload, and no duplicate write for unchanged successfully persisted state. It also confirmed custom-bank and bundled-bank selection failures do not reload the page. Node syntax checks passed for `app.js`, `bootstrap.js`, and `page.js`; `git diff --check` passed. No browser UI session was run.
+- **Fix commit:** 2f6057c Harden persistence failure handling
 
 ### F-07 - Corrupt stored progress can be silently replaced
 
@@ -194,7 +194,7 @@ Before marking the hardening effort complete:
 - [ ] Null, array, primitive, and malformed completed-attempt entries do not crash Progress rendering.
 - [ ] Reserved question IDs are rejected or safely stored.
 - [ ] AI Explanation shows the outbound-data disclosure before first external handoff.
-- [ ] Storage quota failure produces a recoverable warning rather than breaking the run UI.
+- [x] Storage quota failure produces a recoverable warning rather than breaking the run UI.
 - [ ] Corrupt stored progress is preserved before fallback state is written.
 - [ ] Downloads still complete after deferred object-URL cleanup.
 - [ ] Local testing documentation binds the development server to loopback.
