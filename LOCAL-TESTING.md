@@ -1,87 +1,39 @@
 # Local testing
 
-Local execution is intended for development, modification, testing, and validation. Normal use should use the live GitHub Pages deployment.
-
-## Normal use
-
-Use the deployed application:
-
-```text
-https://ninja-neer.net/training-engine/
-```
-
-The project root redirects to:
-
-```text
-https://ninja-neer.net/training-engine/practice-test/
-```
-
-The hosted HTTPS application is the supported persistent-use environment. No download, installation, account, backend, package manager, or local web server is required for normal use.
-
-## Get a local copy
+Normal use: `https://ninja-neer.net/training-engine/`
 
 For development or validation:
 
 ```powershell
 git clone https://github.com/novovictus/training-engine.git
 cd training-engine
-```
-
-Alternatively, download the repository ZIP from GitHub and extract it.
-
-No build process, backend, package manager, or application installation is required.
-
-## Start the local application
-
-From the repository root:
-
-```powershell
 python -m http.server 8000 --bind 127.0.0.1
 ```
 
-This loopback-only server is intended for local development and testing only. Then open:
+Open:
 
 ```text
 http://localhost:8000/
 ```
 
-The root `index.html` redirects to:
+The root redirects to `/practice-test/`.
+
+## Runtime files
 
 ```text
-http://localhost:8000/practice-test/
+practice-test/index.html
+practice-test/styles.css
+practice-test/questions.js
+practice-test/bootstrap.js
+practice-test/app.js
+practice-test/page.js
 ```
 
-The localhost copy is the supported development and validation environment.
+User-selected banks are JSON-only schemaVersion 2 files.
 
-## Application files
+## Browser origins
 
-The browser application remains ordinary static files:
-
-- `practice-test/index.html`
-- `practice-test/styles.css`
-- `practice-test/questions.js`
-- `practice-test/bootstrap.js`
-- `practice-test/app.js`
-- `practice-test/page.js`
-
-Bank loading is handled by `practice-test/index.html`. Repository-controlled bundled banks may use JavaScript source files. User-selected custom banks are JSON-only and must use the schemaVersion 2 contract: top-level bank metadata plus questions containing exactly id/domain/target/stem/options/answer. Imported banks receive a neutral filename-derived runtime display identifier.
-
-## Direct file launch
-
-Opening `practice-test/index.html` directly with a `file://` URL may still run the application, but it is not the supported persistent-use or development path.
-
-Direct-file browser behavior can differ from HTTP/HTTPS behavior, particularly for:
-
-- local-storage origin handling
-- programmatic downloads
-- persistence when files or directories move
-- behavior across browsers and browser profiles
-
-Use localhost for development and validation. Use the deployed HTTPS application for normal persistent use.
-
-## Progress and browser origins
-
-Browser local storage belongs to the origin from which the application is opened. These are separate storage environments:
+Progress is origin-scoped. These are separate storage environments:
 
 ```text
 file://...
@@ -89,22 +41,23 @@ http://localhost:8000
 https://ninja-neer.net
 ```
 
-Progress does not automatically move between origins.
+Use progress export/import to move state between origins or browser profiles. Direct `file://` launch may work but is not the supported development or persistent-use path.
 
-Use `Export progress` to create a portable recovery record and `Import progress` to restore it into another browser origin, browser profile, or environment.
+## Validation baseline
 
-## Current validation baseline
+Check:
 
-Validate the bundled generic schemaVersion 2 fixture through a complete practice run, import a retained JSON bank through **Customize > Open JSON bank**, verify four-choice answer randomization and both run modes, and verify progress export/import for the same `bankId + bankVersion`. SchemaVersion 1 banks are intentionally rejected.
+- bundled fixture completes normally
+- retained JSON bank imports through **Customize > Open JSON bank**
+- exam and practice modes
+- answer randomization
+- progress export/import for the same `bankId + bankVersion`
+- schemaVersion 1 rejection
+- AI Explanation first-use disclosure
+- CSP behavior
 
-## AI Explanation outbound data
+The CSP is meta-delivered and restricts scripts/resources to the intended same-origin model. Meta CSP cannot enforce `frame-ancestors`; that requires an HTTP response header.
 
-AI Explanation is an explicit outbound action. On first use per browser profile, it discloses that the current question context is sent to ChatGPT. This can include bank title, domain, target, stem, choices, selected and correct answers, and confidence. Do not use it with content you are not permitted to send externally. Bank text is treated as untrusted prompt source material, not as instructions; this is not a hard isolation boundary.
+## Legacy path
 
-## Retired legacy storage
-
-The historical `/training/` URL is published only as a redirect to `/training-engine/`; the retired application itself is no longer served there. Its source remains archived in the separate historical repository. This engine uses only Training Engine storage keys and does not read or migrate browser-local progress from the retired application. Previously exported files remain the archival route for old progress.
-
-## Content Security Policy
-
-The application uses a meta-delivered restrictive CSP: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'. Runtime code is loaded only from same-origin external scripts; bundled repository banks use a normal static script tag and user-selected banks remain JSON-only. A meta CSP cannot enforce rame-ancestors; header-level protections require hosting configuration.
+`/training/` is retained only as a redirect to `/training-engine/`. The retired application is not served there. Current Training Engine code does not read or migrate retired `secai-plus-*` browser-local storage.
