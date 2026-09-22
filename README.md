@@ -14,6 +14,10 @@ The engine does not implement domain weighting. Authors express intended distrib
 
 Portable/importable banks are JSON only. The browser never executes a user-selected bank file. The bundled generic fixture remains repository-controlled and is loaded through the static `practice-test/questions.js` script; that internal loading mechanism is distinct from portable-bank import.
 
+## Assessment scope
+
+Training Engine is a client-side study and practice tool, not a proctored or tamper-resistant exam platform. Question banks and answer keys are intentionally available to the browser/user so the application can provide local scoring, review, mastery tracking, and offline-friendly operation. Exam mode and practice mode are workflow/UI modes only, not security boundaries. Do not use the engine where answer secrecy, proctoring, or high-assurance assessment controls are required.
+
 ## SchemaVersion 2
 
 A portable bank is strict JSON with these top-level fields:

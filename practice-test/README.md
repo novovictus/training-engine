@@ -8,6 +8,10 @@ The engine validates schemaVersion 2 banks; performs uniform randomized question
 
 The bank owns `bankId`, `bankVersion`, `title`, question content, domains, targets, and composition. The engine does not implement domain weighting; authors set intended distribution through bank composition.
 
+## Assessment scope
+
+Training Engine is a client-side study and practice tool, not a proctored or tamper-resistant exam platform. Question banks and answer keys are intentionally available to the browser/user so the application can provide local scoring, review, mastery tracking, and offline-friendly operation. Exam mode and practice mode are workflow/UI modes only, not security boundaries. Do not use the engine where answer secrecy, proctoring, or high-assurance assessment controls are required.
+
 ## Portable bank contract
 
 User-imported banks are JSON only and must use schemaVersion 2. The required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Each question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`. IDs must be unique and non-empty; `__proto__`, `constructor`, and `prototype` are reserved and invalid.
