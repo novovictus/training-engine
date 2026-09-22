@@ -1,52 +1,28 @@
 # Training Engine Next Steps
 
-State captured: 2026-09-21
+State captured: 2026-09-22
 
 ## Current status
 
-The Training Engine is now a vendor-neutral, certification-neutral static browser application derived from the original SecAI+ training project.
+Training Engine is a vendor-neutral, certification-neutral static browser application on `main`.
 
-The generalized implementation is on `main`. Recent work added CySA+ content, completed-run review improvements, per-question AI Explanation handoff, deployment build visibility, and cache-busting for the runtime script.
-
-The application is deployed through GitHub Pages and is accessible at:
+The completed hardening pass is merged. The application is deployed through GitHub Pages at:
 
 ```text
 https://ninja-neer.net/training-engine/
 ```
 
-The root redirects to:
+The project root redirects to:
 
 ```text
 https://ninja-neer.net/training-engine/practice-test/
 ```
 
-## Completed: engine generalization
-
-The active engine no longer depends on CompTIA, SecAI+, CY0-001, or any other vendor/test identity.
-
-Completed behavior includes:
-
-- schemaVersion 1 preserved unchanged
-- JavaScript bank discovery from any compatible global property name
-- dynamic display of the discovered JavaScript global name
-- JSON bank loading with neutral filename-derived runtime identity
-- generic bundled fixture instead of SecAI-specific default content
-- neutral storage namespaces
-- retired-engine browser-local progress is intentionally not migrated
-- bank/version state isolation
-- uniform randomized question selection
-- randomized displayed answer order
-- exam and practice modes
-- mastery, history, notes, confidence, flags, resume, and quit-run behavior
-- progress export/import
-- completed-run JSON and text export
-- completed-run review of every presented question, including unanswered items
-- Exam-mode review navigation from the final question
-- per-question AI Explanation handoff to ChatGPT using loaded-bank metadata
-- deployed build timestamp visibility in Customize
-- cache-busted `app.js` loading for clearer deployment verification
+The historical `/training/` path is retained only as a redirect to the current engine.
 
 ## Current bank contract
+
+Portable banks are strict JSON using schemaVersion 2.
 
 Durable bank identity is:
 
@@ -54,23 +30,45 @@ Durable bank identity is:
 bankId + bankVersion
 ```
 
-The JavaScript global property name is runtime display metadata only.
+Each question contains exactly:
 
-The bank author owns:
+```text
+id
+domain
+target
+stem
+options
+answer
+```
 
-- title
-- identity
-- version
-- questions
-- domains
-- targets
-- topic/domain distribution
+`question.number` is not part of the contract. Options are exactly A-D with one correct answer. User-selected JavaScript banks and schemaVersion 1 are retired.
 
-The engine does not implement exam weighting. It uniformly samples from the eligible bank. Bank authors express intended distribution through bank composition.
+The repository-controlled bundled fixture remains loaded through `practice-test/questions.js`; that JavaScript loading path is internal and is not part of the portable-bank format.
+
+## Engine behavior
+
+Current behavior includes:
+
+- uniform randomized question selection
+- randomized displayed answer order
+- exam and practice modes
+- mastery, history, notes, confidence, flags, resume, and quit-run behavior
+- progress import/export
+- completed-run JSON and text export
+- review of every presented question, including unanswered items
+- Exam-mode review navigation
+- AI Explanation handoff with first-use disclosure
+- restrictive same-origin CSP
+- guarded local-storage persistence and corrupt-state preservation
+- JSON-only custom-bank import
+- cache-busted static runtime assets
+- deployed build visibility in Customize
+
+The engine does not implement domain weighting. Bank authors represent intended topic/domain distribution through bank composition.
 
 ## Storage
 
-New progress state uses:
+Progress state uses:
 
 ```text
 training-engine-v1:<bankId>:<bankVersion>
@@ -82,30 +80,37 @@ Run-mode preference uses:
 training-engine-run-mode:<bankId>:<bankVersion>
 ```
 
-The retired legacy deployment is unpublished. Current storage uses only Training Engine namespaces; old browser-local state is not read or migrated.
+The engine does not read or migrate retired `secai-plus-*` browser-local storage. Previously exported files are the archival route for old progress.
+
+`bankVersion` is the bank author's explicit progress-compatibility boundary. Change it when prior progress/history should no longer be shared.
 
 ## Validation baseline
 
-The generalized engine has been smoke-tested by:
+Current validation includes:
 
-- completing the bundled fixture
-- loading an unchanged historical SecAI bank
-- confirming the discovered global name is displayed
-- importing historical compatible progress
-- exercising the deployed GitHub Pages application
+- schemaVersion 2 bank validator coverage
+- reserved-ID rejection
+- corrupt-progress recovery harness
+- download-helper ordering harness
+- Node syntax checks
+- CSP browser checks
+- manual localhost smoke testing
+- manual browser testing in Edge, Firefox, and Chrome
+- live verification of the historical `/training/` redirect
 
-Failures found during field use should be fixed narrowly rather than triggering broad refactors.
+Failures found during field use should still be fixed narrowly rather than triggering broad refactors.
 
-## Current content milestone
+## Current content
 
-CySA+ CS0-003 content is now present under `test-banks/`:
+Retained portable banks under `test-banks/` are JSON schemaVersion 2:
 
-- `cysa-plus-cs0-003-validation-bank-v1.js`: small validation bank used to exercise the generalized engine.
-- `cysa-plus-cs0-003-focused-bank-v4.js`: current focused scenario bank built to the documented item-quality standard.
+- `cysa-plus-cs0-003-focused-bank-v4.json`
+- `secai-plus-cy0-001-comprehensive-bank-v1.json`
+- `secai-plus-cy0-001-terminology-drill-bank-v1.json`
+- `secai-plus-minimal-independent-bank-v1.json`
+- `test-fixture-bank.json`
 
-Earlier focused-bank experiments were intentionally rejected for weak diagnostic quality and remain recoverable through Git history rather than as active files.
-
-Future bank work should continue to use schemaVersion 1 unchanged and remain separate from the bundled generic fixture. If a bank exposes an actual engine limitation, treat that as a separate engine defect or reusable feature request rather than embedding vendor-specific logic into the runtime.
+Earlier failed or obsolete bank experiments remain recoverable through Git history rather than as active files.
 
 ## Scope control
 
@@ -121,12 +126,10 @@ Avoid vendor-specific branching in active engine logic.
 
 ## Historical material
 
-Historical SecAI banks remain in `test-banks/` as compatibility fixtures and prior study artifacts.
-
-The archived original repository remains the historical SecAI+ project:
+The original training repository remains the historical SecAI+ project and redirect host:
 
 ```text
 https://github.com/novovictus/training
 ```
 
-It should remain archived and unchanged.
+Its `pages-redirect` branch serves the historical `/training/` redirect, while the former application source is preserved outside the published redirect branch.
