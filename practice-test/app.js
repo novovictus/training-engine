@@ -3,6 +3,7 @@ const SUPPORTED_SCHEMA_VERSION=2;
 const DEFAULT_QUESTION_COUNT=60;
 const OPTION_KEYS=['A','B','C','D'];
 const RUN_MODE_STORAGE_KEY_PREFIX='training-engine-run-mode:';
+const CORRUPT_PROGRESS_BACKUP_KEY_PREFIX='training-engine-corrupt-progress-v1:';
 const views=['start-view','exam-view','results-view','progress-view'];
 const $=id=>document.getElementById(id);
 
@@ -17,6 +18,7 @@ let controlsBound=false;
 let blocked=false;
 let currentResult=null;
 let persistenceWarningShown=false;
+let corruptProgressWarningShown=false;
 let lastPersistedState=null;
 
 function init(){
@@ -32,7 +34,8 @@ function init(){
     const loaded=loadStoredState();
     state=loaded.state;
     active=state.activeAttempt||null;
-    clearError();setControlsDisabled(false);renderHome();
+    if(loaded.corruptProgress)showCorruptProgressWarning(loaded.backupPreserved);else clearError();
+    setControlsDisabled(false);renderHome();
   }catch(error){renderFatalError(error.message);}
 }
 
@@ -80,22 +83,41 @@ function defaultState(){
 }
 
 function progressStorageKey(){return`${STORAGE_KEY_PREFIX}:${bankConfig.bankId}:${bankConfig.bankVersion}`;}
+function corruptProgressBackupKey(){return`${CORRUPT_PROGRESS_BACKUP_KEY_PREFIX}${bankConfig.bankId}:${bankConfig.bankVersion}`;}
 
 function loadStoredState(){
   const fallback=defaultState();
   const canonical=readCompatibleStoredState(progressStorageKey());
-  if(canonical)return{state:canonical};
-  return{state:fallback};
+  if(canonical.state)return{state:canonical.state,corruptProgress:false,backupPreserved:false};
+  if(canonical.corrupt)return{state:fallback,corruptProgress:true,backupPreserved:preserveCorruptProgress(canonical.raw)};
+  return{state:fallback,corruptProgress:false,backupPreserved:false};
 }
 
 function readCompatibleStoredState(key){
+  let serialized;
+  try{serialized=localStorage.getItem(key);}catch{return{state:null,corrupt:false};}
+  if(serialized===null)return{state:null,corrupt:false};
   try{
-    const serialized=localStorage.getItem(key);
-    if(!serialized)return null;
     const normalized=normalizeStateIdentity(JSON.parse(serialized),false);
-    if(normalized.bankId!==bankConfig.bankId||normalized.bankVersion!==bankConfig.bankVersion)return null;
-    return mergeState(normalized);
-  }catch{return null;}
+    if(normalized.bankId!==bankConfig.bankId||normalized.bankVersion!==bankConfig.bankVersion)throw new Error('Stored progress belongs to a different bank identity.');
+    return{state:mergeState(normalized),corrupt:false};
+  }catch{return{state:null,corrupt:true,raw:serialized};}
+}
+
+function preserveCorruptProgress(raw){
+  try{
+    const key=corruptProgressBackupKey();
+    if(localStorage.getItem(key)!==null)return true;
+    localStorage.setItem(key,raw);
+    return true;
+  }catch{return false;}
+}
+
+function showCorruptProgressWarning(backupPreserved){
+  if(corruptProgressWarningShown)return;
+  corruptProgressWarningShown=true;
+  const recovery=backupPreserved?' A raw recovery copy was preserved locally.':' The browser could not preserve a recovery copy.';
+  showErrorHtml('<strong>Stored progress could not be loaded.</strong><br>A safe default state was started.'+recovery);
 }
 
 function normalizeStateIdentity(raw,allowLegacy){
@@ -239,7 +261,7 @@ function setControlsDisabled(disabled){
   ['start-btn','customize-btn','resume-btn','history-btn','export-btn','import-input','reset-btn'].forEach(id=>{const element=$(id);if(element)element.disabled=disabled;});
 }
 
-function clearError(){if(persistenceWarningShown)return;$('error').hidden=true;$('error').innerHTML='';}
+function clearError(){if(persistenceWarningShown||corruptProgressWarningShown)return;$('error').hidden=true;$('error').innerHTML='';}
 
 function showErrorHtml(html,action){
   $('error').hidden=false;
