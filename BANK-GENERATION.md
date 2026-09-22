@@ -138,11 +138,15 @@ and:
 
 Question IDs must remain stable if a bank is revised.
 
-Recommended versioning:
+## Progress compatibility and versioning
 
-- Patch: corrections that do not materially change item identity.
-- Minor: additions or meaningful item revisions.
-- Major: replacement bank or incompatible redesign.
+`bankId` identifies one logical bank lineage and must remain stable while that lineage continues. `bankVersion` is the bank developer's explicit persisted-progress compatibility boundary: increment it whenever a change should no longer share prior progress or history.
+
+The bank developer decides whether a change is progress-compatible. Cosmetic or non-semantic changes, such as a typo correction or wording cleanup, may retain the current `bankVersion` when the developer intentionally considers existing progress compatible. An answer-key change, material semantic revision, or other persistence-relevant change should use a new `bankVersion` (or a new `bankId` for a new logical lineage).
+
+The engine intentionally trusts the declared `bankId + bankVersion` contract. It does not compute content hashes or infer compatibility from changed bytes because a hash can detect a change but cannot determine whether prior progress remains meaningful. Changing persistence-relevant semantics without an appropriate `bankVersion` change is a bank-development/versioning defect.
+
+Recommended release labels may use patch, minor, or major conventions, but the deciding rule is progress compatibility rather than the label alone.
 
 ## Validation before commit
 

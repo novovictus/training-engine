@@ -29,6 +29,8 @@ training-engine-v1:<bankId>:<bankVersion>
 training-engine-run-mode:<bankId>:<bankVersion>
 ```
 
+`bankId` is stable for one logical bank lineage. `bankVersion` is the author-declared compatibility boundary for stored progress and history; increment it when a change should not share earlier progress. The engine intentionally does not use content hashes or infer that decision.
+
 ## Selection behavior
 
 When a run starts, the engine determines eligible questions, uniformly shuffles that pool, and selects the configured count. It contains no weighted-selection or vendor-specific distribution rules.

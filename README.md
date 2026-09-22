@@ -52,7 +52,7 @@ training-engine-v1:<bankId>:<bankVersion>
 training-engine-run-mode:<bankId>:<bankVersion>
 ```
 
-The engine uses only these current Training Engine storage namespaces. Previously exported progress files are the archival route for retired legacy application data.
+The engine uses only these current Training Engine storage namespaces. Previously exported progress files are the archival route for retired legacy application data. Progress compatibility is intentionally author-declared: `bankId` remains stable for one logical bank lineage, while `bankVersion` must change whenever prior progress/history should no longer be shared. The engine does not compute content hashes or infer content compatibility.
 
 ## Documentation
 
