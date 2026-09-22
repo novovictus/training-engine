@@ -121,13 +121,12 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-10 - Local test server binds beyond loopback
 
 - **Severity:** Low
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** Local testing documentation
-- **Finding:** Documentation using `python -m http.server 8000` binds to all interfaces by default.
-- **Impact:** A local test instance may be reachable from other systems on the same network when that exposure was not intended.
-- **Planned remediation:** Update documentation to use `python -m http.server 8000 --bind 127.0.0.1` for local-only testing.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Finding:** An unbound Python simple HTTP server can listen on network interfaces beyond the local machine.
+- **Remediation:** `LOCAL-TESTING.md` now uses `python -m http.server 8000 --bind 127.0.0.1` and states that the loopback-only server is for local development and testing only. Runtime code was not changed.
+- **Verification:** Searched active Markdown documentation and confirmed no unbound `python -m http.server 8000` example remains; confirmed the loopback command and local-only clarification are present. `git diff --check` passed.
+- **Fix commit:** b702053 Bind local test server to loopback
 
 ### F-11 - Object URL revoked immediately after download click
 
@@ -176,7 +175,7 @@ Recommended implementation order:
 5. F-07 - preserve corrupt state and surface recovery
 6. F-06 - handle storage quota failures safely
 7. F-11 - defer object URL revocation
-8. F-10 - restrict documented local-server bind address
+8. F-10 - closed by loopback-only local-server documentation
 9. F-03 - verify and reduce shared-origin legacy exposure
 10. F-05 - externalize scripts and add CSP after executable-bank removal
 11. F-12 - clarify assessment/security scope in documentation
@@ -198,7 +197,7 @@ Before marking the hardening effort complete:
 - [x] Storage quota failure produces a recoverable warning rather than breaking the run UI.
 - [x] Corrupt stored progress is preserved before fallback state is written.
 - [ ] Downloads still complete after deferred object-URL cleanup.
-- [ ] Local testing documentation binds the development server to loopback.
+- [x] Local testing documentation binds the development server to loopback.
 - [ ] Legacy hosted routes and stale links have been verified and documented.
 - [ ] A strict CSP is enabled after inline/eval-dependent code is removed, or the remaining blocker is explicitly documented.
 - [ ] Existing exam mode, practice mode, resume, mastery, notes, import/export, randomized answers, and AI Explanation behavior have regression coverage or manual test evidence.
