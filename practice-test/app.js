@@ -16,6 +16,8 @@ let ticker=null;
 let controlsBound=false;
 let blocked=false;
 let currentResult=null;
+let persistenceWarningShown=false;
+let lastPersistedState=null;
 
 function init(){
   try{
@@ -163,12 +165,36 @@ function sanitizeCompletedAttempt(attempt){
   };
 }
 function saveState(){
-  if(!state)return;
+  if(!state)return false;
   state.bankId=bankConfig.bankId;
   state.bankVersion=bankConfig.bankVersion;
   state.activeAttempt=active;
-  localStorage.setItem(progressStorageKey(),JSON.stringify(state));
+  let serialized;
+  try{serialized=JSON.stringify(state);}catch{showPersistenceWarning();return false;}
+  if(serialized===lastPersistedState){clearPersistenceWarning();return true;}
+  if(!writeLocalStorage(progressStorageKey(),serialized))return false;
+  lastPersistedState=serialized;
+  clearPersistenceWarning();
+  return true;
 }
+
+function showPersistenceWarning(){
+  if(persistenceWarningShown)return;
+  persistenceWarningShown=true;
+  showErrorHtml('<strong>Local progress could not be saved.</strong><br>Your current session can continue, but changes may be lost when you close the page. Export progress or free browser storage before closing the page.');
+}
+
+function writeLocalStorage(key,value){
+  try{localStorage.setItem(key,value);return true;}catch{showPersistenceWarning();return false;}
+}
+
+function clearPersistenceWarning(){
+  if(!persistenceWarningShown)return;
+  persistenceWarningShown=false;
+  $('error').hidden=true;$('error').innerHTML='';
+}
+
+window.TRAINING_ENGINE_NOTIFY_PERSISTENCE_FAILURE=showPersistenceWarning;
 
 function bind(){
   if(controlsBound)return;
@@ -212,7 +238,7 @@ function setControlsDisabled(disabled){
   ['start-btn','customize-btn','resume-btn','history-btn','export-btn','import-input','reset-btn'].forEach(id=>{const element=$(id);if(element)element.disabled=disabled;});
 }
 
-function clearError(){$('error').hidden=true;$('error').innerHTML='';}
+function clearError(){if(persistenceWarningShown)return;$('error').hidden=true;$('error').innerHTML='';}
 
 function showErrorHtml(html,action){
   $('error').hidden=false;
@@ -257,7 +283,7 @@ async function updateBuildNote(){
 function saveCustomize(event){
   if(blocked)return;
   event.preventDefault();const include=$('include-mastered').checked;const eligible=bank.filter(question=>include||!masteryFor(question.id).mastered).length;
-  localStorage.setItem(runModeStorageKey(),selectedRunMode());
+  writeLocalStorage(runModeStorageKey(),selectedRunMode());
   state.settings={questionCount:clampQuestionCount($('question-limit').value,eligible||bank.length),durationMinutes:Math.max(0,Number($('time-limit').value)||0),includeMastered:include};saveState();$('customize-dialog').close();renderHome();
 }
 
@@ -421,14 +447,15 @@ async function importProgress(event){
   try{
     const normalized=normalizeStateIdentity(JSON.parse(await file.text()),true);
     if(normalized.bankId!==bankConfig.bankId||normalized.bankVersion!==bankConfig.bankVersion)throw new Error(`Progress file belongs to ${normalized.bankId} v${normalized.bankVersion}, but the loaded bank is ${bankConfig.bankId} v${bankConfig.bankVersion}.`);
-    state=mergeState(normalized);active=state.activeAttempt||null;saveState();clearError();renderHome();
+    state=mergeState(normalized);active=state.activeAttempt||null;if(saveState())clearError();renderHome();
   }catch(error){showErrorHtml(`<strong>Import failed.</strong><br>${escapeHtml(error.message)}`);}
   finally{event.target.value='';}
 }
 
 function resetProgress(confirmReset){
   if(confirmReset&&!confirm('Delete all locally stored attempts, mastery, settings, and active progress for this bank?'))return;
-  localStorage.removeItem(progressStorageKey());blocked=false;state=defaultState();active=null;currentResult=null;saveState();clearError();setControlsDisabled(false);renderHome();
+  try{localStorage.removeItem(progressStorageKey());lastPersistedState=null;}catch{showPersistenceWarning();return;}
+  blocked=false;state=defaultState();active=null;currentResult=null;if(saveState())clearError();setControlsDisabled(false);renderHome();
 }
 
 function clampQuestionCount(requested,maxAllowed){
