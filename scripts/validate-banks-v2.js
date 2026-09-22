@@ -2,6 +2,7 @@
 const crypto=require('crypto');
 const fs=require('fs');
 const path=require('path');
+const vm=require('vm');
 
 const optionKeys=['A','B','C','D'];
 const questionKeys=['answer','domain','id','options','stem','target'];
@@ -30,6 +31,16 @@ function validate(file,bank){
     if(!optionKeys.includes(question.answer))fail(file,question.id+' answer must be A-D');
   }
 }
+
+const bundledContext={window:{},localStorage:{getItem:()=>null,setItem:()=>{}},location:{reload:()=>{}}};
+vm.createContext(bundledContext);
+for(const file of ['questions.js','bootstrap.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'..','practice-test',file),'utf8'),bundledContext,{filename:file});
+const bundledRuntime=bundledContext.window.TRAINING_ENGINE_RUNTIME_BANK;
+if(!bundledRuntime||typeof bundledRuntime.sourceName!=='string'||!bundledRuntime.sourceName||!bundledRuntime.bank)fail('bundled bootstrap','did not expose a runtime bank');
+validate('bundled bootstrap',bundledRuntime.bank);
+const bundledMatches=Object.values(bundledContext.window).filter(value=>{try{validate('bundled candidate',value);return true;}catch{return false;}});
+if(bundledMatches.length!==1||bundledMatches[0]!==bundledRuntime.bank)fail('bundled bootstrap','did not resolve exactly one supported schemaVersion 2 bank');
+console.log('bundled questions.js + bootstrap.js: one schemaVersion 2 runtime bank validated');
 
 for(const [file,manifest] of Object.entries(expected)){
   const bank=JSON.parse(fs.readFileSync(path.join(__dirname,'..','test-banks',file),'utf8'));

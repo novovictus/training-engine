@@ -1,7 +1,7 @@
 (()=>{
   const SELECTED_SOURCE_KEY='training-engine-selected-bank-source';
   const CUSTOM_BANK_KEY='training-engine-custom-bank';
-  const BUNDLED_BANK={source:'questions.js',kind:'bundled'};
+  const BUNDLED_BANK={source:'questions.js',kind:'bundled',globalName:'TRAINING_ENGINE_FIXTURE_BANK'};
   const OPTION_KEYS=['A','B','C','D'];
   const QUESTION_KEYS=['answer','domain','id','options','stem','target'];
 
@@ -48,5 +48,10 @@
 
   function setActiveBank(runtime){Object.assign(selected,{id:runtime.bank.bankId,version:runtime.bank.bankVersion,title:runtime.bank.title,questionCount:runtime.bank.questions.length,sourceName:runtime.sourceName});}
   window.TRAINING_ENGINE_BANKS={selected,switchToCustom,useBundled,validBankShape,setActiveBank};
-  if(useCustom)window.TRAINING_ENGINE_RUNTIME_BANK=customBank;
+  if(useCustom){
+    window.TRAINING_ENGINE_RUNTIME_BANK=customBank;
+  }else{
+    const bundledRuntime={sourceName:BUNDLED_BANK.globalName,bank:window[BUNDLED_BANK.globalName]};
+    if(validBankShape(bundledRuntime.bank))window.TRAINING_ENGINE_RUNTIME_BANK=bundledRuntime;
+  }
 })();
