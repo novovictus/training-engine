@@ -155,20 +155,19 @@ Complete applicable checks before pushing:
 1. Confirm the intended target/source material.
 2. Confirm the new file does not unintentionally replace another bank.
 3. Confirm all IDs are unique.
-4. Confirm question numbers are valid and intentional.
-5. Confirm every domain and target is populated as intended.
-6. Confirm every stem is non-empty.
-7. Confirm every item has exactly four non-empty options.
-8. Confirm every answer is A, B, C, or D.
-9. Confirm strict JSON parsing succeeds.
-10. Check exact duplicate stems when related banks exist.
-11. Review likely near-duplicates when appropriate.
-12. Review answer distribution and repeated-letter runs.
-13. Review distractors for plausibility.
-14. Review each answer key under a zero-trust standard.
-15. Confirm restricted supplied content was not copied into public material.
-16. Confirm the JSON bank imports in the Training Engine without application-code changes.
-17. Inspect the final diff and repository status.
+4. Confirm every domain and target is populated as intended.
+5. Confirm every stem is non-empty.
+6. Confirm every item has exactly four non-empty options.
+7. Confirm every answer is A, B, C, or D.
+8. Confirm strict JSON parsing succeeds.
+9. Check exact duplicate stems when related banks exist.
+10. Review likely near-duplicates when appropriate.
+11. Review answer distribution and repeated-letter runs.
+12. Review distractors for plausibility.
+13. Review each answer key under a zero-trust standard.
+14. Confirm restricted supplied content was not copied into public material.
+15. Confirm the JSON bank imports in the Training Engine without application-code changes.
+16. Inspect the final diff and repository status.
 
 ## Quality status
 
