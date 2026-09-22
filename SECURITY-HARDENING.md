@@ -111,13 +111,12 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-09 - Unsafe question IDs used as plain-object keys
 
 - **Severity:** Reliability / Security Hardening
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** Bank validation and mastery storage
-- **Finding:** Question IDs are used as ordinary object keys. Special property names such as `__proto__` or `constructor` can produce unexpected behavior when used with normal JavaScript objects.
-- **Impact:** A malicious or malformed bank can corrupt per-question state structures or cause confusing runtime behavior.
-- **Planned remediation:** Reject reserved/dangerous IDs during bank validation and/or migrate keyed state containers to `Map` or null-prototype objects.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Finding:** Question IDs are used as ordinary object keys. The exact prototype-related IDs `__proto__`, `constructor`, and `prototype` must not enter runtime bank data.
+- **Remediation:** Both the bootstrap validator and the application bank normalizer reject those three reserved IDs at the bank-validation boundary; duplicate-ID validation remains unchanged. Imported JSON is normalized by the application validator before selection, repository-controlled bundled banks pass bootstrap and application validation, and the discovery fallback also uses the application validator. No state-container redesign was needed.
+- **Verification:** Extended `scripts/validate-banks-v2.js` to verify `Q001` acceptance and rejection of all three reserved IDs plus duplicate IDs through both actual validators. The harness also validated the bundled schemaVersion 2 fixture and all five retained JSON banks. Node syntax checks passed for modified JavaScript, and `git diff --check` passed.
+- **Fix commit:** 1124670 Reject reserved question IDs
 
 ### F-10 - Local test server binds beyond loopback
 
@@ -172,7 +171,7 @@ Recommended implementation order:
 
 1. F-01 - remove executable custom-bank loading
 2. F-02 - fix progress-import stored XSS and invalid-attempt handling
-3. F-09 - harden question IDs
+3. F-09 - closed by reserved question-ID validation
 4. F-04 - add AI Explanation outbound-data disclosure
 5. F-07 - preserve corrupt state and surface recovery
 6. F-06 - handle storage quota failures safely
@@ -194,7 +193,7 @@ Before marking the hardening effort complete:
 - [ ] Malformed custom banks fail closed with a useful user-facing error.
 - [ ] Crafted progress fields cannot inject HTML or script into the Progress view.
 - [ ] Null, array, primitive, and malformed completed-attempt entries do not crash Progress rendering.
-- [ ] Reserved question IDs are rejected or safely stored.
+- [x] Reserved question IDs are rejected at bank validation.
 - [ ] AI Explanation shows the outbound-data disclosure before first external handoff.
 - [x] Storage quota failure produces a recoverable warning rather than breaking the run UI.
 - [x] Corrupt stored progress is preserved before fallback state is written.
