@@ -37,7 +37,7 @@ A portable bank is strict JSON with these top-level fields:
 }
 ```
 
-`schemaVersion` must be exactly `2`. Required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Each question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`; `question.number` is not part of the contract. IDs are unique and non-empty; domain and target are strings; stems and choices are non-empty. Options are exactly A, B, C, and D, and `answer` is one of those keys. The model intentionally supports one correct answer.
+`schemaVersion` must be exactly `2`. Required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Each question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`; `question.number` is not part of the contract. IDs are unique and non-empty and cannot be `__proto__`, `constructor`, or `prototype`; domain and target are strings; stems and choices are non-empty. Options are exactly A, B, C, and D, and `answer` is one of those keys. The model intentionally supports one correct answer.
 
 SchemaVersion 1 is retired. There is no v1 loading or migration path.
 

@@ -10,7 +10,7 @@ The bank owns `bankId`, `bankVersion`, `title`, question content, domains, targe
 
 ## Portable bank contract
 
-User-imported banks are JSON only and must use schemaVersion 2. The required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Each question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`.
+User-imported banks are JSON only and must use schemaVersion 2. The required top-level fields are `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`. Each question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`. IDs must be unique and non-empty; `__proto__`, `constructor`, and `prototype` are reserved and invalid.
 
 `options` must contain exactly non-empty A, B, C, and D values. `answer` must be one of those four keys; the engine intentionally models one correct answer. `question.number` is retired: the engine derives displayed numbering from run position. SchemaVersion 1 is retired and is not loaded or migrated.
 

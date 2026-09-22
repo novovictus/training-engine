@@ -2,7 +2,7 @@
 
 Files in this directory are portable JSON schemaVersion 2 banks. They are not discovered automatically; load one through **Customize > Open JSON bank**.
 
-Portable banks have no JavaScript-global-name semantics. Each bank contains `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`; every question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`. Options are exactly A-D and each item has one correct answer. `question.number` is not supported.
+Portable banks have no JavaScript-global-name semantics. Each bank contains `schemaVersion`, `bankId`, `bankVersion`, `title`, and `questions`; every question contains exactly `id`, `domain`, `target`, `stem`, `options`, and `answer`. Options are exactly A-D and each item has one correct answer. Question IDs must be unique and non-empty; `__proto__`, `constructor`, and `prototype` are reserved and invalid. `question.number` is not supported.
 
 ## Retained banks
 

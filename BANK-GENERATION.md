@@ -115,7 +115,7 @@ Validation requirements:
 
 - `schemaVersion` is exactly `2`.
 - `bankId`, `bankVersion`, and `title` are non-empty strings.
-- `questions` is a non-empty array with unique, non-empty IDs.
+- `questions` is a non-empty array with unique, non-empty IDs. The IDs `__proto__`, `constructor`, and `prototype` are reserved and invalid.
 - `domain` and `target` are strings; `stem` is non-empty.
 - `options` contains exactly non-empty A, B, C, and D strings.
 - `answer` is exactly A, B, C, or D, supporting the intentional single-correct-answer model.
@@ -136,7 +136,7 @@ and:
 <subject>-<descriptor>-v<major>
 ```
 
-Question IDs must remain stable if a bank is revised.
+Question IDs must remain stable if a bank is revised. They must also be unique and non-empty; `__proto__`, `constructor`, and `prototype` are reserved invalid IDs.
 
 ## Progress compatibility and versioning
 

@@ -3,13 +3,14 @@
   const CUSTOM_BANK_KEY='training-engine-custom-bank';
   const BUNDLED_BANK={source:'questions.js',kind:'bundled',globalName:'TRAINING_ENGINE_FIXTURE_BANK'};
   const OPTION_KEYS=['A','B','C','D'];
+  const RESERVED_QUESTION_IDS=new Set(['__proto__','constructor','prototype']);
   const QUESTION_KEYS=['answer','domain','id','options','stem','target'];
 
   function validBankShape(bank){
     if(!bank||typeof bank!=='object'||Array.isArray(bank)||bank.schemaVersion!==2||!['bankId','bankVersion','title'].every(key=>typeof bank[key]==='string'&&bank[key].trim())||!Array.isArray(bank.questions)||!bank.questions.length)return false;
     const ids=new Set();
     return bank.questions.every(question=>{
-      if(!question||typeof question!=='object'||Array.isArray(question)||Object.keys(question).sort().join(',')!==QUESTION_KEYS.join(',')||typeof question.id!=='string'||!question.id.trim()||ids.has(question.id)||typeof question.domain!=='string'||typeof question.target!=='string'||typeof question.stem!=='string'||!question.stem.trim()||!question.options||typeof question.options!=='object'||Array.isArray(question.options)||Object.keys(question.options).sort().join(',')!==OPTION_KEYS.join(',')||!OPTION_KEYS.every(key=>typeof question.options[key]==='string'&&question.options[key].trim())||!OPTION_KEYS.includes(question.answer))return false;
+      if(!question||typeof question!=='object'||Array.isArray(question)||Object.keys(question).sort().join(',')!==QUESTION_KEYS.join(',')||typeof question.id!=='string'||!question.id.trim()||RESERVED_QUESTION_IDS.has(question.id)||ids.has(question.id)||typeof question.domain!=='string'||typeof question.target!=='string'||typeof question.stem!=='string'||!question.stem.trim()||!question.options||typeof question.options!=='object'||Array.isArray(question.options)||Object.keys(question.options).sort().join(',')!==OPTION_KEYS.join(',')||!OPTION_KEYS.every(key=>typeof question.options[key]==='string'&&question.options[key].trim())||!OPTION_KEYS.includes(question.answer))return false;
       ids.add(question.id);
       return true;
     });

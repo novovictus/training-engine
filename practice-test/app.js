@@ -2,6 +2,7 @@ const STORAGE_KEY_PREFIX='training-engine-v1';
 const SUPPORTED_SCHEMA_VERSION=2;
 const DEFAULT_QUESTION_COUNT=60;
 const OPTION_KEYS=['A','B','C','D'];
+const RESERVED_QUESTION_IDS=new Set(['__proto__','constructor','prototype']);
 const RUN_MODE_STORAGE_KEY_PREFIX='training-engine-run-mode:';
 const CORRUPT_PROGRESS_BACKUP_KEY_PREFIX='training-engine-corrupt-progress-v1:';
 const views=['start-view','exam-view','results-view','progress-view'];
@@ -63,6 +64,7 @@ function loadBankDefinition(raw){
 function validateQuestion(question,position,seenIds){
   if(!isPlainObject(question))throw new Error(`Question ${position+1} is not an object.`);
   if(typeof question.id!=='string'||!question.id.trim())throw new Error(`Question ${position+1} is missing a non-empty id.`);
+  if(RESERVED_QUESTION_IDS.has(question.id))throw new Error(`Question ID is reserved and cannot be used: ${question.id}`);
   if(seenIds.has(question.id))throw new Error(`Question IDs must be unique. Duplicate: ${question.id}`);
   seenIds.add(question.id);
   const questionKeys=Object.keys(question).sort();
