@@ -65,6 +65,8 @@ Each item should:
 - prefer interpretation, correlation, prioritization, sequencing, and BEST/FIRST/NEXT decisions over definition recall
 - use realistic artifacts when they improve the assessment
 
+Avoid weakening distractors with absolute or limiting qualifiers such as `only`, `always`, `never`, `all`, `must`, or `immediately` unless that wording is technically necessary to the concept being tested. If one option uses such a qualifier, verify that it does not become trivially eliminable from wording alone. Distractors should remain technically plausible without artificial disqualifiers.
+
 Randomized displayed answer order does not fix weak item construction.
 
 ## Validation before commit
@@ -77,9 +79,10 @@ Randomized displayed answer order does not fix weak item construction.
 6. Check exact and likely near-duplicates where relevant.
 7. Review answer distribution for suspicious imbalance or runs.
 8. Review every distractor for plausibility.
-9. Review every answer key under a zero-trust standard.
-10. Confirm restricted content was not copied into public material.
-11. Load the JSON bank in Training Engine.
-12. Inspect the final diff and repository status.
+9. Search the bank for high-risk qualifier words such as `only`, `always`, `never`, `all`, `must`, and `immediately`, and manually review each occurrence for answer leakage.
+10. Review every answer key under a zero-trust standard.
+11. Confirm restricted content was not copied into public material.
+12. Load the JSON bank in Training Engine.
+13. Inspect the final diff and repository status.
 
 Generated banks remain working validation artifacts until independently reviewed or field-tested.
