@@ -100,13 +100,13 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 ### F-08 - Bank version changes orphan otherwise valid mastery data
 
 - **Severity:** Reliability / Architecture
-- **Status:** OPEN
+- **Status:** FIXED
 - **Affected area:** Progress identity and bank-version contract
-- **Finding:** Progress compatibility currently depends on both `bankId` and exact `bankVersion`. A patch-level correction to one item therefore invalidates progress for the whole bank even when most questions are unchanged.
-- **Impact:** Routine corrections can unnecessarily orphan mastery and block import of prior progress.
-- **Planned remediation:** Evaluate tracking per-question content identity, such as a stable question ID plus content hash, so mastery can carry forward for unchanged items while changed items are invalidated. This may be deferred if it materially expands the hardening branch beyond security and reliability fixes.
-- **Verification:** TBD
-- **Fix commit:** TBD
+- **Finding:** Progress identity uses the exact `bankId + bankVersion` pair. The engine cannot infer whether a changed bank should share prior progress or history.
+- **Disposition:** No engine code change is required. `bankId` remains stable for one logical bank lineage; `bankVersion` is the bank developer's explicit compatibility boundary. Developers must increment `bankVersion` whenever a change should no longer share prior progress/history, while intentionally compatible cosmetic or non-semantic changes may retain it. Changing persistence-relevant semantics without an appropriate `bankVersion` change is a bank-development/versioning defect.
+- **Content-hash decision:** Runtime content hashing was considered and rejected as over-prescriptive. A hash can detect changed bytes but cannot determine author intent or whether earlier progress remains meaningful, so it cannot define the needed compatibility boundary. The engine intentionally trusts the declared `bankId + bankVersion` contract and does not add migration or compatibility heuristics.
+- **Verification:** Confirmed the persistence key and import validation use `bankId + bankVersion`; updated the bank-development and user documentation to state the author-declared compatibility rule; searched active documentation for content-hash requirements and automatic compatibility claims.
+- **Fix commit:** 4a3ed71 Define bank versioning contract
 
 ### F-09 - Unsafe question IDs used as plain-object keys
 
@@ -181,7 +181,7 @@ Recommended implementation order:
 9. F-03 - verify and reduce shared-origin legacy exposure
 10. F-05 - externalize scripts and add CSP after executable-bank removal
 11. F-12 - clarify assessment/security scope in documentation
-12. F-08 - implement or explicitly defer mastery migration across bank revisions
+12. F-08 - closed through the author-declared bank versioning contract
 
 ---
 
