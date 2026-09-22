@@ -48,7 +48,7 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 - **Finding:** Browser storage is scoped by origin, not path. If a legacy application and this engine are deployed on the same origin, an XSS in either can access origin-scoped storage belonging to the other. A stale current-engine link to `/training/` was also present in the repository.
 - **Impact:** An XSS or arbitrary-code issue in any same-origin application can potentially access Training Engine data stored on that origin.
 - **Remediation:** The stale link points to `/training-engine/`. The historical `/training/` URL is intentionally retained by a redirect-only `pages-redirect` branch, which GitHub Pages publishes and which redirects to `/training-engine/`. The former application source is preserved under `archive/` on the non-published `main` branch; Pages publishes only the redirect branch, so that archived tree is not web-accessible through GitHub Pages. Current engine code now uses only Training Engine storage namespaces and no longer reads or migrates `secai-plus-*` progress, run-mode, or custom-bank keys. Legacy browser-local progress is intentionally unsupported; previously exported files are the archival route.
-- **Verification:** Repository-wide searches confirmed no active `/training/` launch link or retired `secai-plus-*` storage identifier remains under `practice-test`. Actual-source storage fixtures verified canonical current progress reload, fresh-state initialization without fallback, current run-mode reload, and no legacy-key reads or writes. Node syntax checks for `app.js` and inline scripts plus `git diff --check` passed. The maintainer manually verified the redirect-only Pages deployment and that direct archive-path access no longer serves the former application; the legacy repository is being re-archived after this cleanup.
+- **Verification:** Repository-wide searches confirmed no active `/training/` launch link or retired `secai-plus-*` storage identifier remains under `practice-test`. Actual-source storage fixtures verified canonical current progress reload, fresh-state initialization without fallback, current run-mode reload, and no legacy-key reads or writes. Node syntax checks for `app.js` and inline scripts plus `git diff --check` passed. The maintainer manually verified the redirect-only Pages deployment and that direct archive-path access no longer serves the former application.
 - **Fix commit:** 7e55864 Remove retired engine storage compatibility
 
 ### F-04 - AI Explanation sends question content to an external service
@@ -81,7 +81,7 @@ Do not mark a finding `FIXED` until the remediation has been tested or otherwise
 - **Finding:** Browser storage writes and removal can throw (including quota exhaustion under unusually large histories or other storage exceptions). Previously, state persistence occurred during normal rendering and interaction without failure handling, allowing an exception to interrupt the run.
 - **Measured footprint:** Representative completed attempts serialize to approximately 1.9 KB (4 questions), 25.9 KB (60 questions), and 43.0 KB (100 questions). Ten 100-question runs serialize to approximately 0.41 MB. About 27 KB of a 100-question run is duplicated historical question snapshot data.
 - **Remediation:** Retained completed-attempt snapshots because the measured near-term footprint does not justify weakening historical review fidelity. Guarded current-engine state, run-mode, custom-bank-selection, bundled-bank-selection, and reset storage operations. Failed writes leave the session in memory, show one non-modal persistence warning, and retry on later saves; identical state is skipped only after a prior successful write. The warning remains visible until a successful state save recovers persistence.
-- **Verification:** A local Node harness simulated `localStorage.setItem()` failures and confirmed no thrown interaction failure, one visible warning across repeated failures, in-memory state retention, later successful save/recovery, successful serialized-state reload, and no duplicate write for unchanged successfully persisted state. It also confirmed custom-bank and bundled-bank selection failures do not reload the page. Node syntax checks passed for `app.js`, `bootstrap.js`, and `page.js`; `git diff --check` passed. No browser UI session was run.
+- **Verification:** A local Node harness simulated `localStorage.setItem()` failures and confirmed no thrown interaction failure, one visible warning across repeated failures, in-memory state retention, later successful save/recovery, successful serialized-state reload, and no duplicate write for unchanged successfully persisted state. It also confirmed custom-bank and bundled-bank selection failures do not reload the page. Node syntax checks passed for `app.js`, `bootstrap.js`, and `page.js`; `git diff --check` passed. No browser UI simulation of a storage-write failure was performed; that failure path was verified with the deterministic Node harness.
 - **Fix commit:** 2f6057c Harden persistence failure handling
 
 ### F-07 - Corrupt stored progress can be silently replaced
@@ -162,7 +162,7 @@ The review also identified areas that were already sound or substantially safer 
 
 ---
 
-## Remediation order
+## Original recommended remediation order
 
 Recommended implementation order:
 
@@ -185,35 +185,34 @@ Recommended implementation order:
 
 Before marking the hardening effort complete:
 
-- [ ] A custom bank containing JavaScript cannot execute code through the import path.
-- [ ] Valid JSON banks continue to load and pass normal schema validation.
-- [ ] Malformed custom banks fail closed with a useful user-facing error.
-- [ ] Crafted progress fields cannot inject HTML or script into the Progress view.
-- [ ] Null, array, primitive, and malformed completed-attempt entries do not crash Progress rendering.
+- [x] A custom bank containing JavaScript cannot execute code through the import path.
+- [x] Valid JSON banks continue to load and pass normal schema validation.
+- [x] Malformed custom banks fail closed with a useful user-facing error.
+- [x] Crafted progress fields cannot inject HTML or script into the Progress view.
+- [x] Null, array, primitive, and malformed completed-attempt entries do not crash Progress rendering.
 - [x] Reserved question IDs are rejected at bank validation.
-- [ ] AI Explanation shows the outbound-data disclosure before first external handoff.
+- [x] AI Explanation shows the outbound-data disclosure before first external handoff.
 - [x] Storage quota failure produces a recoverable warning rather than breaking the run UI.
 - [x] Corrupt stored progress is preserved before fallback state is written.
 - [x] Download helper defers its single object-URL cleanup after click.
 - [x] Local testing documentation binds the development server to loopback.
-- [ ] Legacy hosted routes and stale links have been verified and documented.
-- [ ] A strict CSP is enabled after inline/eval-dependent code is removed, or the remaining blocker is explicitly documented.
-- [ ] Existing exam mode, practice mode, resume, mastery, notes, import/export, randomized answers, and AI Explanation behavior have regression coverage or manual test evidence.
-- [ ] Every `FIXED` finding above includes verification notes and the fixing commit.
+- [x] Legacy hosted routes and stale links have been verified and documented.
+- [x] A strict CSP is enabled after inline/eval-dependent code is removed, or the remaining blocker is explicitly documented.
+- [x] Existing exam mode, practice mode, resume, mastery, notes, import/export, randomized answers, and AI Explanation behavior have regression coverage or manual test evidence.
+- [x] Every `FIXED` finding above includes verification notes and the fixing commit.
 
 ---
 
 ## Hardening log
 
-Use this section for chronological notes during remediation.
+### 2026-09-21 to 2026-09-22
 
-### YYYY-MM-DD
-
-- Branch created: `hardening/import-boundary`
-- Baseline findings recorded before code changes.
-- Changes:
-  - TBD
-- Verification:
-  - TBD
-- Commits:
-  - TBD
+- Branch: `hardening/import-boundary`
+- Baseline security, reliability, and trust-boundary findings were recorded before remediation.
+- All twelve findings were remediated or dispositioned and verified.
+- Deterministic validators, Node syntax checks, and `git diff --check` passed.
+- Manual localhost smoke testing passed across normal application flows, schemaVersion 2 bank loading, negative bank imports, AI Explanation, and CSP enforcement.
+- Browser validation passed in Edge, Firefox, Chrome Incognito, and Chrome after clearing stale profile data.
+- CSP was observed blocking both `eval()` and external script injection as intended.
+- The legacy `/training/` redirect deployment and archive-path behavior were manually verified separately from repository-local validation.
+- The completed hardening branch was pushed to `origin/hardening/import-boundary` with a clean worktree.
