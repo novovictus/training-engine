@@ -78,14 +78,42 @@
       ].join('\n');
     }
     function openAiExplanation(item){if(!confirmAiExplanationDisclosure())return;window.open(`https://chatgpt.com/?q=${encodeURIComponent(buildAiExplanationPrompt(item))}`,'_blank','noopener');}
+    function legacyCopyText(text){
+      const textarea=document.createElement('textarea');
+      textarea.value=text;
+      textarea.setAttribute('readonly','');
+      textarea.style.position='fixed';
+      textarea.style.opacity='0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const copied=document.execCommand('copy');
+      textarea.remove();
+      if(!copied)throw new Error('Clipboard copy failed.');
+    }
+    function setCopyPromptStatus(button,label){
+      button.textContent=label;
+      setTimeout(()=>{if(button.isConnected)button.textContent='Copy Prompt';},1200);
+    }
+    async function copyAiExplanationPrompt(item,button){
+      const prompt=buildAiExplanationPrompt(item);
+      try{
+        if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(prompt);
+        else legacyCopyText(prompt);
+        setCopyPromptStatus(button,'Copied');
+      }catch{
+        try{legacyCopyText(prompt);setCopyPromptStatus(button,'Copied');}
+        catch{setCopyPromptStatus(button,'Copy failed');}
+      }
+    }
     function renderReviewQueue(result){
       const wrongOnly=Boolean($('review-wrong-only')?.checked);
       const fullAnswers=Boolean($('review-full-answers')?.checked);
       let review=[...result.items];
       if(wrongOnly)review=review.filter(item=>Boolean(item.answer)&&!item.correct);
       review.sort((a,b)=>a.number-b.number);
-      $('review-list').innerHTML=review.length?`<h2>Review queue</h2>${review.map(item=>{const status=!item.answer?'Not answered':item.correct?'Correct':'Incorrect';const statusClass=item.correct?'correct':item.answer?'incorrect':'';const flagBadge=item.flagged?' <span class="review-flag">Flagged</span>':'';return`<article class="review-item"><h3>Question ${item.number} · ${item.id}${flagBadge}: <span class="${statusClass}">${status}</span></h3><p>${escapeHtml(item.stem)}</p>${reviewAnswerLine(item,fullAnswers)}<p><strong>Target:</strong> ${escapeHtml(item.target)}</p><button type="button" class="small ai-explanation-btn" data-question-id="${escapeHtml(item.id)}">AI Explanation</button></article>`;}).join('')}`:`<p>${wrongOnly?'No answered questions were incorrect.':'No questions to review.'}</p>`;
+      $('review-list').innerHTML=review.length?`<h2>Review queue</h2>${review.map(item=>{const status=!item.answer?'Not answered':item.correct?'Correct':'Incorrect';const statusClass=item.correct?'correct':item.answer?'incorrect':'';const flagBadge=item.flagged?' <span class="review-flag">Flagged</span>':'';return`<article class="review-item"><h3>Question ${item.number} · ${item.id}${flagBadge}: <span class="${statusClass}">${status}</span></h3><p>${escapeHtml(item.stem)}</p>${reviewAnswerLine(item,fullAnswers)}<p><strong>Target:</strong> ${escapeHtml(item.target)}</p><div class="review-actions"><button type="button" class="small ai-explanation-btn" data-question-id="${escapeHtml(item.id)}">AI Explanation</button><button type="button" class="small copy-prompt-btn" data-question-id="${escapeHtml(item.id)}">Copy Prompt</button></div></article>`;}).join('')}`:`<p>${wrongOnly?'No answered questions were incorrect.':'No questions to review.'}</p>`;
       $('review-list').querySelectorAll('.ai-explanation-btn').forEach(button=>button.onclick=()=>{const item=result.items.find(candidate=>candidate.id===button.dataset.questionId);if(item)openAiExplanation(item);});
+      $('review-list').querySelectorAll('.copy-prompt-btn').forEach(button=>button.onclick=()=>{const item=result.items.find(candidate=>candidate.id===button.dataset.questionId);if(item)copyAiExplanationPrompt(item,button);});
     }
     function parseBankFile(text,name){
       if(!name.toLowerCase().endsWith('.json'))throw new Error('Custom banks must be JSON files (.json). JavaScript bank files cannot be opened.');
