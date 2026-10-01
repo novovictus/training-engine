@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "bankId": "cysa-plus-cs0-003-ultra-violence-v1",
+  "bankVersion": "1.0.0",
+  "title": "CompTIA CySA+ CS0-003 Ultra-Violence Bank v1",
+  "questions": [
+    {
+      "id": "Q001",
+      "number": 1,
+      "domain": "1",
+      "target": "1.2 Network indicators / beaconing and DNS",
+      "stem": "A workstation makes an outbound DNS query every 60 seconds to a domain that resolves to a different IP address each time. The host then opens a short TLS session to the returned IP, transfers 2-4 KB, and disconnects. No user is logged on. Which analyst conclusion is BEST supported by the evidence?",
+      "options": {
+        "A": "The behavior is most consistent with automated command-and-control beaconing using DNS-based infrastructure rotation",
+        "B": "The behavior most strongly indicates a DNS cache poisoning attack against the workstation",
+        "C": "The behavior is best explained by a vulnerability scanner performing authenticated discovery",
+        "D": "The behavior is most consistent with normal certificate revocation checking against a CDN"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q002",
+      "number": 2,
+      "domain": "1",
+      "target": "1.2 Host indicators / suspicious PowerShell",
+      "stem": "An EDR alert captures this command on a user workstation:\n\npowershell.exe -NoP -W Hidden -EncodedCommand JAB3AGMAPQ...\n\nThe process tree shows WINWORD.EXE spawning powershell.exe immediately after the user opened an emailed document. What should the analyst do FIRST?",
+      "options": {
+        "A": "Decode and inspect the PowerShell payload while preserving the original command and process-tree evidence",
+        "B": "Reimage the workstation immediately before collecting additional volatile evidence",
+        "C": "Block all outbound HTTPS traffic from the subnet until the attachment is classified",
+        "D": "Reset the user's password because Office applications should never spawn child processes"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q003",
+      "number": 3,
+      "domain": "1",
+      "target": "1.2 Email analysis / SPF DKIM DMARC",
+      "stem": "A phishing message passes SPF because it was sent through an authorized third-party mail service, but the visible From: domain is not aligned with the authenticated envelope domain. DKIM is absent. The organization's DMARC policy is p=reject. Which result should the receiving system produce if DMARC is evaluated correctly?",
+      "options": {
+        "A": "Reject the message because neither an aligned SPF result nor an aligned DKIM result satisfies DMARC",
+        "B": "Accept the message because any SPF pass satisfies DMARC regardless of domain alignment",
+        "C": "Quarantine the message only if both SPF and DKIM explicitly fail cryptographic validation",
+        "D": "Accept the message because DMARC applies only when DKIM is present"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q004",
+      "number": 4,
+      "domain": "1",
+      "target": "1.3 Threat intelligence / confidence and timeliness",
+      "stem": "A threat-intelligence feed reports that a newly observed IP belongs to a ransomware affiliate. The indicator was observed once 11 months ago, has not appeared in internal telemetry, and currently hosts a major cloud provider's shared service. How should an analyst use the indicator?",
+      "options": {
+        "A": "Treat it as low-confidence context and require corroborating evidence before blocking",
+        "B": "Block the IP globally because ransomware attribution outweighs indicator age and shared hosting",
+        "C": "Ignore the indicator permanently because any cloud-hosted IP is unsuitable for threat intelligence",
+        "D": "Escalate directly to incident declaration because the feed identified a ransomware affiliate"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q005",
+      "number": 5,
+      "domain": "1",
+      "target": "1.5 Automation suitability",
+      "stem": "A SOC wants to automate alert handling. Which task is the BEST candidate for full automation with no analyst approval?",
+      "options": {
+        "A": "Enrich an IP indicator with reputation, ASN, geolocation, and prior internal sightings",
+        "B": "Disable a privileged user account when UEBA raises a high-risk score",
+        "C": "Contain a production database server after a single malware alert",
+        "D": "Close phishing incidents automatically when the sender domain has no prior reputation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q006",
+      "number": 6,
+      "domain": "1",
+      "target": "1.1 Time synchronization / log correlation",
+      "stem": "An analyst correlates authentication logs from a domain controller with firewall events. The domain controller clock is 7 minutes fast, while the firewall is synchronized to UTC. A suspicious login appears to occur after the outbound connection it supposedly initiated. What is the BEST next step?",
+      "options": {
+        "A": "Normalize the timestamps using verified clock offsets before drawing conclusions about event order",
+        "B": "Discard the domain-controller logs because unsynchronized logs cannot be used as evidence",
+        "C": "Convert both log sources to the analyst's local time zone and preserve that as the authoritative timeline",
+        "D": "Assume the firewall timestamp is incorrect because network devices commonly drift more than servers"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q007",
+      "number": 7,
+      "domain": "1",
+      "target": "1.2 User behavior / impossible travel",
+      "stem": "A user successfully authenticates from Pennsylvania at 14:02 and from Germany at 14:11. Both sessions use the same browser family. The German event originates from the company's secure web gateway egress IP. What should the analyst conclude FIRST?",
+      "options": {
+        "A": "Validate the network path and proxy architecture before treating the event as impossible travel",
+        "B": "Declare credential compromise because the geographic distance is physically impossible",
+        "C": "Reset the user's password because shared browser families indicate session-token theft",
+        "D": "Suppress all future geolocation alerts for the user because corporate proxies make them unreliable"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q008",
+      "number": 8,
+      "domain": "1",
+      "target": "1.2 Data exfiltration / protocol behavior",
+      "stem": "A server that normally sends small DNS requests begins issuing long TXT queries to a newly registered domain. Query volume is low but continuous, and the encoded payload changes each time. Which additional evidence would BEST strengthen the hypothesis of DNS-based exfiltration?",
+      "options": {
+        "A": "Corresponding growth in outbound encoded data with little or no legitimate resolver response content",
+        "B": "An increase in failed interactive logons on an unrelated workstation",
+        "C": "A reduction in CPU utilization on the DNS server during the same period",
+        "D": "A valid TLS certificate on the authoritative name server"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q009",
+      "number": 9,
+      "domain": "2",
+      "target": "2.1 Credentialed vs non-credentialed scanning",
+      "stem": "A vulnerability scanner reports that a Windows server is fully patched. An authenticated manual review shows two missing security updates that the scanner did not detect. The scanner account can log on but cannot read the local update inventory. What is the BEST explanation?",
+      "options": {
+        "A": "The scan is nominally credentialed but lacks sufficient privileges to perform complete local checks",
+        "B": "The scanner produced a false positive because the patches are actually missing",
+        "C": "The discrepancy proves the vulnerability scanner signatures are outdated",
+        "D": "The server should be scanned externally because external scans have greater host visibility"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q010",
+      "number": 10,
+      "domain": "2",
+      "target": "2.2 Tool selection / cloud assessment",
+      "stem": "A security team must answer three questions about an AWS account: whether IAM policies violate a hardening benchmark, whether risky configuration exists across services, and whether an attacker with current credentials can chain permissions into privilege escalation. Which tool sequence BEST matches those goals?",
+      "options": {
+        "A": "Prowler, Scout Suite, then Pacu",
+        "B": "Pacu, Prowler, then Scout Suite",
+        "C": "Scout Suite, Pacu, then Prowler",
+        "D": "Nmap, Burp Suite, then Recon-ng"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q011",
+      "number": 11,
+      "domain": "2",
+      "target": "2.3 CVSS plus business context",
+      "stem": "Two vulnerabilities have identical CVSS base scores of 9.8. Vulnerability A affects an internet-facing payment service with active exploitation reported in the wild. Vulnerability B affects an isolated test system scheduled for decommissioning next week. Which remediation decision is BEST?",
+      "options": {
+        "A": "Prioritize Vulnerability A because exploit activity, exposure, and asset value materially increase operational risk",
+        "B": "Prioritize both equally because equal CVSS base scores require equal remediation priority",
+        "C": "Prioritize Vulnerability B because isolated systems are more difficult to monitor",
+        "D": "Prioritize Vulnerability B because decommissioning indicates the system is business critical"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q012",
+      "number": 12,
+      "domain": "2",
+      "target": "2.4 SSRF",
+      "stem": "A web application accepts a user-supplied image URL and retrieves the resource server-side. An attacker submits http://169.254.169.254/latest/meta-data/ and receives cloud instance metadata in the application response. Which control MOST directly addresses the vulnerability?",
+      "options": {
+        "A": "Restrict server-side outbound requests with allowlists and block access to link-local and internal metadata endpoints",
+        "B": "Encode the returned HTML to prevent stored cross-site scripting",
+        "C": "Require anti-CSRF tokens on the image-upload form",
+        "D": "Increase TLS certificate validation on outbound requests"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q013",
+      "number": 13,
+      "domain": "2",
+      "target": "2.4 Broken access control / IDOR",
+      "stem": "An authenticated user changes /api/invoices/7421 to /api/invoices/7422 and receives another customer's invoice. The application verifies that the requester is logged in but does not verify ownership of the requested object. Which remediation is BEST?",
+      "options": {
+        "A": "Enforce object-level authorization on every request using the authenticated user's permitted resources",
+        "B": "Randomize invoice identifiers so adjacent records cannot be guessed",
+        "C": "Add a WAF rule that blocks requests containing numeric object identifiers",
+        "D": "Require stronger password complexity for all invoice users"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q014",
+      "number": 14,
+      "domain": "2",
+      "target": "2.4 SQL injection / parameterized queries",
+      "stem": "A web application uses this query construction:\n\nquery = \"SELECT * FROM users WHERE name='\" + input + \"'\";\n\nInput validation rejects semicolons and comment characters, but the application remains vulnerable. Which remediation is MOST appropriate?",
+      "options": {
+        "A": "Replace string concatenation with parameterized queries and bind the input as data",
+        "B": "Expand the blacklist to include additional SQL keywords",
+        "C": "HTML-encode the username before concatenating it into the SQL statement",
+        "D": "Require MFA before allowing users to submit the form"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q015",
+      "number": 15,
+      "domain": "2",
+      "target": "2.5 Vulnerability response / compensating controls",
+      "stem": "A vendor confirms that a critical appliance vulnerability cannot be patched for six weeks. The appliance must remain online, but exploitation requires direct access to its management interface. Which action is BEST while awaiting the patch?",
+      "options": {
+        "A": "Restrict management access to a dedicated admin segment and monitor for exploitation attempts",
+        "B": "Accept the vulnerability because a vendor patch has already been scheduled",
+        "C": "Disable vulnerability scanning to avoid destabilizing the appliance before patching",
+        "D": "Increase the CVSS score in the tracking system so the appliance receives more attention"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q016",
+      "number": 16,
+      "domain": "2",
+      "target": "2.1 Active vs passive scanning in OT",
+      "stem": "An organization needs visibility into unmanaged devices on a fragile industrial-control network where active probing may disrupt legacy controllers. Which approach is BEST for initial discovery?",
+      "options": {
+        "A": "Passive network monitoring to observe communications and identify assets without transmitting probes",
+        "B": "Aggressive Nmap version detection against every address during production hours",
+        "C": "Credentialed vulnerability scans using the domain administrator account",
+        "D": "Dynamic application security testing against exposed controller web interfaces"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q017",
+      "number": 17,
+      "domain": "3",
+      "target": "3.2 Incident response / containment sequencing",
+      "stem": "EDR detects ransomware encryption on one workstation. The same user account authenticated to three file servers in the previous ten minutes, but no encryption has been observed there. What should the incident responder do NEXT?",
+      "options": {
+        "A": "Isolate the affected workstation and constrain the suspected account while rapidly checking the file servers for related activity",
+        "B": "Reimage the workstation first, then investigate whether the account was involved",
+        "C": "Shut down all three file servers immediately regardless of evidence to guarantee containment",
+        "D": "Wait for confirmed encryption on the file servers before changing account access"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q018",
+      "number": 18,
+      "domain": "3",
+      "target": "3.2 Evidence acquisition / volatile data",
+      "stem": "A compromised server is still running and maintains an active outbound connection to an attacker-controlled host. Legal counsel has requested preservation for possible litigation. Which action BEST balances forensic value and containment?",
+      "options": {
+        "A": "Capture volatile evidence such as memory and active connections, then isolate the system while preserving chain of custody",
+        "B": "Power off the server immediately because disk evidence is always more valuable than volatile evidence",
+        "C": "Leave the server online until counsel provides written approval for every evidence-collection step",
+        "D": "Reboot the server into safe mode before collecting memory to reduce malware interference"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q019",
+      "number": 19,
+      "domain": "3",
+      "target": "3.3 Root cause vs lessons learned",
+      "stem": "An incident review finds that an exposed remote-management service was compromised using a valid contractor account whose access should have been removed six months earlier. Which statement BEST distinguishes root cause from a lesson learned?",
+      "options": {
+        "A": "Root cause is the failure to revoke access; a lesson learned is to improve offboarding controls and verification",
+        "B": "Root cause is the attacker's use of valid credentials; a lesson learned is that contractors are inherently risky",
+        "C": "Root cause is the internet exposure; a lesson learned is to stop collecting authentication logs",
+        "D": "Root cause is the incident itself; a lesson learned is to document it for future audits"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q020",
+      "number": 20,
+      "domain": "3",
+      "target": "3.1 Attack frameworks / Diamond Model",
+      "stem": "During analysis of a campaign, investigators identify a phishing domain, the VPS hosting it, a PowerShell downloader, and the finance employees who received the lure. In Diamond Model terms, which mapping is MOST accurate?",
+      "options": {
+        "A": "Infrastructure: phishing domain/VPS; capability: PowerShell downloader; victim: finance employees",
+        "B": "Capability: phishing domain/VPS; infrastructure: PowerShell downloader; adversary: finance employees",
+        "C": "Victim: phishing domain/VPS; capability: finance employees; infrastructure: PowerShell downloader",
+        "D": "Adversary: phishing domain/VPS; victim: PowerShell downloader; capability: finance employees"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q021",
+      "number": 21,
+      "domain": "3",
+      "target": "3.2 Recovery / recurrence",
+      "stem": "After malware is eradicated from a server, the team restores service from a known-good image. Twelve hours later, the same malicious scheduled task reappears. Which action should occur NEXT?",
+      "options": {
+        "A": "Investigate the persistence or reinfection source before repeating recovery",
+        "B": "Restore the same image again because recovery has already been validated",
+        "C": "Close the incident because the original malware was successfully removed",
+        "D": "Disable all scheduled tasks permanently to prevent recurrence"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q022",
+      "number": 22,
+      "domain": "4",
+      "target": "4.1 Vulnerability reporting / recurrence trends",
+      "stem": "A quarterly vulnerability report shows that critical findings are patched within SLA, but the same misconfiguration reappears on newly deployed systems each month. Which metric or analysis would BEST expose the underlying program weakness?",
+      "options": {
+        "A": "Recurrence trend by finding type and deployment source",
+        "B": "Average CVSS score across all closed findings",
+        "C": "Total number of scanner plugins executed each month",
+        "D": "Percentage of systems with successful authenticated scans"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q023",
+      "number": 23,
+      "domain": "4",
+      "target": "4.2 Incident reporting / executive summary",
+      "stem": "An executive incident report must describe a credential-theft incident affecting 24 users. Which content belongs in the executive summary rather than the technical appendix?",
+      "options": {
+        "A": "Business impact, scope, current status, major actions taken, and key recommendations",
+        "B": "Complete PowerShell command lines, registry paths, and packet captures",
+        "C": "Every IOC with first-seen and last-seen timestamps",
+        "D": "Raw EDR event records for each affected endpoint"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q024",
+      "number": 24,
+      "domain": "4",
+      "target": "4.2 Regulatory and legal communication",
+      "stem": "An incident involves possible exposure of regulated customer data. The technical team has not yet confirmed the exact number of affected records. What is the BEST communication approach?",
+      "options": {
+        "A": "Engage legal and compliance stakeholders early, report verified facts, and clearly distinguish confirmed impact from estimates",
+        "B": "Delay all internal escalation until the precise record count is known",
+        "C": "Notify customers immediately with the maximum possible exposure estimate to avoid understating risk",
+        "D": "Provide law enforcement with all collected data before consulting legal counsel"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q025",
+      "number": 25,
+      "domain": "4",
+      "target": "4.1 SLA vs SLO",
+      "stem": "A vulnerability-management policy states that critical internet-facing findings must be remediated within 14 days. A managed-service contract separately guarantees monthly scanning coverage of 99.5% of in-scope assets. Which statement is MOST accurate?",
+      "options": {
+        "A": "The 14-day remediation target is an internal SLO, while the contractual 99.5% commitment is an SLA obligation",
+        "B": "Both statements are SLAs because they contain measurable targets",
+        "C": "Both statements are SLOs because security metrics cannot be contractual",
+        "D": "The scanning commitment is an SLO, while the remediation target is an SLA regardless of contract language"
+      },
+      "answer": "A"
+    }
+  ]
+}
