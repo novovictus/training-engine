@@ -9,6 +9,7 @@ const questionKeys=['answer','domain','id','options','stem','target'];
 const reservedQuestionIds=new Set(['__proto__','constructor','prototype']);
 const expected={
   'cysa-plus-cs0-003-focused-bank-v4.1.json':{count:100,digest:'65cc81c16cff4d7409f729f735f7af704192bbd1ebbbfd705fc0582290d3b754'},
+  'cysa-plus-cs0-003-ultra-violence-bank-v1.json':{count:25,digest:'01b36c3df72e69112c038e6076759133e76c1e6703638b605a181bd5a9f982af'},
   'test-fixture-bank.json':{count:4,digest:'2aced199b9aa6168938db5e3feb9b63d9041da8be6c8edc01d6ed3f11104264c'},
   'secai-plus-cy0-001-comprehensive-bank-v1.json':{count:168,digest:'ee3ae47f9a19b8ee6de35ce7e4fd9e4355412c75e1f5579dc37b75d9de71688a'},
   'secai-plus-cy0-001-terminology-drill-bank-v1.json':{count:195,digest:'1928c12939259ef5b53fe4612ced24aed76e29d75d84db1acf1c2f8f8fb260f7'},
