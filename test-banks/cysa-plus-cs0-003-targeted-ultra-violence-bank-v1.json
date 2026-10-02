@@ -1,266 +1,266 @@
 {
   "schemaVersion": 2,
   "bankId": "cysa-plus-cs0-003-targeted-ultra-violence-v1",
-  "bankVersion": "1.0.0",
+  "bankVersion": "1.1.0",
   "title": "CompTIA CySA+ CS0-003 Targeted Ultra-Violence Bank v1",
   "questions": [
     {
       "id": "Q001",
       "domain": "1",
-      "target": "1.3 Email analysis / Received-header trust boundaries",
-      "stem": "A phishing investigation produces these headers, listed top to bottom:\n\nReceived: from edge-gw.corp.example (10.10.5.20) by mx.corp.example; 18:42:11\nReceived: from smtp.partner.example (198.51.100.74) by edge-gw.corp.example; 18:42:08\nReceived: from payroll.corp.example (203.0.113.44) by smtp.partner.example; 18:41:55\nFrom: payroll@corp.example\n\nThe organization trusts edge-gw.corp.example but has no trust relationship with smtp.partner.example. Which conclusion is MOST defensible?",
+      "target": "1.2 Endpoint analysis / process injection evidence",
+      "stem": "EDR records a signed Microsoft process making an unusual outbound connection. Disk hash, parent process, and command line all appear normal. Which additional artifact would MOST strongly support that code was injected into the running process?",
       "options": {
-        "A": "The oldest Received header proves payroll.corp.example originated the message",
-        "B": "The edge gateway confirms only that smtp.partner.example delivered the message to it",
-        "C": "The visible From address validates the third Received header as authoritative",
-        "D": "The message originated internally because the newest Received header contains a private IP"
+        "A": "An executable private memory region containing code that is not backed by a loaded image",
+        "B": "A loaded copy of winhttp.dll from the Windows system directory",
+        "C": "A normal user token associated with the interactive session",
+        "D": "A valid Authenticode signature on the on-disk executable"
       },
-      "answer": "B"
+      "answer": "A"
     },
     {
       "id": "Q002",
       "domain": "1",
-      "target": "1.2 Endpoint analysis / process injection evidence",
-      "stem": "EDR shows a legitimate signed process, svchost.exe, opening an outbound TLS session to an unusual host. The on-disk executable hash is valid and its parent process is expected. Which additional finding would MOST strongly support code injection into the running process?",
+      "target": "1.2 Endpoint analysis / hollowing versus legitimate execution",
+      "stem": "A process named updater.exe starts from its expected signed path. Memory analysis shows its original image sections are unmapped and the process entry point now lies inside a newly allocated executable region. Which interpretation is BEST supported?",
       "options": {
-        "A": "The process has an executable private memory region that is not backed by an image file",
-        "B": "The process loads crypt32.dll and winhttp.dll from the Windows system directory",
-        "C": "The process runs under a service account with network access",
-        "D": "The process has been running continuously since the last system boot"
+        "A": "The process is using a standard Windows update mechanism",
+        "B": "The process was likely hollowed or otherwise had its executable image replaced in memory",
+        "C": "The process loaded a legitimate unsigned plug-in",
+        "D": "The executable was modified on disk after launch"
       },
-      "answer": "A"
+      "answer": "B"
     },
     {
       "id": "Q003",
       "domain": "1",
-      "target": "1.4 Threat hunting / persistence telemetry",
-      "stem": "A threat hunter suspects persistence through malicious scheduled tasks created remotely with schtasks.exe. Process-creation logs are available, but they do not reliably record task XML or later task execution. Which additional source would BEST test the hypothesis?",
+      "target": "1.2 Endpoint analysis / DLL injection evidence",
+      "stem": "An analyst suspects DLL injection into a long-running application. Which finding would provide the strongest corroboration?",
       "options": {
-        "A": "DNS resolver logs showing queries made by the suspected endpoints",
-        "B": "Windows Task Scheduler operational logs showing task creation and execution",
-        "C": "Firewall logs showing outbound connections from the endpoints",
-        "D": "Domain-controller logs showing successful interactive user logons"
+        "A": "The application has a child process created by explorer.exe",
+        "B": "The process imports kernel32.dll and advapi32.dll",
+        "C": "A DLL is mapped into the process from a user-writable path and was not part of the normal module baseline",
+        "D": "The process has several established TCP connections"
       },
-      "answer": "B"
+      "answer": "C"
     },
     {
       "id": "Q004",
       "domain": "1",
-      "target": "1.1 Containerization / durable security telemetry",
-      "stem": "An autoscaled Kubernetes environment destroys worker nodes after workloads drain. Security needs evidence of container stdout/stderr, Kubernetes audit activity, and node security events for 60 days even after nodes disappear. Which architecture BEST meets the requirement?",
+      "target": "1.3 Network telemetry / source selection",
+      "stem": "The SOC needs 60 days of evidence showing which internal hosts queried specific domains and which TLS server names they contacted. Payload retention is prohibited. Which source BEST fits?",
       "options": {
-        "A": "Increase local log rotation limits on every worker node",
-        "B": "Snapshot each worker node once per week and archive the volumes",
-        "C": "Forward workload, audit, and node telemetry to external centralized storage",
-        "D": "Bake debug logging into every container image and retain the images"
-      },
-      "answer": "C"
-    },
-    {
-      "id": "Q005",
-      "domain": "1",
-      "target": "1.3 Network evidence / protocol metadata",
-      "stem": "A SOC must retain evidence of DNS lookups and TLS server names across high-volume links for 90 days. Storing payload content is prohibited and full packet capture exceeds the budget. Which source BEST satisfies the requirement?",
-      "options": {
-        "A": "Flow records alone from core routers",
-        "B": "Protocol metadata from a passive network sensor",
-        "C": "Only IDS alerts that match known signatures",
-        "D": "Endpoint antivirus logs from internet-facing systems"
+        "A": "Flow records containing source, destination, ports, and byte counts",
+        "B": "Passive protocol metadata that records DNS transactions and TLS handshake fields",
+        "C": "Only IDS alerts generated when signatures match known malicious traffic",
+        "D": "Rolling packet capture retained for 24 hours"
       },
       "answer": "B"
     },
     {
-      "id": "Q006",
+      "id": "Q005",
       "domain": "1",
-      "target": "1.2 Authentication analysis / source-versus-account aggregation",
-      "stem": "An attacker attempts two passwords against each of 900 accounts over 12 hours from one source IP. No account reaches the lockout threshold. Which detection logic is MOST likely to identify the activity?",
+      "target": "1.3 Network telemetry / flow versus protocol metadata",
+      "stem": "Investigators need to determine whether a host transferred unusually large volumes to a rare external IP over TCP/443, but they do not need domain names or payload content. Which telemetry is MOST efficient?",
       "options": {
-        "A": "Count failed logons per account and alert when any account reaches the lockout threshold",
-        "B": "Alert on successful logons that occur outside normal business hours",
-        "C": "Aggregate failed authentication attempts by source across many distinct accounts",
-        "D": "Alert when a single account authenticates from more than one country"
-      },
-      "answer": "C"
-    },
-    {
-      "id": "Q007",
-      "domain": "1",
-      "target": "1.5 Automation / critical-asset guardrails",
-      "stem": "A SOAR workflow isolates endpoints automatically after a high-confidence malware verdict. Leadership wants to retain automated containment but prevent the workflow from isolating domain controllers and certificate authorities without review. Which change BEST fits?",
-      "options": {
-        "A": "Require analyst approval when asset criticality indicates a tier-0 system",
-        "B": "Disable automated isolation for all servers",
-        "C": "Require two malware engines to agree before any endpoint can be isolated",
-        "D": "Reduce the severity of malware alerts originating from infrastructure servers"
+        "A": "NetFlow or IPFIX records",
+        "B": "Full packet capture",
+        "C": "DNS resolver logs only",
+        "D": "Endpoint file-integrity monitoring"
       },
       "answer": "A"
     },
     {
+      "id": "Q006",
+      "domain": "1",
+      "target": "1.3 Network telemetry / IDS versus metadata",
+      "stem": "A retrospective hunt asks which workstations contacted a newly identified malicious domain during the previous 30 days. The IDS had no signature for the domain at the time. Which retained data would be MOST useful?",
+      "options": {
+        "A": "Historical DNS query logs or passive DNS metadata",
+        "B": "Only the IDS alert database",
+        "C": "Switch CAM tables from the current day",
+        "D": "Endpoint CPU utilization metrics"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q007",
+      "domain": "1",
+      "target": "1.3 Email analysis / Received-header trust boundaries",
+      "stem": "A message contains three Received headers. The corporate gateway added the newest header after accepting the message from an external relay. The external relay added the next older header claiming it received the message from payroll.example.com. Which statement is MOST defensible?",
+      "options": {
+        "A": "The payroll system is verified because it appears in the oldest Received header",
+        "B": "The corporate gateway verifies only the external relay that directly connected to it",
+        "C": "All Received headers are equally trustworthy because MTAs generate them automatically",
+        "D": "The visible From header proves the external relay's older header is accurate"
+      },
+      "answer": "B"
+    },
+    {
       "id": "Q008",
       "domain": "1",
-      "target": "1.2 Application and host evidence / strongest corroboration",
-      "stem": "An application server begins creating large temporary archives shortly before outbound HTTPS transfers. Which additional observation would MOST strongly support a data-staging-and-exfiltration hypothesis?",
+      "target": "1.3 Email analysis / authentication versus header claims",
+      "stem": "SPF passes for bounce.vendor.example, DKIM passes with d=vendor.example, and the visible From domain is finance.corp.example. There is no organizational-domain alignment. DMARC for finance.corp.example is p=reject. What should a compliant receiver conclude?",
       "options": {
-        "A": "The server's CPU utilization rises during scheduled backup windows",
-        "B": "The archive contents contain recently accessed sensitive files and are deleted after transfer",
-        "C": "The destination uses a valid certificate from a public certificate authority",
-        "D": "The web service account has read access to its normal application directories"
+        "A": "Authentication succeeded because both SPF and DKIM passed",
+        "B": "DMARC fails because neither authenticated identifier aligns with the visible From domain",
+        "C": "DMARC passes because DKIM is cryptographically valid",
+        "D": "The message should be accepted because SPF evaluated the envelope sender successfully"
       },
       "answer": "B"
     },
     {
       "id": "Q009",
-      "domain": "2",
-      "target": "2.2 Static versus dynamic binary analysis",
-      "stem": "An analyst must identify which code paths in a suspicious executable invoke credential-access APIs. Policy prohibits executing the sample, but full reverse engineering is permitted. Which technique is the BEST fit?",
+      "domain": "1",
+      "target": "1.4 Threat hunting / direct telemetry for persistence",
+      "stem": "A hunt hypothesis is that attackers are creating new Windows services for persistence. Process creation and firewall logs are already retained. Which additional telemetry would test the hypothesis MOST directly?",
       "options": {
-        "A": "Run the sample in a sandbox and capture API calls",
-        "B": "Attach GDB and step through execution at the credential-access functions",
-        "C": "Disassemble and decompile the binary, then trace cross-references statically",
-        "D": "Run only the strings utility and infer control flow from readable text"
+        "A": "Windows service-installation events and service-control-manager logs",
+        "B": "DNS logs from internal resolvers",
+        "C": "Proxy logs for outbound web browsing",
+        "D": "NetFlow records from the data-center core"
       },
-      "answer": "C"
+      "answer": "A"
     },
     {
       "id": "Q010",
       "domain": "2",
-      "target": "2.2 Dynamic binary analysis / debugger selection",
-      "stem": "A native Linux daemon crashes only after a specific malformed request. The researcher is permitted to execute the service and needs registers, stack frames, memory, and instruction-level state at the crash. Which approach BEST fits?",
+      "target": "2.2 Vulnerability validation / backported fixes",
+      "stem": "A scanner flags a Linux service based on an upstream version banner. The distribution vendor commonly backports security fixes without changing that upstream version string. What should the analyst do before accepting the finding?",
       "options": {
-        "A": "Open the binary in a static disassembler and review imported functions",
-        "B": "Attach GDB to the running process and reproduce the crash",
-        "C": "Run strings against the binary and search for the malformed request",
-        "D": "Use Scout Suite to inspect the host's cloud configuration"
+        "A": "Treat the banner as definitive evidence of vulnerability",
+        "B": "Verify the installed package release against the vendor advisory and changelog",
+        "C": "Close the finding because supported distributions are assumed secure",
+        "D": "Increase scan intensity until the banner changes"
       },
       "answer": "B"
     },
     {
       "id": "Q011",
       "domain": "2",
-      "target": "2.1 Agent versus network-based vulnerability assessment",
-      "stem": "A workforce is mostly remote and often does not connect to the corporate VPN for weeks. Security needs authenticated checks of installed patches and local configuration without requiring devices to be reachable from an internal scanner. Which design BEST meets the requirement?",
+      "target": "2.2 Static versus dynamic analysis",
+      "stem": "A suspicious native executable must be examined without execution. The analyst needs to identify functions that reference credential APIs and determine likely call paths. Which approach BEST fits?",
       "options": {
-        "A": "Deploy endpoint scan agents that report results when systems have internet access",
-        "B": "Extend the internal scan window so offline laptops have more time to reconnect",
-        "C": "Scan each laptop's public address from an external scanner",
-        "D": "Require unauthenticated scans from the nearest branch office"
+        "A": "Static disassembly and decompilation with cross-reference analysis",
+        "B": "Attach a debugger and set breakpoints on the credential APIs",
+        "C": "Execute the sample in a sandbox with network access disabled",
+        "D": "Run only strings and infer control flow from printable text"
       },
       "answer": "A"
     },
     {
       "id": "Q012",
       "domain": "2",
-      "target": "2.2 Vulnerability validation / vendor backports",
-      "stem": "A scanner flags an enterprise Linux host for a CVE based on an OpenSSL banner that reports an older upstream version. The distribution commonly backports fixes without changing the upstream version string. What should the analyst do NEXT?",
+      "target": "2.1 Vulnerability scanning / roaming endpoints",
+      "stem": "Most corporate laptops remain off VPN for long periods, but security needs authenticated patch and configuration checks whenever devices are online. Which design BEST meets the requirement?",
       "options": {
-        "A": "Accept the finding because the banner is authoritative for patch status",
-        "B": "Close the finding because supported enterprise distributions are assumed patched",
-        "C": "Verify the installed package build against the vendor advisory and changelog",
-        "D": "Increase scan intensity until a newer banner is returned"
+        "A": "Use endpoint vulnerability agents that report over the internet",
+        "B": "Run a longer credentialed scan from the internal scanner each night",
+        "C": "Scan each device's public IP from the internet",
+        "D": "Rely on unauthenticated external scans for patch status"
       },
-      "answer": "C"
+      "answer": "A"
     },
     {
       "id": "Q013",
       "domain": "2",
-      "target": "2.4 Insecure design / race conditions",
-      "stem": "An API verifies that an inventory item is available, then decrements inventory in a separate database operation. Concurrent requests can all pass the availability check and drive inventory below zero. Which remediation MOST directly addresses the flaw?",
+      "target": "2.3 Vulnerability prioritization / exploitability context",
+      "stem": "Two findings both have CVSS 9.8. One affects an internet-facing production API with active exploitation reported publicly. The other affects an isolated test host scheduled for decommissioning next week. Which action is BEST?",
       "options": {
-        "A": "Apply input validation to reject negative order quantities",
-        "B": "Make the check-and-update operation atomic with appropriate transaction locking",
-        "C": "Add CAPTCHA to reduce the rate of automated requests",
-        "D": "Return generic error messages when inventory becomes negative"
+        "A": "Treat both as equal priority because the base scores match",
+        "B": "Prioritize the production API and document the environmental and threat context",
+        "C": "Prioritize the test host because isolated systems receive less monitoring",
+        "D": "Lower the production finding because public exploits are already understood"
       },
       "answer": "B"
     },
     {
       "id": "Q014",
       "domain": "2",
-      "target": "2.4 XML parser hardening / XXE",
-      "stem": "A document-processing service accepts XML uploads. A test file references an external entity using file:///etc/passwd and the parser returns local file contents. Which mitigation MOST directly removes the vulnerable behavior?",
+      "target": "2.4 Insecure design / race conditions",
+      "stem": "An application checks available credit in one database query and posts a charge in a second. Concurrent requests can all pass the first check and exceed the limit. Which fix MOST directly addresses the root cause?",
       "options": {
-        "A": "Disable DTD and external entity resolution in the XML parser",
-        "B": "HTML-encode the XML response before returning it",
-        "C": "Require authentication before allowing file uploads",
-        "D": "Reject files larger than a configured maximum size"
-      },
-      "answer": "A"
-    },
-    {
-      "id": "Q015",
-      "domain": "2",
-      "target": "2.5 Vulnerability response / process memory after patching",
-      "stem": "A Linux package update installs a fixed shared library, but a credentialed scan still identifies the vulnerable library mapped into long-running web worker processes. What should the administrator do FIRST?",
-      "options": {
-        "A": "Reinstall the package from a different mirror",
-        "B": "Restart the affected processes so they load the patched library, then validate again",
-        "C": "Mark the scanner finding as a false positive because the package database is current",
-        "D": "Disable the scanner's local checks until the next maintenance window"
+        "A": "Add input validation for the charge amount",
+        "B": "Make the check and update atomic with appropriate transaction locking",
+        "C": "Require reauthentication before each charge",
+        "D": "Rate-limit each client to one request per second"
       },
       "answer": "B"
     },
     {
+      "id": "Q015",
+      "domain": "2",
+      "target": "2.5 Patch validation / loaded vulnerable libraries",
+      "stem": "A patched shared library is installed successfully, but a scanner still detects the old vulnerable version mapped into several long-running application processes. What should happen NEXT?",
+      "options": {
+        "A": "Restart the affected processes so they load the patched library, then rescan",
+        "B": "Reinstall the package from a different mirror",
+        "C": "Mark the finding false because the package database is current",
+        "D": "Disable local vulnerability checks until the next maintenance cycle"
+      },
+      "answer": "A"
+    },
+    {
       "id": "Q016",
       "domain": "3",
-      "target": "3.2 Containment / preserve service while removing attacker access",
-      "stem": "An attacker is actively using a compromised service account from two confirmed hosts to query a customer database. A redundant application tier can absorb the workload. Which containment action is BEST?",
+      "target": "3.2 Containment / coordinated action",
+      "stem": "Responders confirm two compromised hosts, an abused privileged account, and three active C2 destinations. The attacker is still accessing sensitive records. Which containment plan is BEST?",
       "options": {
-        "A": "Reset only the service-account password and leave both hosts online for observation",
-        "B": "Isolate the two compromised hosts and revoke the service account while shifting workload to clean capacity",
-        "C": "Reimage the database server before changing account access",
-        "D": "Wait for additional attacker activity to identify the full intrusion path"
+        "A": "Block one C2 destination immediately and watch the rest",
+        "B": "Stage isolation of the hosts, revoke the account, and block the C2 destinations in a coordinated action",
+        "C": "Reimage the first host before changing account access",
+        "D": "Delay containment until the full attacker objective is known"
       },
       "answer": "B"
     },
     {
       "id": "Q017",
       "domain": "3",
-      "target": "3.2 Evidence acquisition / live compromise",
-      "stem": "A compromised server is still communicating with command-and-control infrastructure. A replacement node is available, and litigation is possible. Which sequence BEST balances containment and evidentiary value?",
+      "target": "3.3 Lessons learned / root cause versus corrective action",
+      "stem": "A former contractor's remote-access account remained active for months and was later abused with valid credentials. Which statement BEST separates root cause from corrective action?",
       "options": {
-        "A": "Capture volatile evidence, isolate the server, then acquire persistent evidence with documented custody",
-        "B": "Shut the server down immediately and image only the disk",
-        "C": "Leave the server connected until counsel has reviewed every collection command",
-        "D": "Reboot the server before memory acquisition to stop attacker interaction"
+        "A": "Root cause: valid credentials were used; corrective action: eliminate remote access",
+        "B": "Root cause: failure to revoke access; corrective action: strengthen offboarding and periodic access review",
+        "C": "Root cause: the VPN was internet-facing; corrective action: stop collecting VPN logs",
+        "D": "Root cause: the attacker targeted a contractor; corrective action: prohibit contractors"
       },
-      "answer": "A"
+      "answer": "B"
     },
     {
       "id": "Q018",
       "domain": "4",
-      "target": "4.2 Incident reporting / confidence-qualified assessment",
-      "stem": "Email telemetry shows a malicious attachment was delivered and executed shortly before confirmed compromise. No competing initial-access evidence is present, but VPN logs for the relevant period have already expired. Which statement is MOST appropriate in the final report?",
+      "target": "4.2 Incident reporting / calibrated confidence",
+      "stem": "EDR and mail telemetry show a malicious attachment executed shortly before compromise. No competing initial-access evidence is present, but a potentially relevant VPN log source is unavailable for the period. Which wording is BEST for the final report?",
       "options": {
-        "A": "Phishing is confirmed as the initial vector because execution followed delivery",
-        "B": "The initial vector is unknown because one telemetry source is unavailable",
-        "C": "Phishing is the assessed initial vector with stated confidence and a note about the missing VPN telemetry",
-        "D": "VPN compromise should be listed as equally likely because those logs are unavailable"
+        "A": "Phishing is confirmed as the initial vector",
+        "B": "The initial vector cannot be assessed because one data source is missing",
+        "C": "Phishing is the assessed initial vector with stated confidence and the telemetry limitation documented",
+        "D": "VPN compromise is equally likely because those logs are unavailable"
       },
       "answer": "C"
     },
     {
       "id": "Q019",
       "domain": "4",
-      "target": "4.1 Metrics / misleading aggregate performance",
-      "stem": "A report shows median remediation time falling each month, while the number of critical findings older than 90 days continues to rise. The median includes only findings closed during each reporting period. What is the BEST interpretation?",
+      "target": "4.1 Metrics / survivorship bias",
+      "stem": "Median remediation time for critical findings drops from 24 days to 10 days, while the count of critical findings open longer than 90 days doubles. The median includes only findings closed during the month. What BEST explains the divergence?",
       "options": {
-        "A": "The improved median proves the vulnerability-management program is reducing backlog",
-        "B": "The closed-item metric can improve while long-lived open findings continue accumulating",
-        "C": "The increase in aged findings means CVSS scoring has become less accurate",
-        "D": "The median should be replaced with average scanner runtime to remove reporting bias"
+        "A": "The program is improving because the median is lower",
+        "B": "Long-lived open findings are excluded from the closed-item median",
+        "C": "The severity model is assigning too many findings as critical",
+        "D": "The scan engine is taking longer to complete authenticated checks"
       },
       "answer": "B"
     },
     {
       "id": "Q020",
       "domain": "4",
-      "target": "4.2 Executive communication / incomplete impact",
-      "stem": "Responders have confirmed unauthorized access to 18 employee accounts. Investigation of possible data exfiltration is ongoing. Which statement is BEST suited to an executive update?",
+      "target": "4.2 Executive communication / confirmed versus unknown impact",
+      "stem": "Investigators confirm unauthorized access to 27 accounts. Evidence of data exfiltration is still being analyzed. Which statement is MOST appropriate for an executive update?",
       "options": {
-        "A": "Eighteen accounts were compromised and data was stolen",
-        "B": "No data loss occurred because exfiltration has not yet been confirmed",
-        "C": "Eighteen accounts show confirmed unauthorized access; potential data exfiltration remains under investigation",
-        "D": "The incident impact cannot be discussed until every forensic question is resolved"
+        "A": "Twenty-seven accounts were compromised and data was exfiltrated",
+        "B": "No data loss occurred because exfiltration has not been proven",
+        "C": "Twenty-seven accounts show confirmed unauthorized access; possible data exfiltration remains under investigation",
+        "D": "No impact statement should be issued until the investigation is complete"
       },
       "answer": "C"
     }
