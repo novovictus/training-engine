@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 2,
+  "bankId": "cysa-plus-cs0-003-nightmare-v2",
+  "bankVersion": "2.0.0",
+  "title": "CompTIA CySA+ CS0-003 Nightmare Diagnostic Bank v2",
+  "questions": [
+    {
+      "id": "Q001",
+      "domain": "1",
+      "target": "1.1 Log correlation / clock and zone normalization",
+      "stem": "Three sources record activity involving workstation WS-31. The proxy logs in UTC. The domain controller logs at a fixed UTC-5 offset. The EDR agent logs in local time (UTC+1), and its clock was later measured 90 seconds fast.\n\nProxy: 14:02:10 POST files.example-share.net, 3.2 MB out\nDC: 09:01:05 Kerberos TGT request (4768), svc-backup, source WS-31\nEDR: 15:01:50 mshta.exe launched by OUTLOOK.EXE on WS-31\n\nWhich conclusion is best supported after normalization?",
+      "options": {
+        "A": "mshta launch, TGT request, then upload; the launch and ticket request are unrelated events",
+        "B": "TGT request, mshta launch, then upload; the service account likely triggered the launch",
+        "C": "mshta launch, TGT request, then upload; the ticket request cannot have caused the launch",
+        "D": "TGT request, upload, then mshta launch; the launch was cleanup activity after the transfer"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q002",
+      "domain": "1",
+      "target": "1.1 Containerization / ephemeral workload evidence",
+      "stem": "A containerized storefront runs on autoscaling worker nodes that are terminated after 20 minutes of idle time. After a suspected pod compromise, responders find the pod's logs gone because its node was reclaimed. Which architecture change would best prevent this evidence loss?",
+      "options": {
+        "A": "Ship container and cluster audit logs to a collector off the node",
+        "B": "Extend log retention on each worker node's local disk to thirty days",
+        "C": "Raise application logging to debug level inside the container images",
+        "D": "Take a nightly snapshot of every worker node's volume and retain it"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q003",
+      "domain": "1",
+      "target": "1.2 Authentication analysis / low-and-slow password spraying",
+      "stem": "Authentication logs show one external IP address making 3 failed sign-in attempts against each of 600 accounts, spaced hours apart over 18 hours, followed by a single success on one account. The lockout policy is 5 failures in 15 minutes per account, and no account locked. Which detection logic would best have flagged this pattern before the successful sign-in?",
+      "options": {
+        "A": "Alert when any one account records three failures within a one-hour window",
+        "B": "Alert when account lockouts exceed ten distinct accounts within a one-hour window",
+        "C": "Alert when a single account fails from two or more countries within one day",
+        "D": "Alert when one source address fails against many distinct accounts within 24 hours"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q004",
+      "domain": "1",
+      "target": "1.2 Abnormal OS process behavior / process injection",
+      "stem": "An EDR alert shows notepad.exe, signed by Microsoft and started at user logon with no command-line arguments, making an outbound TLS connection to a rarely seen external address. Which additional finding would best confirm process injection?",
+      "options": {
+        "A": "The parent process being explorer.exe, as with other user-launched programs",
+        "B": "A private executable memory region in the process with no backing file on disk",
+        "C": "The process having loaded winhttp.dll, a library that ships with Windows",
+        "D": "The on-disk notepad.exe hash matching the vendor's published hash for that build"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q005",
+      "domain": "1",
+      "target": "1.3 Tool selection / network evidence sources",
+      "stem": "A network team must retain 90 days of evidence showing which hosts resolved which domains and which TLS server names they contacted, across 40 Gbps links. Policy prohibits storing payloads, and full packet capture is unaffordable. Which data source best meets the requirement?",
+      "options": {
+        "A": "NetFlow or IPFIX records exported from the core routers and retained 90 days",
+        "B": "Protocol metadata logs, such as DNS and TLS server names, from a passive sensor",
+        "C": "IDS signature alerts forwarded to the SIEM and retained for 90 days",
+        "D": "Rolling seven-day full packet capture with an indexed search interface"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q006",
+      "domain": "1",
+      "target": "1.3 Email analysis / header trust boundaries",
+      "stem": "Headers from a message claiming to come from the payroll team, listed top to bottom:\n\nReceived: from mail-gw.corp.example (10.1.1.5) by mx.corp.example; Tue 14:03:10\nReceived: from relay7.bulkmail.example (198.51.100.23) by mail-gw.corp.example; Tue 14:03:08\nReceived: from payroll.corp.example (203.0.113.9) by relay7.bulkmail.example; Tue 14:02:55\nFrom: payroll@corp.example\n\nThe company's payroll system has never sent mail through bulkmail.example. Which statement is best supported?",
+      "options": {
+        "A": "The third header is verified because it names the internal payroll system",
+        "B": "The headers are in reverse order, so the third header records final delivery",
+        "C": "The first header shows the message originated inside the corporate network",
+        "D": "The second header is the last verifiable hop; relay7 wrote the third one"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q007",
+      "domain": "1",
+      "target": "1.4 Threat hunting / telemetry for a persistence hypothesis",
+      "stem": "A hunt team hypothesizes that an adversary has established persistence through WMI permanent event subscriptions. Process-creation logging and firewall logs are already available. Which additional telemetry is required to test the hypothesis directly?",
+      "options": {
+        "A": "Sysmon events recording WMI event filter, consumer, and binding creation",
+        "B": "Windows Security events recording service installation on each endpoint",
+        "C": "Domain controller authentication logs for privileged account sign-ins",
+        "D": "DNS query logs from the internal resolvers covering the last 30 days"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q008",
+      "domain": "1",
+      "target": "1.5 Automation / orchestration guardrails",
+      "stem": "A SOAR playbook automatically isolates any host with a high-severity EDR detection. A single false positive isolated a domain controller and caused an authentication outage. Which change best prevents the same class of failure while keeping automation for ordinary hosts?",
+      "options": {
+        "A": "Replace automatic isolation with an email notification to the SOC distribution list",
+        "B": "Require two separate high-severity detections before the playbook isolates any host",
+        "C": "Add a criticality check that requires analyst approval to isolate tier-0 systems",
+        "D": "Lower EDR detection severity so fewer alerts reach the isolation threshold"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q009",
+      "domain": "2",
+      "target": "2.1 Agent vs agentless / roaming endpoints",
+      "stem": "Most laptops in the fleet are rarely on the corporate network or VPN during the nightly scan window. Leadership wants authenticated patch-level checks without adding scan traffic to the network. Which approach best meets this?",
+      "options": {
+        "A": "Extend the nightly credentialed network scan window to cover a full 72 hours",
+        "B": "Mandate always-on VPN and keep the nightly credentialed network scan in place",
+        "C": "Scan each laptop's public IP address from an external scanner every night",
+        "D": "Deploy scan agents that report over the internet whenever a laptop is online"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q010",
+      "domain": "2",
+      "target": "2.2 Scanner output / banner detection and backported fixes",
+      "stem": "A network scan flags a Linux server for a critical OpenSSH flaw because the service banner reports version 7.4. The server runs a vendor-supported enterprise distribution that backports security fixes, and the installed package is openssh-7.4p1-23.el7_9. What should the analyst do before classifying the finding?",
+      "options": {
+        "A": "Accept the finding as valid because the banner shows the vulnerable upstream version",
+        "B": "Close the finding because a vendor-supported distribution would not ship a vulnerable build",
+        "C": "Check the installed package changelog for the CVE named in the advisory",
+        "D": "Rescan with a more intensive profile so the service reports a different banner"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q011",
+      "domain": "2",
+      "target": "2.2 Debuggers / static vs dynamic binary analysis",
+      "stem": "An analyst must identify which functions in a stripped, unpacked malware sample call network APIs. Policy prohibits executing the sample on any system. Which approach is the best fit?",
+      "options": {
+        "A": "Disassemble and decompile the binary statically, for example with Ghidra",
+        "B": "Set breakpoints on network API calls using Immunity Debugger in a lab VM",
+        "C": "Step through the sample in GDB inside an isolated sandbox network segment",
+        "D": "Run the strings utility against the file to list its readable text"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q012",
+      "domain": "2",
+      "target": "2.3 Validation and context / reachability of vulnerable code",
+      "stem": "A container image scan reports a critical flaw in a JSON parsing library. Code review shows the vulnerable function is never called by the application, and the service accepts no inbound network connections. How should the finding be handled?",
+      "options": {
+        "A": "Raise its priority because rebuilt containers can reintroduce the vulnerable library",
+        "B": "Keep it as a valid finding with lower priority and documented reachability evidence",
+        "C": "Close it because the service accepts no inbound connections from any network",
+        "D": "Mark it a false positive because the vulnerable function is not reached by the code"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q013",
+      "domain": "2",
+      "target": "2.4 Insecure design / race condition (TOCTOU)",
+      "stem": "An API checks an account balance in one database statement and debits the account in a second statement. Testers send 20 simultaneous withdrawal requests and overdraw the account. Which fix most directly addresses the root cause?",
+      "options": {
+        "A": "Make the check and debit one atomic transaction with row-level locking",
+        "B": "Require a one-time token on each withdrawal request to block replayed calls",
+        "C": "Rate-limit withdrawals to one request per second for each account and client",
+        "D": "Validate that each requested amount is positive and below the current balance"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q014",
+      "domain": "2",
+      "target": "2.4 Injection flaws / XML external entities",
+      "stem": "A service parses uploaded XML invoices. A tester submits a document that declares an external entity pointing to file:///etc/hostname, and the response includes the server's hostname. Which fix most directly removes the weakness?",
+      "options": {
+        "A": "Check that each upload is well-formed XML before handing it to the parser",
+        "B": "Run the parser process under an unprivileged operating system service account",
+        "C": "Block uploads containing the string ENTITY with a case-sensitive filter",
+        "D": "Disable DTD and external entity processing in the XML parser settings"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q015",
+      "domain": "2",
+      "target": "2.5 Patching and configuration management / validation",
+      "stem": "After a security update to a shared library on a Linux web server, the package manager reports success, but the next credentialed scan still flags the flaw. The scan evidence shows the vulnerable library version mapped into running web server processes. What should the analyst do first?",
+      "options": {
+        "A": "Grant the scanner account root privileges so it reads the true library version",
+        "B": "Restart the web server services that still map the old library, then rescan",
+        "C": "Reinstall the library from a different repository mirror and rescan",
+        "D": "Mark the finding a false positive because the package manager reported success"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q016",
+      "domain": "2",
+      "target": "2.5 Attack surface management / continuous rescanning",
+      "stem": "A CI pipeline scans container images at build time and blocks any image with a critical finding. Six weeks after a clean build, a new critical CVE is published for a package inside a deployed image. Which control would best identify the exposure?",
+      "options": {
+        "A": "Sign every image at build time and verify its signature at deployment time",
+        "B": "Run static analysis on the application's source repository on every commit",
+        "C": "Rescan stored and running images against current vulnerability feeds",
+        "D": "Lower the pipeline blocking threshold so builds fail on medium-severity findings"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q017",
+      "domain": "3",
+      "target": "3.1 MITRE ATT&CK / tactic mapping",
+      "stem": "An investigator documents that an adversary compressed and password-protected files into an archive in a staging directory on a file server, then uploaded the archive to an external host over HTTPS. Which MITRE ATT&CK tactics best describe these two actions, in order?",
+      "options": {
+        "A": "Exfiltration for the staged archive, then Command and Control for the upload",
+        "B": "Collection for the staged archive, then Exfiltration for the upload",
+        "C": "Collection for the staged archive, then Command and Control for the upload",
+        "D": "Impact for the staged archive, then Exfiltration for the upload"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q018",
+      "domain": "3",
+      "target": "3.2 Legal hold / evidence preservation",
+      "stem": "Counsel issues a legal hold covering three custodians involved in an incident. An automated retention job will purge mailbox items older than 30 days tonight. What should the responder do?",
+      "options": {
+        "A": "Suspend the purge for the three custodians and document the authorization",
+        "B": "Allow the purge to run because retention policy takes precedence during incidents",
+        "C": "Copy the three mailboxes to an analyst workstation, then allow the purge to run",
+        "D": "Disable mailbox retention across the whole organization until counsel approves"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q019",
+      "domain": "3",
+      "target": "3.2 Containment / synchronized action",
+      "stem": "Responders have confirmed three compromised hosts, four attacker-controlled C2 domains, and a service account in use. The attacker is actively reading customer records. Which containment approach is best?",
+      "options": {
+        "A": "Clean the implant from the first confirmed host now, then work through the rest",
+        "B": "Block one C2 domain now and keep watching activity on the other channels",
+        "C": "Delay containment until the attacker's full objectives are understood",
+        "D": "Stage isolation of all hosts, domains, and the account, then execute together"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q020",
+      "domain": "3",
+      "target": "3.3 Preparation / decision authority and playbooks",
+      "stem": "A tabletop exercise reveals that, in an overnight scenario, responders spent two hours locating someone with authority to take the payment platform offline. Which preparation change best addresses the gap?",
+      "options": {
+        "A": "Give the on-shift SOC analyst authority to disable production systems unilaterally",
+        "B": "Repeat the tabletop each quarter until response time improves on its own",
+        "C": "Pre-delegate shutdown authority and an after-hours escalation path in the IR plan",
+        "D": "Add a payment platform dashboard to the SOC display used by overnight shifts"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q021",
+      "domain": "3",
+      "target": "3.2 Recovery / backup trust and dwell time",
+      "stem": "Forensic analysis shows the attacker first gained access 45 days ago. Nightly backups of the affected file server are retained for 30 days, and the business needs the server back today. Which recovery approach is best?",
+      "options": {
+        "A": "Restore the backup taken just before the first alert, which marks the intrusion",
+        "B": "Restore the most recent backup, then run an anti-malware scan before reconnecting",
+        "C": "Restore the oldest retained backup because it is least likely to hold the implant",
+        "D": "Rebuild from a trusted baseline image and restore only validated data"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q022",
+      "domain": "4",
+      "target": "4.1 Metrics / survivorship bias in remediation KPIs",
+      "stem": "A monthly report shows median time to remediate critical findings improved from 30 days to 12 days, yet the number of critical findings open longer than 90 days doubled. The median is calculated only from findings closed during the month. What best explains the divergence?",
+      "options": {
+        "A": "The remediation target was extended, which inflated the count of aged findings",
+        "B": "The median counts only closed findings, so aged open findings are excluded",
+        "C": "New assets joined the scan scope, which diluted the median time to remediate",
+        "D": "Critical findings are being reclassified as high severity at the time of closure"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q023",
+      "domain": "4",
+      "target": "4.1 Zero-day communication / stakeholder reporting",
+      "stem": "A vendor discloses an actively exploited flaw in a VPN appliance with no patch available. Asset inventory shows 12 affected appliances, 3 of them internet-facing. What should the first leadership update emphasize?",
+      "options": {
+        "A": "A recommendation to defer communication until the vendor ships a tested patch",
+        "B": "Confirmation that no compromise occurred because no alerts fired since disclosure",
+        "C": "Affected assets and exposure, interim mitigations, and the next update time",
+        "D": "CVSS vector details, exploit mechanics, and scanner plugin identifiers for each appliance"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q024",
+      "domain": "4",
+      "target": "4.2 Incident declaration and escalation",
+      "stem": "At 02:10 a SOC analyst sees confirmed ransomware indicators on a production file server. The severity matrix defines confirmed ransomware indicators on any production host as P1, requiring immediate executive notification. Encryption spread has not been measured. What should the analyst do?",
+      "options": {
+        "A": "Declare P1 and notify executives now, refining impact as facts emerge",
+        "B": "Declare P2 now and raise it to P1 if encryption spreads within four hours",
+        "C": "Notify the SOC manager and brief executives at the start of business",
+        "D": "Hold notification until the number of encrypted hosts has been confirmed"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q025",
+      "domain": "4",
+      "target": "4.2 Incident reporting / evidence versus assessment",
+      "stem": "An analyst is drafting the final incident report. Email delivery logs and EDR show a macro-enabled attachment executing minutes after delivery. No other initial access vector appears in the available telemetry, but VPN logs are retained for only 7 days and the intrusion began 20 days ago. Which statement is most appropriate?",
+      "options": {
+        "A": "Phishing was the initial vector because the attachment was delivered and the macro executed",
+        "B": "The initial vector is unknown because the logs are incomplete and no assessment can be made",
+        "C": "Phishing was the initial vector; the available logs confirm no other access method was used",
+        "D": "Phishing is the assessed initial vector, moderate confidence; VPN logs for the period are gone"
+      },
+      "answer": "D"
+    }
+  ]
+}
