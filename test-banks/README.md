@@ -8,6 +8,7 @@ See `../BANK-GENERATION.md` for the complete schema and authoring contract.
 
 - `cysa-plus-cs0-003-focused-bank-v4.1.json` - 100 questions
 - `cysa-plus-cs0-003-ultra-violence-bank-v1.json` - 25 questions
+  - Side note: *Ultra-Violence* is the fourth difficulty level in the original DOOM. The name is intentional.
 - `secai-plus-cy0-001-comprehensive-bank-v1.json` - 168 questions
 - `secai-plus-cy0-001-terminology-drill-bank-v1.json` - 195 questions
 - `secai-plus-minimal-independent-bank-v1.json` - 60 questions
