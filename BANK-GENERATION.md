@@ -46,6 +46,8 @@ test-banks/<subject>-<descriptor>-bank-v<major>.json
 
 The engine does not infer compatibility from content hashes.
 
+As an informal naming convention, DOOM difficulty levels such as *Ultra-Violence* and *Nightmare!* may be used to indicate relative bank difficulty. These names are descriptive only and are not part of the schema or runtime behavior.
+
 ## Authoring rules
 
 - Use authoritative objectives, syllabus, blueprint, or source material for scope.
