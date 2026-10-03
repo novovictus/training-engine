@@ -43,6 +43,27 @@ https://ninja-neer.net
 
 Use progress export/import to move state between origins or browser profiles. Direct `file://` launch may work but is not the supported development or persistent-use path.
 
+## Automated validation
+
+Validate any portable bank directly:
+
+```text
+node scripts/validate-banks-v2.js <path-to-bank.json>
+```
+
+Run the repository regression suite with no bank argument:
+
+```text
+node scripts/validate-banks-v2.js
+```
+
+Additional runtime checks are available in:
+
+```text
+scripts/validate-corrupt-progress-recovery.js
+scripts/validate-download-helper.js
+```
+
 ## Validation baseline
 
 Check:
