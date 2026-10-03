@@ -124,7 +124,13 @@ Before finalizing:
 - verify all answer keys
 - confirm the bank loads successfully in Training Engine
 
-Use repository validation tooling when available.
+Use repository validation tooling when available. Before finalizing or returning a generated bank, run:
+
+```text
+node scripts/validate-banks-v2.js <path-to-bank.json>
+```
+
+Correct every reported error before returning the bank. If execution tools are unavailable, apply the same schema checks manually and do not claim the script was run.
 
 ## 8. Output
 
