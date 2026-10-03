@@ -4,6 +4,7 @@ const fs=require('fs');
 const path=require('path');
 const vm=require('vm');
 
+const bankKeys=['bankId','bankVersion','questions','schemaVersion','title'];
 const optionKeys=['A','B','C','D'];
 const questionKeys=['answer','domain','id','options','stem','target'];
 const reservedQuestionIds=new Set(['__proto__','constructor','prototype']);
@@ -18,7 +19,9 @@ const expected={
 
 function fail(file,message){throw new Error(file+': '+message);}
 function validate(file,bank){
-  if(!bank||typeof bank!=='object'||Array.isArray(bank)||bank.schemaVersion!==2)fail(file,'schemaVersion must be 2');
+  if(!bank||typeof bank!=='object'||Array.isArray(bank))fail(file,'bank must be an object');
+  if(Object.keys(bank).sort().join(',')!==bankKeys.join(','))fail(file,'bank fields must be exactly schemaVersion/bankId/bankVersion/title/questions');
+  if(bank.schemaVersion!==2)fail(file,'schemaVersion must be 2');
   for(const key of ['bankId','bankVersion','title'])if(typeof bank[key]!=='string'||!bank[key].trim())fail(file,key+' must be a non-empty string');
   if(!Array.isArray(bank.questions)||!bank.questions.length)fail(file,'questions must be a non-empty array');
   const ids=new Set();
@@ -32,6 +35,21 @@ function validate(file,bank){
     for(const key of optionKeys)if(typeof question.options[key]!=='string'||!question.options[key].trim())fail(file,question.id+' option '+key+' must be non-empty');
     if(!optionKeys.includes(question.answer))fail(file,question.id+' answer must be A-D');
   }
+}
+
+const requestedBank=process.argv[2];
+if(process.argv.length>3)fail('usage','node scripts/validate-banks-v2.js [bank.json]');
+if(requestedBank){
+  const candidatePath=path.resolve(process.cwd(),requestedBank);
+  let bank;
+  try{
+    bank=JSON.parse(fs.readFileSync(candidatePath,'utf8'));
+  }catch(error){
+    fail(requestedBank,'could not read or parse JSON: '+error.message);
+  }
+  validate(requestedBank,bank);
+  console.log(requestedBank+': '+bank.questions.length+' questions validated against schemaVersion 2');
+  process.exit(0);
 }
 
 const bundledContext={window:{},localStorage:{getItem:()=>null,setItem:()=>{}},location:{reload:()=>{}}};
