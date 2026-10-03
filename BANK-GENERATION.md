@@ -73,6 +73,15 @@ Randomized displayed answer order does not fix weak item construction.
 
 ## Validation before commit
 
+Run the schema validator against the bank before commit:
+
+```text
+node scripts/validate-banks-v2.js <path-to-bank.json>
+```
+
+The command validates strict JSON, exact schemaVersion 2 bank and question fields, IDs, A-D options, and answer values. Correct every reported error before continuing.
+
+
 1. Confirm source scope and intended coverage.
 2. Confirm the file does not unintentionally replace another bank.
 3. Validate schemaVersion 2 and strict JSON parsing.
