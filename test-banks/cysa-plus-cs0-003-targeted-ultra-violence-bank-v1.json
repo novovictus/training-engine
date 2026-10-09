@@ -1,266 +1,266 @@
 {
   "schemaVersion": 2,
   "bankId": "cysa-plus-cs0-003-targeted-ultra-violence-v1",
-  "bankVersion": "1.1.0",
-  "title": "CompTIA CySA+ CS0-003 Targeted Ultra-Violence Bank v1",
+  "bankVersion": "3.0.0",
+  "title": "CompTIA CySA+ CS0-003 Targeted Ultra-Violence v3",
   "questions": [
     {
-      "id": "Q001",
+      "id": "UV2-Q001",
       "domain": "1",
-      "target": "1.2 Endpoint analysis / process injection evidence",
-      "stem": "EDR records a signed Microsoft process making an unusual outbound connection. Disk hash, parent process, and command line all appear normal. Which additional artifact would MOST strongly support that code was injected into the running process?",
+      "target": "1.2 Endpoint analysis / process-injection discrimination",
+      "stem": "A Windows service has been running for eight hours. Its executable on disk matches the approved hash. A memory snapshot and EDR trace show: Original executable image: still mapped; executable sections match the baseline; Additional region: private RX memory containing a second PE image; Loader module list: no entry for the additional image; EDR: a different process wrote that region and created a thread starting inside it Which mechanism BEST explains this combination?",
       "options": {
-        "A": "An executable private memory region containing code that is not backed by a loaded image",
-        "B": "A loaded copy of winhttp.dll from the Windows system directory",
-        "C": "A normal user token associated with the interactive session",
-        "D": "A valid Authenticode signature on the on-disk executable"
-      },
-      "answer": "A"
-    },
-    {
-      "id": "Q002",
-      "domain": "1",
-      "target": "1.2 Endpoint analysis / hollowing versus legitimate execution",
-      "stem": "A process named updater.exe starts from its expected signed path. Memory analysis shows its original image sections are unmapped and the process entry point now lies inside a newly allocated executable region. Which interpretation is BEST supported?",
-      "options": {
-        "A": "The process is using a standard Windows update mechanism",
-        "B": "The process was likely hollowed or otherwise had its executable image replaced in memory",
-        "C": "The process loaded a legitimate unsigned plug-in",
-        "D": "The executable was modified on disk after launch"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q003",
-      "domain": "1",
-      "target": "1.2 Endpoint analysis / DLL injection evidence",
-      "stem": "An analyst suspects DLL injection into a long-running application. Which finding would provide the strongest corroboration?",
-      "options": {
-        "A": "The application has a child process created by explorer.exe",
-        "B": "The process imports kernel32.dll and advapi32.dll",
-        "C": "A DLL is mapped into the process from a user-writable path and was not part of the normal module baseline",
-        "D": "The process has several established TCP connections"
+        "A": "Thread-context hijacking that redirects a previously running service thread",
+        "B": "DLL search-order hijacking that substitutes a file during normal library loading",
+        "C": "PE injection that maps additional code into the existing service process",
+        "D": "Process hollowing that replaces the service process's original executable image"
       },
       "answer": "C"
     },
     {
-      "id": "Q004",
+      "id": "UV2-Q002",
       "domain": "1",
-      "target": "1.3 Network telemetry / source selection",
-      "stem": "The SOC needs 60 days of evidence showing which internal hosts queried specific domains and which TLS server names they contacted. Payload retention is prohibited. Which source BEST fits?",
+      "target": "1.3 Log correlation / NAT attribution and flow direction",
+      "stem": "A provider reports a TCP session from 203.0.113.9:51423 to 198.51.100.44:443 between 14:02 and 14:04 UTC. Investigators obtain these normalized records from the same firewall. Its clocks are synchronized, and the flow counters below are non-overlapping interval deltas, not cumulative totals. NAT mappings to that destination:; 13:50-13:55 10.20.4.18:60210 -> 203.0.113.9:51423; 14:02-14:04 10.20.4.27:61000 -> 203.0.113.9:51423 IPFIX deltas for the reported public session:; 14:02-14:03 outbound 160 MiB; inbound 20 MiB; 14:03-14:04 outbound 140 MiB; inbound 20 MiB Which attribution and transmitted-volume estimate belong in the incident worksheet?",
       "options": {
-        "A": "Flow records containing source, destination, ports, and byte counts",
-        "B": "Passive protocol metadata that records DNS transactions and TLS handshake fields",
-        "C": "Only IDS alerts generated when signatures match known malicious traffic",
-        "D": "Rolling packet capture retained for 24 hours"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q005",
-      "domain": "1",
-      "target": "1.3 Network telemetry / flow versus protocol metadata",
-      "stem": "Investigators need to determine whether a host transferred unusually large volumes to a rare external IP over TCP/443, but they do not need domain names or payload content. Which telemetry is MOST efficient?",
-      "options": {
-        "A": "NetFlow or IPFIX records",
-        "B": "Full packet capture",
-        "C": "DNS resolver logs only",
-        "D": "Endpoint file-integrity monitoring"
+        "A": "10.20.4.27 transmitted 300 MiB during the reported session.",
+        "B": "10.20.4.18 transmitted 340 MiB during the reported session.",
+        "C": "10.20.4.18 transmitted 300 MiB during the reported session.",
+        "D": "10.20.4.27 transmitted 340 MiB during the reported session."
       },
       "answer": "A"
     },
     {
-      "id": "Q006",
+      "id": "UV2-Q003",
       "domain": "1",
-      "target": "1.3 Network telemetry / IDS versus metadata",
-      "stem": "A retrospective hunt asks which workstations contacted a newly identified malicious domain during the previous 30 days. The IDS had no signature for the domain at the time. Which retained data would be MOST useful?",
+      "target": "1.3 Email analysis / SPF and DKIM alignment",
+      "stem": "A mail gateway evaluates two messages with the same visible From domain, payroll.example.org. The applicable DMARC policy is: v=DMARC1; p=reject; aspf=s; adkim=r Message M1:; SPF: pass; MAIL FROM domain: bounce.payroll.example.org; DKIM: pass; signing domain d=example.org Message M2:; SPF: fail; MAIL FROM domain: payroll.example.org; DKIM: pass; signing domain d=mailer.example.net For this exercise, example.org and example.net are different organizational domains. Ignore delivery-policy overrides. What are the DMARC authentication results?",
       "options": {
-        "A": "Historical DNS query logs or passive DNS metadata",
-        "B": "Only the IDS alert database",
-        "C": "Switch CAM tables from the current day",
-        "D": "Endpoint CPU utilization metrics"
+        "A": "M1 fails DMARC; M2 fails DMARC.",
+        "B": "M1 passes DMARC; M2 fails DMARC.",
+        "C": "M1 fails DMARC; M2 passes DMARC.",
+        "D": "M1 passes DMARC; M2 passes DMARC."
       },
-      "answer": "A"
+      "answer": "B"
     },
     {
-      "id": "Q007",
+      "id": "UV2-Q004",
       "domain": "1",
-      "target": "1.3 Email analysis / Received-header trust boundaries",
-      "stem": "A message contains three Received headers. The corporate gateway added the newest header after accepting the message from an external relay. The external relay added the next older header claiming it received the message from payroll.example.com. Which statement is MOST defensible?",
+      "target": "1.3 Evidence selection / encrypted transport versus object attribution",
+      "stem": "A workstation's customer-export.zip has SHA-256 digest H1. EDR associates its read with process P and a subsequent TLS 1.3 connection to a shared object-storage service. The service owner supplies these records; object checksums cover the stored bytes, and clocks are synchronized. EDR connection: P -> storage.example.net; 14:02-14:04; Proxy: CONNECT storage.example.net; 48 MiB sent; Provider R1: actor svc-backup; object checksum H1; commit 13:40; Provider R2: actor user-17; object checksum H2; commit 14:03; Provider R3: actor user-17; object checksum H1; commit 14:03; Provider R4: actor user-17; object checksum H1; upload initiated 14:03; aborted before commit The responder has a complete packet capture and the server certificate's private key, but no session secrets. Which evidence best supports successful external storage of the archive's bytes during the observed connection window?",
       "options": {
-        "A": "The payroll system is verified because it appears in the oldest Received header",
-        "B": "The corporate gateway verifies only the external relay that directly connected to it",
-        "C": "All Received headers are equally trustworthy because MTAs generate them automatically",
-        "D": "The visible From header proves the external relay's older header is accurate"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q008",
-      "domain": "1",
-      "target": "1.3 Email analysis / authentication versus header claims",
-      "stem": "SPF passes for bounce.vendor.example, DKIM passes with d=vendor.example, and the visible From domain is finance.corp.example. There is no organizational-domain alignment. DMARC for finance.corp.example is p=reject. What should a compliant receiver conclude?",
-      "options": {
-        "A": "Authentication succeeded because both SPF and DKIM passed",
-        "B": "DMARC fails because neither authenticated identifier aligns with the visible From domain",
-        "C": "DMARC passes because DKIM is cryptographically valid",
-        "D": "The message should be accepted because SPF evaluated the envelope sender successfully"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q009",
-      "domain": "1",
-      "target": "1.4 Threat hunting / direct telemetry for persistence",
-      "stem": "A hunt hypothesis is that attackers are creating new Windows services for persistence. Process creation and firewall logs are already retained. Which additional telemetry would test the hypothesis MOST directly?",
-      "options": {
-        "A": "Windows service-installation events and service-control-manager logs",
-        "B": "DNS logs from internal resolvers",
-        "C": "Proxy logs for outbound web browsing",
-        "D": "NetFlow records from the data-center core"
-      },
-      "answer": "A"
-    },
-    {
-      "id": "Q010",
-      "domain": "2",
-      "target": "2.2 Vulnerability validation / backported fixes",
-      "stem": "A scanner flags a Linux service based on an upstream version banner. The distribution vendor commonly backports security fixes without changing that upstream version string. What should the analyst do before accepting the finding?",
-      "options": {
-        "A": "Treat the banner as definitive evidence of vulnerability",
-        "B": "Verify the installed package release against the vendor advisory and changelog",
-        "C": "Close the finding because supported distributions are assumed secure",
-        "D": "Increase scan intensity until the banner changes"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q011",
-      "domain": "2",
-      "target": "2.2 Static versus dynamic analysis",
-      "stem": "A suspicious native executable must be examined without execution. The analyst needs to identify functions that reference credential APIs and determine likely call paths. Which approach BEST fits?",
-      "options": {
-        "A": "Static disassembly and decompilation with cross-reference analysis",
-        "B": "Attach a debugger and set breakpoints on the credential APIs",
-        "C": "Execute the sample in a sandbox with network access disabled",
-        "D": "Run only strings and infer control flow from printable text"
-      },
-      "answer": "A"
-    },
-    {
-      "id": "Q012",
-      "domain": "2",
-      "target": "2.1 Vulnerability scanning / roaming endpoints",
-      "stem": "Most corporate laptops remain off VPN for long periods, but security needs authenticated patch and configuration checks whenever devices are online. Which design BEST meets the requirement?",
-      "options": {
-        "A": "Use endpoint vulnerability agents that report over the internet",
-        "B": "Run a longer credentialed scan from the internal scanner each night",
-        "C": "Scan each device's public IP from the internet",
-        "D": "Rely on unauthenticated external scans for patch status"
-      },
-      "answer": "A"
-    },
-    {
-      "id": "Q013",
-      "domain": "2",
-      "target": "2.3 Vulnerability prioritization / exploitability context",
-      "stem": "Two findings both have CVSS 9.8. One affects an internet-facing production API with active exploitation reported publicly. The other affects an isolated test host scheduled for decommissioning next week. Which action is BEST?",
-      "options": {
-        "A": "Treat both as equal priority because the base scores match",
-        "B": "Prioritize the production API and document the environmental and threat context",
-        "C": "Prioritize the test host because isolated systems receive less monitoring",
-        "D": "Lower the production finding because public exploits are already understood"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q014",
-      "domain": "2",
-      "target": "2.4 Insecure design / race conditions",
-      "stem": "An application checks available credit in one database query and posts a charge in a second. Concurrent requests can all pass the first check and exceed the limit. Which fix MOST directly addresses the root cause?",
-      "options": {
-        "A": "Add input validation for the charge amount",
-        "B": "Make the check and update atomic with appropriate transaction locking",
-        "C": "Require reauthentication before each charge",
-        "D": "Rate-limit each client to one request per second"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q015",
-      "domain": "2",
-      "target": "2.5 Patch validation / loaded vulnerable libraries",
-      "stem": "A patched shared library is installed successfully, but a scanner still detects the old vulnerable version mapped into several long-running application processes. What should happen NEXT?",
-      "options": {
-        "A": "Restart the affected processes so they load the patched library, then rescan",
-        "B": "Reinstall the package from a different mirror",
-        "C": "Mark the finding false because the package database is current",
-        "D": "Disable local vulnerability checks until the next maintenance cycle"
-      },
-      "answer": "A"
-    },
-    {
-      "id": "Q016",
-      "domain": "3",
-      "target": "3.2 Containment / coordinated action",
-      "stem": "Responders confirm two compromised hosts, an abused privileged account, and three active C2 destinations. The attacker is still accessing sensitive records. Which containment plan is BEST?",
-      "options": {
-        "A": "Block one C2 destination immediately and watch the rest",
-        "B": "Stage isolation of the hosts, revoke the account, and block the C2 destinations in a coordinated action",
-        "C": "Reimage the first host before changing account access",
-        "D": "Delay containment until the full attacker objective is known"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q017",
-      "domain": "3",
-      "target": "3.3 Lessons learned / root cause versus corrective action",
-      "stem": "A former contractor's remote-access account remained active for months and was later abused with valid credentials. Which statement BEST separates root cause from corrective action?",
-      "options": {
-        "A": "Root cause: valid credentials were used; corrective action: eliminate remote access",
-        "B": "Root cause: failure to revoke access; corrective action: strengthen offboarding and periodic access review",
-        "C": "Root cause: the VPN was internet-facing; corrective action: stop collecting VPN logs",
-        "D": "Root cause: the attacker targeted a contractor; corrective action: prohibit contractors"
-      },
-      "answer": "B"
-    },
-    {
-      "id": "Q018",
-      "domain": "4",
-      "target": "4.2 Incident reporting / calibrated confidence",
-      "stem": "EDR and mail telemetry show a malicious attachment executed shortly before compromise. No competing initial-access evidence is present, but a potentially relevant VPN log source is unavailable for the period. Which wording is BEST for the final report?",
-      "options": {
-        "A": "Phishing is confirmed as the initial vector",
-        "B": "The initial vector cannot be assessed because one data source is missing",
-        "C": "Phishing is the assessed initial vector with stated confidence and the telemetry limitation documented",
-        "D": "VPN compromise is equally likely because those logs are unavailable"
+        "A": "R2 together with the proxy byte count, because the transfer size corroborates the uploaded archive.",
+        "B": "R1 together with the endpoint file read, because the matching checksum establishes the current transfer.",
+        "C": "R3 together with the endpoint timeline, because matching stored bytes were committed during that interval.",
+        "D": "R4 together with certificate-key decryption, because the upload request identifies the transferred archive."
       },
       "answer": "C"
     },
     {
-      "id": "Q019",
-      "domain": "4",
-      "target": "4.1 Metrics / survivorship bias",
-      "stem": "Median remediation time for critical findings drops from 24 days to 10 days, while the count of critical findings open longer than 90 days doubles. The median includes only findings closed during the month. What BEST explains the divergence?",
+      "id": "UV2-Q005",
+      "domain": "1",
+      "target": "1.1 Time synchronization / ordering with clock uncertainty",
+      "stem": "An analyst is preparing a timeline. The VPN and object-store clocks have negligible error. Endpoint measurements establish that its clock was fast by between 120 and 140 seconds throughout the incident. VPN authentication: 10:00:05 UTC; Endpoint process start: 10:02:15 endpoint time; Object-store read: 10:00:30 UTC No event carries a causal transaction ID linking it to either of the other events. Which ordering is justified by these timestamps?",
       "options": {
-        "A": "The program is improving because the median is lower",
-        "B": "Long-lived open findings are excluded from the closed-item median",
-        "C": "The severity model is assigning too many findings as critical",
-        "D": "The scan engine is taking longer to complete authenticated checks"
+        "A": "Authentication and process start cannot be ordered; the object read follows both.",
+        "B": "Process start precedes authentication; the object read follows both of those events.",
+        "C": "Authentication precedes both other events; process start and object read cannot be ordered.",
+        "D": "Authentication precedes process start; the object read follows both of those events."
+      },
+      "answer": "A"
+    },
+    {
+      "id": "UV2-Q006",
+      "domain": "1",
+      "target": "1.5 SOAR integration / retries and idempotent actions",
+      "stem": "A SOAR worker calls an endpoint-isolation API. The API applies isolation, but the response is lost. A queue then redelivers the same alert to another worker. The API supports an idempotency key, retaining each key's result for the entire retry window. Reusing a key returns the original result instead of applying the action again. The same endpoint may later be released and legitimately isolated for a new alert. Each alert has a globally unique, immutable ID. Which key strategy BEST handles both situations?",
+      "options": {
+        "A": "Use an endpoint-scoped key combining endpoint ID, action type, and a fixed retry-window identifier.",
+        "B": "Use an alert-scoped key combining endpoint ID, action type, and the immutable alert identifier.",
+        "C": "Use a delivery-scoped key combining endpoint ID, action type, and a fresh request UUID.",
+        "D": "Use a worker-scoped key combining endpoint ID, action type, and the assigned worker identifier."
       },
       "answer": "B"
     },
     {
-      "id": "Q020",
-      "domain": "4",
-      "target": "4.2 Executive communication / confirmed versus unknown impact",
-      "stem": "Investigators confirm unauthorized access to 27 accounts. Evidence of data exfiltration is still being analyzed. Which statement is MOST appropriate for an executive update?",
+      "id": "UV2-Q007",
+      "domain": "1",
+      "target": "1.3 SIEM correlation / session-aware evidence joins",
+      "stem": "A hunt looks for a remote logon that writes an executable and then installs that executable as a service on the destination host. Several deployment sessions can use the same account concurrently. The SIEM retains these normalized fields: 4624 network logon: destination host, boot ID, logon ID, account SID, source IP; Executable write: destination host, boot ID, logon ID, normalized full path, time; 4697 service install: destination host, boot ID, subject logon ID, normalized binary path, time Paths are already normalized, and the hunt window is five minutes. Which correlation BEST tests that the same destination logon session performed both actions?",
       "options": {
-        "A": "Twenty-seven accounts were compromised and data was exfiltrated",
-        "B": "No data loss occurred because exfiltration has not been proven",
-        "C": "Twenty-seven accounts show confirmed unauthorized access; possible data exfiltration remains under investigation",
-        "D": "No impact statement should be issued until the investigation is complete"
+        "A": "Join destination host, logon ID, and binary path; use the five-minute window across boot boundaries.",
+        "B": "Join destination host, boot ID, and account SID; use the five-minute window to associate actions.",
+        "C": "Join destination host, boot ID, and logon ID; use the five-minute window to match binary paths.",
+        "D": "Join destination host, boot ID, and source IP; use the five-minute window to associate actions."
+      },
+      "answer": "C"
+    },
+    {
+      "id": "UV2-Q008",
+      "domain": "2",
+      "target": "2.2 Cloud assessment / validating an IAM escalation finding",
+      "stem": "A cloud assessment reports a potential Lambda privilege-escalation path. The complete relevant permissions and trust configuration are summarized below: Caller: lambda:CreateFunction and lambda:InvokeFunction; Caller: iam:PassRole for role/BatchAdmin; BatchAdmin permissions: AdministratorAccess; BatchAdmin trust: sts:AssumeRole allowed to ecs-tasks.amazonaws.com; Caller: no permission to change role policies or trust relationships The reported path is specifically to create and invoke a Lambda function using BatchAdmin as its execution role. Which assessment is BEST supported?",
+      "options": {
+        "A": "The path is blocked because the execution role does not trust the Lambda service.",
+        "B": "The path is blocked because the caller also needs sts:AssumeRole on the execution role.",
+        "C": "The path succeeds because iam:PassRole substitutes the receiving service into the role trust.",
+        "D": "The path succeeds because the role's AdministratorAccess overrides its service trust relationship."
+      },
+      "answer": "A"
+    },
+    {
+      "id": "UV2-Q009",
+      "domain": "2",
+      "target": "2.5 Patch validation / bundled dependencies and running state",
+      "stem": "A Linux appliance scanner reports a vulnerable TLS library. The operating-system package manager lists a backported fix, and an engineer proposes closing the finding. Investigation produces: Listening socket 8443 -> PID 731; /proc/731/exe -> /opt/edge/bin/gateway; /proc/731/maps -> /opt/edge/runtime/libtls.so; OS package ownership -> /opt/edge/runtime/libtls.so is not owned by an OS package; Signed appliance manifest -> that mapped file's hash belongs to vulnerable appliance build R7; Appliance advisory -> build R8 replaces the affected bundled library Which remediation plan addresses the demonstrated exposure?",
+      "options": {
+        "A": "Deploy R8 to the appliance filesystem, verify the installed library hash, and close after the package update.",
+        "B": "Deploy R8 to a staging instance, verify its library hash, and close after the production scanner signature changes.",
+        "C": "Deploy the fixed OS package to production, restart the gateway, and close after its listener returns.",
+        "D": "Deploy R8 to the production appliance, restart the gateway, and close after verifying its mapped library."
+      },
+      "answer": "D"
+    },
+    {
+      "id": "UV2-Q010",
+      "domain": "2",
+      "target": "2.3 Prioritization / validated exposure and attack paths",
+      "stem": "Four services have validated, unpatched remote-code-execution vulnerabilities and similarly sensitive data. Public exploit code exists for each. One emergency remediation slot is available. API-A: CVSS 9.8; Internet reachable; exploitation requires an enabled parser that accepted adversarial input in a lab. Production telemetry shows no attempts.; JOB-B: CVSS 8.8; internal; requires a service login. An attacker-controlled application host can reach JOB-B and contains a valid login.; ADM-C: CVSS 9.8; Internet reachable through mTLS; vulnerable handler is enabled. Accepted client keys are on administrator devices with no observed compromise.; PRX-D: CVSS 9.8; Internet reachable; a tested gateway rule rejects the exploit's required request form before the handler. Responders are containing the application host, but its stolen credentials have not yet been revoked. Which service has the strongest evidence of a currently usable attack path and should receive this remediation slot?",
+      "options": {
+        "A": "ADM-C, because a reachable vulnerable handler carries the higher base severity.",
+        "B": "PRX-D, because a perimeter rule leaves the vulnerable implementation in place.",
+        "C": "JOB-B, because reachability and the required credentials are established for the attacker.",
+        "D": "API-A, because a reproduced exploit establishes risk without requiring prior authentication."
+      },
+      "answer": "C"
+    },
+    {
+      "id": "UV2-Q011",
+      "domain": "2",
+      "target": "2.4 Insecure design / concurrent transactions",
+      "stem": "A PostgreSQL-backed payment API runs at READ COMMITTED isolation. Two legitimate requests have different idempotency keys but debit the same account. Each executes this sequence in its own transaction: SELECT balance FROM accounts WHERE id = :id;; Application checks balance >= :amount.; UPDATE accounts SET balance = balance - :amount WHERE id = :id;; COMMIT; With an initial balance of 100, both requests read 100 and approve a debit of 80. The updates then commit, producing a negative balance. Which change MOST directly enforces the funds check under concurrency?",
+      "options": {
+        "A": "Record unique request keys before running the existing balance check and debit transaction.",
+        "B": "Use SELECT FOR UPDATE in an autocommit statement before running the debit transaction.",
+        "C": "Serialize the existing sequence by authenticated client identity before committing each debit.",
+        "D": "Use a conditional balance-decrement UPDATE and approve when its affected-row count is one."
+      },
+      "answer": "D"
+    },
+    {
+      "id": "UV2-Q012",
+      "domain": "2",
+      "target": "2.4 SSRF / connection-time destination validation",
+      "stem": "A report-preview service accepts an HTTPS URL. It rejects private and link-local addresses after resolving the hostname. The HTTP client then performs its own DNS lookup when connecting. An authorized test records: Validation lookup: preview.example.net -> a permitted public address; Connection lookup: preview.example.net -> 169.254.169.254; Outbound trace: connection attempted to 169.254.169.254:443; Redirect following: disabled The application must continue fetching external HTTPS previews. Which change closes the demonstrated validation gap?",
+      "options": {
+        "A": "Validate the hostname's certificate before accepting its response while retaining independent DNS lookups.",
+        "B": "Bind each connection to a policy-validated resolved address while preserving TLS hostname verification.",
+        "C": "Reject numeric address literals in submitted URLs while retaining the existing hostname resolution flow.",
+        "D": "Compare the final peer address with policy after reading the response and discard disallowed results."
+      },
+      "answer": "B"
+    },
+    {
+      "id": "UV2-Q013",
+      "domain": "2",
+      "target": "2.2 Debuggers / finding the earlier corrupting write",
+      "stem": "A Linux parser crashes after a heap object's four-byte unsigned count becomes 0x7fffffff. GDB is paused after initialization. The debugger shows: p obj; $1 = (struct record *) 0x602000; p &obj->count; $2 = (unsigned int *) 0x602018; p obj->count; $3 = 64 The object stays allocated at that address, but the local pointer variable obj is reassigned as the parser visits other records. Hardware watchpoints are available. Which setup most directly stops when the original object's count value changes, rather than when the pointer changes or the field is read?",
+      "options": {
+        "A": "Set watch obj, then continue execution until the parser changes its current record pointer.",
+        "B": "Set rwatch *(unsigned int *)0x602018, then continue execution until the field is accessed.",
+        "C": "Set watch *(unsigned int *)0x602000, then continue execution until the object is modified.",
+        "D": "Set watch *(unsigned int *)0x602018, then continue execution until the count is modified."
+      },
+      "answer": "D"
+    },
+    {
+      "id": "UV2-Q014",
+      "domain": "3",
+      "target": "3.2 Containment / volatile evidence under active harm",
+      "stem": "A VM contains an in-memory implant. Audit records show its process retrieving sensitive database rows through a legitimate application account. The observed C2 endpoint is on the Internet. A full memory acquisition takes six minutes. Responders can change virtual-switch rules without using the guest OS. A forensic collector reaches the VM over a separate management path. The VM has a healthy service failover instance. Containment is authorized. Which plan best limits ongoing access while preserving the implant's memory for acquisition?",
+      "options": {
+        "A": "Keep the database path open, block Internet egress, and acquire memory through the forensic path.",
+        "B": "Block database and Internet paths, retain the forensic path, and acquire memory with the VM running.",
+        "C": "Suspend the VM, block database and Internet paths, and acquire memory through the guest collector.",
+        "D": "Revoke the observed database session, retain production networking, and acquire memory through the forensic path."
+      },
+      "answer": "B"
+    },
+    {
+      "id": "UV2-Q015",
+      "domain": "3",
+      "target": "3.2 Cloud containment / existing role sessions",
+      "stem": "CloudTrail identifies malicious activity by an ordinary IAM role session, not an IAM Identity Center session. An IAM user's stolen access key created it through AssumeRole at 08:10. Responders disabled that access key at 08:30, but the role session continues making authorized requests at 08:40. Its scheduled expiry is 09:10. All times are UTC. The incident lead authorizes revoking role sessions issued before 08:30. Separately authenticated responders have clean sessions issued after that cutoff and need to keep working. Which action MOST directly implements that containment boundary?",
+      "options": {
+        "A": "Attach a deny to the role for requests using sessions with aws:TokenIssueTime before 08:30.",
+        "B": "Delete the original IAM user's disabled access key to invalidate the role's temporary credentials.",
+        "C": "Remove the original IAM user from the role trust policy to invalidate its already-issued session.",
+        "D": "Reduce the role's maximum session duration so its existing sessions expire ahead of schedule."
+      },
+      "answer": "A"
+    },
+    {
+      "id": "UV2-Q016",
+      "domain": "3",
+      "target": "3.2 Recovery / control-plane reinfection",
+      "stem": "Two servers rebuilt from an independently verified image develop the same malicious scheduled task after reconnecting to management. A controlled rebuild stays clean until its configuration agent runs. Agent log: downloaded package hash H7 from CFG-01; then created the task; Approved release manifest: package hash H6; CFG-01 audit: H7 was published using the deployment account outside a change window; Firewall: no other inbound path was allowed during the controlled test Which recovery plan BEST addresses the observed recurrence before fleet restoration?",
+      "options": {
+        "A": "Restore approved packages on CFG-01, reconnect rebuilt servers, and monitor future use of deployment credentials.",
+        "B": "Rotate deployment credentials on CFG-01, republish its current packages, and re-enroll rebuilt servers.",
+        "C": "Contain CFG-01, revoke deployment credentials, validate its restored packages, and re-enroll rebuilt servers.",
+        "D": "Restore CFG-01 from its latest backup, reuse deployment credentials, and verify endpoint task removal."
+      },
+      "answer": "C"
+    },
+    {
+      "id": "UV2-Q017",
+      "domain": "3",
+      "target": "3.2 Evidence preservation / comparing equivalent representations",
+      "stem": "A responder records raw disk-image digest H1, then compresses the image for transfer and records archive digest H2. The recipient verifies H2 before extraction. A recompressed copy has digest H3, different from H2; extracting either archive produces a raw image matching H1. Different compression settings were used. Custody records identify each representation, and the acquisition image is retained. Which verification plan best establishes that the recipient's working image matches the acquired evidence?",
+      "options": {
+        "A": "Compare H3 with H1, retain the recompressed archive, and document the compression settings.",
+        "B": "Compare H3 with H2, retain the transferred archive, and document the compression settings.",
+        "C": "Compare the working image with H2, retain the acquisition image, and document each transfer.",
+        "D": "Compare the working image with H1, retain the acquisition image, and document each archive digest."
+      },
+      "answer": "D"
+    },
+    {
+      "id": "UV2-Q018",
+      "domain": "4",
+      "target": "4.1 Vulnerability reporting / cohort and denominator effects",
+      "stem": "A dashboard reports that the fraction of scanned assets with a critical finding fell from 20% to 2%. The scanner coverage and authenticated-check success rate were unchanged. The report population changed as follows: August: 100 assets; 20 assets had critical findings; September: the same 100 assets plus 900 newly enrolled assets; September: 20 assets had critical findings; all 900 new assets were free of critical findings The dashboard does not identify which September findings correspond to August findings. Which additional analysis would BEST determine whether remediation improved for the previously vulnerable assets?",
+      "options": {
+        "A": "Match baseline asset-and-finding pairs to September results, separating resolved findings from newly detected findings.",
+        "B": "Match baseline asset IDs to September results, treating an unchanged vulnerable-asset count as unchanged findings.",
+        "C": "Match closed tickets to baseline asset IDs, treating ticket closure as evidence that the corresponding finding resolved.",
+        "D": "Match September finding totals to the baseline total, adjusting the comparison for the enlarged scanned population."
+      },
+      "answer": "A"
+    },
+    {
+      "id": "UV2-Q019",
+      "domain": "4",
+      "target": "4.2 Incident reporting / enumeration versus record access",
+      "stem": "An unauthorized token was used against a records API. Service-side auditing confirms the following operations and their response contents: ListRecords: 200; returned identifiers for 240 records, with no record contents; GetRecord: 84 successful responses; 60 distinct record IDs; each response delivered full record contents; ExportRecords: 202 for a job covering 240 records; job later failed before producing an export artifact An executive update needs the confirmed extent of content access, distinguished from enumeration and bulk export. Which statement matches the evidence?",
+      "options": {
+        "A": "Contents of 60 distinct records were accessed; 240 identifiers were enumerated; a 240-record bulk-export artifact was produced.",
+        "B": "Contents of 60 distinct records were accessed; 240 identifiers were enumerated; no bulk-export artifact was produced.",
+        "C": "Contents of 240 distinct records were accessed; 84 identifiers were enumerated; no bulk-export artifact was produced.",
+        "D": "Contents of 84 distinct records were accessed; 240 identifiers were enumerated; no bulk-export artifact was produced."
+      },
+      "answer": "B"
+    },
+    {
+      "id": "UV2-Q020",
+      "domain": "4",
+      "target": "4.2 Detection metrics / event time versus ingestion time",
+      "stem": "A SOC compares two equal-sized sets of replayed attacks. The trusted source-event timestamp marks the same attack milestone in every test, clocks are synchronized, and each set has the timings shown below: Earlier pipeline: source event 12:00; SIEM ingestion 12:01; detection 12:06; New pipeline: source event 12:00; SIEM ingestion 12:19; detection 12:20 The dashboard measures ingestion-to-detection and reports an improvement. What should the analyst report about end-to-end detection and post-ingestion processing?",
+      "options": {
+        "A": "End-to-end detection fell from 6 to 1 minute; post-ingestion processing increased from 1 to 19 minutes.",
+        "B": "End-to-end detection fell from 5 to 1 minute; post-ingestion processing increased from 6 to 20 minutes.",
+        "C": "End-to-end detection increased from 6 to 20 minutes; post-ingestion processing fell from 5 to 1 minute.",
+        "D": "End-to-end detection increased from 1 to 19 minutes; post-ingestion processing fell from 6 to 1 minute."
       },
       "answer": "C"
     }

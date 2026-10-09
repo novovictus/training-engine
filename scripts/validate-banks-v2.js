@@ -9,6 +9,7 @@ const optionKeys=['A','B','C','D'];
 const questionKeys=['answer','domain','id','options','stem','target'];
 const reservedQuestionIds=new Set(['__proto__','constructor','prototype']);
 const expected={
+  'cysa-plus-cs0-003-targeted-ultra-violence-bank-v1.json':{count:20,digest:'b526068a9980263676d8b05df5b6b7058f8af09901fa432dbf4a08834b6c0c68'},
   'cysa-plus-cs0-003-focused-bank-v4.1.json':{count:100,digest:'65cc81c16cff4d7409f729f735f7af704192bbd1ebbbfd705fc0582290d3b754'},
   'cysa-plus-cs0-003-ultra-violence-bank-v1.json':{count:25,digest:'01b36c3df72e69112c038e6076759133e76c1e6703638b605a181bd5a9f982af'},
   'test-fixture-bank.json':{count:4,digest:'2aced199b9aa6168938db5e3feb9b63d9041da8be6c8edc01d6ed3f11104264c'},
