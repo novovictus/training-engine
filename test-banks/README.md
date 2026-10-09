@@ -6,6 +6,8 @@ See `../BANK-GENERATION.md` for the complete schema and authoring contract.
 
 ## Retained banks
 
+- `cysa-plus-cs0-003-targeted-ultra-violence-bank-v1.json` - 20 questions; bank version 3.0.0
+
 - `cysa-plus-cs0-003-focused-bank-v4.1.json` - 100 questions
 - `cysa-plus-cs0-003-ultra-violence-bank-v1.json` - 25 questions
 - `secai-plus-cy0-001-comprehensive-bank-v1.json` - 168 questions
