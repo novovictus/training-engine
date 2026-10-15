@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 2,
+  "bankId": "cysa-plus-cs0-003-scenario-assessment-20",
+  "bankVersion": "1.0.0",
+  "title": "CompTIA CySA+ CS0-003 Scenario Assessment | 20 Questions | Objectives v4.0",
+  "questions": [
+    {
+      "id": "Q001",
+      "domain": "1.0 Security Operations",
+      "target": "1.1 Log ingestion, time synchronization, and event correlation",
+      "stem": "A SIEM correlates authentication events from a domain controller and VPN gateway. The domain controller records a successful login at 14:02:10 UTC, while the VPN gateway records a connection from the same account at 14:06:40 UTC. Packet captures show that the VPN connection preceded the authentication event by approximately 20 seconds. Both devices report their timestamps in UTC. What should the analyst investigate FIRST to establish a reliable event sequence?",
+      "options": {
+        "A": "Whether the SIEM normalized the authentication and VPN event fields consistently",
+        "B": "Whether both devices synchronized their clocks to a reliable time source",
+        "C": "Whether the VPN gateway retained the original client source IP address",
+        "D": "Whether the domain controller forwarded its logs before the VPN gateway"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q002",
+      "domain": "1.0 Security Operations",
+      "target": "1.2 Indicators of malicious activity and host resource consumption",
+      "stem": "An analyst investigates a workstation that becomes sluggish overnight. EDR telemetry shows a newly created process consuming 95% of GPU compute resources for several hours. The process maintains encrypted outbound sessions to a previously unseen mining-pool endpoint. No scheduled rendering or machine-learning workloads are authorized on the workstation. Which activity BEST explains the evidence?",
+      "options": {
+        "A": "Cryptojacking using unauthorized compute resources",
+        "B": "Credential harvesting through a background browser process",
+        "C": "Data exfiltration using an encrypted outbound connection",
+        "D": "Distributed denial-of-service activity using the workstation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q003",
+      "domain": "1.0 Security Operations",
+      "target": "1.3 Network security analysis and command-and-control identification",
+      "stem": "A network sensor records the following activity from an employee workstation: 09:00:00 outbound TLS connection to 198.51.100.24; 09:05:01 connection to the same address; 09:10:00 connection to the same address; 09:15:02 connection to the same address. Each session transfers approximately 900 bytes outbound and 1,200 bytes inbound. The destination has no known business association. Which investigation would BEST test the hypothesis that this represents command-and-control beaconing?",
+      "options": {
+        "A": "Compare total workstation bandwidth against the department's daily baseline",
+        "B": "Review DNS cache entries to determine whether the destination was resolved locally",
+        "C": "Compare the destination's certificate issuer against certificates from approved services",
+        "D": "Correlate connection intervals with endpoint process activity and scheduled tasks"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q004",
+      "domain": "1.0 Security Operations",
+      "target": "1.3 Security operations tools and endpoint investigation",
+      "stem": "A Linux server generated an EDR alert after a service unexpectedly launched a shell. The analyst has access to process execution records, parent-child relationships, command-line arguments, and outbound connection metadata. The service owner believes a maintenance script caused the event. Which investigation would BEST distinguish exploitation from authorized maintenance?",
+      "options": {
+        "A": "Compare the server's current listening ports with its documented service inventory",
+        "B": "Compare the service binary's installed version with its vendor's current release",
+        "C": "Trace the shell's parent process, arguments, execution time, and network activity",
+        "D": "Compare the server's firewall policy with the standard Linux security baseline"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q005",
+      "domain": "1.0 Security Operations",
+      "target": "1.4 Threat intelligence confidence and threat hunting",
+      "stem": "A commercial threat feed identifies 203.0.113.77 as malicious with high confidence. Internal telemetry shows that address was associated with a shared hosting provider six months ago, and the feed's last observation is 180 days old. The address now hosts an approved business partner's service. What is the MOST defensible response before converting the intelligence into a blocking rule?",
+      "options": {
+        "A": "Correlate current ownership, internal activity, and independent intelligence before enforcement",
+        "B": "Increase the threat score because the address has a previously documented malicious association",
+        "C": "Suppress the indicator because shared hosting addresses cannot support attribution",
+        "D": "Block outbound connections temporarily while requesting a refreshed vendor confidence score"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q006",
+      "domain": "1.0 Security Operations",
+      "target": "1.5 Automation suitability, enrichment, and SOAR workflows",
+      "stem": "A SOC receives hundreds of daily alerts containing suspicious public IP addresses. Analysts manually query several threat intelligence services, add reputation results to tickets, and then decide whether containment is warranted. Management wants to reduce repetitive work without automating potentially disruptive containment decisions. Which SOAR workflow BEST satisfies that requirement?",
+      "options": {
+        "A": "Quarantine endpoints whenever an intelligence feed assigns a high reputation score",
+        "B": "Disable accounts associated with alerts and queue the resulting tickets for analyst review",
+        "C": "Block matching IP addresses at the perimeter and reopen tickets when connections recur",
+        "D": "Enrich indicators through APIs, attach findings to tickets, and retain analyst disposition"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q007",
+      "domain": "1.0 Security Operations",
+      "target": "1.2 Web application attacks and indicators of malicious activity",
+      "stem": "An application log contains repeated requests to /api/export?url=http://169.254.169.254/latest/meta-data/. The application normally retrieves user-supplied URLs and converts their contents into reports. The requests originated from an untrusted external client. Which vulnerability is the attacker MOST likely attempting to exploit?",
+      "options": {
+        "A": "Local file inclusion through a server-side file resolver",
+        "B": "Server-side request forgery targeting an internal metadata endpoint",
+        "C": "Directory traversal through insufficient path canonicalization",
+        "D": "Remote file inclusion through an interpreter's include directive"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q008",
+      "domain": "2.0 Vulnerability Management",
+      "target": "2.1 Vulnerability scanning methods for operational technology",
+      "stem": "A security team must assess a legacy industrial controller network. The controller manufacturer warns that unexpected protocol requests may interrupt production, and there is no approved maintenance window. Network traffic is mirrored to a monitoring port, and the team needs an initial asset and exposure inventory. Which approach is MOST appropriate?",
+      "options": {
+        "A": "Perform authenticated vulnerability scans using reduced concurrent connections",
+        "B": "Perform service fingerprinting scans with conservative timeout settings",
+        "C": "Analyze mirrored traffic passively to identify assets, protocols, and observed services",
+        "D": "Execute protocol fuzzing against representative production controller addresses"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q009",
+      "domain": "2.0 Vulnerability Management",
+      "target": "2.2 Cloud infrastructure assessment tools",
+      "stem": "A security analyst is assigned to evaluate an AWS environment for permissive IAM policies, publicly exposed storage, and deviations from established cloud security benchmarks. The analyst has read-only audit credentials and must avoid exploitation or changes to production resources. Which tool is the BEST fit for this assessment?",
+      "options": {
+        "A": "Prowler, using AWS API permissions to evaluate security and compliance findings",
+        "B": "Pacu, using its AWS exploitation modules to validate potential attack paths",
+        "C": "Nessus, using authenticated host scans against the deployed EC2 instances",
+        "D": "Nmap, using network discovery to enumerate externally accessible cloud services"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q010",
+      "domain": "2.0 Vulnerability Management",
+      "target": "2.2 Debuggers and vulnerability assessment tool selection",
+      "stem": "A developer can reliably reproduce a segmentation fault in a native Linux application. The security analyst needs to pause execution at the fault, inspect the instruction pointer and registers, walk stack frames, and examine process memory while testing different inputs. Which tool is MOST appropriate?",
+      "options": {
+        "A": "A static disassembler for examining control flow without executing the application",
+        "B": "A crash dump analyzer for examining a previously captured process image",
+        "C": "A dynamic application scanner for identifying vulnerable input handling over HTTP",
+        "D": "GDB attached to the process for interactive execution and memory inspection"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q011",
+      "domain": "2.0 Vulnerability Management",
+      "target": "2.3 Context-aware vulnerability prioritization",
+      "stem": "A vulnerability management team must choose which finding to remediate first. The available findings are: (1) CVSS 9.8 on an isolated test host with no production data; (2) CVSS 8.1 on an internet-facing authentication gateway with confirmed active exploitation and available remediation; (3) CVSS 8.8 on an internal development server accessible to administrators; (4) CVSS 9.1 on a retired system that is powered off and awaiting disposal. Which finding should receive the HIGHEST remediation priority based on the supplied evidence?",
+      "options": {
+        "A": "Finding 1, because it has the highest base CVSS score",
+        "B": "Finding 2, because exposure and observed exploitation increase operational risk",
+        "C": "Finding 3, because administrator access increases the potential attack impact",
+        "D": "Finding 4, because its severity exceeds the externally exposed gateway finding"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q012",
+      "domain": "2.0 Vulnerability Management",
+      "target": "2.4 Broken access control and application vulnerability mitigation",
+      "stem": "An authenticated user changes /api/invoices/4817 to /api/invoices/4818 and receives another customer's invoice. Both invoices are valid objects, and the application verifies that the requesting user is logged in but does not verify ownership of the requested invoice. Which change BEST addresses the underlying vulnerability?",
+      "options": {
+        "A": "Require stronger session authentication before users can retrieve invoice records",
+        "B": "Replace sequential invoice identifiers with randomly generated opaque identifiers",
+        "C": "Enforce object-level authorization for every invoice retrieval request",
+        "D": "Apply response filtering to remove personally identifiable fields from invoices"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q013",
+      "domain": "2.0 Vulnerability Management",
+      "target": "2.5 Vulnerability remediation, compensating controls, and risk handling",
+      "stem": "A critical vulnerability affects a proprietary medical device management server. The manufacturer has no validated patch, and changing the server could invalidate its supported configuration. The server communicates with a documented set of management workstations over fixed ports. Clinical operations require continued availability. Which interim action BEST reduces exposure while preserving the supported configuration?",
+      "options": {
+        "A": "Restrict network access to approved management workstations and required ports",
+        "B": "Replace the vulnerable service executable with a patched community build",
+        "C": "Enable aggressive exploit-prevention rules directly on the unsupported server",
+        "D": "Migrate the management service to a newer operating system before vendor validation"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q014",
+      "domain": "3.0 Incident Response and Management",
+      "target": "3.1 MITRE ATT&CK and attack methodology analysis",
+      "stem": "During an intrusion investigation, analysts observe that an adversary used PowerShell to execute commands, created a scheduled task for persistence, and accessed credentials from memory. The team wants to map these observations to a common framework for comparing adversary behavior and identifying detection gaps. Which approach BEST supports that objective?",
+      "options": {
+        "A": "Use the Diamond Model to relate the adversary, infrastructure, capabilities, and victim",
+        "B": "Use a cyber kill chain to classify activity into broad intrusion progression phases",
+        "C": "Use a vulnerability scoring framework to rank the weaknesses involved in execution",
+        "D": "Map the observed behaviors to MITRE ATT&CK techniques and associated tactics"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q015",
+      "domain": "3.0 Incident Response and Management",
+      "target": "3.2 Evidence acquisition, preservation, and chain of custody",
+      "stem": "An incident responder acquires a forensic image of a compromised employee laptop. The original drive is secured in evidence storage. Two investigators need to analyze the data independently, and the organization may need to demonstrate that the examined material matches the acquired evidence. Which procedure BEST supports evidentiary integrity?",
+      "options": {
+        "A": "Preserve the original acquisition timestamp and distribute copies through the case repository",
+        "B": "Calculate cryptographic hashes, verify examination copies, and record evidence transfers",
+        "C": "Record the imaging software version and assign each investigator a separate case number",
+        "D": "Encrypt each examination copy and retain the acquisition workstation's system logs"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q016",
+      "domain": "3.0 Incident Response and Management",
+      "target": "3.2 Incident containment, eradication, and recovery",
+      "stem": "An EDR platform reports that a workstation executed ransomware and began encrypting files on an accessible network share. The security team has authority to contain the workstation, and business continuity personnel have been notified. Other endpoints have not yet been confirmed compromised. What is the MOST appropriate immediate technical action?",
+      "options": {
+        "A": "Reimage the workstation and restore its local files from the latest approved backup",
+        "B": "Reset the user's credentials and terminate sessions associated with the account",
+        "C": "Isolate the workstation from the network while preserving available evidence",
+        "D": "Disable access to the affected network share while investigating endpoint scope"
+      },
+      "answer": "C"
+    },
+    {
+      "id": "Q017",
+      "domain": "3.0 Incident Response and Management",
+      "target": "3.3 Preparation and post-incident activities",
+      "stem": "A company completes recovery from a credential-based intrusion. The review finds that responders spent four hours identifying who could authorize account disablement, despite detecting the intrusion quickly. The organization wants to prevent similar response delays. Which improvement BEST addresses the documented deficiency?",
+      "options": {
+        "A": "Update the response playbook with decision authority and escalation paths, then exercise it",
+        "B": "Increase authentication alert sensitivity and revise identity anomaly detection thresholds",
+        "C": "Expand credential logging retention and collect additional authentication telemetry",
+        "D": "Reduce the target recovery time objective for services affected by credential incidents"
+      },
+      "answer": "A"
+    },
+    {
+      "id": "Q018",
+      "domain": "4.0 Reporting and Communication",
+      "target": "4.1 Recurrence analysis and vulnerability management reporting",
+      "stem": "A vulnerability management dashboard shows that an outdated TLS configuration was remediated on 42 servers during April. The same finding reappeared on 31 of those servers after a standardized deployment in May. A follow-up scan confirms the configuration is active again. What should the analyst recommend to address the recurrence?",
+      "options": {
+        "A": "Revise the risk scores to distinguish historical vulnerabilities from newly discovered findings",
+        "B": "Shorten scanning intervals so the configuration regression is detected earlier",
+        "C": "Extend the remediation service-level objective to account for deployment-related delays",
+        "D": "Correct the deployment baseline and verify configuration compliance after rollout"
+      },
+      "answer": "D"
+    },
+    {
+      "id": "Q019",
+      "domain": "4.0 Reporting and Communication",
+      "target": "4.2 Incident reporting, stakeholder communication, and escalation",
+      "stem": "A confirmed intrusion exposed customer records, but the investigation has not established the complete number of affected individuals. Executives request an incident briefing before a meeting with legal counsel and communications personnel. Which report content is MOST appropriate at this stage?",
+      "options": {
+        "A": "A final estimated exposure count with preliminary evidence reserved for the forensic team",
+        "B": "Confirmed facts, current impact estimates, unresolved scope, response actions, and decisions needed",
+        "C": "A technical event timeline with detailed indicators and deferred business impact analysis",
+        "D": "A preliminary attribution assessment with potential notification language for affected customers"
+      },
+      "answer": "B"
+    },
+    {
+      "id": "Q020",
+      "domain": "4.0 Reporting and Communication",
+      "target": "4.2 Incident response metrics, detection time, and response performance",
+      "stem": "A SOC reports these timestamps for one confirmed incident: malicious activity began at 08:00; the first relevant alert was generated at 08:07; an analyst identified the activity as an incident at 08:25; containment began at 08:40; containment completed at 08:55; and remediation completed at 11:30. The organization's metric defines time to detect as elapsed time between the start of malicious activity and analyst confirmation of an incident. What detection duration should be reported?",
+      "options": {
+        "A": "7 minutes, from malicious activity to the initial alert",
+        "B": "18 minutes, from the initial alert to analyst confirmation",
+        "C": "25 minutes, from malicious activity to analyst confirmation",
+        "D": "40 minutes, from malicious activity to the start of containment"
+      },
+      "answer": "C"
+    }
+  ]
+}
