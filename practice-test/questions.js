@@ -1,11 +1,12 @@
 window.TRAINING_ENGINE_FIXTURE_BANK = {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "bankId": "training-engine-fixture",
   "bankVersion": "1.0.0",
   "title": "Training Engine Starter Fixture",
   "questions": [
     {
       "id": "F001",
+      "revision": 1,
       "domain": "general",
       "target": "Interpret a simple instruction",
       "stem": "Which option is explicitly marked as the correct response in this fixture?",
@@ -19,6 +20,7 @@ window.TRAINING_ENGINE_FIXTURE_BANK = {
     },
     {
       "id": "F002",
+      "revision": 1,
       "domain": "general",
       "target": "Recognize a sequence",
       "stem": "Which number comes next after 2, 4, 6?",
@@ -32,6 +34,7 @@ window.TRAINING_ENGINE_FIXTURE_BANK = {
     },
     {
       "id": "F003",
+      "revision": 1,
       "domain": "general",
       "target": "Identify a primary color",
       "stem": "Which of these is a primary color in additive light mixing?",
@@ -45,6 +48,7 @@ window.TRAINING_ENGINE_FIXTURE_BANK = {
     },
     {
       "id": "F004",
+      "revision": 1,
       "domain": "general",
       "target": "Read a comparison",
       "stem": "Which value is greatest?",

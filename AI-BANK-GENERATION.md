@@ -2,7 +2,7 @@
 
 This document is the starting point for an AI system asked to create, expand, revise, or validate a question bank for Training Engine.
 
-The normative bank schema and item-quality requirements are defined in `BANK-GENERATION.md`. Read that document before generating or modifying a bank.
+The normative bank schema and item-quality requirements are defined in `BANK-GENERATION.md`. Read that document before generating or modifying a bank. Only schemaVersion 3 is supported. V2 banks must be explicitly migrated using `BANK-MIGRATION-V2-TO-V3.md`; neither banks nor v2 progress are upgraded automatically.
 
 ## 1. Identify the target assessment
 
@@ -73,6 +73,10 @@ Objective coverage defines what should be tested. It does not determine the form
 
 Follow `BANK-GENERATION.md`.
 
+Every question must contain exactly `id`, `revision`, `domain`, `target`, `stem`, `options`, and `answer`. Author an explicit, permanent, non-empty, unique `id` and an integer `revision >= 1`. IDs must never be generated from row position or renumbered when questions are added, removed, or reordered. New questions receive new IDs and start at revision 1. Do not reuse retired IDs for unrelated questions. The reserved IDs `__proto__`, `constructor`, and `prototype` are forbidden; no other naming convention is enforced.
+
+Options must contain exactly four non-empty strings A-D, with one canonical answer key A-D.
+
 Questions should normally require subject-matter reasoning through realistic scenarios, evidence, tool selection, interpretation, prioritization, sequencing, or remediation decisions.
 
 Use terminology from the objectives in context.
@@ -112,8 +116,9 @@ A bank must not assume that the originally generated key is correct merely becau
 
 Before finalizing:
 
-- validate strict schemaVersion 2 JSON
-- confirm unique and valid IDs
+- validate strict schemaVersion 3 JSON
+- confirm explicit, unique, stable, valid IDs and integer revisions >= 1
+- compare unchanged questions against the previous bank to ensure their IDs/revisions were preserved
 - confirm domain and target mappings
 - check objective coverage
 - check intended domain distribution
@@ -127,7 +132,7 @@ Before finalizing:
 Use repository validation tooling when available. Before finalizing or returning a generated bank, run:
 
 ```text
-node scripts/validate-banks-v2.js <path-to-bank.json>
+node scripts/validate-banks.js <path-to-bank.json>
 ```
 
 Correct every reported error before returning the bank. If execution tools are unavailable, apply the same schema checks manually and do not claim the script was run.
@@ -147,8 +152,13 @@ Supporting research, coverage analysis, and validation notes should remain outsi
 When revising an existing bank:
 
 - preserve `bankId` when it remains the same logical bank lineage
-- preserve stable question IDs for questions that retain their identity
-- change `bankVersion` when prior progress should no longer be considered compatible
+- preserve unchanged question IDs and revisions; IDs express identity, not display order
+- keep the revision for spelling, punctuation, formatting, and inconsequential wording cleanup
+- increment the affected question's revision for material changes: answer-key corrections, ambiguous distractor corrections, changed technical meaning, scenario logic or assessed concept, and significant stem/option rewrites that alter reasoning
+- increment `bankVersion` for a publication revision; it identifies the published bank but does not reset compatible mastery
+- determine mastery compatibility by question ID plus revision; same ID/revision retains mastery, changed revision resets only that question, and removed questions leave current eligibility/totals without deleting historical attempts
+- preserve completed history as snapshots; a bankVersion change safely discards an unfinished run with a notice
+- migrate unsupported v2 banks explicitly using `BANK-MIGRATION-V2-TO-V3.md`; do not create a runtime compatibility shim
 - do not silently overwrite a historical bank unless replacement is explicitly intended
 - validate the revised bank from scratch rather than trusting prior answer keys
 
@@ -158,6 +168,7 @@ Read these files as applicable:
 
 - `README.md` - engine overview
 - `BANK-GENERATION.md` - normative schema and item-quality contract
+- `BANK-MIGRATION-V2-TO-V3.md` - stable identity, revisions, and v2 porting
 - `test-banks/README.md` - current retained banks
 - `LOCAL-TESTING.md` - local loading and validation
 - `practice-test/README.md` - runtime behavior

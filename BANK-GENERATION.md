@@ -2,16 +2,17 @@
 
 ## Contract
 
-Portable banks are strict JSON schemaVersion 2 files:
+Portable banks are strict JSON schemaVersion 3 files:
 
 ```json
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "bankId": "unique-bank-id",
   "bankVersion": "1.0.0",
   "title": "Human-readable title",
   "questions": [{
-    "id": "Q001",
+    "id": "EXAMPLE-1.1-001",
+    "revision": 1,
     "domain": "domain-string",
     "target": "Target text",
     "stem": "Question text",
@@ -24,8 +25,9 @@ Portable banks are strict JSON schemaVersion 2 files:
 Requirements:
 
 - top-level fields: `schemaVersion`, `bankId`, `bankVersion`, `title`, `questions`
-- `schemaVersion` is exactly `2`
-- each question contains exactly `id`, `domain`, `target`, `stem`, `options`, `answer`
+- `schemaVersion` is exactly `3`
+- each question contains exactly `id`, `revision`, `domain`, `target`, `stem`, `options`, `answer`
+- `revision` is an integer >= 1
 - IDs are unique, non-empty, and may not be `__proto__`, `constructor`, or `prototype`
 - `options` contains exactly non-empty A-D strings
 - `answer` is exactly A, B, C, or D
@@ -42,7 +44,9 @@ test-banks/<subject>-<descriptor>-bank-v<major>.json
 
 `bankId` identifies one logical bank lineage.
 
-`bankVersion` is the persisted-progress compatibility boundary. Increment it whenever prior progress/history should no longer be shared. Cosmetic or intentionally compatible edits may retain the existing version.
+`bankVersion` identifies each published bank revision and is recorded in state and completed runs. Increment it when publishing changes. Question `id` plus `revision`, not bankVersion, determines mastery compatibility. Keep `bankId` stable across iterations.
+
+Suggested versions: `1.0.0` initial release, `1.0.1` non-semantic corrections, `1.1.0` added/removed/revised questions, `2.0.0` major redesign. The engine compares version strings for active-run safety; it does not interpret semantic versions.
 
 The engine does not infer compatibility from content hashes.
 
@@ -54,7 +58,10 @@ As an informal naming convention, DOOM difficulty levels such as *Ultra-Violence
 - Do not overwrite an existing bank when creating an independent bank.
 - Do not copy restricted third-party questions into public banks.
 - Represent intended weighting through bank composition; the engine does not weight domains.
-- Keep question IDs stable when revising a compatible bank.
+- IDs are identity, not display order. Explicitly author permanent IDs; never generate them from row position or renumber them after additions, removals, or reordering. New questions get new IDs. Do not reuse retired IDs for unrelated questions. No naming convention is enforced.
+- Require an integer `revision >= 1` for every question. Keep it for punctuation, spelling, formatting, and inconsequential wording changes. Increment it for answer-key or ambiguous-distractor corrections, changed technical meaning, scenario logic or assessed concepts, and significant stem/option rewrites that change reasoning.
+- Reordering preserves mastery. Removing a question does not affect unrelated mastery. Any revision mismatch resets only that question, including a downgrade. Removed mastery entries are dropped; reintroducing a removed question after reconciliation starts fresh.
+- See [BANK-MIGRATION-V2-TO-V3.md](BANK-MIGRATION-V2-TO-V3.md) for porting and compact-row examples.
 
 Each item should:
 
@@ -76,15 +83,15 @@ Randomized displayed answer order does not fix weak item construction.
 Run the schema validator against the bank before commit:
 
 ```text
-node scripts/validate-banks-v2.js <path-to-bank.json>
+node scripts/validate-banks.js <path-to-bank.json>
 ```
 
-The command validates strict JSON, exact schemaVersion 2 bank and question fields, IDs, A-D options, and answer values. Correct every reported error before continuing.
+The command validates strict JSON, exact schemaVersion 3 bank and question fields (including per-question revision), IDs, A-D options, and answer values. Correct every reported error before continuing.
 
 
 1. Confirm source scope and intended coverage.
 2. Confirm the file does not unintentionally replace another bank.
-3. Validate schemaVersion 2 and strict JSON parsing.
+3. Validate schemaVersion 3 and strict JSON parsing.
 4. Confirm IDs are unique and valid.
 5. Confirm domain, target, stem, options, and answer are populated correctly.
 6. Check exact and likely near-duplicates where relevant.
