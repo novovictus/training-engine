@@ -50,6 +50,8 @@ Suggested versions: `1.0.0` initial release, `1.0.1` non-semantic corrections, `
 
 The engine does not infer compatibility from content hashes.
 
+As an informal naming convention, DOOM difficulty levels such as *Ultra-Violence* and *Nightmare!* may be used to indicate relative bank difficulty. These names are descriptive only and are not part of the schema or runtime behavior.
+
 ## Authoring rules
 
 - Use authoritative objectives, syllabus, blueprint, or source material for scope.
@@ -77,6 +79,15 @@ Avoid weakening distractors with absolute or limiting qualifiers such as `only`,
 Randomized displayed answer order does not fix weak item construction.
 
 ## Validation before commit
+
+Run the schema validator against the bank before commit:
+
+```text
+node scripts/validate-banks.js <path-to-bank.json>
+```
+
+The command validates strict JSON, exact schemaVersion 3 bank and question fields (including per-question revision), IDs, A-D options, and answer values. Correct every reported error before continuing.
+
 
 1. Confirm source scope and intended coverage.
 2. Confirm the file does not unintentionally replace another bank.

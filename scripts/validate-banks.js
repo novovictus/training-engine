@@ -4,11 +4,16 @@ const fs=require('fs');
 const path=require('path');
 const vm=require('vm');
 
+const bankKeys=['bankId','bankVersion','questions','schemaVersion','title'];
 const optionKeys=['A','B','C','D'];
 const questionKeys=['answer','domain','id','options','revision','stem','target'];
 const reservedQuestionIds=new Set(['__proto__','constructor','prototype']);
 const expected={
+  'cysa-plus-cs0-003-baseline-v1.json':{count:20,digest:'872732739360cd358cad930ec955e0ef5cc8474b62908fa0b4690d8071191bbe'},
+  'cysa-plus-cs0-003-nightmare-bank-v1.json':{count:25,digest:'3c07e061be78dd447af1ac104fbefd1752b68890bc72a06c8489c3454f6b0a17'},
+  'cysa-plus-cs0-003-nightmare-bank-v2.json':{count:25,digest:'43d946381c803e35893362698dc59bd934d578555608f4d25caf40b6695f1a5c'},
   'cysa-plus-cs0-003-focused-bank-v4.1.json':{count:100,digest:'65cc81c16cff4d7409f729f735f7af704192bbd1ebbbfd705fc0582290d3b754'},
+  'cysa-plus-cs0-003-ultra-violence-bank-v1.json':{count:25,digest:'01b36c3df72e69112c038e6076759133e76c1e6703638b605a181bd5a9f982af'},
   'test-fixture-bank.json':{count:4,digest:'2aced199b9aa6168938db5e3feb9b63d9041da8be6c8edc01d6ed3f11104264c'},
   'secai-plus-cy0-001-comprehensive-bank-v1.json':{count:168,digest:'ee3ae47f9a19b8ee6de35ce7e4fd9e4355412c75e1f5579dc37b75d9de71688a'},
   'secai-plus-cy0-001-terminology-drill-bank-v1.json':{count:195,digest:'1928c12939259ef5b53fe4612ced24aed76e29d75d84db1acf1c2f8f8fb260f7'},
@@ -17,8 +22,9 @@ const expected={
 
 function fail(file,message){throw new Error(file+': '+message);}
 function validate(file,bank){
-  if(!bank||typeof bank!=='object'||Array.isArray(bank)||bank.schemaVersion!==3)fail(file,'schemaVersion must be 3');
-  if(Object.keys(bank).sort().join(',')!=='bankId,bankVersion,questions,schemaVersion,title')fail(file,'unexpected bank fields');
+  if(!bank||typeof bank!=='object'||Array.isArray(bank))fail(file,'bank must be an object');
+  if(Object.keys(bank).sort().join(',')!==bankKeys.join(','))fail(file,'bank fields must be exactly schemaVersion/bankId/bankVersion/title/questions');
+  if(bank.schemaVersion!==3)fail(file,'schemaVersion must be 3');
   for(const key of ['bankId','bankVersion','title'])if(typeof bank[key]!=='string'||!bank[key].trim())fail(file,key+' must be a non-empty string');
   if(!Array.isArray(bank.questions)||!bank.questions.length)fail(file,'questions must be a non-empty array');
   const ids=new Set();
@@ -33,6 +39,21 @@ function validate(file,bank){
     for(const key of optionKeys)if(typeof question.options[key]!=='string'||!question.options[key].trim())fail(file,question.id+' option '+key+' must be non-empty');
     if(!optionKeys.includes(question.answer))fail(file,question.id+' answer must be A-D');
   }
+}
+
+const requestedBank=process.argv[2];
+if(process.argv.length>3)fail('usage','node scripts/validate-banks.js [bank.json]');
+if(requestedBank){
+  const candidatePath=path.resolve(process.cwd(),requestedBank);
+  let bank;
+  try{
+    bank=JSON.parse(fs.readFileSync(candidatePath,'utf8'));
+  }catch(error){
+    fail(requestedBank,'could not read or parse JSON: '+error.message);
+  }
+  validate(requestedBank,bank);
+  console.log(requestedBank+': '+bank.questions.length+' questions validated against schemaVersion 3');
+  process.exit(0);
 }
 
 const bundledContext={window:{},localStorage:{getItem:()=>null,setItem:()=>{}},location:{reload:()=>{}}};
@@ -105,6 +126,9 @@ for(const [label,mutate] of [
   if(!rejected)fail(label,'validator accepted invalid bank');
 }
 console.log('validator negative schema/revision/content cases passed');
+
+const retainedFiles=fs.readdirSync(path.join(__dirname,'..','test-banks')).filter(file=>file.endsWith('.json')).sort();
+if(JSON.stringify(retainedFiles)!==JSON.stringify(Object.keys(expected).sort()))fail('manifest','retained JSON banks and expected manifest differ; update the manifest for every retained bank');
 
 for(const [file,manifest] of Object.entries(expected)){
   const bank=JSON.parse(fs.readFileSync(path.join(__dirname,'..','test-banks',file),'utf8'));

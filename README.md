@@ -53,8 +53,8 @@ AI Explanation sends the current question context to ChatGPT only when invoked a
 
 See:
 
-- `BANK-GENERATION.md` for bank authoring.
-- `AI-BANK-GENERATION.md` for AI-assisted authoring.
+- `AI-BANK-GENERATION.md` for AI-assisted bank generation workflow.
+- `BANK-GENERATION.md` for the normative bank schema and item-quality contract.
 - `BANK-MIGRATION-V2-TO-V3.md` for migrating existing banks.
 - `LOCAL-TESTING.md` for local development and validation.
 - `practice-test/README.md` for runtime notes.
