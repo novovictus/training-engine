@@ -1,11 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "bankId": "cysa-plus-cs0-003-focused-v4",
   "bankVersion": "4.1.0",
   "title": "CompTIA CySA+ CS0-003 Focused Scenario Bank v4.1",
   "questions": [
     {
       "id": "Q001",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 Log ingestion / time synchronization",
       "stem": "A SIEM timeline shows a VPN login at 02:14:08, an EDR process start at 02:11:42, and a firewall connection at 02:13:57 from the same host. The endpoint clock is later found to be 4 minutes slow. What should the analyst do FIRST before reconstructing the sequence?",
@@ -19,6 +20,7 @@
     },
     {
       "id": "Q002",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 Logging levels",
       "stem": "A production API begins returning intermittent 500 errors during a suspected intrusion. Current logs record request path, status code, and client IP but not authentication context or exception details. Which change best improves investigation while limiting unnecessary exposure?",
@@ -32,6 +34,7 @@
     },
     {
       "id": "Q003",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 Windows Registry / persistence",
       "stem": "EDR records reg.exe modifying HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run to launch %APPDATA%\\sync.exe. The user denies installing software. What is the analyst's BEST interpretation?",
@@ -45,6 +48,7 @@
     },
     {
       "id": "Q004",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 Network segmentation / zero trust",
       "stem": "A contractor laptop connected to an office switch has valid credentials but fails device posture checks. It can reach DNS and remediation services but not engineering repositories. Which design choice most directly explains the observed access?",
@@ -58,6 +62,7 @@
     },
     {
       "id": "Q005",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 IAM / federation",
       "stem": "A user leaves the company. The local account is disabled, but the user can still access a SaaS application through an active federated session. Which action should the analyst prioritize?",
@@ -71,6 +76,7 @@
     },
     {
       "id": "Q006",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 PAM",
       "stem": "A domain administrator account is used interactively from several workstations, making attribution difficult. Security wants approvals, short-lived elevation, and session recording without eliminating administrative capability. Which change best fits?",
@@ -84,6 +90,7 @@
     },
     {
       "id": "Q007",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 CASB / DLP",
       "stem": "A finance employee uploads a spreadsheet containing cardholder data to an unsanctioned file-sharing service from a managed laptop. Which control combination would most directly detect the SaaS use and enforce data policy?",
@@ -97,6 +104,7 @@
     },
     {
       "id": "Q008",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Network indicators / beaconing",
       "stem": "NetFlow shows one workstation connecting to 198.51.100.27 every 239 to 245 seconds for 60 to 80 bytes outbound and 140 to 170 bytes inbound. The destination has no business relationship. Which hypothesis should be investigated first?",
@@ -110,6 +118,7 @@
     },
     {
       "id": "Q009",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Scans and sweeps",
       "stem": "A firewall records a single external source sending TCP SYNs to port 445 on 2,000 internal addresses through a misconfigured ACL. Most hosts return RST and a few return SYN/ACK. What activity is best supported?",
@@ -123,6 +132,7 @@
     },
     {
       "id": "Q010",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Host indicators / process behavior",
       "stem": "A Windows endpoint shows mshta.exe launched by explorer.exe, followed by powershell.exe making an HTTPS connection and creating a scheduled task. Which evidence is most useful for deciding whether this is malicious?",
@@ -136,6 +146,7 @@
     },
     {
       "id": "Q011",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Resource consumption",
       "stem": "A Linux web server's CPU rises to 95% overnight. ps shows dozens of identical processes running from /tmp/.cache/x, and outbound traffic goes to several mining-pool domains. Which conclusion is most defensible?",
@@ -149,6 +160,7 @@
     },
     {
       "id": "Q012",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Data exfiltration",
       "stem": "A developer workstation normally sends less than 200 MB outbound daily. It sends 18 GB overnight to a newly created cloud-storage tenant using the user's valid browser session. Which additional evidence would best distinguish exfiltration from legitimate work?",
@@ -162,6 +174,7 @@
     },
     {
       "id": "Q013",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Application indicators",
       "stem": "An internal payroll application creates a new API key for an account that has never used the API. Minutes later, the account enumerates employees and exports records. What should the analyst prioritize?",
@@ -175,6 +188,7 @@
     },
     {
       "id": "Q014",
+      "revision": 1,
       "domain": "1",
       "target": "1.2 Obfuscated links",
       "stem": "A phishing email contains https://secure-payroll.example.com@xn--payrol-7ve.example/login. What should the analyst examine first to determine the actual destination?",
@@ -188,6 +202,7 @@
     },
     {
       "id": "Q015",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 Packet capture / Wireshark vs tcpdump",
       "stem": "An analyst has a 4 GB PCAP and needs to identify which TCP stream carried a suspicious HTTP POST, then reconstruct the application conversation. Which tool is the better fit for this task?",
@@ -201,6 +216,7 @@
     },
     {
       "id": "Q016",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 Packet capture / tcpdump",
       "stem": "A responder has SSH access to a headless Linux sensor and needs a five-minute capture of traffic to one suspicious IP without installing a GUI. Which approach is most appropriate?",
@@ -214,6 +230,7 @@
     },
     {
       "id": "Q017",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 SIEM vs SOAR",
       "stem": "A SOC already correlates endpoint, identity, and firewall events in a SIEM. Analysts spend time enriching alerts with reputation data and opening tickets before containment approval. Which addition most directly reduces that repetitive work?",
@@ -227,6 +244,7 @@
     },
     {
       "id": "Q018",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 EDR",
       "stem": "A malicious document launches a signed Windows utility that injects into another process, then deletes the original file. Antivirus never writes a malware signature alert. Which data source is most likely to preserve the behavioral chain?",
@@ -240,6 +258,7 @@
     },
     {
       "id": "Q019",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 Reputation / WHOIS vs AbuseIPDB",
       "stem": "A new domain appears in a phishing campaign. The analyst wants its registration date, registrar, and current name servers before deciding whether it is newly established infrastructure. Which source is most directly relevant?",
@@ -253,6 +272,7 @@
     },
     {
       "id": "Q020",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 File analysis / strings vs sandbox",
       "stem": "A suspicious binary cannot be executed because the analyst is still deciding whether handling restrictions permit detonation. Which first step can reveal embedded URLs, paths, and command fragments without running it?",
@@ -266,6 +286,7 @@
     },
     {
       "id": "Q021",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 Sandboxing",
       "stem": "Static review finds an obfuscated executable with no useful strings. The analyst needs registry, filesystem, process, and network behavior. Which next step best addresses the requirement?",
@@ -279,6 +300,7 @@
     },
     {
       "id": "Q022",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 Email authentication",
       "stem": "A message claiming to be from invoices@vendor.example has SPF pass for bounce.mailer.example, DKIM pass for mailer.example, and DMARC fail for vendor.example. Which interpretation is strongest?",
@@ -292,6 +314,7 @@
     },
     {
       "id": "Q023",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 User behavior / impossible travel",
       "stem": "An account appears to sign in from New York and Singapore 12 minutes apart. VPN records show the user had an active session through corporate cloud-hosted VPN infrastructure during the same period. What should the analyst do next?",
@@ -305,6 +328,7 @@
     },
     {
       "id": "Q024",
+      "revision": 1,
       "domain": "1",
       "target": "1.3 Scripting / regex",
       "stem": "A hunter must identify PowerShell command lines containing either -enc or -encodedcommand, regardless of case, while avoiding matches in unrelated fields. Which technique is most suitable?",
@@ -318,6 +342,7 @@
     },
     {
       "id": "Q025",
+      "revision": 1,
       "domain": "1",
       "target": "1.4 Threat intelligence confidence",
       "stem": "A paid feed rates an IP as high confidence malicious, but the sighting is 14 months old and the address now belongs to a major cloud provider. Internal telemetry shows routine SaaS traffic. What is the best next action?",
@@ -331,6 +356,7 @@
     },
     {
       "id": "Q026",
+      "revision": 1,
       "domain": "1",
       "target": "1.4 Threat hunting / TTPs",
       "stem": "A hunter suspects credential dumping followed by remote service use. Which query set best tests the hypothesis rather than searching for known hashes?",
@@ -344,6 +370,7 @@
     },
     {
       "id": "Q027",
+      "revision": 1,
       "domain": "1",
       "target": "1.4 Intelligence sharing",
       "stem": "A new phishing infrastructure indicator is validated during incident response. Which downstream use gives the organization the greatest immediate defensive value?",
@@ -357,6 +384,7 @@
     },
     {
       "id": "Q028",
+      "revision": 1,
       "domain": "1",
       "target": "1.4 Active defense / honeypot",
       "stem": "A decoy SSH service has no legitimate users, yet one source logs in using a planted credential and attempts host discovery. How should the alert be treated?",
@@ -370,6 +398,7 @@
     },
     {
       "id": "Q029",
+      "revision": 1,
       "domain": "1",
       "target": "1.5 Automation suitability",
       "stem": "The SOC wants to automate four recurring tasks. Which is the best initial candidate for unattended automation?",
@@ -383,6 +412,7 @@
     },
     {
       "id": "Q030",
+      "revision": 1,
       "domain": "1",
       "target": "1.5 SOAR guardrails",
       "stem": "A SOAR playbook automatically blocks domains after one low-confidence feed match and has caused several business outages. Which redesign best preserves automation while reducing risk?",
@@ -396,6 +426,7 @@
     },
     {
       "id": "Q031",
+      "revision": 1,
       "domain": "1",
       "target": "1.5 API / webhook integration",
       "stem": "A ticketing platform should create a case within seconds when the SIEM marks an alert as confirmed, without polling the SIEM every minute. Which integration pattern best fits?",
@@ -409,6 +440,7 @@
     },
     {
       "id": "Q032",
+      "revision": 1,
       "domain": "1",
       "target": "1.5 Single pane of glass",
       "stem": "Analysts switch among separate consoles for EDR, email, identity, and firewall alerts. The organization wants one operational view but does not want to replace the underlying products. What approach best meets the goal?",
@@ -422,6 +454,7 @@
     },
     {
       "id": "Q033",
+      "revision": 1,
       "domain": "1",
       "target": "1.1 Encryption / SSL inspection",
       "stem": "Malware uses HTTPS to a newly registered domain. The proxy sees destination and certificate metadata but not the HTTP payload. Policy permits inspection for corporate devices. Which change most directly improves content visibility?",
@@ -435,6 +468,7 @@
     },
     {
       "id": "Q034",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 Credentialed vs non-credentialed scanning",
       "stem": "A scanner sees TCP/445 and identifies Windows Server 2022 but cannot determine missing local patches or insecure registry settings. What change would most improve assessment depth?",
@@ -448,6 +482,7 @@
     },
     {
       "id": "Q035",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 Agent vs agentless scanning",
       "stem": "Sales laptops are often off VPN for weeks, and monthly network scans consistently miss them. Which approach best improves vulnerability coverage without requiring the devices to be on-premises?",
@@ -461,6 +496,7 @@
     },
     {
       "id": "Q036",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 Passive vs active / OT",
       "stem": "An ICS vendor warns that unsolicited probes can destabilize legacy controllers. Security still needs an initial asset inventory and exposure picture. What should the team do first?",
@@ -474,6 +510,7 @@
     },
     {
       "id": "Q037",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 Static vs dynamic analysis",
       "stem": "A team wants to find hard-coded credentials and unsafe API use in source code before a release candidate is executed. Which assessment method is the best fit?",
@@ -487,6 +524,7 @@
     },
     {
       "id": "Q038",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 Dynamic analysis / fuzzing",
       "stem": "A custom service crashes when it receives malformed length values. The developers want to systematically discover similar parser failures before release. Which approach best fits?",
@@ -500,6 +538,7 @@
     },
     {
       "id": "Q039",
+      "revision": 1,
       "domain": "2",
       "target": "2.1 Security baselines",
       "stem": "A vulnerability scan finds no known CVEs on a Linux server, but an audit shows passwordless sudo for a service account and world-writable configuration files. Which assessment would most directly expose these issues?",
@@ -513,6 +552,7 @@
     },
     {
       "id": "Q040",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Multipurpose / Nmap service detection",
       "stem": "An assessor discovers an unknown host and needs to identify listening TCP services and likely service versions before choosing deeper tests. Which tool is most appropriate?",
@@ -526,6 +566,7 @@
     },
     {
       "id": "Q041",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Web application scanners / intercepting proxy",
       "stem": "A tester needs to intercept an authenticated HTTP request, modify a JSON parameter, replay it, and compare authorization responses. Which tool is the best fit?",
@@ -539,6 +580,7 @@
     },
     {
       "id": "Q042",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Web application scanners / Nikto",
       "stem": "A quick assessment is needed for a newly exposed web server to identify dangerous default files, outdated server components, and common web-server misconfigurations. Which tool is the most direct starting point?",
@@ -552,6 +594,7 @@
     },
     {
       "id": "Q043",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Vulnerability scanners",
       "stem": "A security team needs recurring authenticated checks for missing patches and known vulnerabilities across mixed server platforms. Which pair of tools is in the correct category for that job?",
@@ -565,6 +608,7 @@
     },
     {
       "id": "Q044",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Debuggers / GDB",
       "stem": "A researcher can reproduce a crash in a native Linux service and needs to inspect registers, stack frames, memory, and the faulting instruction. Which tool is most appropriate?",
@@ -578,6 +622,7 @@
     },
     {
       "id": "Q045",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Metasploit",
       "stem": "A penetration tester has approval to determine whether a scanner finding is actually exploitable and needs a framework with exploit modules, payload handling, and session management. Which tool best fits?",
@@ -591,6 +636,7 @@
     },
     {
       "id": "Q046",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Cloud infrastructure assessment tools / Pacu",
       "stem": "A tester has authorized AWS credentials and must demonstrate whether existing permissions can be chained into privilege escalation. Which tool is most appropriate?",
@@ -604,6 +650,7 @@
     },
     {
       "id": "Q047",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Cloud infrastructure assessment tools / Prowler",
       "stem": "A cloud-security engineer has read-only AWS credentials and needs an open-source CLI focused on checking the account against AWS security best practices and named compliance frameworks. The task is assessment, not exploitation. Which tool best matches?",
@@ -617,6 +664,7 @@
     },
     {
       "id": "Q048",
+      "revision": 1,
       "domain": "2",
       "target": "2.2 Cloud infrastructure assessment tools / Scout Suite",
       "stem": "An assessor needs a broad, point-in-time configuration review across AWS, Azure, and Google Cloud using one open-source cloud-auditing tool that gathers configuration data through provider APIs. Which tool best fits?",
@@ -630,6 +678,7 @@
     },
     {
       "id": "Q049",
+      "revision": 1,
       "domain": "2",
       "target": "2.3 CVSS and context",
       "stem": "A CVSS 9.8 vulnerability affects an isolated test appliance with no sensitive data. A CVSS 8.1 vulnerability affects an Internet-facing identity server and has reliable public exploitation. Which should be remediated first?",
@@ -643,6 +692,7 @@
     },
     {
       "id": "Q050",
+      "revision": 1,
       "domain": "2",
       "target": "2.3 CVSS metrics",
       "stem": "A vulnerability is exploitable over the network without credentials, but exploitation succeeds only after a user opens a crafted document. Which CVSS factor captures that dependency?",
@@ -656,6 +706,7 @@
     },
     {
       "id": "Q051",
+      "revision": 1,
       "domain": "2",
       "target": "2.3 Validation / false positive",
       "stem": "A scanner reports that TLS 1.0 is enabled on a load balancer. Repeated manual handshakes using TLS 1.0 fail, and the active configuration permits TLS 1.2 and 1.3. How should the finding be handled?",
@@ -669,6 +720,7 @@
     },
     {
       "id": "Q052",
+      "revision": 1,
       "domain": "2",
       "target": "2.3 Validation / false negative",
       "stem": "A penetration test successfully exploits an outdated service that the weekly vulnerability scan did not report. What does this most directly indicate about the scan result?",
@@ -682,6 +734,7 @@
     },
     {
       "id": "Q053",
+      "revision": 1,
       "domain": "2",
       "target": "2.3 Zero-day prioritization",
       "stem": "A vendor discloses an actively exploited zero-day in a service used by the organization. No patch exists. One instance is Internet-facing; another is isolated in a lab. What should vulnerability management do first?",
@@ -695,6 +748,7 @@
     },
     {
       "id": "Q054",
+      "revision": 1,
       "domain": "2",
       "target": "2.3 Asset value / exploitability",
       "stem": "A medium-severity privilege-escalation flaw affects a domain controller, while a high-severity denial-of-service flaw affects a disposable kiosk. Which data should drive priority beyond the scanner scores?",
@@ -708,6 +762,7 @@
     },
     {
       "id": "Q055",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 SSRF",
       "stem": "A web application accepts a user-supplied image URL. An attacker submits http://169.254.169.254/latest/meta-data/ and the server returns cloud instance metadata. Which vulnerability pattern best explains the behavior?",
@@ -721,6 +776,7 @@
     },
     {
       "id": "Q056",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 Broken access control",
       "stem": "A user changes /api/invoices/4821 to /api/invoices/4822 and receives another customer's invoice while remaining logged in as the original user. Which remediation most directly addresses the flaw?",
@@ -734,6 +790,7 @@
     },
     {
       "id": "Q057",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 Injection / parameterized queries",
       "stem": "An application builds SELECT statements by concatenating a username from an HTTP request. Which code change most directly reduces SQL injection risk?",
@@ -747,6 +804,7 @@
     },
     {
       "id": "Q058",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 XSS / output encoding",
       "stem": "A comments page stores user input and later inserts it into other users' HTML pages. A stored script executes in visitors' browsers. Which change most directly addresses the vulnerable output path?",
@@ -760,6 +818,7 @@
     },
     {
       "id": "Q059",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 CSRF",
       "stem": "A banking site relies on a user's existing session cookie. A malicious page causes the browser to submit a funds-transfer POST to the bank without the user's intent. Which control most directly mitigates this attack?",
@@ -773,6 +832,7 @@
     },
     {
       "id": "Q060",
+      "revision": 1,
       "domain": "2",
       "target": "2.4 Directory traversal / LFI",
       "stem": "A download endpoint accepts file=quarterly.pdf. Changing it to file=../../../../etc/passwd returns local system content. Which corrective approach best addresses the flaw?",
@@ -786,6 +846,7 @@
     },
     {
       "id": "Q061",
+      "revision": 1,
       "domain": "2",
       "target": "2.5 Patching / rollback",
       "stem": "A critical patch fixes remote code execution on a revenue system, but the vendor notes a possible compatibility issue with one plugin. What is the best remediation sequence?",
@@ -799,6 +860,7 @@
     },
     {
       "id": "Q062",
+      "revision": 1,
       "domain": "2",
       "target": "2.5 Risk response / compensating control",
       "stem": "A medical device cannot be patched for six months because the vendor requires recertification. Security can restrict network paths, monitor protocol use, and enforce jump-host access. Which response best describes this plan?",
@@ -812,6 +874,7 @@
     },
     {
       "id": "Q063",
+      "revision": 1,
       "domain": "2",
       "target": "2.5 Attack surface management",
       "stem": "External discovery finds an Internet-facing management interface that is not in the asset inventory and has no documented business owner. What should happen first?",
@@ -825,6 +888,7 @@
     },
     {
       "id": "Q064",
+      "revision": 1,
       "domain": "3",
       "target": "3.1 Cyber kill chain for intrusion phase analysis",
       "stem": "An intrusion timeline shows spear phishing, exploit execution, malware installation, command-and-control establishment, and data theft. The team wants to identify where an earlier defensive action could have interrupted the progression. Which framework best supports that phase-oriented analysis?",
@@ -838,6 +902,7 @@
     },
     {
       "id": "Q065",
+      "revision": 1,
       "domain": "3",
       "target": "3.1 Diamond Model",
       "stem": "Analysts link the same phishing domain and command-and-control host to two malware families targeting different subsidiaries. They want to reason about relationships among adversary, capability, infrastructure, and victim. Which framework best fits?",
@@ -851,6 +916,7 @@
     },
     {
       "id": "Q066",
+      "revision": 1,
       "domain": "3",
       "target": "3.1 MITRE ATT&CK technique mapping",
       "stem": "EDR records credential dumping, remote service use, and scheduled-task creation across several hosts. The SOC wants to map these observed behaviors to a common adversary-technique taxonomy and identify detection gaps. Which framework best fits?",
@@ -864,6 +930,7 @@
     },
     {
       "id": "Q067",
+      "revision": 1,
       "domain": "3",
       "target": "3.1 OSSTMM vs OWASP Testing Guide",
       "stem": "A team is planning a broad security test covering people, processes, physical considerations, wireless, telecommunications, and data networks rather than only web applications. Which methodology is the closer fit?",
@@ -877,6 +944,7 @@
     },
     {
       "id": "Q068",
+      "revision": 1,
       "domain": "3",
       "target": "3.1 OWASP Testing Guide for application-layer testing",
       "stem": "An assessor is building a structured test plan for authentication, session management, input validation, and authorization in a web application. Which reference is most directly applicable?",
@@ -890,6 +958,7 @@
     },
     {
       "id": "Q069",
+      "revision": 1,
       "domain": "3",
       "target": "3.1 Framework correlation",
       "stem": "A report states that an actor used PowerShell for execution, RDP for lateral movement, and scheduled tasks for persistence. Which use of this information is most appropriate?",
@@ -903,6 +972,7 @@
     },
     {
       "id": "Q070",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Detection and analysis",
       "stem": "A SIEM alert shows suspicious PowerShell on one endpoint. EDR then reveals the same user authenticated to three servers, two of which launched encoded PowerShell within minutes. What should the responder do next?",
@@ -916,6 +986,7 @@
     },
     {
       "id": "Q071",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Evidence acquisition / integrity",
       "stem": "An analyst creates a forensic disk image for an investigation that may become a legal matter. Which step most directly demonstrates that the image has not changed since acquisition?",
@@ -929,6 +1000,7 @@
     },
     {
       "id": "Q072",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Chain of custody",
       "stem": "A drive image is transferred from an incident responder to an outside forensic specialist. What documentation is most important to preserve chain of custody?",
@@ -942,6 +1014,7 @@
     },
     {
       "id": "Q073",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Legal hold",
       "stem": "During an investigation, counsel instructs the team not to delete mailbox, chat, and endpoint records for a group of custodians even though normal retention would expire. What should the response team do?",
@@ -955,6 +1028,7 @@
     },
     {
       "id": "Q074",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Containment / isolation",
       "stem": "A workstation is encrypting a shared drive and contacting a known ransomware command-and-control endpoint. What action should occur first if isolation is technically available?",
@@ -968,6 +1042,7 @@
     },
     {
       "id": "Q075",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Containment / business impact",
       "stem": "A compromised application server processes time-critical transactions. Immediate shutdown would stop suspected attacker access but also halt customer payments. Which response is best?",
@@ -981,6 +1056,7 @@
     },
     {
       "id": "Q076",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Eradication vs recovery",
       "stem": "A compromised web server has been isolated, malicious persistence removed, credentials rotated, and the vulnerable component patched. What should occur before returning it to normal service?",
@@ -994,6 +1070,7 @@
     },
     {
       "id": "Q077",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Re-imaging decision",
       "stem": "An endpoint has multiple unknown persistence mechanisms, altered security tooling, and uncertain system integrity. Which recovery approach is most defensible?",
@@ -1006,6 +1083,7 @@
     },
     {
       "id": "Q078",
+      "revision": 1,
       "domain": "3",
       "target": "3.2 Evidence vs containment sequencing",
       "stem": "An analyst finds an Internet-exposed server running an active web shell. Memory may contain attacker commands and connections, but the host is still being used for lateral movement. What is the best response principle?",
@@ -1019,6 +1097,7 @@
     },
     {
       "id": "Q079",
+      "revision": 1,
       "domain": "3",
       "target": "3.3 Preparation / playbooks",
       "stem": "A tabletop shows that analysts disagree about who can isolate a production database and when executive approval is required. What preparation improvement most directly addresses the gap?",
@@ -1032,6 +1111,7 @@
     },
     {
       "id": "Q080",
+      "revision": 1,
       "domain": "3",
       "target": "3.3 Tabletop exercise",
       "stem": "Executives, legal, communications, IT, and security walk through a simulated ransomware event using injects but do not touch production systems. What is the primary value of the exercise?",
@@ -1045,6 +1125,7 @@
     },
     {
       "id": "Q081",
+      "revision": 1,
       "domain": "3",
       "target": "3.3 BC/DR coordination",
       "stem": "Ransomware containment requires taking a critical order-processing system offline. The response team needs the documented recovery sequence, alternate processing arrangements, and restoration priorities after containment. Which preparation artifact should it consult?",
@@ -1058,6 +1139,7 @@
     },
     {
       "id": "Q082",
+      "revision": 1,
       "domain": "3",
       "target": "3.3 Root cause analysis",
       "stem": "After restoring service, the team determines the initial compromise used a stolen contractor token that remained valid after contract termination. Which follow-up action best reflects root cause analysis?",
@@ -1071,6 +1153,7 @@
     },
     {
       "id": "Q083",
+      "revision": 1,
       "domain": "3",
       "target": "3.3 Lessons learned",
       "stem": "The incident is closed, but responders found that firewall requests took three hours because ownership was unclear. What should the team do with this finding?",
@@ -1084,6 +1167,7 @@
     },
     {
       "id": "Q084",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Vulnerability reporting / prioritization",
       "stem": "A monthly report lists 1,800 findings but does not show affected business services, exploitability, age, or remediation owners. Executives cannot tell what needs attention. Which change would most improve the report?",
@@ -1097,6 +1181,7 @@
     },
     {
       "id": "Q085",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Recurrence",
       "stem": "The same critical configuration finding reappears on newly built servers each month after remediation teams fix existing hosts. What should reporting emphasize?",
@@ -1110,6 +1195,7 @@
     },
     {
       "id": "Q086",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Compliance reporting",
       "stem": "A PCI-scoped environment has several overdue high-risk findings. Management asks whether remediation performance meets required internal and external obligations. What should the analyst provide?",
@@ -1123,6 +1209,7 @@
     },
     {
       "id": "Q087",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Action plans / inhibitors",
       "stem": "A legacy system cannot be patched without interrupting a 24x7 manufacturing process, and replacement is scheduled in four months. Which reporting approach is best?",
@@ -1136,6 +1223,7 @@
     },
     {
       "id": "Q088",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 SLA vs SLO",
       "stem": "The security team aims to remediate critical vulnerabilities within seven days, but a managed service contract requires the provider to deploy approved critical patches within ten days. Which statement best reflects the two commitments?",
@@ -1149,6 +1237,7 @@
     },
     {
       "id": "Q089",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Metrics / trends",
       "stem": "Critical findings fell from 120 to 40, but median age rose from 12 to 55 days and several systems remain repeatedly vulnerable. What should the analyst communicate?",
@@ -1162,6 +1251,7 @@
     },
     {
       "id": "Q090",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Stakeholder communication",
       "stem": "A critical vulnerability affects an Internet-facing application owned by a business unit, operated by a managed provider, and governed by a security exception. Who should receive the remediation communication?",
@@ -1175,6 +1265,7 @@
     },
     {
       "id": "Q091",
+      "revision": 1,
       "domain": "4",
       "target": "4.1 Awareness and changing requirements",
       "stem": "A business unit repeatedly creates public cloud storage despite remediation tickets because its deployment template defaults to public access. Which action plan is most likely to prevent recurrence?",
@@ -1188,6 +1279,7 @@
     },
     {
       "id": "Q092",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Incident declaration and escalation",
       "stem": "An analyst confirms customer records were accessed by an unauthorized account, but the total number of affected records is still unknown. What should happen next?",
@@ -1201,6 +1293,7 @@
     },
     {
       "id": "Q093",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Executive summary",
       "stem": "A technical report contains process trees, hashes, firewall logs, and forensic timestamps. Senior leadership needs a one-page update. What should the executive summary emphasize?",
@@ -1214,6 +1307,7 @@
     },
     {
       "id": "Q094",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Incident timeline",
       "stem": "Firewall events use UTC, endpoint logs use local time, and a cloud service exports ISO timestamps with offsets. What should the analyst do before presenting a unified incident timeline?",
@@ -1227,6 +1321,7 @@
     },
     {
       "id": "Q095",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Legal / public relations",
       "stem": "A ransomware incident disrupts customer services and a reporter contacts an engineer for comment. Which communication path is most appropriate?",
@@ -1240,6 +1335,7 @@
     },
     {
       "id": "Q096",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Regulatory reporting",
       "stem": "An incident may trigger a statutory notification deadline, but forensic scope is still evolving. What should the incident lead do first?",
@@ -1253,6 +1349,7 @@
     },
     {
       "id": "Q097",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Law enforcement",
       "stem": "A financially motivated intrusion includes extortion and confirmed theft of regulated customer data. Leadership is considering law-enforcement involvement. Which factor should guide the decision?",
@@ -1266,6 +1363,7 @@
     },
     {
       "id": "Q098",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Root cause vs contributing factor",
       "stem": "A phishing message led to token theft. Investigation also finds that conditional-access policy excluded the affected legacy application. How should the final report treat these findings?",
@@ -1279,6 +1377,7 @@
     },
     {
       "id": "Q099",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Recommendations",
       "stem": "An incident report recommends 'improve security monitoring' after an attacker used newly created service-account credentials for lateral movement. Which revision would be more actionable?",
@@ -1292,6 +1391,7 @@
     },
     {
       "id": "Q100",
+      "revision": 1,
       "domain": "4",
       "target": "4.2 Metrics / MTTD and MTTR",
       "stem": "A SOC detects incidents faster after new analytics are deployed, but containment still takes several hours because approvals are manual. Which metric pattern best reflects the change?",
